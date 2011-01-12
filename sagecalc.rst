@@ -512,8 +512,7 @@ Plotting
 2D Plotting and Graphics
 ========================
 
-.. note::
-		You should be familiar with :ref:`basic_functions`
+|  You should be familiar with :ref:`basic_functions`
 
 Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly get the reader up to speed with some of the basic commands used when plotting functions and working with graphics.
 
