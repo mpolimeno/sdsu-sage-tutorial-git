@@ -9,7 +9,7 @@ Welcome to SDSU Sage Tutorial
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: -1
 
    about
    sagecalc

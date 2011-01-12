@@ -96,49 +96,14 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 
-html_theme = 'default-sdsu'
-
-red = '#890C22'
-lightred = '#892839'
-darkred = '#6B1021'
-gold = '#cbb87d'
-black = '#000000'
-white = '#FFFFFF'
-grey = '#d5d5d5'
-
-
-html_theme_options = {
-    'stickysidebar': True,
-    'rightsidebar': True, 
-    'footerbgcolor': gold,
-    'footertextcolor':black,
-    'sidebarbgcolor': gold,
-    'sidebarbtncolor': white,
-    'sidebartextcolor': black,
-    'sidebarlinkcolor': red,
-    'relbarbgcolor': red,
-    'relbartextcolor': white,
-    'relbarlinkcolor': gold,
-    'bgcolor': white,
-    'textcolor':black,
-    'linkcolor': red,
-    'visitedlinkcolor': 'darkred',
-    'headbgcolor': white,
-    'headtextcolor': black,
-    'headlinkcolor': red,
-    'codebgcolor': grey,
-    'codetextcolor': 'blue',
-    'bodyfont': 'Georgia, serif',
-    'headfont': 'Georgia, serif'
-}
-
+html_theme = 'sdsu'
 
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = ['_theme']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-#html_title = None
+html_title = project +  " v" + release 
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
 #html_short_title = None
