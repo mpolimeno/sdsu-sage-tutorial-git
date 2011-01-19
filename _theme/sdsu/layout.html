@@ -25,7 +25,7 @@
           {%- endblock %}
 
 	  <h3><a href="{{ pathto(master_doc) }}">{{ _('Topics') }}</a></h3>
-	  {{toctree(maxdepth=-1)}}
+	  {{toctree(maxdepth=-1, collapse=true)}}
 	  
 	  {%- if show_source and has_source and sourcename %}
 	  <h3>{{ _('This Page') }}</h3>
