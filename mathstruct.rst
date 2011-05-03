@@ -606,6 +606,166 @@ regular matrix function with no list inputted. ::
 
 Note that if we use :func:`zero_matrix` we must input two integers.
 
+Matrix Manipulations
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt cursus congue. Integer enim elit, semper eget aliquam at, porttitor non sapien. Maecenas sit amet sem sit amet nisl iaculis rutrum. Suspendisse potenti. Donec molestie eros sit amet massa porta pharetra. Nam ac nulla et arcu laoreet rhoncus a eget libero. Nulla facilisi. Nunc eget justo eget turpis auctor placerat. Proin congue lacus vitae nisl feugiat scelerisque. Morbi ligula libero, mattis vitae feugiat at, dictum a est. Nulla sem libero, porttitor ut convallis sed, placerat ut ipsum. Vestibulum semper pretium scelerisque. Quisque vulputate, elit ut aliquet interdum, quam libero accumsan justo, non tempus elit ipsum vel sapien. Nulla in nunc quam. Aliquam dictum mi ut lacus pulvinar et imperdiet lectus adipiscing. Donec at velit dolor. ::
+
+      sage: m = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); m
+      [1 2 3]
+      [4 5 6]
+      [7 8 9]
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+
+   sage: m.rows()
+   [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+   sage: m.columns()
+   [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+
+   sage: m.row(0)
+   (1, 2, 3)
+   sage: m.row(2)
+   (7, 8, 9)
+   sage: m.column(1) 	
+   (2, 5, 8)
+   sage: m.column(2)
+   (3, 6, 9)
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+
+   sage: m.diagonal()
+   [1, 5, 9]
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. ::
+
+   sage: m.matrix_from_columns([0,2])
+   [1 3]
+   [4 6]
+   [7 9]
+   sage: m.matrix_from_rows([0,2])
+   [1 2 3]
+   [7 8 9]
+   sage: m.matrix_from_rows_and_columns([0,2],[0,2])
+   [1 3]
+   [7 9]
+
+Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+
+   sage: m.rescale_row(1,-1/4); m
+   [   1    2    3]
+   [  -1 -5/4 -3/2] 	
+   [   7    8    9]
+   sage: m.rescale_col(2,-1/3); m 
+   [   1    2   -1]
+   [  -1 -5/4  1/2]
+   [   7    8   -3]
+   sage: m.rescale_row(1,-4); m
+   [ 1  2 -1]
+   [ 4  5 -2]
+   [ 7  8 -3]
+
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+   
+   sage: m.add_multiple_of_row(1,0,-4); m
+   [ 1  2 -1]
+   [ 0 -3  2]
+   [ 7  8 -3]
+   sage: m.add_multiple_of_row(2,0,-7); m 
+   [ 1  2 -1]
+   [ 0 -3  2]
+   [ 0 -6  4]
+
+Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+
+   sage: m.add_multiple_of_column(1,0,-2);m
+   [ 1  0 -1]
+   [ 0 -3  2]
+   [ 0 -6  4]
+   sage: m.add_multiple_of_column(2,0,1);m
+   [ 1  0  0]
+   [ 0 -3  2]
+   [ 0 -6  4]
+
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. ::
+
+   sage: m.swap_rows(1,0); m
+   [ 0 -3  2]
+   [ 1  0  0]
+   [ 0 -6  4]
+   sage: m.swap_columns(0,2); m
+   [ 2 -3  0]
+   [ 0  0  1]
+   [ 4 -6  0]
+
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. ::
+
+   sage: m.set_column(0,[1,2,3]);m
+   [ 1 -3  0]
+   [ 2  0  1]
+   [ 3 -6  0]
+   sage: m.set_row(0,[1,2,5]);m
+   [ 1  2  5]
+   [ 2  0  1]
+   [ 3 -6  0]
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. ::
+
+   sage: b = matrix(QQ,[ [1,0 ],[0,1]]); b
+   [1 0]
+   [0 1] 
+   sage: m.set_block(1,1,b); m
+   [1 2 5]
+   [2 1 0]
+   [3 0 1]
+
+
+Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+
+   sage: m.echelon_form()
+   [1 0 0]
+   [0 1 0]
+   [0 0 1]
+   
+   sage: m.echelonize(); m
+   [ 1  0  0]
+   [ 0  1  0]
+   [ 0  0  1]
+
+In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. ::
+
+   sage: m = matrix(QQ, [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); m
+   [2 4 6 2 4]
+   [1 2 3 1 1]
+   [2 4 8 0 0]
+   [3 6 7 5 9]
+   sage: b = vector(QQ, [56, 23, 34, 101])
+   sage: m_aug = m.augment(b); m_aug
+   [  2   4   6   2   4  56]
+   [  1   2   3   1   1  23]
+   [  2   4   8   0   0  34]
+   [  3   6   7   5   9 101]
+   sage: m_aug.echelon_form()
+   [ 1  2  0  4  0 21]
+   [ 0  0  1 -1  0 -1]
+   [ 0  0  0  0  1  5]
+   [ 0  0  0  0  0  0]
+
+
+Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. ::
+
+   sage: m.solve_right(b)
+   (21, 0, -1, 0, 5)
+
+Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. 
+
+
+
+
 Computations
 ^^^^^^^^^^^^^^^^^
 
