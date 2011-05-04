@@ -608,7 +608,7 @@ Note that if we use :func:`zero_matrix` we must input two integers.
 
 Matrix Manipulations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt cursus congue. Integer enim elit, semper eget aliquam at, porttitor non sapien. Maecenas sit amet sem sit amet nisl iaculis rutrum. Suspendisse potenti. Donec molestie eros sit amet massa porta pharetra. Nam ac nulla et arcu laoreet rhoncus a eget libero. Nulla facilisi. Nunc eget justo eget turpis auctor placerat. Proin congue lacus vitae nisl feugiat scelerisque. Morbi ligula libero, mattis vitae feugiat at, dictum a est. Nulla sem libero, porttitor ut convallis sed, placerat ut ipsum. Vestibulum semper pretium scelerisque. Quisque vulputate, elit ut aliquet interdum, quam libero accumsan justo, non tempus elit ipsum vel sapien. Nulla in nunc quam. Aliquam dictum mi ut lacus pulvinar et imperdiet lectus adipiscing. Donec at velit dolor. ::
+ Nulla sem libero, porttitor ut convallis sed, placerat ut ipsum. Vestibulum semper pretium scelerisque. Quisque vulputate, elit ut aliquet interdum, quam libero accumsan justo, non tempus elit ipsum vel sapien. Nulla in nunc quam. Aliquam dictum mi ut lacus pulvinar et imperdiet lectus adipiscing. Donec at velit dolor. ::
 
       sage: m = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); m
       [1 2 3]
@@ -690,7 +690,7 @@ Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu
    [ 0 -6  4]
 
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. ::
+Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. ::
 
    sage: m.swap_rows(1,0); m
    [ 0 -3  2]
@@ -764,10 +764,8 @@ Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu
 Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. 
 
 
-
-
-Computations
-^^^^^^^^^^^^^^^^^
+Matrix Arithmetic
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We may use ``+``, ``-``, ``*`` and ``^`` for matrix addition,
 subtraction, multiplication and exponents. ::
@@ -853,6 +851,88 @@ This example shows us an important, subtle fact. Sage assumes that the
 matrix B is defined over the integers not over the rationals. A matrix
 is invertible over :math:`\mathbb{Z}` if and only if its determinant
 is :math:`\pm 1`. Thus if we think of B as a matrix over the rationals, we should obtain different results. When we ask Sage for the inverse it will automatically treat B as a matrix over the rationals.
+
+.. _special_matrix_forms:
+
+The Jordan Canonical Form
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For every linear transformation :math:`\mathrm{T}:\mathbb{R}^n \longrightarrow \mathbb{R}^{n}` there is a basis of :math:`\mathbb{R}^n` such that the matrix :math:`\left[m\right]_{\mathcal{B}}` is in an *almost* diagonal form. This unique matrix is called the *Jordan Canonical Form* of :math:`\mathrm{T}`. For more information on this please refer to this article_ on Wikipedia. To demonstrate some common tools that we use in Sage we will compute this basis for the linear transformation :math:`\mathrm{T}\left(x,y,z,t \right) = \left(2x+y, 2y+1, 3z, y-z+3t \right)`. First let define :math:`\mathrm{T}` in Sage. ::
+      
+      sage: T = lambda x,y,z,t: (2*x+y, 2*y+1, 3*z, y - z + 3*t)
+
+Now, let's use the standard ordered basis of :math:`\mathbb{R}^3` to find the matrix form of :math:`\mathrm{T}`. Note that since Sage uses rows to construct a matrix we must use the  :func:`transpose` function to get the matrix we expect. ::
+
+       sage: m = transpose(matrix([[2,1,0,0],[0,2,1,0], [0,0,3,0],[0,1,-1,3]])); m 
+       [ 2  1  0  0]
+       [ 0  2  1  0]
+       [ 0  0  3  0]
+       [ 0  1 -1  3]
+
+Once we have the matrix we will compute it's *characteristic polynomial*  and factorization. Note that in order to save a couple of keystrokes we use the `_` special variable. `_` is the variable that always contains the output of the last command. It's a handy variable to know, and we will use it often.  ::
+
+      sage: m.characteristic_polynomial()
+      x^4 - 10*x^3 + 37*x^2 - 60*x + 36
+      sage: factor(_)
+      (x - 3)^2 * (x - 2)^2
+
+Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` and both are of algebraic multiplicity :math:`2`. Now we need to look at the associated  *eigenvectors*. To do so we will use the :meth:`eigenvectors_right` method. 
+ ::
+
+      sage: ev_m = m.eigenvectors_right(); ev_m
+      [(3, [
+      (1, 1, 1, 0),
+      (0, 0, 0, 1)
+      ], 2), (2, [
+      (1, 0, 0, 0)	
+      ], 2)]
+      sage: ev_m[1][1][0]
+      (1, 0, 0, 0)
+
+What is returned is a :func:`list` of lists. Each list consisting of an eigenvalue and the associated linearly independent eigenvectors. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity of only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(m - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
+ 
+      sage: (m - 2*identity_matrix(4)).augment(ev_m[1][1][0])
+      [ 0  1  0  0  1]
+      [ 0  0  1  0  0]
+      [ 0  0  1  0  0]
+      [ 0  1 -1  1  0]
+      sage: _.echelon_form()
+      [ 0  1  0  0  1]
+      [ 0  0  1  0  0]
+      [ 0  0  0  1 -1]
+      [ 0  0  0  0  0]
+      sage: gv = vector([1,1,0,-1]); gv
+      (1, 1, 0, -1)
+
+With the generalized eigenvector `gv`, we now have the right number of linearly independent vectors to form a basis for our *Jordan Form* matrix. We will next form the *change of basis matrix* that consists of these vectors as columns.  ::
+
+      sage: S = transpose( matrix( [[1,1,1,0],[0,0,0,1],[1,0,0,0],gv])); S
+      [ 1  0  1  1]
+      [ 1  0  0  1]
+      [ 1  0  0  0]
+      [ 0  1  0 -1]
+
+Now we will compute the matrix representation of :math:`\mathrm{T}` with respect to this basis. ::
+    
+      sage: S.inverse()*m*S
+      [3 0 0 0]
+      [0 3 0 0]
+      [0 0 2 1]
+      [0 0 0 2]
+
+And there it is, the *Jordan Canonical Form* of the linear transformation :math:`\mathrm{T}`. Of course we could have just used Sage's built in :meth:`jordan_form` method to compute this directly.::
+   
+   sage: m.jordan_form()
+   [3|0|0 0]
+   [-+-+---]
+   [0|3|0 0]
+   [-+-+---]
+   [0|0|2 1]
+   [0|0|0 2]
+
+But that wouldn't be any fun!
+
+.. _article: http://en.wikipedia.org/wiki/Jordan_normal_form 
 
 .. _vector_and_matrix_spaces:
 
