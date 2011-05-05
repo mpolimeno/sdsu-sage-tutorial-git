@@ -741,7 +741,8 @@ Of course, if all we want is the *echelon form* of the matrix we can use either 
    [ 0  1  0]
    [ 0  0  1]
 
- Next we would like to use the *augmented* metrix and the echelon form to solve a :math:`5\times5` system of the form :math:`mx = b` ::
+
+Next we would like to use the *augmented* metrix and the echelon form to solve a :math:`5\times5` system of the form :math:`mx = b`. First we define the matrix `m` and the vector `b` ::
 
    sage: m = matrix(QQ, [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); m
    [2 4 6 2 4]
@@ -749,6 +750,9 @@ Of course, if all we want is the *echelon form* of the matrix we can use either 
    [2 4 8 0 0]
    [3 6 7 5 9]
    sage: b = vector(QQ, [56, 23, 34, 101])
+
+Then we construct the augmented matrix :math:`\left( m\ \vert b  \right)`, store it in the variable `m_aug` and compute it's echelon form. ::
+
    sage: m_aug = m.augment(b); m_aug
    [  2   4   6   2   4  56]
    [  1   2   3   1   1  23]
@@ -760,13 +764,14 @@ Of course, if all we want is the *echelon form* of the matrix we can use either 
    [ 0  0  0  0  1  5]
    [ 0  0  0  0  0  0]
 
+This tells us that we have a one dimensional solution space that consists of vectors of the form :math:`v = c \left(-2,1,0,0,0 \right) + \left(17,0,1,5\right)`
 
-Now there is a bit of a short cut to finding a solution of this system, by using the :meth:`solve_right` method. ::
+If all we need is a *single* solution to this system, we can use the :meth:`solve_right` method. ::
 
    sage: m.solve_right(b)
    (21, 0, -1, 0, 5)
 
-There is a subtle difference between the two methods. The :meth:`solve_right` method returns *a* vector which satisfies the system even if the solution space isn't just a single vector. Whereas the echelon form gives us a little more information about the geometry of the solution.  Now with some of the manipulations under our belts we are ready to move onto the next section.
+With some of the basic matrix operations under our belt, we are ready to move on to the next section. 
 
 .. _vectors_and_matrices_arithmetic: 
 
