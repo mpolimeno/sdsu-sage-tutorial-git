@@ -606,23 +606,25 @@ regular matrix function with no list inputted. ::
 
 Note that if we use :func:`zero_matrix` we must input two integers.
 
-Matrix Manipulations
+.. _vectors_and_matrices_manipulation:
+
+Matrix Manipulation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- Nulla sem libero, porttitor ut convallis sed, placerat ut ipsum. Vestibulum semper pretium scelerisque. Quisque vulputate, elit ut aliquet interdum, quam libero accumsan justo, non tempus elit ipsum vel sapien. Nulla in nunc quam. Aliquam dictum mi ut lacus pulvinar et imperdiet lectus adipiscing. Donec at velit dolor. ::
+So let's begin by defining the a matrix over the rational numbers. ::
 
       sage: m = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); m
       [1 2 3]
       [4 5 6]
       [7 8 9]
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+To get a list of row and column vectors, we use the :meth:`rows` and :meth:`column` methods. ::
 
    sage: m.rows()
    [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
    sage: m.columns()
    [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+If we want only one row or column vector then we use the singlular with the number row and or column as its argument. You should recall that Sage follows Python's convention and all of the indicies begin with zero.::
 
    sage: m.row(0)
    (1, 2, 3)
@@ -633,12 +635,13 @@ In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra ju
    sage: m.column(2)
    (3, 6, 9)
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+You can even get a list of the diagonal entries, by calling the :meth:`diagonal` method. ::
 
    sage: m.diagonal()
    [1, 5, 9]
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. ::
+
+Sage also allows us to contruct new matrices from the row and/or column vectors. ::
 
    sage: m.matrix_from_columns([0,2])
    [1 3]
@@ -651,7 +654,9 @@ In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra ju
    [1 3]
    [7 9]
 
-Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+It should be noted that the :meth:`matrix_from_rows_and_columns` returns the *intersection* of the rows and columns specified. In the above example we are selecting the matrix that consists of the four 'corners' of our :math:`3\times3` matrix. 
+
+Next we will discuss some of the elementary row operations. To multiply a row or column by a number we use the :meth:`rescale_row` or :meth:`rescale_column` methods. Note that these commands change the matrix itself. ::
 
    sage: m.rescale_row(1,-1/4); m
    [   1    2    3]
@@ -667,7 +672,7 @@ Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur ve
    [ 7  8 -3]
 
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+We can add a multiple of a row or column to another row or column by using the :meth:`add_multiple_of_row` method. The first command takes :math:`-4` times the first row and adds it to the second row. Once again it helps to remember that everything with a matrices in Sage are index starting with zero. So `0` below is refering to the first row and `1` to the second. We can all blame the C programming language for this confusion.  ::
    
    sage: m.add_multiple_of_row(1,0,-4); m
    [ 1  2 -1]
@@ -678,7 +683,7 @@ In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra ju
    [ 0 -3  2]
    [ 0 -6  4]
 
-Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+The same can be done with the column vectors, which are also zero indexed. ::
 
    sage: m.add_multiple_of_column(1,0,-2);m
    [ 1  0 -1]
@@ -690,7 +695,7 @@ Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu
    [ 0 -6  4]
 
 
-Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. ::
+If we don't like the ordering of our rows or colums we can swap them in place.  ::
 
    sage: m.swap_rows(1,0); m
    [ 0 -3  2]
@@ -702,7 +707,7 @@ Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semp
    [ 4 -6  0]
 
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. Suspendisse nec consequat ligula. ::
+If we want to change a row or column of `m` then we use the :meth:`set_column` or :meth:`set_row` methods. ::
 
    sage: m.set_column(0,[1,2,3]);m
    [ 1 -3  0]
@@ -713,7 +718,7 @@ In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra ju
    [ 2  0  1]
    [ 3 -6  0]
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. ::
+And finally if we want to change a whole "block" of a matrix, we use the :meth:`set_block` method with the coordinates of where we want the upper right corner of the block to begin. ::
 
    sage: b = matrix(QQ,[ [1,0 ],[0,1]]); b
    [1 0]
@@ -724,7 +729,7 @@ In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra ju
    [3 0 1]
 
 
-Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. ::
+Of course, if all we want is the *echelon form* of the matrix we can use either the :meth:`echelon_form` or :meth:`echelonize` methods. The difference between the two is the former returns a copy of the matrix in echelon form without changing the original matrix and the latter alters the matrix itself. ::
 
    sage: m.echelon_form()
    [1 0 0]
@@ -736,7 +741,7 @@ Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu
    [ 0  1  0]
    [ 0  0  1]
 
-In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra justo. Donec vitae dui vitae massa ultricies sodales. Proin lectus ligula, ullamcorper nec malesuada nec, fringilla ut eros. Cras semper, velit vel luctus mattis, sapien lectus dignissim metus, nec tempor orci sapien non urna. Quisque turpis lacus, condimentum in vehicula vitae, elementum sit amet elit. Duis laoreet vulputate vulputate. ::
+ Next we would like to use the *augmented* metrix and the echelon form to solve a :math:`5\times5` system of the form :math:`mx = b` ::
 
    sage: m = matrix(QQ, [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); m
    [2 4 6 2 4]
@@ -756,13 +761,14 @@ In cursus suscipit sapien sit amet suscipit. Fusce sed quam odio, id pharetra ju
    [ 0  0  0  0  0  0]
 
 
-Suspendisse nec consequat ligula. Curabitur vel commodo sem. Sed varius neque eu felis porttitor placerat. Nunc eu nisi at nulla mattis porta in at ante. Morbi euismod congue elit. Maecenas tristique venenatis nulla eget dignissim. ::
+Now there is a bit of a short cut to finding a solution of this system, by using the :meth:`solve_right` method. ::
 
    sage: m.solve_right(b)
    (21, 0, -1, 0, 5)
 
-Vestibulum pharetra laoreet nibh, quis sagittis erat egestas sed. Proin adipiscing lobortis odio. Nam posuere condimentum orci, id aliquet risus pulvinar eget. In sit amet aliquam mi. Praesent mattis orci in justo lacinia in tempus nulla vulputate. 
+There is a subtle difference between the two methods. The :meth:`solve_right` method returns *a* vector which satisfies the system even if the solution space isn't just a single vector. Whereas the echelon form gives us a little more information about the geometry of the solution.  Now with some of the manipulations under our belts we are ready to move onto the next section.
 
+.. _vectors_and_matrices_arithmetic: 
 
 Matrix Arithmetic
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -846,13 +852,12 @@ method ::
 	[ 3/2 -1/2]
 
 				
-
 This example shows us an important, subtle fact. Sage assumes that the
 matrix B is defined over the integers not over the rationals. A matrix
 is invertible over :math:`\mathbb{Z}` if and only if its determinant
 is :math:`\pm 1`. Thus if we think of B as a matrix over the rationals, we should obtain different results. When we ask Sage for the inverse it will automatically treat B as a matrix over the rationals.
 
-.. _special_matrix_forms:
+.. _vectors_and_matrices__jordan_form:
 
 The Jordan Canonical Form
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
