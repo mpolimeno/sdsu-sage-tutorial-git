@@ -833,3 +833,50 @@ common example of a recursive function is the factorial function ::
 
 For the sake of completeness let's examine exactly what is happening
 in this last example when we call ``fac(3)``. For n=3, since ``3≠1``, ``fac()`` decides to return ``3*fac(2)``, hence we must evaluate ``fac(2)``. Since ``2≠1``, ``fac()`` decides to return ``2*fac(1)``. Since 1=1, ``fac(1)`` will automatically return 1. Hence we go back into the ``fac(2)`` process and return ``2*1`` which is then returned to the ``fac(3)`` process to obtain ``3*2*1`` which is of course 6. In general, ``fac(n)`` will evaluate to be the product of the first n positive numbers.
+
+Interactive Demonstrations in the Notebook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. index:: 
+   single: interact; graphics
+
+What we will be discussion in this section is the creation of interactive "Applets" in the Sage notebook. These are done using the :obj:`@interact` decorator. A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise manner. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
+
+
+.. _blog post:  http://www.artima.com/weblogs/viewpost.jsp?thread=240808
+.. _Thinking in Python: http://www.mindview.net/Books/TIPython
+
+We will begin with the most simple applet. One that creates a single input box and then displays the results. 
+
+.. image:: pics/interact_step1.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 485px
+	:width: 800px
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate sodales turpis. Nullam mi orci, congue hendrerit pretium eget, ultricies nec magna. Suspendisse fringilla pretium egestas. Praesent vel mauris velit. Nulla dignissim ultrices erat, nec commodo sem faucibus sit amet. Sed ac lectus eget arcu ultrices posuere.  Curabitur in nibh sit amet felis hendrerit suscipit ut sed risus.
+
+.. image:: pics/interact_step2.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 485px
+	:width: 800px
+
+Quisque vel augue et metus imperdiet pellentesque vel vitae ipsum. Suspendisse porta ornare aliquam. Aenean sem metus, rhoncus quis volutpat viverra, tempor eu mauris. Nulla adipiscing sem nec augue vehicula imperdiet. Vestibulum sed dolor augue. Maecenas eu velit diam, at mollis tellus.
+
+.. image:: pics/interact_step3.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 485px
+	:width: 800px
+
+Mauris sed odio arcu, id fermentum purus. Cras at diam ullamcorper orci scelerisque suscipit. Sed malesuada tortor ut quam bibendum interdum. 
+
+.. image:: pics/interact_step4.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 485px
+	:width: 800px
+
+Curabitur tincidunt consectetur nibh. Nullam pretium molestie nulla non fermentum. Praesent sed turpis eu eros rhoncus tincidunt sed imperdiet ante.
+
+.. image:: pics/interact_step5.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 485px
+	:width: 800px
