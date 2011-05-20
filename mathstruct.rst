@@ -1360,6 +1360,83 @@ function. ::
 	 sage: ZZ.characteristic()
 	 0
 
+
+Multi-variable polynomial division algorithm
+-----------------------------------------------------------------------
+
+In this section we will use Sage to construct a *division* algorithm for multivariate polynomials. Specifically, for a given polynomial :math:`f` (the dividend) and a sequence of polynomials :math:`f_1, f_2, \ldots, f_k` (the divisors) we want to compute a sequence of quotients :math:`a_1, a_2,\ldots, a_k` and a remainder polynomial :math:`r` so that
+
+.. math::
+   f = \sum_{i=1}^{i=k} a_i \cdot f_i + r
+
+where no terms of :math:`r` are divisible by any of the leading terms of :math:`f_i`.
+
+
+The first thing that we will do is to construct the base field for the polynomial ring and determine how many variables we want for the polynomial ring. In this case, lets define a two variable polynomial ring over the finite field :math:`\mathbb{F}_{2}`. ::
+
+    sage: K = GF(2)
+    sage: n = 2
+
+Next we will construct the polynomial ring. ::
+     
+     sage: P.<x,y> = PolynomialRing(F,2,order="lex")
+
+Since we are working with more than one variable we must tell Sage how to order the terms, in this case we selected a *lexicographic* ordering. The default term ordering is *degree reverse lexicographic*, where the *total degree* is used first to determine the order of the monomials, then a *reverse lexicographic* order is used to break ties. Other options for monomial orderings are `deglex` (degree lexicographic) or you can define a *block* ordering by using the :func:`TermOrder` command. You can read more on monomial orderings on-line on Wikipedia_ and on MathWorld_,  or the book [Cox2007]_ .
+
+.. [Cox2007] Cox, David and Little, John and O'Shea, Donald, *Ideals, varieties, and algorithms.* Springer 2007
+.. _Wikipedia: http://http://en.wikipedia.org/wiki/Monomial_order
+.. _MathWorld: http://mathworld.wolfram.com/MonomialOrder.html
+
+Now we will begin our division algorithm. The first thing we will do is define a function which determines whether two monomial *divide* each other. ::
+
+    def does_divide(m1,m2):
+    	for c in (vector(ZZ, m1.degrees()) - vector(ZZ,m2.degrees())):
+            if c < 0:
+               return False
+    return True
+
+Then we will define a sequence of polynomials which we will use to reduce our *dividend*. ::
+
+     sage: F  = [x^2 + x,  y^2 + y]
+
+Next we will define the polynomial which will be reduced. ::
+
+     sage: f = x^3* y^2
+
+
+Now we will define the list of quotients and the remainder and initialize them to :math:`0`. ::
+
+  sage: A =  [P(0) for  i in range(0,len(F)) ]
+  sage: r  = P(0)
+
+Now because we alter f through the algorithm we will create a copy of it so that we can keep the value of :math:`f` for later to verify the algorithm. ::
+
+  sage: p = f
+
+
+Now we are ready to define the main loop of our algorithm. ::
+
+  while p != P(0):
+      i = 0
+      div_occurred = False
+      while (i < len(F) and div_occurred == False):
+	  print A,p,r
+	  if does_divide(p.lm(), F[i]):
+	      q = P(p.lm()/F[i].lm())
+	      A[i] = A[i] + q
+	      p = p - q*F[i]
+	      div_occurred = True
+	  else:
+	      i = i + 1
+      if div_occurred == False: 
+	  r = r + p.lm()
+	  p = p - p.lm()
+
+  print A, p, r
+        
+
+
+
 Cyclic Codes
 ============
 
@@ -1368,9 +1445,9 @@ Cyclic Codes
 The factorization of :math:`x^n -1` over :math:`GF(q)`
 ------------------------------------------------------
 
-The smallest field containing :math:`\mathrm{GF}(q)` and containing the roots of :math:`x^n - 1` is :math:`GF(q^t)` where :math:`t` is the order of :math:`q` in :math:`\mathbb{Z} \bmod{n}`.
+The smallest field containing :math:`\mathbb{F}_{q}` and containing the roots of :math:`x^n - 1` is :math:`GF(q^t)` where :math:`t` is the order of :math:`q` in :math:`\mathbb{Z} \bmod{n}`.
 
-The factors of :math:`x^n - 1` over :math:`\mathrm{GF}(q)` must all have degree dividing :math:`t`.
+The factors of :math:`x^n - 1` over :math:`\mathbb{F}_{q}` must all have degree dividing :math:`t`.
 
 Let us begin by first defining :math:`n` and :math:`q` and constructing the ambient rings. ::
 
@@ -1379,7 +1456,7 @@ Let us begin by first defining :math:`n` and :math:`q` and constructing the ambi
     sage: F = GF(2)
     sage: P.<x> = PolynomialRing(F, 'x')
 
-Remembering that since we are constructing a finite field that :math:`q` has to either be prime or a prime power. Now let us compute all of the irreducable factors of :math:`x^{n} -1` over :math:`\mathrm{GF}(q)`. ::
+Remembering that since we are constructing a finite field that :math:`q` has to either be prime or a prime power. Now let us compute all of the irreducable factors of :math:`x^{n} -1` over :math:`\mathbb{F}_{q}`. ::
 
     sage: A = factor(x^n-1); A
 
@@ -1403,7 +1480,7 @@ Now let us factor :math:`x^n - 1` again. This time over a non-prime field.::
 
 
 ** Exercises **
-   1. Try repeating the above for :math:`F= \mathrm{GF}(8)`.
+   1. Try repeating the above for :math:`F= \mathbb{F}_{8}`.
    2. Compute the order of 2, 4, 8 mod 19. What are your observations?
    3. Try other values of n and other fields.
 
@@ -1413,7 +1490,7 @@ Idempotent polynomials and generator polynomials
 
 .. cyclic_codes_idempotents
 
-We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuting with :math:`\mathrm{GF}(4)`. ::
+We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuting with :math:`\mathbb{F}_{4}`. ::
 
       sage: F.<a> = GF(4, 'a')
       sage: P.<x> = PolynomialRing(F, 'x')
@@ -1482,64 +1559,59 @@ For the reciprocal polynomials of idempotents, see Theorem 5 [MacWilliams1977]_ 
 
 
 Constructing a Cyclic Code in Sage
-----------------------------------
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-::
+---------------------------------- 
+Now in this section we will use Sage to actually construct a Cyclic Code and compute it's *generating* and *parity check* matrices. We will begin by constructing a cyclic code of length :math:`3` over :math:`\mathbb{F}_2`. The first thing I will do is factor :math:`x^{3} - 1` to see which polynomials can be used as *generating* polynomials. ::
 
-      sage: P.<x> = PolynomialRing(GF(2),'x')
-      sage: g = x + 1
+  sage: P.<x> = PolynomialRing(GF(2),'x')
+  sage: factor(x^3 -1 )
+  (x + 1) * (x^2 + x + 1)
 
- Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+This tells me that there are 2 choices for non-trivial generating polynomials.  I will construct the code generated by :math:`g(x) = x + 1` ::
 
-::
+  sage: g = x + 1       
+  sage: C = CyclicCode(3,g) 
+  sage: C.list()
+  [(0, 0, 0), (1, 0, 1), (0, 1, 1), (1, 1, 0)]
 
-      sage: C = CyclicCode(3, g)
-      sage: C.list()
-      [(0, 0, 0), (1, 0, 1), (0, 1, 1), (1, 1, 0)]
+The code :math:`C` is a two dimensional vector space over :math:`\mathbb{F}_2`. So we compute the :math:`3 \times 2` generating matrix using the :meth:`gen_mat` method. Sage can also compute the generating matrix in *systematic* form using the :meth:`gen_math_systematic` method. ::
 
- Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-	
-::
+  sage: G = C.gen_mat(); G
+  [1 1 0]
+  [0 1 1]
+  sage: Gs = C.gen_mat_systematic(); Gs
+  [1 0 1]
+  [0 1 1]
 
-      sage: G = C.gen_mat()
-      sage: G
-      [1 1 0]
-      [0 1 1]
-      sage: G = C.gen_mat(); G
-      [1 1 0]
-      [0 1 1]
-      sage: Gs = C.gen_mat_systematic(); Gs
-      [1 0 1]
-      [0 1 1]
+Just to verify that this is the correct matrix we will see if the image of th linear transformation that it defines from :math:`\mathbb{F}_{2}^2 \rightarrow \mathbb{F}_{2}^3` is :math:`C` ::
 
-::
+  sage: vector(GF(2),[0,0])*G
+  (0,0,0) 
+  sage: vector(GF(2),[1,0])*G
+  (1, 1, 0)
+  sage: vector(GF(2),[1,1])*G
+  (1, 0, 1)
+  sage: vector(GF(2),[0,1])*G
+  (0, 1, 1)
 
-      sage: vector(GF(2),[1,0])*G
-      (1, 1, 0)
-      sage: vector(GF(2),[1,1])*G
-      (1, 0, 1)
-      sage: vector(GF(2),[0,1])*G
-      (0, 1, 1)
-
-::
+ Sage can also compute a *parity check* matrix of :math:`C`.::
 
       sage: H = C.check_mat()
       [1 1 1]
 
-::
+We can verify that :math:`Hc = 0` for :math:`c \in C` and `Hx \neq 0` for :math:`x \not\in C`. ::
 
-      sage: H*vector(GF(2),[0,1,1])
-      (0)
-      sage: H*vector(GF(2),[1,0,1])
-      (0)
-      sage: H*vector(GF(2),[1,0,0])
-      (1)
-	
-::
+  sage: H*vector(GF(2),[0,1,1])
+  (0)
+  sage: H*vector(GF(2),[1,0,1])
+  (0)
+  sage: H*vector(GF(2),[1,0,0])
+  (1)
 
-      sage: Cp = C.dual_code() 
-      sage: Cp.gen_mat()
-      [1 1 1]
-      sage: Cp.check_mat()
-      [1 0 1]
-      [0 1 1]
+Sage can also compute the *dual code* and it's generating and parity check matrices. ::
+
+  sage: Cp = C.dual_code() 
+  sage: Cp.gen_mat()
+  [1 1 1]
+  sage: Cp.check_mat()
+  [1 0 1]
+  [0 1 1]
