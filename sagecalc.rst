@@ -4,18 +4,14 @@ Sage as a Calculator
 
 .. _arithmetic_and_functions:
 
-**************************
-Arithmetic and Functions
-**************************
+In this chapter we will examine all of the commands that will allow for you to use Sage like a graphing calculator. This involves working with standard arithmetic, polynomials, trigonometric functions, and some basic work with graphics and solving equations.
 
 .. _basic_arithmetic:
 
 Basic Arithmetic
 ==================
 
-The basic operators are ``+``, ``-``, ``*``, and ``/`` for addition,
-subtraction, multiplication and division, respectively. Additionally,
-we use ``^`` for exponents. ::
+The basic operators are ``+``, ``-``, ``*``, and ``/`` for addition, subtraction, multiplication and division and ``^`` is used for exponents. ::
 
 	sage: 1+1
 	2
@@ -30,7 +26,7 @@ we use ``^`` for exponents. ::
 	sage: 2^5
 	32
 				
-Also, we place the ``-`` symbol in front of a number to indicate it is
+We place the ``-`` symbol in front of a number to indicate it is
 negative ::
 
 	sage: -6
@@ -38,7 +34,7 @@ negative ::
 	sage: -11+9
 	-2
 				
-As we would expect, Sage aheres to the standard order of operations,
+As we would expect, Sage adheres to the standard order of operations,
 PEMDAS (parenthesis, exponents, multiplication, division, addition,
 subtraction). ::
 
@@ -53,9 +49,7 @@ subtraction). ::
 	sage: (-3)^2
 	9
 				
-There is a subtle thing to note about Sage. When we divided 11 by 4,
-Sage returned 114 instead of 2.75. If we wish to have Sage return a
-decimal we must input a decimal ::
+There is one subtlety to deal with when dividing two integers; whether we use fractions or a decimal approximation. Sage attempts to be as *exact* as possible and will return a fraction unless you tell it otherwise. If we wish for Sage to return a decimal, then the expression must contain a decimal. ::
 
 	sage: 11/4.0 
 	2.75000000000000
@@ -66,6 +60,15 @@ decimal we must input a decimal ::
 	sage: 11/4*1.
 	2.75000000000000
 
+**Exercises:**
+
+   #. Divide :math:`28` by :math:`3` raised to the 5th power.
+   #. Using exponentiation, find a decimal approximation of :math:`\sqrt{2}`. 
+   #. Describes what happens when you compute `(-9)^(1/2)`. 
+
+Now that we have all of the basic arithmetic established we are ready move onto the next section.
+
+
 .. _division_and_factoring:
 
 Division and Factoring
@@ -73,26 +76,26 @@ Division and Factoring
 
 |		 You should be familiar with ":ref:`basic_arithmetic`"
 
-When we divide an integer :math:`a` by another integer :math:`b` we call obtain a quotient :math:`q` and a remainder :math:`r`. For example, if :math:`a=14` and :math:`b=4`, then :math:`a=3b+2`. Hence our quotient is :math:`q=3` and our remainder is :math:`r=2`. To calculate the quotient we use the ``//`` operator and to calculate the remainder we use the ``%`` operator. ::
+Sometimes, like when we divide :math:`4` into :math:`14` the division operator doesn't give us all of the information that we need. Sometimes we would like to not just know what the reduced fraction is, or even the decimal approximation, but the unique *quotient* and the *remainder* of the division. To calculate the quotient we use the ``//`` operator and to calculate the remainder we use the ``%`` operator. ::
 
 	sage: 14 // 4
 	3
 	sage: 14 % 4
 	2
 				
-Note that the quotient operator ``//`` is two backslashes. If we wish to obtain the pair :math:`\left(q,r\right)` all at once, we may use the :func:`.divmod` command ::
+Note that the quotient operator ``//`` is two backslashes. If we wish to obtain both the quotient and the remainder all at once, we may use the :func:`.divmod` command ::
 
 	sage: divmod(14,4)
 	(3, 2)
 				
-We say that :math:`b` divides :math:`a` if we get a remainder of 0 when we divide :math:`a` by :math:`b`. Integers in Sage have a built-in function ( or 'method' ) which allows us to check if an integer divides another: ::
+We say that :math:`b` *divides* :math:`a` if we get a remainder of 0 when we divide :math:`a` by :math:`b`. Integers in Sage have a built-in function ( or 'method' ) which allows us to check if an integer divides another: ::
 
 	sage: 3.divides(15)
 	True
 	sage: 5.divides(17)
 	False
 				
-Along these lines, given an integer :math:`a`, we call the collection of integers which divide :math:`a` its divisors. Integers in Sage have the divisors method built-in as well: ::
+Along these lines, given an integer we can compute the list of all of it's divisors using the :meth:`.divisors` method. ::
 
 	sage: 12.divisors()
 	[1, 2, 3, 4, 6, 12]
@@ -128,7 +131,7 @@ any integer which is a divisor of each. The greatest common divisor
 (gcd), not too surprisingly, is then the greatest integer which
 divides each integer. We use the :func:`.gcd` command to calculate the greatest common divisor ::
 
-	sage: gcd(14,63)														
+	sage: gcd(14,63)									
 	7
 	sage: gcd(15,19)  
 	1
@@ -145,17 +148,24 @@ smallest integer which is divisible by :math:`a` and :math:`b`. We use
 	sage: lcm(14,21)
 	42
 
-**Exercise:**
-	1. Calculate ``gcd(a,b)``, ``lcm(a,b)`` and ab for the pair ``(a,b)=(2,5)``, ``(4,10)`` and ``(18,51)``. How do the gcd, lcm and the product of the numbers relate?
+**Exercises:**
+
+  #. Find the quotient and remainder when diving :math:`98` into :math:`956`.
+  #. Use Sage to verify that the quotient and remainder computed above are correct.  
+  #. Use Sage to determine if :math:`3` divides :math:`234878`.
+  #. Compute the list of divisors for each of the integers :math:`134,\ 491,\ 422` and :math:`1002`. 
+  #. Which of the integers above are *prime*? 
+  #. Calculate :math:`\mathrm{gcd}(a,b)`,  :math:`\mathrm{lcm}(a,b)` and :math:`a \cdot b` for the pairs of integers :math:`\left(2,5\right),\ \left(4,10\right)` and :math:`\left(18,51\right)`. How do the gcd, lcm and the product of the numbers relate?
+
 
 .. _basic_functions_and_constants:
 
-Basic Functions and Constants
-=============================
+Standard Functions and Constants
+================================
 
 |	 You should be familiar with ":ref:`basic_arithmetic`"
 
-Nearly all standard functions we run into in mathematics are included in Sage. In this section, we shall cover some of the more fundamental functions and constants, including: :math:`max()`, :math:`min()`,  :math:`abs()`, :math:`floor()`, :math:`ceil`, :math:`trig` functions, exponentials, logarithms, :math:`e`, :math:`\pi` and the golden ratio :math:`\phi`. 
+Nearly all standard functions that we run into in mathematics are included in Sage. In this section, we shall cover some of the more fundamental functions and constants, including the maximum, minimum, floor, ceiling, trigonometric, exponential, and logarithm functions and the :math:`e`, :math:`\pi` and the golden ratio :math:`\phi` constants. 
 
 The :func:`.max` and :func:`.min` commands return the maximum and minimum of a set of numbers.::
 
@@ -174,7 +184,7 @@ a real number ::
 	sage: abs(4)
 	4
 				
-The :func:`.floor` command rounds down to the nearest integer, while :func:`.ceil` rounds up. Typically we denote the floor function with :math:`\lfloor x \rfloor` and the ceiling by :math:`\rceil x \lceil`.::
+The :func:`.floor` command rounds down to the nearest integer, while :func:`.ceil` rounds up. Typically we denote the floor function with :math:`\lfloor x \rfloor` and the ceiling by :math:`\lceil x \rceil`.::
 
 	sage: floor(2.1)
 	2
@@ -193,7 +203,7 @@ This is clearly not correct: :math:`\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfl
 				
 Computers use binary notation, while we are accustomed to decimal
 notation. The number 2.1 in decimal notation is quite simple and
-short, but when converted to binary it is 10.00011¯=10.0001100110011…
+short, but when converted to binary it is :math:`10.0001\overline{1}=10.0001100110011\ldots`
 Since computers cannot store an infinite number of digits, this gets
 rounded off somewhere. Resulting in the slight error we saw. In Sage,
 however, rational numbers (fractions) have perfect precision, so we
@@ -204,8 +214,7 @@ will never see this error. ::
 				
 Due to this, it is a good idea to use rational numbers whenever possible instead of decimals. 
 
-The :func:`.sqrt` command calculates the square root of a real
-number. As we have seen earlier with fractions, if we want a decimal expression we need to give a decimal input.::
+The :func:`.sqrt` command calculates the square root of a real number. As we have seen earlier with fractions, if we want a decimal expression we need to give a decimal input.::
 
 	sage: sqrt(3)
 	sqrt(3)
@@ -213,7 +222,7 @@ number. As we have seen earlier with fractions, if we want a decimal expression 
 	1.73205080756888
 	sage: sqrt(8,3)
 
-To compute other roots, use a rational exponent. Sage can compute any rational power. If either the exponent or the base is a decimal then the output will be a decimal. ::
+To compute other roots, we use a rational exponent. Sage can compute any rational power. If either the exponent or the base is a decimal then the output will be a decimal. ::
 
 	sage: 3^(1/2)
 	sqrt(3)
@@ -235,7 +244,7 @@ Sage also has available all of the standard trigonometric functions: for sine an
 	sage: cos(3/2.0)
 	0.0707372016677029
 				
-Again we see the same behavior that we saw with ``sqrt()``. Essentially, Sage wants to give us an exact answer; there is, however, no way to simplify ``sin(1)``. So why bother? Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = 3/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
+Again we see the same behavior that we saw with :func:`sqrt`. Essentially, Sage wants to give us an exact answer; there is, however, no way to simplify ``sin(1)``. So why bother? Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = 3/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
 
 	sage: pi
 	pi
@@ -251,7 +260,7 @@ When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not som
 	sage: sin(pi.n())
 	1.22464679914735e-16
 				
-We see that when using the symbolic pi Sage understands the identity
+We see that when using the symbolic `pi` Sage understands the identity
 :math:`\sin(\pi ) = 0`. When we use the approximation, however, we get
 an approximation back. The ``e-15`` is the shorthand for
 :math:`10^{-15}`. Basically 1.22464679914735e-16 should be zero, but
@@ -286,8 +295,8 @@ hyperbolic functions are also available. ::
 	sage: sinh(9.0)
 	4051.54190208279
 				
-Similar to pi Sage has a built-in symbolic constant for the number e,
-the base of the natural logarithm. This constant is named e ::
+Similar to ``pi`` Sage has a built-in symbolic constant for the number :math:`e`,
+the base of the natural logarithm. This constant is named, not surprisingly, ``e`` ::
 
 	sage: e
 	e
@@ -295,10 +304,10 @@ the base of the natural logarithm. This constant is named e ::
 	2.71828182845905
 				
 While some might be familiar with using ``ln(x)`` for natural log and
-``log(x)`` to represent log base 10, these both represent logarithms
-base e written as such. However, with the log function we may specify
-a different base as a second argument. That is :math:`\log_b (x)` in
-Sage is written ``log(x,b)`` ::
+``log(x)`` to represent logarithm base :math:`10`, these both represent logarithms
+base :math:`e` written as such. However, with the log function we may specify
+a different base as a second argument. Hence to compute :math:`\log_{b}(x)` in
+Sage we use the command ``log(x,b)`` ::
 
 	sage: ln(e)
 	1
@@ -313,7 +322,7 @@ Sage is written ``log(x,b)`` ::
 	sage: log(100,10)
 	2
 				
-Exponentiation base :math:`e` is done using the :func:`.exp` function ::
+Exponentiation base :math:`e` can done using both the :func:`.exp` function and by raising the constant ``e`` to a specified power. ::
 
 	sage: exp(2)
 	e^2
@@ -321,12 +330,17 @@ Exponentiation base :math:`e` is done using the :func:`.exp` function ::
 	7.38905609893065
 	sage: exp(log(pi))
 	pi
-				
-Exercise:
-	1. Compare :math:`e^{i \pi}` with a numerical approximation of it using ``pi.n()``. Verify some of the standard trigonometric identities. See if you can find instance where using the numerical approximation ``pi.n()`` leads to an error.
+	sage: e^(log(2))
+	2
 
-.. todo:: Rewrite this question. Sort of awkward, but I cannot think
-.. of much better at this moment
+				
+**Exercises:**
+  #. Compute the floor and ceiling of :math:`2.75`.
+  #. Compute the logarithm base 10 of  :math:`1/1000000`
+  #. Compute the logarithm base 2 of :math:`64`
+  #. Compare :math:`e^{i \pi}` with a numerical approximation of it using ``pi.n()``. 
+  #. Compute :math:`\sin(\pi/2)`, :math:`\cot(0)` and :math:`\csc(\pi/16)`.
+
 
 
 .. _variables_equations_inequalities:
@@ -456,6 +470,16 @@ interval on which to search for a solution	::
 This command will only return one solution on the specified interval, if one exists. It will not find the complete solution set over the entire real numbers. 
 To find a complete set of solutions, the reader must use ``find_root()`` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10. :-) 
 
+
+**Exercises:**
+
+#. Find all of the solutions to the equation :math:`x^3 - x = 7x^2 - 7`.
+#. Find the complete solution set for the inequality :math:`\left\vert t - 7 \right\vert \geq 3`.
+#. Find all :math:`x` and :math:`y` that satisfy both :math:`2x + y = 17` and :math:`x - 3y = -16`.
+#. Use :func:`find_root` to find a solution of the equation :math:`e^{x} = \cos(x)` on the interval :math:`\left[-\pi/2, 0\right]`. 
+#. Change the command above so that :func:`find_root` finds the other solution in the same interval.
+  
+
 .. _basic_stats:
 
 Basic Statistics
@@ -501,6 +525,14 @@ We can also compute a rolling, or moving, average of the data with the :func:`.m
 	sage: moving_average(data,20)
 	[3/4]
 
+**Exercises:**
+
+  #. Use Sage to generate a list of 20 random integers. 
+  #. The heights of eight students, measured in inches, are :math:`71,\ 73,\  59,\ 62,\ 65,\ 61,\ 73,\ 61`. Find the *average*, *median* and *mode* of the heights of these students. 
+  #. Using the same data, compute the *standard deviation* and *variance* of the sampled heights.
+  #. Find the *range* of the heights. (*Hint: use the* :func:`max` *and* :func:`min` *commands*) 
+  
+
 .. _basic_plotting:
 
 ******************
@@ -509,7 +541,7 @@ Plotting
 
 .. _2d_plotting_and_graphics:
 
-2D Plotting and Graphics
+2D Graphics
 ========================
 
 |  You should be familiar with :ref:`basic_functions`
@@ -657,6 +689,19 @@ Polar plots can be done using the :func:`.polar_plot` command ::
 	:alt: Eight Petal 'folium' curve
 	:width: 400px
 	:height: 300px
+
+**Exercises:**
+
+  #. Plot the graph of :math:`y = \sin\left(\pi x - \pi  \right)` for :math:`-1 \leq x \leq 1` using a thick red line.
+  #. Plot the graph of :math:\cos\left(\pi x - \pi \right)` on the same interval using a thick blue line. 
+  #. Plot the two graphs above on the same set of axes. 
+  #. Plot the graph of :math:`y = 1/x` for :math:`-1 \leq x \leq 1` adjusting the range so that only :math:`-10 \leq y \leq 10`. 
+  #. Use the commands in this section to produce the following image:
+
+  .. image:: pics/circles.png 
+     :alt: Two circles of radius 3. 
+     :width: 400px
+     :height: 300px
 
 .. _3d_plotting:
 

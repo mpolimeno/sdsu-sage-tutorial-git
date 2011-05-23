@@ -709,29 +709,49 @@ Loops in Lists
 
 |  You should be familiar with :ref:`lists` and :ref:`for_loops`
 
-A particularly useful and mathematical technique in Sage is the
-construction of a list using 'list comprehensions'. Consider the
-mathematically-written set :math:`{2k\ : \ 0 \leq k
-\leq10}={0,2,4,…,18,20}`. We can place a ``for`` inside of a list to
-construct this object with similar notation ::
+A particularly useful technique in python (and Sage by extension) is the
+construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as :math:`\left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\}`. With this notation we do not explicitly list the elemenets of the set but rather gives a rule which can used to construct the set. We can do something very similar in python by placing a ``for`` inside of a list, like in the following example. Here is how we would contruct the list of even integers from :math:`0` to :math:`20`. ::
 
 	sage: [ 2*k for k in [0..10] ]
 	[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
-				
-
+			
 This concept may seem a bit intimidating at first, but it is extremely useful.
 
-Now consider the more specific set :math:`\{2k:0\leq k \leq 10,
-\gcd(3,k)=1 \}` which is the set :math:`\{2,4,8,10,14,16,20 \}`. We
-can add a conditional statement inside the list to again beautifully
-construct this set ::
+We can also *filter* the results even further by adding a *conditional* to our list comprehension. Let us construct the list of all natural numbers that are less than :math:`20` which are *relatively prime* to it. (Don't laugh, students have been asked to compute weirder things.) Mathematically we would write the set as follows:
 
-	sage:  [ 2*k for k in [0..10] if gcd(3,k)==1 ] 
-	[2, 4, 8, 10, 14, 16, 20]
-				
+.. math::
+   \left\{ k \in \mathbb{N} \ | \ 1 \leq k < 20,\  \mathrm{gcd}(k,20) = 1 \right\}
+
+We can down a very similar statement in python. ::
+
+  sage: [ k for k in [1..19] if gcd(k,20) == 1 ] 
+  [1, 3, 7, 9, 11, 13, 17, 19]
 
 Notice that the syntax for the construction is nearly identical to the
 mathematical notation.
+
+In mathematics we often construct the *Cartesian Product* of two sets
+
+.. math::
+   A \times B = \left\{ \left(a, b \right)\ | \ a \in A, b \in B \right\}
+
+We can do something similar by using multiple *for's* in the list comprehension. For example suppose I would like to construct the list of all pairs of elements in the list constructed earlier. ::
+
+  sage: U =  [ k for k in [1..19] if gcd(k,20) == 1]
+  sage: [ (a,b) for a in U for b in U ] 
+  [(1, 1), (1, 3), (1, 7), (1, 9), (1, 11), (1, 13), (1, 17), (1, 19), (3, 1), (3, 3), (3, 7), (3, 9), (3, 11), (3, 13), (3, 17), (3, 19), (7, 1), (7, 3), (7, 7), (7, 9), (7, 11), (7, 13), (7, 17), (7, 19), (9, 1), (9, 3), (9, 7), (9, 9), (9, 11), (9, 13), (9, 17), (9, 19), (11, 1), (11, 3), (11, 7), (11, 9), (11, 11), (11, 13), (11, 17), (11, 19), (13, 1), (13, 3), (13, 7), (13, 9), (13, 11), (13, 13), (13, 17), (13, 19), (17, 1), (17, 3), (17, 7), (17, 9), (17, 11), (17, 13), (17, 17), (17, 19), (19, 1), (19, 3), (19, 7), (19, 9), (19, 11), (19, 13), (19, 17), (19, 19)]
+
+It should be noted that I didn't only have to form *tuples* of the pairs of elements. I can also find the product or the sum of them. Any valid expression involving ``a`` and ``b`` will be fine.  ::
+
+  sage: [ a*b for a in U for b in U ]
+  [1, 3, 7, 9, 11, 13, 17, 19, 3, 9, 21, 27, 33, 39, 51, 57, 7, 21, 49, 63, 77, 91, 119, 133, 9, 27, 63, 81, 99, 117, 153, 171, 11, 33, 77, 99, 121, 143, 187, 209, 13, 39, 91, 117, 143, 169, 221, 247, 17, 51, 119, 153, 187, 221, 289, 323, 19, 57, 133, 171, 209, 247, 323, 361]
+  sage: [ a + b for a in U for b in U ]
+  [2, 4, 8, 10, 12, 14, 18, 20, 4, 6, 10, 12, 14, 16, 20, 22, 8, 10, 14, 16, 18, 20, 24, 26, 10, 12, 16, 18, 20, 22, 26, 28, 12, 14, 18, 20, 22, 24, 28, 30, 14, 16, 20, 22, 24, 26, 30, 32, 18, 20, 24, 26, 28, 30, 34, 36, 20, 22, 26, 28, 30, 32, 36, 38]
+  sage: [ gcd(a,b) for a in U for b in U ]
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 3, 1, 9, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 17, 1, 1, 1, 1, 1, 1, 1, 1, 19]
+
+
+
 
 .. seealso::
 
