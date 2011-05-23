@@ -42,7 +42,7 @@ Sage is a free open source mathematical software system based on the Python prog
 As an open source project, Sage invites contributions from all of its users. This tutorial is one of many sources of information for learning about Sage. See the Sage webpage for more information.
 
 .. seealso::
-		`Sage on the Web <http://www.sagemath.org>`_ 
+   `Sage on the Web <http://www.sagemath.org>`_ 
 
  
 .. _installing_sage:
@@ -52,10 +52,6 @@ Installing Sage
 
 The Sage web-site already contains detailed instructions for installing sage on all popular operating systems. So we will not duplicate that effort but rather just point the reader to the sage project's `official installation guide <http://www.sagemath.org/doc/installation/>`_
  
-.. _helpful_tips:
-
-
-
 .. _contributing: 
 
 Contributing to the Tutorial 
@@ -74,9 +70,7 @@ We have four parts to the tutorial: "How to use this tutorial" has basic instruc
 In "Mathematical Structures" the emphasis is on learning about specific mathematical structures, which have a Sage class associated to them.
 
 .. seealso::
-
    #. `reStructured Text Primer <http://sphinx.pocoo.org/rest.html>`_
-
 
 .. _credits_and_license:
 
@@ -85,87 +79,82 @@ Credits and License
 
 The content and code for this tutorial were written by Ryan Rosenbaum and David Monarres under the supervision of Mike O'Sullivan. The work was supported by San Diego State University's Presidential Leadership Fund and is licensed under the `Creative Commons Attribution-ShareAlike 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are free to share and to remix, but attribution should be given to the original funder and creators.
 
+.. _tips:
 
 Helpful Tips
 -----------------
 
-.. todo::
-   1. Tab completion
-   2. Getting help using '?' at the prompt.
-   3. The Notebook
-
 Sage has two common ways to enter commands, the *command line* and a web-based *notebook* which is similar in design an purpose to the interfaces of other computer algebra systems like *Maple*, *Mathematica* and *Matlab*. On the mailing lists these are often referred to as *The M's*.  
 
+.. _help_tabcompletion:
+
 `?` and Tab Completion
--------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Probably the most useful feature both in the command-line interface and the notebook is *tab completion*. For long time unix shell users this feature can e taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Suppose that I wanted to compute  :math:`56!` and I don't remember the exact command name to do this. Well, I just type `fac` then hit the tab-key. ::
 
-	 sage: fac[TAB]
-	 factor     factorial  
-	 sage: factor
+  sage: fac[TAB]
+  factor     factorial  
+  sage: factor
 
 Which tells me that the only two Sage commands which begin with `fac` are :py:func:`factor` and :func:`factorial`. Note also that Sage has already changed my command from `fac` to `factor` because that is the common root of both commands. Since factorial is what I am looking for i just type the next letter `i` and hit tab again. ::
-      
-      sage: factorial   
+
+  sage: factorial   
 
 This time no list is returned because the only command that begins with `factori` is :func:`factorial` so it just *completes* the command for me. So I can computer :math:`56!` by just completing the command by adding the `(56)`.  ::
-     sage: factorial(56)
-     710998587804863451854045647463724949736497978881168458687447040000000000000
+
+  sage: factorial(56)
+  710998587804863451854045647463724949736497978881168458687447040000000000000
 
 Another good use of tab-completion is to use it to discover what *methods* an object has. Don't worry if you have never heard of the term object or method before, I think that will be clear what we are doing if you just follow along. What I am presenting now is assuming that you are using tab-completion on the command line, the notebook works slightly differently and we will discuss that in the next section.
 
 Say I have the integer :math:`a = 56`. In this case the :math:`a` is our object and we can find all of the *methods* associated with integers by typing `a.` then hitting the tab-key. ::
 
-    sage: a = 56
-    sage: a.[TAB]
-    a.N                            a.kronecker
-    ... A long list of Commands ...
-    a.divisors                     a.parent
-    a.dump                         a.popcount
-    a.dumps                        a.powermod
-    a.exact_log                    a.powermodm_ui
-    --More--
+  sage: a = 56
+  sage: a.[TAB]
+  a.N                            a.kronecker
+  ... A long list of Commands ...
+  a.divisors                     a.parent
+  a.dump                         a.popcount
+  a.dumps                        a.powermod
+  a.exact_log                    a.powermodm_ui
+  --More--
 
 Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. I want to draw your attention to the `--More--` at the bottom of the screen. This is telling us that the list is actually longer than what is shown. To scroll through this list a page at a time just hit any key and Sage will show you the next page.
 
 On the second page I see something that I recognize. I understand what it means to :meth:`factor` an integer so I will use this method by entering `a.factor()` and hitting return. ::
  
-   sage: a.factor()
-   2^3 * 7
+  sage: a.factor()
+  2^3 * 7
 
 Now that I know how to *discover* new commands in Sage, I will sometime need to figure out *what* a new command does and *how* to use it. Sage has a built-in help system to solve this very problem. 
 
 Lets say that I know that to take the *lowest common multiple* of two integers and I do not know which command does this. So starting from a command prompt I just type `l` and then hit the tab-key.  ::
 
-     sage: l
-     laguerre                    list_plot3d
-     lambda                      lk
-     laplace                     ll
-     latex                       ln
-     lattice_polytope            lngamma
-     lazy_attribute              load
-     lazy_import                 load_attach_path
-     lc                          load_session
-     lcalc                       loads
-     lcm                         local/LIB
-     ldir                        local/bin
-     ...
-     lisp_console                ls
-     list                        lucas_number1	
-     list_composition            lucas_number2
-     list_plot                   lx
+  sage: l
+  laguerre                    list_plot3d
+  lambda                      lk
+  laplace                     ll
+  latex                       ln
+  lattice_polytope            lngamma
+  lazy_attribute              load
+  lazy_import                 load_attach_path
+  lc                          load_session
+  lcalc                       loads
+  lcm                         local/LIB
+  ldir                        local/bin
+  ...
+  lisp_console                ls
+  list                        lucas_number1	
+  list_composition            lucas_number2
+  list_plot                   lx
 
 
 Once again I have quite a few options to select. As I scan I see the :func:`lcm` function which seems like the closest match to what I am looking for. To make sure I will type in `lcm?` and then hit enter. ::
 
-     sage: lcm?
+  sage: lcm?
 
-What I get is the following.
-
-.. skip
-
-::
+What I get is the following. ::
 
   Base Class:     <type 'function'>
   String Form:    <function lcm at 0x32db6e0>
@@ -195,41 +184,34 @@ Again there will be a whole lot of information usually more than will fit on one
 
 The most important part to read in the help system when you are first starting out would probably be the description, the `INPUT`, and the `EXAMPLES` sections. The input tells you what you should provide as arguments to the function and the examples section, is just that, a listing of examples.
 
-The description 
+The description ::
 
-::
-	The least common multiple of a and b, or if a is a list and b is
-       	omitted the least common multiple of all elements of a.
-        Note that LCM is an alias for lcm.
+  The least common multiple of a and b, or if a is a list and b is
+  omitted the least common multiple of all elements of a.
+  Note that LCM is an alias for lcm.
 
- tells us that this is the function that we are indeed looking for. So to learn how, I look at the `INPUT` and `EXAMPLES` sections.
+From this description, I can tell that this is the command that I am looking for. But for an example of how to actually use :func:`lcm`, we will read the `INPUT` section. ::
 
-::
+       EXAMPLES:
     
-	 INPUT:
+          sage: lcm(97,100)
+          9700
+          sage: LCM(97,100)
+          9700
+          sage: LCM(0,2)
+          0
+          sage: LCM(-3,-5)
+          15
+          sage: LCM([1,2,3,4,5])
+          60
+          sage: v = LCM(range(1,10000))   # *very* fast!
+          sage: len(str(v))
+          4349
 
-	 * ``a,b`` - two elements of a ring with lcm or
+.. _notebook_help:
 
-	 * ``a`` - a list or tuple of elements of a ring with lcm
-
-	 EXAMPLES:
-
-	    sage: lcm(97,100)
-	    9700
-	    sage: LCM(97,100)
-	    9700
-	    sage: LCM(0,2)
-	    0
-	    sage: LCM(-3,-5)
-	    15
-	    sage: LCM([1,2,3,4,5])
-	    60
-	    sage: v = LCM(range(1,10000))   # *very* fast!
-	    sage: len(str(v))
-	    4349
- 
-Which will more often than not tell us all that we need to know about the function in question. 
-
+`?` and the notebook
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 As noted before there are small differences with how to use both tab completions and the help system. In many ways it is more intuitive for those of you who are more used to point-and-click interfaces. 
 
@@ -247,6 +229,4 @@ What you see is an overlay which you can scroll through all of the completions u
 	:width: 400px
 	:height: 300px
 
-To exit the help just click anywhere on the screen. 
-
- 
+To exit the help just click anywhere on the screen.
