@@ -88,6 +88,28 @@ At times, however, we want Sage to think of a certain object as living in a part
 
 In general, we coerce an element x into a structure R with the command ``R(x)``. The coercion must make sense, of course.
 
+**Exercises:**
+
+  #. What *universe* does ``x`` live in by default?
+  #. Find the universe of the following expressions:
+     #. ``1 + 1/2``
+     #. ``1 + 1/2.0``
+     #. ``1/2 + i`` 
+     #. ``e + pi``
+     #. ``e.n() + pi``
+     #. ``e.n() + pi.()``  
+  #. For which of the following does the *coercion* make sense?
+
+     a) ``RR(1/2)``
+     b) ``QQ(1)``
+     c)  ``ZZ(1/2)``
+     d) ``SR(1/2)`` (SR is the *Symbolic Ring*)
+     e) ``CC(x)``
+
+  #. If I enter ``x=1/2`` into Sage, what *universe* does ``x`` live in?
+
+
+
 .. _booleans:
 
 Booleans
@@ -181,6 +203,20 @@ If two objects belong to a universe in which it makes sense to say one is greate
 
 .. _variables:
 
+**Exercises:**
+
+  #. Test to see if the following expressions are ``True``, ``False``, or not defined:
+
+     a) ``not (True or False) == (False and True)``
+     b) ``1 >= 1``
+     c) ``1 + i >= 2 - i``
+     d) ``((3/2) > 1) or (2/3 < 1)``
+     e) ``((3/2) > 1) ^^ (2/3 < 1)``
+     f) ``x > 1/2``
+
+  #. What is the parent of ``x > 1/2``? Why do you think that Sage treats this expression differently from the rest?
+  #. Use Sage to find out if :math:`e` is greater than :math:`\pi`? (*Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default?*)
+
 Variables
 ----------
 
@@ -237,8 +273,99 @@ If we are assigning multiple variable at a time, and for some reason we wish to 
 	sage: _,r = divmod(19,5)
 	sage: r
 	4
-	sage: 
-				
+
+There is also a quick way to initialize two variables with the same value. We do this by just *chaining* together the assignment. ::
+
+  sage: a = b = 1
+  sage: a
+  1
+  sage: b
+  1
+
+When you define a variable, it stays in memory until you quit your session. Sage allows you to redefine a variable just by assigning a new value to it. ::
+  sage: a
+  1
+  sage: a = 2
+  sage: a
+  2
+  sage: a = x^2 + x + 1
+  sage: a
+  x^2 + x + 1
+
+We should be careful with doing this as it may have unintended consequences. ::
+  sage: x = 3.14
+  sage: a = 2
+  sage: b = 5
+  sage: f = x^2 + x + 1
+
+Since we have changed the definition of ``x``, ``f = 3`` and not the polynomial that we may have expected. 
+
+Sometimes we would like change a variable's definition back to it's default state. We do this with the :func:`restore` command. ::
+
+  sage: x = 1
+  sage: a = 2
+  sage: restore('x')
+  sage: restore('a')
+  sage: x
+  x
+  sage: a
+  ---------------------------------------------------------------------------
+  NameError                                 Traceback (most recent call last)
+  /home/ayeq/sage/local/lib/python2.6/site-packages/sage/all_cmdline.pyc in <module>()
+
+  NameError: name 'a' is not defined
+
+You can restore the entire environment to it's default state by running the :func:`reset` command. ::
+ 
+  sage: a = 1 
+  sage: b = 2
+  sage: c = 5
+  sage: x = 56
+  sage: reset()
+  sage: a
+  ---------------------------------------------------------------------------
+  NameError                                 Traceback (most recent call last)
+  /home/ayeq/sage/local/lib/python2.6/site-packages/sage/all_cmdline.pyc in <module>()
+
+  NameError: name 'a' is not defined
+  sage: x
+  x
+
+And finally if I *really* want the variable obliterated, I can use the sledgehammer of memory management, the :obj:`del` command. ::
+
+  sage: a = [2, 3,4 ,5 ] 
+  sage: del a
+  sage: a
+  ---------------------------------------------------------------------------
+  NameError                                 Traceback (most recent call last)
+  /home/ayeq/sage/local/lib/python2.6/site-packages/sage/all_cmdline.pyc in <module>()
+
+  NameError: name 'a' is not defined
+
+**Exercises:**
+
+  #. If you enter the following into Sage:
+
+     ::
+
+       sage: a = 1
+       sage: b = a
+       sage: b = 2
+
+     What should we expect the value of ``a`` to be?
+
+  #. If you enter the following into Sage:
+
+     ::
+
+       sage: f = x^2 + x + 1
+       sage: f
+       x^2 + x + 1
+       sage: x = 3
+
+     What do you expect the value of ``f`` to be?
+
+
 .. _lists_and_strings:
 
 Lists and Strings
@@ -330,6 +457,12 @@ Lists need not contain only integers, or even numbers. For whatever reason, we c
 	 sage: T[2]
 	 [1, 4]
 					 
+When dealing with lists of lists we often want to access particular elements within the lists. For example, say that instead of accessing the list ``[1,4]`` in the prior example we wanted to access the ``4`` within that list. We can issue the following command: ::
+
+  sage: T[2][1]
+  4 
+
+Where we read ``T[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``T``. 
 
 If we wish to remove an element from a list, we use the meth:`.remove` method. ::
 
@@ -349,9 +482,52 @@ Note that a list may contain the same element more than once; ``remove()`` remov
 	 sage: w
 	 [1, 2, 0, 3, 4, 0, 4, 5]
 
+But probably the nicest feature of lists in python is the *slice* notation. Let say that I wanted to access the sub-list ``[0,3,4]`` of ``w``. This list starts at index ``2`` and ends before element ``5`` (remember that indices begin at zero), so using the slice notation I can do the following: ::
+
+  sage: w[2:5]
+  [0, 3, 4]
+
+By leaving the last index off, the slice will go to the end of the list. Similarly, when the first index is left blank the slice will start at the beginning of the list. ::
+
+  sage: w[2:]
+  [0, 3, 4, 0, 4, 5]
+  sage: w[:5]
+  [1, 2, 0, 3, 4]
+
+By leaving both indices blank, we get a copy of the entire list. ::
+
+  sage: w[:]
+  [1, 2, 0, 3, 4, 0, 4, 5]
+
+Slices also can use negative indices. When a negative number is used the position is measured relative to the end of the list. For example: ::
+
+  sage: w[:-2]
+  [1, 2, 0, 3, 4, 0]
+  sage: w[-2:]
+  [4,5]
+
+The first *ends* the slice two elements before the end of the list while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list.::
+
+  sage: w[-4:-2]
+  [4, 0]
+  sage: w[-2:-2]
+  []
+
+You should note that the last *slice* is empty since the beginning of the list is the same position as the end.
+
 .. seealso::
 
    `An informal introduction to Python: Lists <http://docs.python.org/tutorial/introduction.html#lists>`_
+
+
+**Exercises:**
+
+#. Consider the lists ``L1 = [1, -2, 10, 13]`` and ``L2 = [4, 3, 5, -7]``. Append ``L1`` onto the end of ``L2``. Do the same beginning with ``L2``.
+
+#. Consider the list ``L = [1, 3, 4, [1,5,6], 8, -9]``. At what *index* is the element ``[1,5,6]``? Remove this element from ``L``.
+  
+
+
 					 
 .. _sets:
 
