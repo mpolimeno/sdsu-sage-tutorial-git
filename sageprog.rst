@@ -201,8 +201,6 @@ If two objects belong to a universe in which it makes sense to say one is greate
 	sage: 1 <= 35
 	True
 
-.. _variables:
-
 **Exercises:**
 
   #. Test to see if the following expressions are ``True``, ``False``, or not defined:
@@ -216,6 +214,9 @@ If two objects belong to a universe in which it makes sense to say one is greate
 
   #. What is the parent of ``x > 1/2``? Why do you think that Sage treats this expression differently from the rest?
   #. Use Sage to find out if :math:`e` is greater than :math:`\pi`? (*Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default?*)
+
+
+.. _variables:
 
 Variables
 ----------
@@ -283,6 +284,7 @@ There is also a quick way to initialize two variables with the same value. We do
   1
 
 When you define a variable, it stays in memory until you quit your session. Sage allows you to redefine a variable just by assigning a new value to it. ::
+
   sage: a
   1
   sage: a = 2
@@ -293,6 +295,7 @@ When you define a variable, it stays in memory until you quit your session. Sage
   x^2 + x + 1
 
 We should be careful with doing this as it may have unintended consequences. ::
+
   sage: x = 3.14
   sage: a = 2
   sage: b = 5
@@ -312,11 +315,10 @@ Sometimes we would like change a variable's definition back to it's default stat
   ---------------------------------------------------------------------------
   NameError                                 Traceback (most recent call last)
   /home/ayeq/sage/local/lib/python2.6/site-packages/sage/all_cmdline.pyc in <module>()
-
   NameError: name 'a' is not defined
 
 You can restore the entire environment to it's default state by running the :func:`reset` command. ::
- 
+
   sage: a = 1 
   sage: b = 2
   sage: c = 5
@@ -368,17 +370,18 @@ And finally if I *really* want the variable obliterated, I can use the sledgeham
 
 .. _lists_and_strings:
 
-Lists and Strings
-------------------
+Lists, Sets, and Strings
+------------------------
 
 In this section we shall cover the basic properties of lists and some fundamental functions associated with lists. Also included in this section is a bit of info about strings, as they act like lists in Sage.
 
 .. _lists:
 
 Lists
-^^^^^^^^^
+^^^^^
+Lists are one of the most used fundamental objects when programming in Python, and thus are fundamental in Sage also. 
 
-A list is essentially an ordered collection of objects. The elements of a list are indexed by the integers, starting with 0. We may assign lists to a variable and access their elements through indices (the plural of index) Here is a trivial example. ::
+A list is an ordered collection of objects. The elements of a list are indexed by the integers, starting with 0. We may assign lists to a variable and access their elements through indices (the plural of index) Here is a trivial example. ::
 
 	 sage: [6,28,496,8128]
 	 [6, 28, 496, 8128]
@@ -392,7 +395,6 @@ A list is essentially an ordered collection of objects. The elements of a list a
 	 sage: s[6]
 	 17
 					 
-
 Take careful note of how we access the elements: Though 2 is the first element of the list 's', it is accessed by the index 0.
 
 If we wish to know the index of an element, we use the :func:`.index` function. It produces the index for the first occurrence.
@@ -427,7 +429,6 @@ We may alter the elements of a list as follows: ::
 	 sage: u
 	 [-1, 2, 3, 4]
 					 
-
 To add an element to the end of a list, we use the :func:`append` function. ::
 
 	 sage: q=[1,2,3]
@@ -435,7 +436,6 @@ To add an element to the end of a list, we use the :func:`append` function. ::
 	 sage: q
 	 [1, 2, 3, 4]
 					 
-
 Similarly, we may use the :func:`extend` function to concatenate two lists, that is, to append a list to the end of a list. ::
 
 	 sage: a=[1,2]
@@ -450,7 +450,6 @@ It is, perhaps, simpler to use the ``+`` operator to concatenate lists. Notice t
 	 sage: [2,4,6]+[1,3,5]+[100]
 	 [2, 4, 6, 1, 3, 5, 100]
 					 
-
 Lists need not contain only integers, or even numbers. For whatever reason, we can have lists of lists! ::
 
 	 sage: T=[[1,2],[1,3],[1,4]]
@@ -482,6 +481,64 @@ Note that a list may contain the same element more than once; ``remove()`` remov
 	 sage: w
 	 [1, 2, 0, 3, 4, 0, 4, 5]
 
+Sage offers a convenient way to create lists containing consecutive integers. 
+::
+
+  sage: [1..7]
+  [1, 2, 3, 4, 5, 6, 7]
+  sage: [4..9]
+  [4, 5, 6, 7, 8, 9]
+  sage: [2,4..10]
+  [2, 4, 6, 8, 10]
+					 
+In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap some examples will clear things up ::
+
+	 sage: [1,4..13]
+	 [1, 4, 7, 10, 13]
+	 sage: [1,11..31]
+	 [1, 11, 21, 31]
+	 sage: [1,11..35]
+	 [1, 11, 21, 31]
+					 
+Additionally, we can use this construction method with some of Sage's symbolic constants such as ``pi`` ::
+
+	 sage: [pi,4*pi..32]
+	 [pi, 4*pi, 7*pi, 10*pi]
+					 
+Having constructed lists, we may now introduce some important functions which take lists as an argument. The most fundamental perhaps is the :func:`.len` function, which returns the number of elements of the list ::
+
+	 sage: len([1..1001])
+	 1001
+	 sage: len([2,3,5,7,11])
+	 5
+
+If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` take a list as an argument. ``sum`` function returns the sum of the elements of a list ::
+
+	 sage: sum([1,2,3])
+	 6
+	 sage: sum([1..100])
+	 5050
+					 
+and ``prod`` returns the product of the elements of the list ::
+
+	 sage: prod([1..4])
+	 24
+					 
+One must be careful using ``sum`` and ``prod.`` In particular, the elements of the list must all belong to a universe with a definition of addition and/or multiplication.
+
+Another useful function when dealing with lists is the :func:`.map` function. This function accepts two arguments, a function f and a list ``[a0,…,an-1]`` and returns that function applied to each member of that list, ``[f(a0),…,f(an-1)]`` ::
+
+  sage: map( cos, [0, pi/4, pi/2, 3*pi/4, pi] )
+  [1, 1/2*sqrt(2), 0, -1/2*sqrt(2), -1]
+  sage: map(factorial,[1,2,3,4,5])
+  [1, 2, 6, 24, 120]
+  sage: sum(map(exp,[1,2,3,4,5]))
+  e + e^2 + e^3 + e^4 + e^5
+
+The :func:`map` function is often used in *functional* programming. For more on this style of programming with python see the 'Python Documentation'_
+
+.. _'Python Documentation': http://docs.python.org/howto/functional.html
+ 				 
 But probably the nicest feature of lists in python is the *slice* notation. Let say that I wanted to access the sub-list ``[0,3,4]`` of ``w``. This list starts at index ``2`` and ends before element ``5`` (remember that indices begin at zero), so using the slice notation I can do the following: ::
 
   sage: w[2:5]
@@ -522,140 +579,180 @@ You should note that the last *slice* is empty since the beginning of the list i
 
 **Exercises:**
 
-#. Consider the lists ``L1 = [1, -2, 10, 13]`` and ``L2 = [4, 3, 5, -7]``. Append ``L1`` onto the end of ``L2``. Do the same beginning with ``L2``.
+  #. Consider the lists ``L1 = [1, -2, 10, 13]`` and ``L2 = [4, 3, 5, -7]``. Append ``L1`` onto the end of ``L2``. Do the same beginning with ``L2``.
 
-#. Consider the list ``L = [1, 3, 4, [1,5,6], 8, -9]``. At what *index* is the element ``[1,5,6]``? Remove this element from ``L``.
-  
+  #. Consider the list ``L = [1, 3, 4, [1,5,6], 8, -9]``. At what *index* is the element ``[1,5,6]``? Remove this element from ``L``.
 
+  #. Let ``L = [3,4,18,17,2,'a']`` and ``M = [ 14, 23, 'b', 'c']``. With Sage, do the following: 
+     a) Append the elements of the list ``M`` to the end of ``L`` without changing ``L``.
+     b) Do the same but this time altering ``L`` in place. 
+     c) Insert ``M`` as an element at the end of ``L``, alterting ``L`` in place. 
+     d) Remove the ``M`` that you had just inserted.  
+     d) Explain the differences between the :meth:`extend` and the :meth:`append` methods.  
 
-					 
+  #. Let ``L = [1,2,5, 14, 17, 20]``.  What are the sub-lists are accessed using the following *slices*. 
+     a) ``L[:-1]``
+     b) ``L[-1:]``
+     c) ``L[3:]``
+     d) ``L[0:3]``
+     e) ``L[-4:-1]``
+  #.  Using the same ``L`` as the previous problem. Find a slice that will extract the following sub-lists from ``L``: *(Try and do it two different ways)* 
+      a) ``[5,14,17]``. 
+      b) ``[1,2,5]``.
+      c) ``[1]``
+      d) ``[20]``
+
+  #. Consider ``L = ['a', 9, 10, 17, 'a', 'b', 10]``. Remove all letters from ``L``.
+
 .. _sets:
-
+					 
 Sets
-^^^^^^^^^
+^^^^
 
-We may convert a list to a set. This will remove repeated elements. Then to find the number of elements ask for the cardinality. ::
+A *Set* in Sage is a data type which behaves a lot like a mathematical set and it differs from a list in a few key ways:
+
+  * Elements of a Set have no order. So you cannot access elements by an index.
+  * An element in a Set only appears once. 
+
+To see an example of that last point, we will construct a Set by converting a list  into a set. ::
 
 	 sage: y = [2,3,3,3,2,1,8,6,3]
-	 sage: sety = Set(y)
-	 sage: sety
+	 sage: A = Set(y)
+	 sage: A
 	 {8, 1, 2, 3, 6}
-	 sage: sety.cardinality()
+
+To find the size of a Set we will use the :meth:`cardnality` method. ::
+
+	 sage: A.cardinality()
 	 5
-					 
 
-We can also apply the usual set operations: :meth:`.union`, :meth:`.intersection`, :meth:`.difference` and :meth:`.symmetric_difference`. For example, ::
+Testing for membership can be done easily by using the :obj:`in` operator. ::
 
-         sage: sety.union(Set([3,2,2,5]))
-	 {1, 2, 3, 5, 6, 8}
-	 sage: sety.intersection(Set([3,2,2,5]))
-	 {2, 3}
-					 
+  sage: 8 in A
+  True
+  sage: 10 in A
+  False
+ 
+All of the usual set operations: :meth:`.union`, :meth:`.intersection`, :meth:`.difference` and :meth:`.symmetric_difference` are implemented. For example, ::
+
+  sage: B = Set([8,6,17,-4,20, -2 ])
+  sage: B
+  {17, 20, 6, 8, -4, -2}
+  sage: A.union(B)
+  {1, 2, 3, 6, 8, 17, 20, -4, -2}
+  sage: A.intersection(B)
+  {8, 6}
+  sage: A.difference(B)
+  {1, 2, 3}
+  sage: B.difference(A)
+  {17, 20, -4, -2}
+  sage: A.symmetric_difference(B)
+  {17, 2, 3, 20, 1, -4, -2}
 
 Use the :meth:`.subsets` method to construct the set of all subsets of a set, or to construct the set of subsets with a specified number of elements. ::
-         sage: A = Set([1,2,3]); A
-	 {1, 2, 3}
-	 sage: powA = A.subsets(); powA
-	 Subsets of {1, 2, 3}
-	 sage: pairsA = A.subsets(2); pairsA
-	 Subsets of {1, 2, 3} of size 2
-	 sage: powA.list()
-	 [{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
-	 sage: pairsA.list()
-	 [{1, 2}, {1, 3}, {2, 3}]					 
+
+  sage: A = Set([1,2,3]); A
+  {1, 2, 3}
+  sage: powA = A.subsets(); powA
+  Subsets of {1, 2, 3}
+  sage: pairsA = A.subsets(2); pairsA
+  Subsets of {1, 2, 3} of size 2
+  sage: powA.list()
+  [{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
+  sage: pairsA.list()
+  [{1, 2}, {1, 3}, {2, 3}]					
+ 
+**Exercises:**
+
+  #. Consider the sets :math:`A = \left\{1, -4, 2 \right\}` and :math:`B = \left\{ 3, 2, 1 \right\}`. Compute the following set operations using Sage:
+
+     a) :math:`A \cup B`
+     b) :math:`A \cap B`
+     c) :math:`A \setminus B`
+     d) :math:`B \setminus A` 
+     e) :math:`\left(A \setminus B \right) \cup \left(B \setminus A \right)`
+ 
 
 .. seealso::
-   `Sage Tutorial: sets <http://www.sagemath.org/doc/tutorial/programming.html#sets>`_
+   `Sage Tutorial: Sets <http://www.sagemath.org/doc/tutorial/programming.html#sets>`_
 
-
-.. _strings:
 
 Strings
-^^^^^^^^^
+^^^^^^^
 
 To construct a string in Sage we may use single or double quotes. For consistency, we will always use single quotes ::
 
-	 sage: a='I am a string'
-	 sage: a
+	 sage: s='I am a string'
+	 sage: s
 	 'I am a string'
-	 sage: print a
+	 sage: print s
 	 I am a string
 					 
-
 Note the difference between asking for the value of a and asking Sage to print a. Like lists, we can access the elements of a string through their indices ::
 
-	 sage: s='mathematics'
-	 sage: s[0]
+	 sage: a='mathematics'
+	 sage: a[0]
 	 'm'
-	 sage: s[4]
+	 sage: a[4]
 	 'e'
 					 
+You can find the length of a string using the :func:`.len` command. ::
 
-Sage offers a convenient way to create lists containing consecutive integers ::
-
-	 sage: [1..7]
-	 [1, 2, 3, 4, 5, 6, 7]
-	 sage: [4..9]
-	 [4, 5, 6, 7, 8, 9]
-	 sage: [2,4..10]
-	 [2, 4, 6, 8, 10]
-					 
-
-In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap some examples will clear things up ::
-
-	 sage: [1,4..13]
-	 [1, 4, 7, 10, 13]
-	 sage: [1,11..31]
-	 [1, 11, 21, 31]
-	 sage: [1,11..35]
-	 [1, 11, 21, 31]
-					 
-
-Additionally, we can use this construction method with some of Sage's symbolic constants such as ``pi`` ::
-
-	 sage: [pi,4*pi..32]
-	 [pi, 4*pi, 7*pi, 10*pi]
-					 
-
-Having constructed lists, we may now introduce some important functions which take lists as an argument. The most fundamental perhaps is the :func:`.len` function, which returns the number of elements of the list ::
-
-	 sage: len([1..1001])
-	 1001
-	 sage: len([2,3,5,7,11])
+	 sage: b='Gauss'
+	 sage: len(b)
 	 5
-					 
 
-:func:`.len` will also give us the number of characters in a string ::
+Just like with lists, we can *concatenate* strings just by adding them together. ::
 
-	 sage: c='Gauss'
-	 sage: len(c)
-	 5
-					 
+  sage: b + " is " + a
+  'Gauss is mathematics'
 
-Two convenient functions associated with lists are :func:`.sum` and :func:`.prod`.  ``sum`` returns the sum of the elements of a list ::
+and we can separate a list by using the :meth:`split` method. ::
 
-	 sage: sum([1,2,3])
-	 6
-	 sage: sum([1..100])
-	 5050
-					 
+  sage: s.split()
+  ['I', 'am', 'a', 'string']
+ 
+Which divided the string into a list of words. We can divide a list using different characters as *separators*. For example we can get a list from the following *comma separated values*. ::
 
-``prod`` returns the product of the elements of the list ::
+  sage: vals = "18,spam,eggs,28,70,287,cats"
+  sage: vals.split(',')
+  ['18', 'spam', 'eggs', '28', '70', '287', 'cats']
 
-	 sage: prod([1..4])
-	 24
-					 
+We can use the :func:`map` and :meth:`split` functions to *convert* a string of integers into something that we can use in sage. This is particularly useful when you must read data from a file. ::
 
-One must be careful using ``sum`` and ``prod.`` In particular, the elements of the list must all belong to a universe with a definition of addition and/or multiplication.
+  sage: map(Integer, data.split(',')) 
+  [17, 18, 20, 19, 18, 20]
 
-Another useful function is :func:`.map`. This function takes a function f and a list ``[a0,…,an-1]`` and returns ``[f(a0),…,f(an-1)]`` ::
+You should note how the output above differs from what we get when we use only the :meth:`split` function. ::
 
-	 sage: map(cos,a)
-	 [cos(1), cos(2), cos(3), cos(4), cos(5)]
-	 sage: map(factorial,a)
-	 [1, 2, 6, 24, 120]
-	 sage: sum(map(exp,a))
-	 e + e^2 + e^3 + e^4 + e^5
+  sage: data.split(',')
+  ['17', '18', '20', '19', '18', '20']
+
+The list directly above contains *strings* which represent numbers. We must convert those strings into what we need in order to actually use them. 
+ 
+The opposite of *splitting* up a string into a list is the *joining* of elements of a list. We do this with the :func:`join` command. ::
+
+  sage: L = ['Learning', 'Sage', 'is', 'easy.'] 
+  sage: join(L)
+  'Learning Sage is easy.'
+
+Just like when I *split* a sting, I can join a list using a different separating value than just a space. I do so by supplying an optional second argument to the :func:`join` command. ::
+
+  sage: join(L,',')
+  'Learning,Sage,is,easy.'
+
+**Exercises:**
+
+  #. Consider the string ``s = 'This is a string!``. What is the output of the following commands:
+
+     a) s[:-1] + '.'
+     b) s[0:7] + " not " + s[8:]
+
+  #. Consider the string ``s = 'This is a sentence. This is another sentence.'``. Split ``s`` into a list of two sentences.
+
+  #.  Consider the list of strings ``L = ['This is', 'a', 'string']``. Join the elements of the list to form the string ``'This is a string'``. 
+
+  #. We can use the :func:`map` and :func:`Integer` functions to take a string of integers and convert them into *Sage* integers.  
 
 .. _external_files_and_sessions:
 
@@ -690,8 +787,7 @@ exist in our Sage session. ::
 	sage: a,b,c
 	(3, 4, 5)
 				
-
-Along these lines of convenience, Sage allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit Sage, power off our computer, or what have you. At any later time, we may load the file by opening Sage from the directory containing the save file and using the load_session function.
+Sage allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit Sage, power off our computer, or what have you. At any later time, we may load the file by opening Sage from the directory containing the save file and using the load_session function.
 
 Here is an example. ::
 
@@ -738,9 +834,7 @@ Conditionals
 
 |  You should be familiar with :ref:`variables_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
 
-A Conditional statement runs a block of code when certain conditions
-are met. For example, suppose we wish to halve an integer n if it is
-even. Here is how we implement this example in Sage. ::
+A *conditional statement* is what we use when we need our code to do different things based upon certain conditionals. For example, suppose we wish to divide and integer by two only if that integer is even. Here is how we implement this example in Sage. ::
 
 	sage: n=44
 	sage: if n%2 == 0:                             
@@ -754,12 +848,11 @@ even. Here is how we implement this example in Sage. ::
 	sage:
 				
 
-Notice that since n=44 is even, the condition is met and Sage prints half of n. In the case of n=37, though, the condition is not met and nothing happens.
+Notice that since ``n=44`` is even, the condition is met and the :func:`print` command is executed, but when ``n=37``, nothing happens since the integer was not even. 
 
-Unlike some other languages, the syntax used in Sage is picky about indentation. All of the code to be run if a condition is met must have the same level of indentation. This takes some getting used to, but it produces neat, organized code.
+Unlike some other languages, the syntax used in Sage is picky about indentation. All of the code to be run if a condition is met must have the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
 
-At times we may wish to check for different cases. To do so we use the
-elif operator, which is short for else if. ::
+At times we may wish to check whether our expression satisfies one of many conditions. To do so we use the :obj:`elif` operator, which is short for else if. ::
 
 	sage: m=31
 	sage: if m%3==0:
@@ -771,10 +864,9 @@ elif operator, which is short for else if. ::
 				
 
 Notice that we had to return to the original level of indentation of
-the if for the elif. elif must occur after an if, and we may use as
+the if for the elif. :obj:`elif` must occur after an if, and we may use as
 many elifs as we desire. Once one of the conditions is met, the
-associated code is executed and Sage leaves the conditoinal
-structure. For example, consider the following conditional structure. ::
+associated code is executed and Sage leaves the conditional. For example, consider the following: ::
 
 	sage: r=55
 	sage: if 11.divides(r):
@@ -785,10 +877,10 @@ structure. For example, consider the following conditional structure. ::
 	11
 				
 
-Here both conditions are clearly met, but we only run the code of the first condition met. This is very fundamental to controlling the flow of code. There is also a subtle thing to note in the previous example. ``11.divides(r)`` already returns a boolean, hence we do not need to use an equality here. We could have just as easily used ``11.divides(r)==True`` but it is not necessary.
+Here both conditions are met, but we only run the code of the first condition met. This is very fundamental to controlling the flow of code. There is also a subtle thing to note in the previous example. ``11.divides(r)`` already returns a boolean, hence we do not need to use an equality here. We could have just as easily used ``11.divides(r)==True`` but it is not necessary.
 
 Often we wish to execute some code if none of our conditions above are
-met. For this we use the else operator. ::
+met. For this we use the :obj:`else` operator. ::
 
 	sage: n=2*3*5+1
 	sage: if 2.divides(n):
@@ -800,8 +892,7 @@ met. For this we use the else operator. ::
 	....:     
 	31
 				
-
-Since none of the conditions were met, our code defauled on the else and printed n. 
+Since none of the conditions were met, our code defaulted to the else and just printed the number :math:`31` . 
 
 .. _while_loops:
 
@@ -878,40 +969,50 @@ integers. Here are a few more (especially silly) examples ::
 	E
 	R
 
-.. loops_in_lists:
+.. list_comprehensions:
 
-Loops in Lists
-------------------------------
+List Comprehensions (Loops in Lists)
+------------------------------------
 
 |  You should be familiar with :ref:`lists` and :ref:`for_loops`
 
 A particularly useful technique in python (and Sage by extension) is the
-construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as :math:`\left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\}`. With this notation we do not explicitly list the elemenets of the set but rather gives a rule which can used to construct the set. We can do something very similar in python by placing a ``for`` inside of a list, like in the following example. Here is how we would contruct the list of even integers from :math:`0` to :math:`20`. ::
+construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as 
+
+.. math::
+   \left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\} 
+
+Where we do not explicitly list the elements of the set but rather give a *rule* which can used to construct the set. We can do something very similar in python by placing a ``for`` inside of a list, like in the following example. Here is how we would construct the list of even integers from :math:`0` to :math:`20`. ::
 
 	sage: [ 2*k for k in [0..10] ]
 	[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 			
-This concept may seem a bit intimidating at first, but it is extremely useful.
+This concept may seem a bit intimidating at first, but it is extremely concise way to write some powerful code.
 
-We can also *filter* the results even further by adding a *conditional* to our list comprehension. Let us construct the list of all natural numbers that are less than :math:`20` which are *relatively prime* to it. (Don't laugh, students have been asked to compute weirder things.) Mathematically we would write the set as follows:
+We can use list comprehension to apply a function to each number of a given list, much like we did before with the :func:`map` command. ::
 
-.. math::
-   \left\{ k \in \mathbb{N} \ | \ 1 \leq k < 20,\  \mathrm{gcd}(k,20) = 1 \right\}
+  sage: [pi/4,pi/2..2*pi]
+  [1/4*pi, 1/2*pi, 3/4*pi, pi, 5/4*pi, 3/2*pi, 7/4*pi, 2*pi]
+  sage: [ cos(x) for x in [pi/4, pi/2..2*pi]]
+  [1/2*sqrt(2), 0, -1/2*sqrt(2), -1, -1/2*sqrt(2), 0, 1/2*sqrt(2), 1]
 
-We can down a very similar statement in python. ::
+We can also use the list comprehension *filter* (or reduce) the results by adding a *conditional* to our list comprehension. For example, to construct the list of all natural numbers that are less than :math:`20` which are *relatively prime* to 20 we do the following: (Don't laugh, students have been asked to compute weirder things.) ::
 
   sage: [ k for k in [1..19] if gcd(k,20) == 1 ] 
   [1, 3, 7, 9, 11, 13, 17, 19]
 
 Notice that the syntax for the construction is nearly identical to the
-mathematical notation.
+mathematical way that we would write the same set of numbers:
+
+.. math::
+   \left\{ k \in \mathbb{N}\ \vert\ k < 20 \ \textrm{and}\ \gcd(k,20) = 1 \right\}
 
 In mathematics we often construct the *Cartesian Product* of two sets
 
 .. math::
    A \times B = \left\{ \left(a, b \right)\ | \ a \in A, b \in B \right\}
 
-We can do something similar by using multiple *for's* in the list comprehension. For example suppose I would like to construct the list of all pairs of elements in the list constructed earlier. ::
+We can do something similar by using multiple *for's* in the list comprehension. For example, to construct the list of all *pairs* of elements in the list constructed earlier we do the following: ::
 
   sage: U =  [ k for k in [1..19] if gcd(k,20) == 1]
   sage: [ (a,b) for a in U for b in U ] 
@@ -926,12 +1027,28 @@ It should be noted that I didn't only have to form *tuples* of the pairs of elem
   sage: [ gcd(a,b) for a in U for b in U ]
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 3, 1, 9, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 17, 1, 1, 1, 1, 1, 1, 1, 1, 19]
 
+and there is no reason that we have to stop with combining elements of *two* sets, the more *for* we include the more lists we can draw from.
 
+Since list comprehensions allow for us to put any valid expression, we can add another conditional which effects the output of our list. For example, let take the list of integers which were *relatively prime* to 20 and test if they are prime numbers or not. ::
 
+  sage: U
+  [1, 3, 7, 9, 11, 13, 17, 19]
+  sage: [ 'prime' if x.is_prime() else 'not prime' for x in U] 
+  ['not prime', 'prime', 'prime', 'not prime', 'prime', 'prime', 'prime', 'prime']
 
 .. seealso::
 
    `More on list comprehensions <http://docs.python.org/tutorial/datastructures.html#list-comprehensions>`_
+
+**Exercises**
+
+  #. Use a list comprehension to generate lists which have the same members as the following sets:
+     a) The set of all odd integers greater than :math:`-10` and less than :math:`30`.  
+     b) The set of all integers which are divisible by :math:`3`, less than or equal to :math:`100` and greater than :math:`-20`. 
+     c) The set of all *prime* numbers less than :math:`100`.
+
+  #. Use a list comprehension to compute the :math:`\tan(x)` for all :math:`x \in \left\{ 0, \pi/4, \pi/2, 3\pi/4, \pi \right\}`
+
 
 .. _functions:
 
