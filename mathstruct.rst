@@ -14,7 +14,7 @@ Integers and Modular Arithmetic
 Euclidean Algorithm
 -------------------
 
-|       You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`sessions`, and :ref:`while_loops`
+|       You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`external_files_and_sessions`, and :ref:`while_loops`
 
 Recall that the division algorithm states that for :math:`a,b \in
 \mathbb{Z}` with :math:`b \neq 0`, there exist a unique :math:`q,r \in
@@ -43,6 +43,7 @@ If we create a file ``euclid.sage`` containing the text above, then the output w
 In the first case, we see that the gcd was 1, while in the second the gcd was 5.
 
 **Exercises:**
+
         #. Revise the while loop so that only the :math:`gcd(a,b)` and
 	the total number of divisions (i.e. the number of steps
 	through the algorithm) are printed. Compare the speed of this
@@ -69,7 +70,7 @@ Integers Modulo :math:`n`
 -------------------------
 
 .. seealso::
-     Before beginning, you should be familiar with :ref:`universes`
+     Before beginning, you should be familiar with :ref:`universes_and_coercion`
      and :ref:`variables`
 
 
@@ -131,10 +132,10 @@ sense. In :math:`\mathbb{Z}_2`, the element 1 represents the class of odd intege
 
 .. _linear_congruences:
 
-Linear Congruences, inverses and division
------------------------------------------
+Linear Congruences
+------------------
 
-|  You should be familiar with :ref:`integers_modulo_n` and :ref:`lists_in_loops`
+|  You should be familiar with :ref:`integers_modulo_n` and :ref:`list_comprehensions`
 
 
 A linear congruence is an equation of the form :math:`ax=b` in :math:`\mathbb{Z}_n`. One way to
@@ -155,8 +156,9 @@ Notice here :math:`7x=11` had a solution in :math:`\mathbb{Z}_15` while :math:`5
 If :math:`ax=1` has a solution modulo n, then we say that a is a unit
 in :math:`\mathbb{Z}_n`.
 
-**Exercise:**
-     1. Use an exhuastive search method to write a function which
+**Exercises:**
+
+     #. Use an exhuastive search method to write a function which
      determines if a is a unit modulo n. 
 
 In Sage we may use the :meth:`.is_unit` method to determine if a is a
@@ -180,8 +182,10 @@ obtain its inverse ::
 .. note:: 
      It is not necessary here to put the -1 in parentheses, but it is good practice.
 
-**Exercise:**
-        1. For n = 13, 15 and 21 determine which of 3,4 and 5 are
+**Exercises:**
+
+
+        #. For n = 13, 15 and 21 determine which of 3,4 and 5 are
         units in :math:`\mathbb{Z}_n`. When you find a unit, determine
         its inverse and compare this to the output of :math:`xgcd(a,n)`. Try and explain this relationship.
 
@@ -215,100 +219,6 @@ consider the following example, which at first seems like an error ::
       20
 				
 20 is not a unit, yet at first glance it would seem we divided by it in :math:`\mathbb{Z}_24`. However, note the order of operations. First sage says 16/20 is really 4/5, and then coerces 4/5 into :math:`\mathbb{Z}_24`. Since 5 is a unit in :math:`\mathbb{Z}_24`, everything works out ok; however, we should be careful to understand that even though Sage does not complain about coercing :math:`ab` into :math:`\mathbb{Z}_n`, this does not necessarily mean b is a unit. 
-
-
-.. _finite_fields:
-
-Finite Fields
--------------
-
-
-In a prior section we constructied rings of integers modulo :math:`n`. We know that when :math:`n` is a prime number the *ring* :math:`\mathbb{Z}/\mathbb{Z}_n` is actually a *field*. Sage will allow us to construct this same object a either a ring or a field. ::
-
-  sage: R = Integers(7)
-  sage: F7 = GF(7)
-  sage: R, F7
-  (Ring of integers modulo 7, Finite Field of size 7)
-
-To take advantage of the extra stucture it is best to use the :func:`GF` command to construct this object. Just like with modular rings we have to coerece integers into the field in order to do arithemetic in the field. ::
-
-  sage: F7(4 + 3)
-  0
-  sage: F7(2*3)
-  6
-  sage: F7(3*7)
-  0
-  sage: F7(3/2)
-  5
-
-We can use Sage to construct any *finite field*, recall that a finite field is always of order :math:`n = p^k` where :math:`p` is a prime number. So to construct the field of order :math:`25 = 5^2` we input the following command. ::
-
-  sage: F25.<a> = GF(25, 'a')
-
-Recall that the finite field of order :math:`5^2` can be thought of a an *extension* of :math:`\mathbb{Z}/\mathbb{Z}_5` using a root of a polynomial of degree :math:`2`. The ``a`` that you specified is a root of this polynomial. There are different polynomials that can be used to construct this extension and Sage chooses one for you. You can see the polynomial chosen by using the, aptly named, :meth:`polynomial` method. ::
-
-  sage: p = F25.polynomial();
-  sage: p
-  a^2 + 4*a + 2
-
-We can quickly verify that ``a`` satisfies this polynomial.::
-
-  sage: a^2 + 4*a + 2
-  0
-
-It should be noted that ``a`` already lives in the field and no special coercion is necessary to do arithmetic using ``a``. ::
-
-  sage: parent(a)
-  Finite Field in a of size 5^2
-  sage: a^2
-  a + 3
-  sage: a*(a^2 + 1)
-  3
-
-But if we are using only integers we must coerce the arithmetic into the field. ::
-  sage: 3+4 
-  7
-  sage: parent(_)
-  Integer Ring
-  sage: F25(3 + 4)
-  2
-  sage: parent(_)
-  Finite Field in a of size 5^2
-
-Sometimes we would like to specify the polynomial used to construct out extension. to do so we just need to add the *modulus* option to our field constructor. ::
-
-  sage: F25.<a> = GF(25, 'a', modulus=x^2 + x + 1)
-  sage: a^2 + a + 1
-  0
-  sage: a^2
-  4*a + 4
-
-Remember that the modulus must be a polynomial which is *irreducible* over :math:`\mathbb{F}_{5}[x]`. Many times we would like for the modulus to not just be irreducible, but to be primitive_. Next we will construct all of the primitive polynomials of degree :math:`2`. The following example uses some constructions that we haven't discussed yet, like :ref:`polynomial-rings` and :ref:`loops-in-lists`. First thing that we will do is construct a list of all polynomials over :math:`\mathrm{GF}(5)` ::
-
-  sage: F5 = GF(5)
-  sage: P.<x> = PolynomialRing(F, 'x')
-  sage: AP = [ a0 + a1*x + a2*x^2 for (a0,a1,a2) in F^3 if (a2 != F(0))]
-  sage: AP
-  [x^2, x^2 + 1, x^2 + 2, x^2 + 3, x^2 + 4, x^2 + x, x^2 + x + 1, x^2 + x + 2, x^2 + x + 3, x^2 + x + 4, x^2 + 2*x, x^2 + 2*x + 1, x^2 + 2*x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x, x^2 + 3*x + 1, x^2 + 3*x + 2, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x, x^2 + 4*x + 1, x^2 + 4*x + 2, x^2 + 4*x + 3, x^2 + 4*x + 4, 2*x^2, 2*x^2 + 1, 2*x^2 + 2, 2*x^2 + 3, 2*x^2 + 4, 2*x^2 + x, 2*x^2 + x + 1, 2*x^2 + x + 2, 2*x^2 + x + 3, 2*x^2 + x + 4, 2*x^2 + 2*x, 2*x^2 + 2*x + 1, 2*x^2 + 2*x + 2, 2*x^2 + 2*x + 3, 2*x^2 + 2*x + 4, 2*x^2 + 3*x, 2*x^2 + 3*x + 1, 2*x^2 + 3*x + 2, 2*x^2 + 3*x + 3, 2*x^2 + 3*x + 4, 2*x^2 + 4*x, 2*x^2 + 4*x + 1, 2*x^2 + 4*x + 2, 2*x^2 + 4*x + 3, 2*x^2 + 4*x + 4, 3*x^2, 3*x^2 + 1, 3*x^2 + 2, 3*x^2 + 3, 3*x^2 + 4, 3*x^2 + x, 3*x^2 + x + 1, 3*x^2 + x + 2, 3*x^2 + x + 3, 3*x^2 + x + 4, 3*x^2 + 2*x, 3*x^2 + 2*x + 1, 3*x^2 + 2*x + 2, 3*x^2 + 2*x + 3, 3*x^2 + 2*x + 4, 3*x^2 + 3*x, 3*x^2 + 3*x + 1, 3*x^2 + 3*x + 2, 3*x^2 + 3*x + 3, 3*x^2 + 3*x + 4, 3*x^2 + 4*x, 3*x^2 + 4*x + 1, 3*x^2 + 4*x + 2, 3*x^2 + 4*x + 3, 3*x^2 + 4*x + 4, 4*x^2, 4*x^2 + 1, 4*x^2 + 2, 4*x^2 + 3, 4*x^2 + 4, 4*x^2 + x, 4*x^2 + x + 1, 4*x^2 + x + 2, 4*x^2 + x + 3, 4*x^2 + x + 4, 4*x^2 + 2*x, 4*x^2 + 2*x + 1, 4*x^2 + 2*x + 2, 4*x^2 + 2*x + 3, 4*x^2 + 2*x + 4, 4*x^2 + 3*x, 4*x^2 + 3*x + 1, 4*x^2 + 3*x + 2, 4*x^2 + 3*x + 3, 4*x^2 + 3*x + 4, 4*x^2 + 4*x, 4*x^2 + 4*x + 1, 4*x^2 + 4*x + 2, 4*x^2 + 4*x + 3, 4*x^2 + 4*x + 4]
-
-Next we will *filter* out the primitive polynomials out of this list. ::
-
-  sage: PR = [ p for p in AP if p.is_primitive() ]
-  sage: PR
-  [x^2 + x + 2, x^2 + 2*x + 3, x^2 + 3*x + 3, x^2 + 4*x + 2, 2*x^2 + x + 1, 2*x^2 + 2*x + 4, 2*x^2 + 3*x + 4, 2*x^2 + 4*x + 1, 3*x^2 + x + 4, 3*x^2 + 2*x + 1, 3*x^2 + 3*x + 1, 3*x^2 + 4*x + 4, 4*x^2 + x + 3, 4*x^2 + 2*x + 2, 4*x^2 + 3*x + 2, 4*x^2 + 4*x + 3]
-
-If we wanted all of the *irreducible* polynomials we would only change the last command slightly. ::
-
-  sage: IR = [ p for p in AP if p.is_irreducible() ]
-  sage: IR
-  [x^2 + 2, x^2 + 3, x^2 + x + 1, x^2 + x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x + 1, x^2 + 4*x + 2, 2*x^2 + 1, 2*x^2 + 4, 2*x^2 + x + 1, 2*x^2 + x + 3, 2*x^2 + 2*x + 2, 2*x^2 + 2*x + 4, 2*x^2 + 3*x + 2, 2*x^2 + 3*x + 4, 2*x^2 + 4*x + 1, 2*x^2 + 4*x + 3, 3*x^2 + 1, 3*x^2 + 4, 3*x^2 + x + 2, 3*x^2 + x + 4, 3*x^2 + 2*x + 1, 3*x^2 + 2*x + 3, 3*x^2 + 3*x + 1, 3*x^2 + 3*x + 3, 3*x^2 + 4*x + 2, 3*x^2 + 4*x + 4, 4*x^2 + 2, 4*x^2 + 3, 4*x^2 + x + 3, 4*x^2 + x + 4, 4*x^2 + 2*x + 1, 4*x^2 + 2*x + 2, 4*x^2 + 3*x + 1, 4*x^2 + 3*x + 2, 4*x^2 + 4*x + 3, 4*x^2 + 4*x + 4]
-
-It should be noted that the above code will only work if the polynomials are over *finite* rings or fields.
-
-**Exercises:**
-
-
-.. _primitive: http://en.wikipedia.org/wiki/Primitive_polynomial
 
 
 .. _groups:
@@ -465,7 +375,7 @@ Now, the way that Sage displays the group's cayley table may be a bit
 confusing. Instead of listing the elements themselves, Sage decides to
 encode the results alphabetically using the same ordering as the
 output of ``H.list()`` and ``D.list()``. In this example the encoding
-summarised in the following table.
+summarized in the following table.
 
 .. table:: Example encoding for `cayley_table()`
 
@@ -568,7 +478,7 @@ the Klein Four Group need not to be specified. ::
 .. _group_homomorphisms:
 
 Permutation Group Homomorphisms
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
 
 To construct a homomorphism between two permutation groups we use the :func:`.PermutationGroupMorphism` command. For an example let us use the two isomorphic groups that we constructed earlier.  ::
 
@@ -631,7 +541,7 @@ Vectors and Matrices
 .. _vectors_and_matrices_constructions:
 
 Constructions
-^^^^^^^^^^^^^
++++++++++++++
 
 To create a vector use the :func:`vector` command with a list of
 entries. Scalar multiples and the dot product are straightforward to
@@ -704,7 +614,8 @@ Note that if we use :func:`zero_matrix` we must input two integers.
 .. _vectors_and_matrices_manipulation:
 
 Matrix Manipulation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------
+
 So let's begin by defining the a matrix over the rational numbers. ::
 
       sage: m = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); m
@@ -871,7 +782,7 @@ With some of the basic matrix operations under our belt, we are ready to move on
 .. _vectors_and_matrices_arithmetic: 
 
 Matrix Arithmetic
-^^^^^^^^^^^^^^^^^
++++++++++++++++++
 
 We may use ``+``, ``-``, ``*`` and ``^`` for matrix addition,
 subtraction, multiplication and exponents. ::
@@ -960,7 +871,7 @@ is :math:`\pm 1`. Thus if we think of B as a matrix over the rationals, we shoul
 .. _vectors_and_matrices__jordan_form:
 
 The Jordan Canonical Form
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------
 
 For every linear transformation :math:`\mathrm{T}:\mathbb{R}^n \longrightarrow \mathbb{R}^{n}` there is a basis of :math:`\mathbb{R}^n` such that the matrix :math:`\left[m\right]_{\mathcal{B}}` is in an *almost* diagonal form. This unique matrix is called the *Jordan Canonical Form* of :math:`\mathrm{T}`. For more information on this please refer to this article_ on Wikipedia. To demonstrate some common tools that we use in Sage we will compute this basis for the linear transformation :math:`\mathrm{T}\left(x,y,z,t \right) = \left(2x+y, 2y+1, 3z, y-z+3t \right)`. First let define :math:`\mathrm{T}` in Sage. ::
       
@@ -1096,6 +1007,7 @@ We may compute various spaces associated to a matrix. ::
 	[0 1 1 0]
 
 .. _rings:
+
 
 Rings
 =====
@@ -1298,7 +1210,7 @@ In this section we will discuss how to construct and do common computations with
 .. _ideals:
 
 Ideals
-^^^^^^
+++++++
 
 We can construct the ideal generated by a list of generating elements by using the ``*`` operator.::
 
@@ -1353,7 +1265,7 @@ constructed ::
 .. _quotient_rings:
 					
 Quotient Rings
-^^^^^^^^^^^^^^
+--------------
 
 To construct the quotient ring of a ring R and an ideal I we use the
 :meth:`quotient` method ::
@@ -1529,6 +1441,98 @@ Now we are ready to define the main loop of our algorithm. ::
 
   print A, p, r
         
+.. _finite_fields:
+
+Finite Fields
+=============
+
+
+In a prior section we constructied rings of integers modulo :math:`n`. We know that when :math:`n` is a prime number the *ring* :math:`\mathbb{Z}/\mathbb{Z}_n` is actually a *field*. Sage will allow us to construct this same object a either a ring or a field. ::
+
+  sage: R = Integers(7)
+  sage: F7 = GF(7)
+  sage: R, F7
+  (Ring of integers modulo 7, Finite Field of size 7)
+
+To take advantage of the extra stucture it is best to use the :func:`GF` command to construct this object. Just like with modular rings we have to coerece integers into the field in order to do arithemetic in the field. ::
+
+  sage: F7(4 + 3)
+  0
+  sage: F7(2*3)
+  6
+  sage: F7(3*7)
+  0
+  sage: F7(3/2)
+  5
+
+We can use Sage to construct any *finite field*, recall that a finite field is always of order :math:`n = p^k` where :math:`p` is a prime number. So to construct the field of order :math:`25 = 5^2` we input the following command. ::
+
+  sage: F25.<a> = GF(25, 'a')
+
+Recall that the finite field of order :math:`5^2` can be thought of a an *extension* of :math:`\mathbb{Z}/\mathbb{Z}_5` using a root of a polynomial of degree :math:`2`. The ``a`` that you specified is a root of this polynomial. There are different polynomials that can be used to construct this extension and Sage chooses one for you. You can see the polynomial chosen by using the, aptly named, :meth:`polynomial` method. ::
+
+  sage: p = F25.polynomial();
+  sage: p
+  a^2 + 4*a + 2
+
+We can quickly verify that ``a`` satisfies this polynomial.::
+
+  sage: a^2 + 4*a + 2
+  0
+
+It should be noted that ``a`` already lives in the field and no special coercion is necessary to do arithmetic using ``a``. ::
+
+  sage: parent(a)
+  Finite Field in a of size 5^2
+  sage: a^2
+  a + 3
+  sage: a*(a^2 + 1)
+  3
+
+But if we are using only integers we must coerce the arithmetic into the field. ::
+  sage: 3+4 
+  7
+  sage: parent(_)
+  Integer Ring
+  sage: F25(3 + 4)
+  2
+  sage: parent(_)
+  Finite Field in a of size 5^2
+
+Sometimes we would like to specify the polynomial used to construct out extension. to do so we just need to add the *modulus* option to our field constructor. ::
+
+  sage: F25.<a> = GF(25, 'a', modulus=x^2 + x + 1)
+  sage: a^2 + a + 1
+  0
+  sage: a^2
+  4*a + 4
+
+Remember that the modulus must be a polynomial which is *irreducible* over :math:`\mathbb{F}_{5}[x]`. Many times we would like for the modulus to not just be irreducible, but to be primitive_. Next we will construct all of the primitive polynomials of degree :math:`2`. The following example uses some constructions that we haven't discussed yet, like :ref:`polynomial_rings` and :ref:`list_comprehensions`. First thing that we will do is construct a list of all polynomials over :math:`\mathrm{GF}(5)` ::
+
+  sage: F5 = GF(5)
+  sage: P.<x> = PolynomialRing(F, 'x')
+  sage: AP = [ a0 + a1*x + a2*x^2 for (a0,a1,a2) in F^3 if (a2 != F(0))]
+  sage: AP
+  [x^2, x^2 + 1, x^2 + 2, x^2 + 3, x^2 + 4, x^2 + x, x^2 + x + 1, x^2 + x + 2, x^2 + x + 3, x^2 + x + 4, x^2 + 2*x, x^2 + 2*x + 1, x^2 + 2*x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x, x^2 + 3*x + 1, x^2 + 3*x + 2, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x, x^2 + 4*x + 1, x^2 + 4*x + 2, x^2 + 4*x + 3, x^2 + 4*x + 4, 2*x^2, 2*x^2 + 1, 2*x^2 + 2, 2*x^2 + 3, 2*x^2 + 4, 2*x^2 + x, 2*x^2 + x + 1, 2*x^2 + x + 2, 2*x^2 + x + 3, 2*x^2 + x + 4, 2*x^2 + 2*x, 2*x^2 + 2*x + 1, 2*x^2 + 2*x + 2, 2*x^2 + 2*x + 3, 2*x^2 + 2*x + 4, 2*x^2 + 3*x, 2*x^2 + 3*x + 1, 2*x^2 + 3*x + 2, 2*x^2 + 3*x + 3, 2*x^2 + 3*x + 4, 2*x^2 + 4*x, 2*x^2 + 4*x + 1, 2*x^2 + 4*x + 2, 2*x^2 + 4*x + 3, 2*x^2 + 4*x + 4, 3*x^2, 3*x^2 + 1, 3*x^2 + 2, 3*x^2 + 3, 3*x^2 + 4, 3*x^2 + x, 3*x^2 + x + 1, 3*x^2 + x + 2, 3*x^2 + x + 3, 3*x^2 + x + 4, 3*x^2 + 2*x, 3*x^2 + 2*x + 1, 3*x^2 + 2*x + 2, 3*x^2 + 2*x + 3, 3*x^2 + 2*x + 4, 3*x^2 + 3*x, 3*x^2 + 3*x + 1, 3*x^2 + 3*x + 2, 3*x^2 + 3*x + 3, 3*x^2 + 3*x + 4, 3*x^2 + 4*x, 3*x^2 + 4*x + 1, 3*x^2 + 4*x + 2, 3*x^2 + 4*x + 3, 3*x^2 + 4*x + 4, 4*x^2, 4*x^2 + 1, 4*x^2 + 2, 4*x^2 + 3, 4*x^2 + 4, 4*x^2 + x, 4*x^2 + x + 1, 4*x^2 + x + 2, 4*x^2 + x + 3, 4*x^2 + x + 4, 4*x^2 + 2*x, 4*x^2 + 2*x + 1, 4*x^2 + 2*x + 2, 4*x^2 + 2*x + 3, 4*x^2 + 2*x + 4, 4*x^2 + 3*x, 4*x^2 + 3*x + 1, 4*x^2 + 3*x + 2, 4*x^2 + 3*x + 3, 4*x^2 + 3*x + 4, 4*x^2 + 4*x, 4*x^2 + 4*x + 1, 4*x^2 + 4*x + 2, 4*x^2 + 4*x + 3, 4*x^2 + 4*x + 4]
+
+Next we will *filter* out the primitive polynomials out of this list. ::
+
+  sage: PR = [ p for p in AP if p.is_primitive() ]
+  sage: PR
+  [x^2 + x + 2, x^2 + 2*x + 3, x^2 + 3*x + 3, x^2 + 4*x + 2, 2*x^2 + x + 1, 2*x^2 + 2*x + 4, 2*x^2 + 3*x + 4, 2*x^2 + 4*x + 1, 3*x^2 + x + 4, 3*x^2 + 2*x + 1, 3*x^2 + 3*x + 1, 3*x^2 + 4*x + 4, 4*x^2 + x + 3, 4*x^2 + 2*x + 2, 4*x^2 + 3*x + 2, 4*x^2 + 4*x + 3]
+
+If we wanted all of the *irreducible* polynomials we would only change the last command slightly. ::
+
+  sage: IR = [ p for p in AP if p.is_irreducible() ]
+  sage: IR
+  [x^2 + 2, x^2 + 3, x^2 + x + 1, x^2 + x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x + 1, x^2 + 4*x + 2, 2*x^2 + 1, 2*x^2 + 4, 2*x^2 + x + 1, 2*x^2 + x + 3, 2*x^2 + 2*x + 2, 2*x^2 + 2*x + 4, 2*x^2 + 3*x + 2, 2*x^2 + 3*x + 4, 2*x^2 + 4*x + 1, 2*x^2 + 4*x + 3, 3*x^2 + 1, 3*x^2 + 4, 3*x^2 + x + 2, 3*x^2 + x + 4, 3*x^2 + 2*x + 1, 3*x^2 + 2*x + 3, 3*x^2 + 3*x + 1, 3*x^2 + 3*x + 3, 3*x^2 + 4*x + 2, 3*x^2 + 4*x + 4, 4*x^2 + 2, 4*x^2 + 3, 4*x^2 + x + 3, 4*x^2 + x + 4, 4*x^2 + 2*x + 1, 4*x^2 + 2*x + 2, 4*x^2 + 3*x + 1, 4*x^2 + 3*x + 2, 4*x^2 + 4*x + 3, 4*x^2 + 4*x + 4]
+
+It should be noted that the above code will only work if the polynomials are over *finite* rings or fields.
+
+**Exercises:**
+
+
+.. _primitive: http://en.wikipedia.org/wiki/Primitive_polynomial
 
 
 
@@ -1574,10 +1578,12 @@ Now let us factor :math:`x^n - 1` again. This time over a non-prime field.::
       (x + 1) * (x^9 + a*x^8 + a*x^6 + a*x^5 + (a + 1)*x^4 + (a + 1)*x^3 + (a + 1)*x + 1) * (x^9 + (a + 1)*x^8 + (a + 1)*x^6 + (a + 1)*x^5 + a*x^4 + a*x^3 + a*x + 1)
 
 
-** Exercises **
-   1. Try repeating the above for :math:`F= \mathbb{F}_{8}`.
-   2. Compute the order of 2, 4, 8 mod 19. What are your observations?
-   3. Try other values of n and other fields.
+**Exercises:**
+
+
+   #. Try repeating the above for :math:`F= \mathbb{F}_{8}`.
+   #. Compute the order of 2, 4, 8 mod 19. What are your observations?
+   #. Try other values of n and other fields.
 
 
 Idempotent polynomials and generator polynomials
@@ -1645,8 +1651,9 @@ Check the generating polynomial. ::
       x^9 + (a + 1)*x^8 + (a + 1)*x^6 + (a + 1)*x^5 + a*x^4 + a*x^3 + a*x + 1
 
 
-**Exercises**
-	1. Find the idempoent element of :math:`F\left[x\right]/\left<x^n -1\right>` For :math:`q = 4` and :math:`n =3, 5, 11` and :math:`17`. 
+**Exercises:**
+
+	#. Find the idempoent element of :math:`F\left[x\right]/\left<x^n -1\right>` For :math:`q = 4` and :math:`n =3, 5, 11` and :math:`17`. 
 
 For the reciprocal polynomials of idempotents, see Theorem 5 [MacWilliams1977]_ p. 219
 

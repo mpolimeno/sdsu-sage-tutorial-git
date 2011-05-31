@@ -368,17 +368,11 @@ And finally if I *really* want the variable obliterated, I can use the sledgeham
      What do you expect the value of ``f`` to be?
 
 
-.. _lists_and_strings:
-
-Lists, Sets, and Strings
-------------------------
-
-In this section we shall cover the basic properties of lists and some fundamental functions associated with lists. Also included in this section is a bit of info about strings, as they act like lists in Sage.
-
 .. _lists:
 
 Lists
-^^^^^
+-----
+
 Lists are one of the most used fundamental objects when programming in Python, and thus are fundamental in Sage also. 
 
 A list is an ordered collection of objects. The elements of a list are indexed by the integers, starting with 0. We may assign lists to a variable and access their elements through indices (the plural of index) Here is a trivial example. ::
@@ -607,7 +601,7 @@ You should note that the last *slice* is empty since the beginning of the list i
 .. _sets:
 					 
 Sets
-^^^^
+----
 
 A *Set* in Sage is a data type which behaves a lot like a mathematical set and it differs from a list in a few key ways:
 
@@ -678,7 +672,7 @@ Use the :meth:`.subsets` method to construct the set of all subsets of a set, or
 
 
 Strings
-^^^^^^^
+-------
 
 To construct a string in Sage we may use single or double quotes. For consistency, we will always use single quotes ::
 
@@ -969,7 +963,7 @@ integers. Here are a few more (especially silly) examples ::
 	E
 	R
 
-.. list_comprehensions:
+.. _list_comprehensions:
 
 List Comprehensions (Loops in Lists)
 ------------------------------------
@@ -1040,7 +1034,7 @@ Since list comprehensions allow for us to put any valid expression, we can add a
 
    `More on list comprehensions <http://docs.python.org/tutorial/datastructures.html#list-comprehensions>`_
 
-**Exercises**
+**Exercises:**
 
   #. Use a list comprehension to generate lists which have the same members as the following sets:
      a) The set of all odd integers greater than :math:`-10` and less than :math:`30`.  
@@ -1148,7 +1142,7 @@ For the sake of completeness let's examine exactly what is happening
 in this last example when we call ``fac(3)``. For n=3, since ``3≠1``, ``fac()`` decides to return ``3*fac(2)``, hence we must evaluate ``fac(2)``. Since ``2≠1``, ``fac()`` decides to return ``2*fac(1)``. Since 1=1, ``fac(1)`` will automatically return 1. Hence we go back into the ``fac(2)`` process and return ``2*1`` which is then returned to the ``fac(3)`` process to obtain ``3*2*1`` which is of course 6. In general, ``fac(n)`` will evaluate to be the product of the first n positive numbers.
 
 Interactive Demonstrations in the Notebook
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+------------------------------------------
 
 .. index:: 
    single: interact; graphics

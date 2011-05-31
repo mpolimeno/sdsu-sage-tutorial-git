@@ -26,13 +26,14 @@ Since this is a tutorial introduction to Sage we will be using examples to demon
 
 While the tutorial mostly progresses in a linear fashion, material covered early is then used later, we still include at the beginning of each section a list of topics which you should understand before proceeding. This list follows the text "You should be familiar with." and by clicking one of these links you will be taken to the relevant portion of the tutorial. We have also tried to include links to further information and other on-line references, these will follow the "**See also:**" text. 
 
-Some sections may contain numbered citations such as "[1]_." At the bottom of a section with at least one citation will be a bibliography section, with the entries correspondingly numbered.
+Some sections may contain numbered citations such as "[1]_." At the bottom of a section with at least one citation will be a list of references, with the entries correspondingly numbered.
 
-**Bibliography**
+**References:**
 
 .. [1] example citation: Alfred P. Nobody
 
 .. _about_sage:
+
 
 About Sage
 ----------

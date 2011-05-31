@@ -1,6 +1,6 @@
-######################
-Sage as a Calculator
-######################
+======================
+ Sage as a Calculator
+======================
 
 .. _arithmetic_and_functions:
 
@@ -9,7 +9,7 @@ In this chapter we will examine all of the commands that will allow for you to u
 .. _basic_arithmetic:
 
 Basic Arithmetic
-==================
+================
 
 The basic operators are ``+``, ``-``, ``*``, and ``/`` for addition, subtraction, multiplication and division and ``^`` is used for exponents. ::
 
@@ -335,6 +335,7 @@ Exponentiation base :math:`e` can done using both the :func:`.exp` function and 
 
 				
 **Exercises:**
+
   #. Compute the floor and ceiling of :math:`2.75`.
   #. Compute the logarithm base 10 of  :math:`1/1000000`
   #. Compute the logarithm base 2 of :math:`64`
@@ -473,11 +474,11 @@ To find a complete set of solutions, the reader must use ``find_root()`` repeate
 
 **Exercises:**
 
-#. Find all of the solutions to the equation :math:`x^3 - x = 7x^2 - 7`.
-#. Find the complete solution set for the inequality :math:`\left\vert t - 7 \right\vert \geq 3`.
-#. Find all :math:`x` and :math:`y` that satisfy both :math:`2x + y = 17` and :math:`x - 3y = -16`.
-#. Use :func:`find_root` to find a solution of the equation :math:`e^{x} = \cos(x)` on the interval :math:`\left[-\pi/2, 0\right]`. 
-#. Change the command above so that :func:`find_root` finds the other solution in the same interval.
+  #. Find all of the solutions to the equation :math:`x^3 - x = 7x^2 - 7`.
+  #. Find the complete solution set for the inequality :math:`\left\vert t - 7 \right\vert \geq 3`.
+  #. Find all :math:`x` and :math:`y` that satisfy both :math:`2x + y = 17` and :math:`x - 3y = -16`.
+  #. Use :func:`find_root` to find a solution of the equation :math:`e^{x} = \cos(x)` on the interval :math:`\left[-\pi/2, 0\right]`. 
+  #. Change the command above so that :func:`find_root` finds the other solution in the same interval.
   
 
 .. _basic_stats:
@@ -543,7 +544,7 @@ Plotting
 2D Graphics
 -----------
 
-|  You should be familiar with :ref:`basic_functions`
+|  You should be familiar with :ref:`basic_functions_and_constants`
 
 Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly get the reader up to speed with some of the basic commands used when plotting functions and working with graphics.
 
@@ -556,7 +557,7 @@ To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :mat
 .. image:: pics/sin_plot.png
         :alt: Plot of sin(x) from x = -pi/2 to pi/2 
 	:width: 400px
-	:height: 300px
+	:height: 30px
  
 By default, the plot created will be quite plain. To add axis labels
 and make our plotted line purple, we can alter the plot attribute by
@@ -702,9 +703,9 @@ Polar plots can be done using the :func:`.polar_plot` command ::
      :width: 400px
      :height: 300px
 
-.. _3d_plotting:
+.. _3d_graphics:
 
-3D Plotting
+3D Graphics
 -----------
 
 Producing 3D plots can be done using the :func:`.plot3d` command ::
@@ -730,5 +731,3 @@ One nice thing about the way that Sage does this is that you can rotate your plo
 
 .. note:: 
 		If you are running Sage on windows or on sagenb.org that your file will be saved either in your VMware virtual machine or on sagenb.org.
-
-
