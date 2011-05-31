@@ -535,14 +535,13 @@ We can also compute a rolling, or moving, average of the data with the :func:`.m
 
 .. _basic_plotting:
 
-******************
 Plotting
-******************			
+========
 
 .. _2d_plotting_and_graphics:
 
 2D Graphics
-========================
+-----------
 
 |  You should be familiar with :ref:`basic_functions`
 
@@ -706,7 +705,7 @@ Polar plots can be done using the :func:`.polar_plot` command ::
 .. _3d_plotting:
 
 3D Plotting
-===========
+-----------
 
 Producing 3D plots can be done using the :func:`.plot3d` command ::
 

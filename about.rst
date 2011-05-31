@@ -1,8 +1,8 @@
 .. _about_tutorial:
 
-***********************************
+*********************
  About this tutorial
-***********************************
+*********************
 
 .. _about_tutorial_introduction:
 
@@ -35,7 +35,7 @@ Some sections may contain numbered citations such as "[1]_." At the bottom of a 
 .. _about_sage:
 
 About Sage
-----------------
+----------
 
 Sage is a free open source mathematical software system based on the Python programming language. Originally created for research into mathematics, it has been evolving into a powerful tool for math education. Sage combines numerous other mathematical software packages using a single interface.
 
@@ -48,14 +48,14 @@ As an open source project, Sage invites contributions from all of its users. Thi
 .. _installing_sage:
 
 Installing Sage
------------------
+---------------
 
 The Sage web-site already contains detailed instructions for installing sage on all popular operating systems. So we will not duplicate that effort but rather just point the reader to the sage project's `official installation guide <http://www.sagemath.org/doc/installation/>`_
  
 .. _contributing: 
 
-Contributing to the Tutorial 
-==================================
+Contributing to the Tutorial
+============================
 
 Additions to this tutorial are encouraged as are suggestions for additional topics for inclusion.
 
@@ -75,21 +75,21 @@ In "Mathematical Structures" the emphasis is on learning about specific mathemat
 .. _credits_and_license:
 
 Credits and License
----------------------
+-------------------
 
 The content and code for this tutorial were written by Ryan Rosenbaum and David Monarres under the supervision of Mike O'Sullivan. The work was supported by San Diego State University's Presidential Leadership Fund and is licensed under the `Creative Commons Attribution-ShareAlike 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are free to share and to remix, but attribution should be given to the original funder and creators.
 
 .. _tips:
 
 Helpful Tips
------------------
+============
 
 Sage has two common ways to enter commands, the *command line* and a web-based *notebook* which is similar in design an purpose to the interfaces of other computer algebra systems like *Maple*, *Mathematica* and *Matlab*. On the mailing lists these are often referred to as *The M's*.  
 
 .. _help_tabcompletion:
 
 `?` and Tab Completion
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 Probably the most useful feature both in the command-line interface and the notebook is *tab completion*. For long time unix shell users this feature can e taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Suppose that I wanted to compute  :math:`56!` and I don't remember the exact command name to do this. Well, I just type `fac` then hit the tab-key. ::
 
@@ -211,7 +211,7 @@ From this description, I can tell that this is the command that I am looking for
 .. _notebook_help:
 
 `?` and the notebook
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+--------------------------
 
 As noted before there are small differences with how to use both tab completions and the help system. In many ways it is more intuitive for those of you who are more used to point-and-click interfaces. 
 
