@@ -44,23 +44,17 @@ In the first case, we see that the gcd was 1, while in the second the gcd was 5.
 
 **Exercises:**
 
-        #. Revise the while loop so that only the :math:`gcd(a,b)` and
-	the total number of divisions (i.e. the number of steps
-	through the algorithm) are printed. Compare the speed of this
-	version of the algorithm with the built-in sage function
-	:func:`.gcd` You will need to test large integers. By backwards
-	substitution, the Euclidean algorithm addit onally allows us
-	to determine integers :math:`u` and :math:`v` such that
-	:math:`au+bv=gcd(a,b)`. This is known as the extended
-	Euclidean algorithm. We use the :func:`.xgcd` function to obtain the triple :math:`(gcd(a,b),u,v)` ::
+    #. Revise the while loop so that only the :math:`gcd(a,b)` and the total number of divisions (i.e. the number of steps through the algorithm) are printed. Compare the speed of this version of the algorithm with the built-in sage function :func:`.gcd` You will need to test large integers. By backwards substitution, the Euclidean algorithm addit only allows us to determine integers :math:`u` and :math:`v` such that :math:`au+bv=gcd(a,b)`. This is known as the extended Euclidean algorithm. We use the :func:`.xgcd` function to obtain the triple :math:`(gcd(a,b),u,v)` ::
 
-	        sage: d,u,v=xgcd(24,33)
-		sage: 24*u+33*v
-		3	
-		sage: d
-		3
-				
-	#. Write your own extended Euclidean algorithm by revising the while loop above.
+
+	 sage: d,u,v=xgcd(24,33)
+	 sage: 24*u+33*v
+	 3	
+	 sage: d
+	 3
+
+
+    #. Write your own extended Euclidean algorithm by revising the while loop above.
 
 
 
@@ -69,67 +63,140 @@ In the first case, we see that the gcd was 1, while in the second the gcd was 5.
 Integers Modulo :math:`n`
 -------------------------
 
-.. seealso::
-     Before beginning, you should be familiar with :ref:`universes_and_coercion`
-     and :ref:`variables`
+|   You should be familiar with :ref:`universes_and_coercion` and :ref:`variables`
 
+In this section we shall cover how to construct :math:`\mathbb{Z}_{n}` and do some basic computations. To construct this ring, we use the :class:`.Integers` command. ::
 
-In this section we shall cover how to construct and manipulate
-:math:`\mathbb{Z}_n` and its elements.
-To construct the ring of integers modulo n, we use the :class:`.Integers`
-function. ::
-
-	sage: Integers(7)
-	Ring of integers modulo 7
-	sage: Integers(100)
-	Ring of integers modulo 100
+  sage: Integers(7)
+  Ring of integers modulo 7
+  sage: Integers(100)
+  Ring of integers modulo 100
 				
+We could do computations modulo an integer by repeatedly using the ``%`` operator in all of our expressions, but by constructing the ring explicitly we have access to a more natural method for doing arithmetic. ::
 
-Using this construction allows us to efficiently work in
-:math:`\mathbb{Z}_n` as opposed to repeatedly using the ``%``
-operator. To do this we will coerce integers into
-:math:`\mathbb{Z}_n`. ::
+  sage: R=Integers(13)
+  sage: a=R(6)
+  sage: b=R(5)
+  sage: a + b
+  11
+  sage: a*b
+  4
 
-	sage: R=Integers(13)
-	sage: a=R(5)
-	sage: b=R(8)
-	sage: a+b
-	0
-	sage: a*b
-	1
-	sage: a-110
-	12
+And by explicitly coercing our numbers into the ring :math:`\mathbb{Z}_{n}` we can compute some of the mathematical properties of the elements. Like their order, both multiplicative and additive, and whether or not the element is a unit. ::
+
+  sage: a.additive_order()
+  13
+  sage: a.multiplicative_order()
+  12
+  sage: a.is_unit()
+  True
+
+If the element is a unit, the *inverses* of this element are computed naturally, using ``-a`` and ``a^(-1)``::
+
+  sage: (-a)
+  7
+  sage: (a^(-1))
+  11
+
+These inverses can be checked easily. ::
+
+  sage: a + (-a)
+  0
+  sage: a*(a^(-1))
+  1
+
+Recall that division in :math:`\mathbb{Z}_{n}` is really multiplication by an inverse. ::
+
+  sage: R=Integers(24)
+  sage: R(4)/R(5)
+  20
+  sage: R(4)*R(5)^-1
+  20
+  sage: R(4/5)
+  20
 				
+Not all elements have an inverse, of course. If we try an invalid
+division, Sage will complain ::
 
-Notice that in the last example, Sage naturally coerces the integer
-110 into Z13. When it makes sense to coerce elements from
-:math:`\mathbb{Z}_m` to :math:`\mathbb{Z}_n`, Sage will do so. ::
-
-	sage: Z2=Integers(2)
-	sage: Z4=Integers(4)
-	sage: Z5=Integers(5)
-	sage: a=Z2(1)
-	sage: b=Z4(3)
-	sage: c=Z5(2)
-	sage: a*b
-	1
-	sage: a*c
-	..
-	TypeError: unsupported operand parent(s) for '*': 'Ring of integers modulo 2' and 'Ring of integers modulo 5'
-	sage: b+a
-	0
+  sage: R(5/4)
+  ...
+  ZeroDivisionError: Inverse does not exist.
 				
-
-Some caution needs to be taken, for Sage allows the following: ::
-
-	sage: Z5(Z2(1)) # this does not make sense
-	1
+We have to be a little bit careful when we are doing this since we are asking Sage to coerce a rational number into the :math:`\mathbb{Z}_{24}` This may cause some unexpected consequences since some reduction is done on rational numbers before the coercion. For an example, consider the following: ::
+  sage: R(20).is_unit()
+  False
+  sage: R(16/20)
+  20
 				
+:math:`20` is not a unit, yet at first glance it would seem we divided by it in :math:`\mathbb{Z}_{24}`. However, note the order of operations. First sage reduces :math:`16/20` to  :math:`4/5`, and then coerces :math:`4/5` into :math:`\mathbb{Z}_{24}`. Since :math:`5` is a unit in :math:`\mathbb{Z}_{24}`, everything works out ok; however, that may have not been what we intended by the coercion.  
 
-It does not take much effort to realize why this does not make
-sense. In :math:`\mathbb{Z}_2`, the element 1 represents the class of odd integers. Thus
-13=1 in :math:`\mathbb{Z}_2`, but 13=3 in :math:`\mathbb{Z}_5`.
+We can also compute some properties of the ring itself. ::
 
+  sage: R
+  Ring of integers modulo 13
+  sage: R.order()
+  13
+  sage: R.is_ring()
+  True
+  sage: R.is_integral_domain()
+  True
+  sage: R.is_field()
+  True
+
+and if the ring is finite then we can have sage list all of it's elements. ::
+  sage: R.list()
+  [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+
+``R`` in this example is a field, since :math:`13` is a prime number, if our ring is not a field then the group of *units* is an subgroup of :math:`\left(\mathbb{Z}_{n}, \cdot \right)` of interest. Sage can compute a list of generators of the *group of units* using it's :meth:`unit_gens` method. ::
+
+  sage: R = Integers(12)
+  sage: R.uni
+  R.unit_gens            R.unit_group_order     
+  R.unit_group_exponent  R.unit_ideal           
+  sage: R.unit_gens()
+  [7, 5]
+
+We can also compute the order of this subgroup. ::
+
+  sage: R.unit_group_order()
+  4
+
+Unfortunately, Sage doesn't seem to have a function which directly computes the group of units for integer modulo :math:`m`, but using the information above we can do that ourselves without much trouble. ::
+
+  sage: (a,b) = R.unit_gens()
+  sage: a
+  7
+  sage: b
+  5
+  sage: [ (a^i)*(b^j) for i in range(2) for j in range(2) ] 
+  [1, 5, 7, 11]
+
+We can compute this list also by using a list comprehension. ::
+
+  sage: [ x for x in R if x.is_unit()]
+  [1, 5, 7, 11]
+
+**Exercises:**
+
+  #. Construct the ring of integers modulo :math:`16` and compute the following:
+     a) Compute the multiplicative orders of :math:`2,4,5,6,13` and `15`?
+     b) Which of the elements listed above is a unit? 
+     c) What are the generators for the group of units? 
+     d) Compute a list of all of the elements in the group of units.
+
+  #. Do all of the steps above again, but with the ring of integers modulo :math:`17`.
+
+  #. Use Sage to determine whether the following Rings are fields:
+
+     a) :math:`\mathbb{Z}_{1091}`
+     b) :math:`\mathbb{Z}_{1047}`
+     c) :math:`\mathbb{Z}_{1037}`
+     d) :math:`\mathbb{Z}_{1087}`
+
+  #. Use an exhaustive search method to write a function which determines if a is a unit modulo n.
+
+  #. For :math:`n = 13, 15` and :math:`21` determine which of :math:`3,4` and :math:`5` are units in :math:`\mathbb{Z}_{n}`. When you find a unit, determine its inverse and compare this to the output of :math:`xgcd(a,n)`. Try and explain this relationship.
+ 
 .. _linear_congruences:
 
 Linear Congruences
@@ -137,89 +204,59 @@ Linear Congruences
 
 |  You should be familiar with :ref:`integers_modulo_n` and :ref:`list_comprehensions`
 
+A linear congruence is an equation of the form :math:`ax=b` in :math:`\mathbb{Z}_{n}`. One way to see if there is a solution to such a problem is an exhaustive search. For example, to determine if there exists a solution to :math:`9x = 6` we can do the following: ::
 
-A linear congruence is an equation of the form :math:`ax=b` in :math:`\mathbb{Z}_n`. One way to
-solve such a problem is an exhaustive search by constructing the list
-of containing ax for each :math:`x \in \mathbb{Z}_n`. ::
-
-	sage: R=Integers(15)
-	sage: a=R(7)
-	sage: 11 in [ a*x for x in R ]
-	True
-	sage: a=R(5)
-	sage: 11 in [ a*x for x in R ]
-	False
+  sage: R=Integers(21)
+  sage: a=R(9)
+  sage: 6 in [ a*x for x in R ]
+  True
 				
+Notice that the above tells us only that there exists at least one solution to the equation :math:`9x= 6` in :math:`\mathbb{Z}_{21}`. We can construct the list of these solutions by using the following list comprehension. ::
 
-Notice here :math:`7x=11` had a solution in :math:`\mathbb{Z}_15` while :math:`5x=11` did not.
+  sage: [ x for x in R if R(9)*x == R(6)]
+  [3, 10, 17]
 
-If :math:`ax=1` has a solution modulo n, then we say that a is a unit
-in :math:`\mathbb{Z}_n`.
+We can also determine when a solution does not exist in a similar fashion. ::
+  sage: [ x for x in R if R(9)*x == R(2) ]
+  []
 
+We can also use the :func:`solve_mod` function to compute the same results. ::
+
+  sage: solve_mod( 9*x == 6, 21)
+  [(3,), (10,), (17,)]
+  sage: solve_mod( 9*x == 2, 21)
+  []
+
+:func:`solve_mod` can handle linear congruences of more than one variable.::
+
+  sage: solve_mod( 9*x + 7*y == 2, 21)
+  [(15, 14), (15, 8), (15, 2), (15, 17), (15, 11), (15, 5), (15, 20), (1, 14), (1, 8), (1, 2), (1, 17), (1, 11), (1, 5), (1, 20), (8, 14), (8, 8), (8, 2), (8, 17), (8, 11), (8, 5), (8, 20)]
+
+Where the solution of the form :math:`\left(x,y\right)` where the variables are listed in alphabetical order. 
+
+:func:`solve_mod` can even solve systems of linear congruences. ::
+
+  sage: solve_mod( [9*x + 2*y == 2, 3*x + 2*y == 11   ], 21)
+  [(9, 13), (16, 13), (2, 13)]
+ 
+       
 **Exercises:**
 
-     #. Use an exhuastive search method to write a function which
-     determines if a is a unit modulo n. 
+  #. Find all solutions to the following congruences over :math:`\mathbb{Z}_{42}`.
+     a) :math:`41x = 2`
+     b) :math:`5x = 13`
+     c) :math:`6x = 0`
+     c) :math:`6x = 12`
+     d) :math:`6x = 18`
+     e) :math:`37x = 21`
 
-In Sage we may use the :meth:`.is_unit` method to determine if a is a
-unit mod n ::
+  #. Above you computed the solution sets for the congruences :math:`6x =0`, :math:`6x = 12` and ':math:`6x = 18`. What are the similarities? What are the differences? Can you use these results to say something in general about the structure of the set :math:`\left\{ 6x \ \vert\ x \in \mathbb{Z}_{42} \right\}`?
 
-       sage: R=Integers(21)
-       sage: R(3).is_unit()
-       False
-       sage: R(4).is_unit()
-       True
-				
-If an element is invertible, then we may raise it to the -1st power to
-obtain its inverse ::
-
-      sage: R=Integers(21)
-      sage: R(4)^(-1)
-      16
-      sage: R(4)^-1
-      16
-
-.. note:: 
-     It is not necessary here to put the -1 in parentheses, but it is good practice.
-
-**Exercises:**
-
-
-        #. For n = 13, 15 and 21 determine which of 3,4 and 5 are
-        units in :math:`\mathbb{Z}_n`. When you find a unit, determine
-        its inverse and compare this to the output of :math:`xgcd(a,n)`. Try and explain this relationship.
-
-
-It is important to understand that division in :math:`\mathbb{Z}_n` is
-really multiplication by an inverse. ::
-
-	    sage: R=Integers(24)
-	    sage: R(4)/R(5)
-	    20
-	    sage: R(4)*R(5)^-1
-	    20
-	    sage: R(4/5)
-	    20
-				
-Not all elements have an inverse, of course. If we try an invalid
-division, Sage will complain ::
-
-      sage: R(5/4)
-      ...
-      ZeroDivisionError: Inverse does not exist.
-				
-
-Notice that in the cases ``R(4/5)`` and ``R(5/4)`` we are asking Sage
-to coerce a rational number into the :math:`\mathbb{Z}_24` Thus,
-consider the following example, which at first seems like an error ::
-
-      sage: R(20).is_unit()
-      False
-      sage: R(16/20)
-      20
-				
-20 is not a unit, yet at first glance it would seem we divided by it in :math:`\mathbb{Z}_24`. However, note the order of operations. First sage says 16/20 is really 4/5, and then coerces 4/5 into :math:`\mathbb{Z}_24`. Since 5 is a unit in :math:`\mathbb{Z}_24`, everything works out ok; however, we should be careful to understand that even though Sage does not complain about coercing :math:`ab` into :math:`\mathbb{Z}_n`, this does not necessarily mean b is a unit. 
-
+  #. Use the :func:`solve_mod` command find all of the solutions to the following congruences modulo :math:`36`:
+     a) :math:`3x = 21`
+     b) :math:`7x = 13`
+     c) :math:`23x = 32`
+     d) :math:`8x = 14`
 
 .. _groups:
 
@@ -1112,7 +1149,7 @@ if a polynomial is irreducible, we use the :meth:`is_irreducible` method ::
 
 Please note that this method is only suitable for polynomials defined
 over a field. For example, we cannot determine if polynomials over
-:math:`\mathbb{Z}_4` are irreducible with the :meth:`is_irreducible`
+:math:`\mathbb{Z}_{4}` are irreducible with the :meth:`is_irreducible`
 property. One reason for this is polynomial rings defined over fields
 always possess unique factorization into irreducibles. ::
 
@@ -1123,7 +1160,7 @@ always possess unique factorization into irreducibles. ::
 	(x + 1) * (x^2 + 4*x + 1)
 				
 
-Here we see a confirmation that :math:`x^3+x+1` is irreducible in :math:`\mathbb{Z}_5[x]` while :math:`x^3+1` may be factored, hence is reducible.
+Here we see a confirmation that :math:`x^3+x+1` is irreducible in :math:`\mathbb{Z}_{5}[x]` while :math:`x^3+1` may be factored, hence is reducible.
 
 The division algorithm for :math:`F[x]` states that given
 :math:`a(x),b(x) \in F[x]` with :math:`b(x) \neq 0`, there exist
@@ -1447,7 +1484,7 @@ Finite Fields
 =============
 
 
-In a prior section we constructied rings of integers modulo :math:`n`. We know that when :math:`n` is a prime number the *ring* :math:`\mathbb{Z}/\mathbb{Z}_n` is actually a *field*. Sage will allow us to construct this same object a either a ring or a field. ::
+In a prior section we constructied rings of integers modulo :math:`n`. We know that when :math:`n` is a prime number the *ring* :math:`\mathbb{Z}_{n}` is actually a *field*. Sage will allow us to construct this same object a either a ring or a field. ::
 
   sage: R = Integers(7)
   sage: F7 = GF(7)
@@ -1469,7 +1506,7 @@ We can use Sage to construct any *finite field*, recall that a finite field is a
 
   sage: F25.<a> = GF(25, 'a')
 
-Recall that the finite field of order :math:`5^2` can be thought of a an *extension* of :math:`\mathbb{Z}/\mathbb{Z}_5` using a root of a polynomial of degree :math:`2`. The ``a`` that you specified is a root of this polynomial. There are different polynomials that can be used to construct this extension and Sage chooses one for you. You can see the polynomial chosen by using the, aptly named, :meth:`polynomial` method. ::
+Recall that the finite field of order :math:`5^2` can be thought of a an *extension* of :math:`\mathbb{Z}_{5}` using a root of a polynomial of degree :math:`2`. The ``a`` that you specified is a root of this polynomial. There are different polynomials that can be used to construct this extension and Sage chooses one for you. You can see the polynomial chosen by using the, aptly named, :meth:`polynomial` method. ::
 
   sage: p = F25.polynomial();
   sage: p
@@ -1559,11 +1596,11 @@ Remembering that since we are constructing a finite field that :math:`q` has to 
 
     sage: A = factor(x^n-1); A
 
-Now to verify the facts about the degrees of the factors computed that was stated ealier. Compare the list above with the order of :math:`2` in :math:`\mathbb{Z}/n\mathbb{Z}`. ::
+Now to verify the facts about the degrees of the factors computed that was stated ealier. Compare the list above with the order of :math:`2` in :math:`\mathbb{Z}_{n}`. ::
 
     sage: Integers(19)(2).multiplicative_order()
 
-Remembering that since :math:`\mathbb{Z}/n\mathbb{Z}` is a ring, we have to specify which type of *order* we want to compute, either *additive* or *multiplicative*. 
+Remembering that since :math:`\mathbb{Z}_{n}` is a ring, we have to specify which type of *order* we want to compute, either *additive* or *multiplicative*. 
 
 
 Now let us repeat what we just did, but this time letting :math:`q=2^2`. Changing `q` alone will not change the base field nor the polynomial ring. So we will have to re-construct everything using our new parameter. ::
