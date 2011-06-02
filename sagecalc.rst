@@ -480,6 +480,130 @@ To find a complete set of solutions, the reader must use ``find_root()`` repeate
   #. Use :func:`find_root` to find a solution of the equation :math:`e^{x} = \cos(x)` on the interval :math:`\left[-\pi/2, 0\right]`. 
   #. Change the command above so that :func:`find_root` finds the other solution in the same interval.
   
+.. _calculus:
+
+Calculus
+========
+
+Sage has many commands that are useful for the study of differential and integral calculus. Let us begin the investigation of these features by first defining a few functions. ::
+
+  sage: f(x) = x*exp(x)
+  sage: f
+  x |--> x*e^x
+  sage: g(x) = (x^2)*cos(2*x) 
+  sage: g
+  x |--> x^2*cos(2*x)
+  sage: h(x) = (x^2 + x - 2)/(x^2 + 1)
+  sage: h
+  x |--> (x^2 + x - 2)/(x^2 + 1)
+
+It should be noted that ``x |--> x*e^x`` is Sage's way of telling you that the expression that we have just defined are *callable*. Meaning, basically, that you can*evaluate* them just like you would expect of a function. ::
+
+  sage: f(1)
+  e
+  sage: g(2*pi)
+  4*pi^2
+  sage: h(-1)
+  2/5
+
+One of the first things that we learn how to do in a calculus course is the act of taking *limits*. So to evaluate the limit of :math:`f(x) = xe^{x}` as :math:`x \rightarrow 1` we enter the following: ::
+
+  sage: limit(f, x=1)
+  e
+
+To evaluate the limit of :math:`g(x) = x^{2} \cos(2x)` as :math:`x \rightarrow 2` we enter: ::
+
+  sage: limit(g, x=2)
+  4*cos(4)
+
+The functions ``f(x)`` and ``g(x)`` aren't all that exciting when taking limits since they are both continuous for all real numbers, which mean that the limit is the same as just evaluating the function. So lets look at :math:`h(x) = \left(x^2 + x + 2\right)/(x-4)` which has a *discontinuity* at :math:`x = 4`. So I taking the limit as :math:`x \rightarrow 4` we get: ::
+
+  sage: limit(h, x = 4)
+  Infinity
+
+Now this is an example of why we have to be a little careful when using computer algebra systems. The limit above is not exactly correct. See the graph of :math:`h(x)` near this discontinuity below.
+
+.. image:: pics/asymptote.png
+   :width: 400px
+   :height: 300px
+   :alt: "Rational Function with vertical asymptote x=4"
+ 
+What we have when :math:`x=4` is a *vertical asymptote* with the function tending toward *positive* infinity if :math:`x` is larger than :math:`4` and *negative* infinity from when :math:`x` less than :math:`4`. We can takes these *directional* limits using Sage to confirm this. ::
+
+  sage: limit(h, x=4, dir="right")
+  +Infinity
+  sage: limit(h, x=4, dir="left")
+  -Infinity
+
+The next thing we are going to do is use Sage to compute some *derivatives* of the functions that we defined. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :meth:`derivative` method. ::
+
+  sage: fp  =  f.derivative(x)
+  sage: fp
+  x |--> x*e^x + e^x
+  sage: gp =  g.derivative(x)
+  sage: gp
+  x |--> -2*x^2*sin(2*x) + 2*x*cos(2*x)  
+  sage: hp  = h.derivative(x)
+  sage: hp
+  x |--> (2*x + 1)/(x - 4) - (x^2 + x - 2)/(x - 4)^2
+
+It should be noted that the ``x`` in the argument tells Sage which variable you are taking the derivative with respect to. If I were to supply a different variable, Sage will hold ``x`` constant and take the derivative with respect to ``y``. ::
+
+  sage: y = var('y')
+  sage: f.derivative(y)
+  x |--> 0
+  sage: g.derivative(y)
+  x |--> 0
+  sage: h.derivative(y)
+  x |--> 0
+
+Once we have computed the derivative we can evaluate it just like any other function. ::
+
+  sage: fp(10)
+  11*e^10
+  sage: gp(pi/2)
+  -pi
+  sage:
+  sage: hp(10)
+  1/2
+
+
+Recalling what the derivative signifies, the following computes the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
+
+  sage: T_f = fp(0)*( x - 0 ) + f(0) 
+  sage: T_f
+  x
+
+We can do the same for the functions :math:`g(x)` and :math:`h(x)`. ::
+
+  sage: T_g = gp(0)*( x - 0 ) + g(0)
+  sage: T_g
+  0
+  sage: T_h = hp(0)*( x - 0 ) + h(0)
+  sage: T_h
+  -1/8*x + 1/2
+
+Critical points can be found using the :func:`solve` command. ::
+
+  sage: solve( fp(x) == 0, x)
+  [x == -1, e^x == 0]
+  sage: solve( hp(x) == 0, x)
+  [x == -3*sqrt(2) + 4, x == 3*sqrt(2) + 4]
+  sage: solve( gp(x) == 0, x)
+  [x == 0, x == cos(2*x)/sin(2*x)]
+
+
+
+
+
+
+
+
+
+**Exercises:**
+
+
+
 
 .. _basic_stats:
 
