@@ -728,7 +728,7 @@ To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :mat
 .. image:: pics/sin_plot.png
         :alt: Plot of sin(x) from x = -pi/2 to pi/2 
 	:width: 400px
-	:height: 30px
+	:height: 300px
  
 By default, the plot created will be quite plain. To add axis labels
 and make our plotted line purple, we can alter the plot attribute by

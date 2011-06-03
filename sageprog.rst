@@ -16,9 +16,13 @@ Introduction
 Universes and Coercion
 ----------------------
 
-In order to construct certain objects in Sage, we will need to understand the concepts of Universes (classes) and coercion. The most fundamental universe we work with is :math:`\mathbb{Z}` , the set of integers. Within the integers, we may add, subtract and multiply all we like and we will always get back an integer. However, once we start dividing, we leave the universe of the integers and enter :math:`\mathbb{Q}`, the rational numbers. Yet there are some numbers which cannot be expressed as the ratio of two integers. One such is example is 2.
+In order to effectively work with Sage, you will need to understand the concepts of *universes* and *coercion*. Mathematically, a *universe* in Sage is a lot like the concept of *universe* in set theory. For example, :math:`1` lies in the *universe of integers*, :math:`1/2` lives in the *universe of rational numbers*, :math:`\sqrt{2}` lies in the *universe of real numbers*, and :math:`i` lives in the universe of complex numbers*.  Now of course a number can live in more than one universe, as is the case for the number :math:`1` which is an integer, rational, real and complex number, but in general we say that a number's universe is the smallest one that the operations we are defined.
 
-In Sage, quite appropriately, the integers are given the name ``ZZ``, the rationals ``QQ``,  and the reals ``RR``. ::
+Both the mathematical and programmatic details of universe are deeper and beyond the scope of this particular tutorial. Luckily you do not need to know these details in order to effectively *use* Sage.
+
+The most effective way to gain a familiarity with *universes* and *coercion* is to see a few examples. We will begin by discussion some of the common universes used when dealing with numbers; such as the integers, rational, real and complex numbers.
+ 
+The integers are given the name ``ZZ``, the rationals ``QQ``,  and the real numbers ``RR``. ::
 
 	sage: ZZ 
 	Integer Ring
@@ -28,14 +32,12 @@ In Sage, quite appropriately, the integers are given the name ``ZZ``, the ration
 	Real Field with 53 bits of precision
 				
 
-In addition to these, we may work with complex numbers :math:`\mathbb{C}` in Sage. The complex numbers, sometimes called imaginary numbers, are numbers of the form :math:`a+bi` where :math:`a` and :math:`b` are real and :math:`i=-1`. As one might expect, the complex numbers are given the name ``CC``. ::
+In addition to these, we may also work with complex numbers :math:`\mathbb{C}` in Sage. The complex numbers, sometimes called imaginary numbers, are given the name ``CC``. ::
 
 	sage: CC
 	Complex Field with 53 bits of precision
 				
-
-We can check if certain objects live in a universe using the ``in`` operator. ::
-
+We can check if certain objects *live* in a universe using the :obj:`.in` operator. ::
 	sage: 1 in ZZ  
 	True
 	sage: 1/2 in ZZ
@@ -51,8 +53,7 @@ We can check if certain objects live in a universe using the ``in`` operator. ::
 	sage: i in CC
 	True
 				
-
-When working in Sage it is always important to understand which universe we are working in. To check which universe we are in, we use the :func:`.parent` function. ::
+To directly check which universe a number is in, we use the :func:`.parent` function. ::
 
 	sage: parent(1)
 	Integer Ring
@@ -63,41 +64,69 @@ When working in Sage it is always important to understand which universe we are 
 	sage: parent(pi.n())
 	Real Field with 53 bits of precision
 				
+Notice that ``pi`` is contained in the ``Symbolic Ring`` and not the real numbers. This is why expressions involving ``pi`` are evaluated using exact identities as opposed to numerical approximations. However, ``pi.n()`` is the numerical approximation of :math:`\pi` and it does live in the universe of real numbers as shown in the last line in the example above.
 
-Notice that ``pi`` is naturally contained in the ``Symbolic Ring``. This is why expressions involving pi are evaluated using exact identities as opposed to numerical approximations. However, ``pi.n()`` is the numerical approximation of pi.
+Now mathematically, we often perform operations with elements from *different* universes as long as there is some sort of natural *conversion* that can be done to both elements so that they live in the *same* universe. For example when we do the computation  :math:`1 + 1/2 = 3/2` we implicitly preform a conversion of :math:`1` to the universe of rational numbers before we preform the operation. This conversion is often so natural that we don't even think of it and, luckily for you, Sage does many of these conversions without you having to think about them either. ::
 
-Here's an interesting example of what happens when we mix the pi symbol with a decimal. ::
+  sage: parent(1 + 2)
+  Integer Ring
+  sage: parent(1/2 + 2)
+  Rational Field
+  sage: parent(1/2 + 2.0)
+  Real Field with 53 bits of precision
+ 
+Sage does something interesting with symbolic constants like ``pi``. For example, here is what happens when we mix ``pi`` with a decimal. ::
 
-	sage: exp(1.)*pi
-	2.71828182845905*pi
-	sage: parent(exp(1.)*pi)
-	Symbolic Ring
-				
+  sage: exp(1.)*pi
+  2.71828182845905*pi
+  sage: parent(exp(1.)*pi)
+  Symbolic Ring
 
-Sage will always choose the universe which offers the most precision.
+Sage will always choose the universe which offers the most precision.  Sage does the same for other symbolic constants like ``e`` and ``i`` and the polynomial indeterminate ``x``. ::
 
-At times, however, we want Sage to think of a certain object as living in a particular universe through a process called coercion. Let's see some examples: ::
+  sage: parent(2 + i)
+  Symbolic Ring
+  sage: parent(2 + x)
+  Symbolic Ring
+  sage: parent(2 + 2.0*x)
+  Symbolic Ring
+  sage: parent(2*pi + 2.0*e)
+  Symbolic Ring
+
+We can explicitly preform these conversion through a process called *coercion*. We coerce a number into another universe, if it makes sense, by *applying* the parent structure to the object like it was a function. For example: ::
 
 	sage: QQ(.5)              
 	1/2
-	sage: sqrt(2)
-	sqrt(2)
+	sage: parent(QQ(.5))
+	Rational Field
 	sage: RR(sqrt(2))
 	1.41421356237310
+	sage: parent(RR(sqrt(2)))
+	Real Field with 53 bits of precision
 				
+Fortunately, Sage protects us from making *some* nonsensical conversions by raising a :obj:`TypeError`. ::
 
-In general, we coerce an element x into a structure R with the command ``R(x)``. The coercion must make sense, of course.
+  sage: QQ(i)
+  ERROR: An unexpected error occurred while tokenizing input
+  The following traceback may be corrupted or invalid
+  The error message is: ('EOF in multi-line statement', (1170, 0))
+  ---------------------------------------------------------------------------
+  TypeError                                 Traceback (most recent call last)
+  ... * a lot of noise * 
+  TypeError: Unable to coerce I to a rational
 
 **Exercises:**
 
   #. What *universe* does ``x`` live in by default?
+
   #. Find the universe of the following expressions:
-     #. ``1 + 1/2``
-     #. ``1 + 1/2.0``
-     #. ``1/2 + i`` 
-     #. ``e + pi``
-     #. ``e.n() + pi``
-     #. ``e.n() + pi.()``  
+     a) ``1 + 1/2``
+     b) ``1 + 1/2.0``
+     c) ``1/2 + i`` 
+     e) ``e + pi``
+     f) ``e.n() + pi``
+     g) ``e.n() + pi.()``
+
   #. For which of the following does the *coercion* make sense?
 
      a) ``RR(1/2)``
@@ -1147,7 +1176,7 @@ Interactive Demonstrations in the Notebook
 .. index:: 
    single: interact; graphics
 
-What we will be discussion in this section is the creation of interactive "Applets" in the Sage notebook. These are done using the :obj:`@interact` decorator. A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise manner. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
+In this section we will discuss the creation of interactive "applets" in the Sage notebook. These are done using the :obj:`@interact` decorator and are often called *interacts*.  A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise fashion. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
 
 
 .. _blog post:  http://www.artima.com/weblogs/viewpost.jsp?thread=240808
@@ -1160,30 +1189,34 @@ We will begin with the most simple applet. One that creates a single input box a
 	:height: 485px
 	:width: 800px
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vulputate sodales turpis. Nullam mi orci, congue hendrerit pretium eget, ultricies nec magna. Suspendisse fringilla pretium egestas. Praesent vel mauris velit. Nulla dignissim ultrices erat, nec commodo sem faucibus sit amet. Sed ac lectus eget arcu ultrices posuere.  Curabitur in nibh sit amet felis hendrerit suscipit ut sed risus.
+Notice how changing the text in the input box changes the output. Every time something within the interact changes the "applet" is refreshed and will display those changes. This is the heart of the interactivity.
 
 .. image:: pics/interact_step2.png
 	:alt: Simple "Hello World" Interact Applet
 	:height: 485px
 	:width: 800px
 
-Quisque vel augue et metus imperdiet pellentesque vel vitae ipsum. Suspendisse porta ornare aliquam. Aenean sem metus, rhoncus quis volutpat viverra, tempor eu mauris. Nulla adipiscing sem nec augue vehicula imperdiet. Vestibulum sed dolor augue. Maecenas eu velit diam, at mollis tellus.
+Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as it's smallest number and :math:`10` as it's largest and moves in increments of :math:`1` unit. 
 
 .. image:: pics/interact_step3.png
 	:alt: Simple "Hello World" Interact Applet
 	:height: 485px
 	:width: 800px
 
-Mauris sed odio arcu, id fermentum purus. Cras at diam ullamcorper orci scelerisque suscipit. Sed malesuada tortor ut quam bibendum interdum. 
+Next we will add a selection control. This control allows the user to select one of a finite number of different options. In this case, the user can select any color, as long as that color is red, blue, green, or black. 
 
 .. image:: pics/interact_step4.png
 	:alt: Simple "Hello World" Interact Applet
 	:height: 485px
 	:width: 800px
 
-Curabitur tincidunt consectetur nibh. Nullam pretium molestie nulla non fermentum. Praesent sed turpis eu eros rhoncus tincidunt sed imperdiet ante.
+While this initial example shows the use of a couple of common interactive controls, it still does not do anything very interesting.  The next example will combine both the use of sliding and selection controls toward creating an applet which plots the trigonometric functions and there standard transformations. 
 
 .. image:: pics/interact_step5.png
-	:alt: Simple "Hello World" Interact Applet
+	:alt: Example of Trigonometric Plotter Interact.
 	:height: 485px
 	:width: 800px
+
+The example here only scratches the surface of what is possible with Sage interacts. For a, growing, list of examples of interacts see this page on the sage wiki_.
+
+.. _wiki: http://wiki.sagemath.org/interact/
