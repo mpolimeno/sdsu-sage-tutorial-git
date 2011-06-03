@@ -485,7 +485,7 @@ To find a complete set of solutions, the reader must use ``find_root()`` repeate
 Calculus
 ========
 
-Sage has many commands that are useful for the study of differential and integral calculus. Let us begin the investigation of these features by first defining a few functions. ::
+Sage has many commands that are useful for the study of differential and integral calculus. We will begin our investigation of these command by defining a few functions that we will use throughout the chapter. ::
 
   sage: f(x) = x*exp(x)
   sage: f
@@ -493,11 +493,11 @@ Sage has many commands that are useful for the study of differential and integra
   sage: g(x) = (x^2)*cos(2*x) 
   sage: g
   x |--> x^2*cos(2*x)
-  sage: h(x) = (x^2 + x - 2)/(x^2 + 1)
+  sage: h(x) = (x^2 + x - 2)/(x-4)
   sage: h
-  x |--> (x^2 + x - 2)/(x^2 + 1)
+  x |--> (x^2 + x - 2)/(x-4)
 
-It should be noted that ``x |--> x*e^x`` is Sage's way of telling you that the expression that we have just defined are *callable*. Meaning, basically, that you can*evaluate* them just like you would expect of a function. ::
+Sage uses ``x |-->`` to tell you that the expression returned is actually a function and not just a number or string. This means that we can *evaluate* these expressions just like you would expect of any function. ::
 
   sage: f(1)
   e
@@ -506,17 +506,22 @@ It should be noted that ``x |--> x*e^x`` is Sage's way of telling you that the e
   sage: h(-1)
   2/5
 
-One of the first things that we learn how to do in a calculus course is the act of taking *limits*. So to evaluate the limit of :math:`f(x) = xe^{x}` as :math:`x \rightarrow 1` we enter the following: ::
+With these functions defined, we will first look at how we can use Sage to compute the *limit* of these functions. 
+ 
+Limits
+------
+
+To evaluate the limit of :math:`f(x) = xe^{x}` as :math:`x \rightarrow 1` we enter the following command into Sage: ::
 
   sage: limit(f, x=1)
   e
 
-To evaluate the limit of :math:`g(x) = x^{2} \cos(2x)` as :math:`x \rightarrow 2` we enter: ::
+We can do the same with :math:`g(x)`. To evaluate the limit of :math:`g(x) = x^{2} \cos(2x)` as :math:`x \rightarrow 2` we enter: ::
 
   sage: limit(g, x=2)
   4*cos(4)
 
-The functions ``f(x)`` and ``g(x)`` aren't all that exciting when taking limits since they are both continuous for all real numbers, which mean that the limit is the same as just evaluating the function. So lets look at :math:`h(x) = \left(x^2 + x + 2\right)/(x-4)` which has a *discontinuity* at :math:`x = 4`. So I taking the limit as :math:`x \rightarrow 4` we get: ::
+The functions ``f(x)`` and ``g(x)`` aren't all that exciting as far as limits are concerned since they are both *continuous* for all real number. But :math:`h(x)` has a discontinuity at :math:`x=4`, so to investigate what is happening near this discontinuity we will look at the limit of :math:`h(x)`  as :math:`x \rightarrow 4`: ::
 
   sage: limit(h, x = 4)
   Infinity
@@ -528,36 +533,40 @@ Now this is an example of why we have to be a little careful when using computer
    :height: 300px
    :alt: "Rational Function with vertical asymptote x=4"
  
-What we have when :math:`x=4` is a *vertical asymptote* with the function tending toward *positive* infinity if :math:`x` is larger than :math:`4` and *negative* infinity from when :math:`x` less than :math:`4`. We can takes these *directional* limits using Sage to confirm this. ::
+What we have when :math:`x=4` is a *vertical asymptote* with the function tending toward *positive* infinity if :math:`x` is larger than :math:`4` and *negative* infinity from when :math:`x` less than :math:`4`. We can takes these *directional* limits using Sage to confirm this by supplying the extra *dir* argument. ::
 
   sage: limit(h, x=4, dir="right")
   +Infinity
   sage: limit(h, x=4, dir="left")
   -Infinity
 
-The next thing we are going to do is use Sage to compute some *derivatives* of the functions that we defined. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :meth:`derivative` method. ::
+Derivatives
+-----------
 
-  sage: fp  =  f.derivative(x)
+The next thing we are going to do is use Sage to compute some *derivatives* of the functions that we defined. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :func:`derivative` command. ::
+
+  sage: fp  =  derivative(f,x)
   sage: fp
   x |--> x*e^x + e^x
-  sage: gp =  g.derivative(x)
+  sage: gp =  derivative(g, x)
   sage: gp
   x |--> -2*x^2*sin(2*x) + 2*x*cos(2*x)  
-  sage: hp  = h.derivative(x)
+  sage: hp  = derivative(h,x)
   sage: hp
   x |--> (2*x + 1)/(x - 4) - (x^2 + x - 2)/(x - 4)^2
 
-It should be noted that the ``x`` in the argument tells Sage which variable you are taking the derivative with respect to. If I were to supply a different variable, Sage will hold ``x`` constant and take the derivative with respect to ``y``. ::
+The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, Sage will hold ``x`` constant and take the derivative with respect to that variable. ::
 
   sage: y = var('y')
-  sage: f.derivative(y)
+  sage: derivative(f,y)
   x |--> 0
-  sage: g.derivative(y)
+  sage: derivative(g,y)
   x |--> 0
-  sage: h.derivative(y)
+  sage: derivative(h,y)
   x |--> 0
 
-Once we have computed the derivative we can evaluate it just like any other function. ::
+ 
+The :func:`derivative` command returns another function that can be evaluated like any other function. ::
 
   sage: fp(10)
   11*e^10
@@ -567,23 +576,7 @@ Once we have computed the derivative we can evaluate it just like any other func
   sage: hp(10)
   1/2
 
-
-Recalling what the derivative signifies, the following computes the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
-
-  sage: T_f = fp(0)*( x - 0 ) + f(0) 
-  sage: T_f
-  x
-
-We can do the same for the functions :math:`g(x)` and :math:`h(x)`. ::
-
-  sage: T_g = gp(0)*( x - 0 ) + g(0)
-  sage: T_g
-  0
-  sage: T_h = hp(0)*( x - 0 ) + h(0)
-  sage: T_h
-  -1/8*x + 1/2
-
-Critical points can be found using the :func:`solve` command. ::
+With the *derivative function* computed, we can then find the *Critical points* using the :func:`solve` command. ::
 
   sage: solve( fp(x) == 0, x)
   [x == -1, e^x == 0]
@@ -592,18 +585,91 @@ Critical points can be found using the :func:`solve` command. ::
   sage: solve( gp(x) == 0, x)
   [x == 0, x == cos(2*x)/sin(2*x)]
 
+Also constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is something that is important to do. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
+
+  sage: T_f = fp(0)*( x - 0 ) + f(0) 
+  sage: T_f
+  x
+
+The same can be done for :math:`g(x)` and :math:`h(x)`. ::
+
+  sage: T_g = gp(0)*( x - 0 ) + g(0)
+  sage: T_g
+  0
+  sage: T_h = hp(0)*( x - 0 ) + h(0)
+  sage: T_h
+  -1/8*x + 1/2
 
 
 
+Integrals
+---------
 
+Sage also has the facilities to compute both *definite* and *indefinite* integral for many common functions. We will begin by computing the *indefinite* integral, otherwise known as the *anti-derivative*,  for each of the functions that we defined earlier. This will be done by using the :func:`integral` command which has arguments that are similar to :func:`derivative`. ::
 
+  sage: integral(f,x)
+  x |--> (x - 1)*e^x
+  sage: integral(g, x)
+  x |--> 1/4*(2*x^2 - 1)*sin(2*x) + 1/2*x*cos(2*x)
+  sage: integral(h, x)
+  x |--> 1/2*x^2 + 5*x + 18*log(x - 4)
 
+The function that is returned is only *one* of the many anti-derivatives that exist for each of these functions, but luckily only the constant is left off. We can verify that we have indeed computed the *anti-derivative* by taking the derivative of our indefinite integrals. ::
+
+  sage: derivative(integral(f,x), x ) 
+  x |--> (x - 1)*e^x + e^x
+  sage: f
+  x |--> x*e^x
+  sage: derivative(integral(g,x), x ) 
+  x |--> 1/2*(2*x^2 - 1)*cos(2*x) + 1/2*cos(2*x)
+  sage: derivative(integral(h,x), x ) 
+  x |--> x + 18/(x - 4) + 5
+
+Wait, none of these look right. But a little algebra, and the use of a trig-identity or two in the case of ``1/2*(2*x^2 - 1)*cos(2*x) + 1/2*cos(2*x)``, you will see that they are indeed the same.
+
+It should also be noted that there are some functions which are continuous and yet there doesn't exist a *closed form* integral. A common example is :math:`e^{-x^2}` which forms the basis for the *normal distribution* which is ubiquitous throughout statistics. Sage uses the :math:`\mathrm{erf}`, otherwise known as the *error function*, to represent this function even though no closed form expression exists.  ::
+
+  sage: y(x) = exp(-x^2)
+  sage: integral(y,x)
+  x |--> 1/2*sqrt(pi)*erf(x)
+
+We can also compute the *definite* integral for the functions that we defined earlier. This is done by specifying the *limits of integration* as addition arguments. ::
+
+  sage: integral(f, x,0,1)
+  x |--> 1
+  sage: integral(g,x,0,1)
+  x |--> 1/4*sin(2) + 1/2*cos(2)
+  sage: integral(h, x,0,1)
+  x |--> 18*log(3) - 18*log(4) + 11/2
+
+Note that even though each of the last commands returned a callable *function* as it's results, each of these functions are constant which is what we would expect. Like it was pointed out earlier, Sage will return the expression that retains the most precision and will not use decimals unless told to. A quick way to tell Sage that an approximation is desired is wrap the :func:`integrate` command with :func:`n`, the numerical approximation command.  ::
+
+  sage: n(integral(f, x,0,1))
+  1.00000000000000
+  sage: n(integral(g, x,0,1))
+  0.0192509384328492
+  sage: n(integral(h, x,0,1))
+  0.321722695867944
 
 
 **Exercises:**
 
+#. Use Sage to compute the following limits:
+a) :math:`\lim_{x \rightarrow 2} \frac{x^{2} + 2 \, x - 8}{x-2}`
+b) :math:`\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)` 
+c) :math:`\lim_{x \rightarrow (\pi/2)^{-}} \sec(x)`
 
 
+#. Use Sage to compute the following *derivatives* with respect to the specified variables:
+   a) :math:`\frac{d}{dx}\left[ x^{2}*e^{3x}*\cos(2x) \right]`
+   b) :math:`\frac{d}{dt}\left[\frac{t^2 + 1}{t-2}\right]` *remember to define ``t`` before you use it*
+   c) :math:`\frac{d}{dy}\left[ x\cos(x)\right]`  
+
+
+#. Use Sage to compute the following integrals:
+   a) :math:`\int \frac{x+1}{x^2 + 2*x + 1}dx`
+   b) :math:`\int_{-\pi/4}^{\pi/4} \sec(x) dx` 
+   c) :math:`\int x e^{-x^{2}} dx` 
 
 .. _basic_stats:
 
