@@ -4,52 +4,51 @@
 
 .. _arithmetic_and_functions:
 
-In this chapter we will examine all of the commands that will allow for you to use Sage like a graphing calculator. This involves working with standard arithmetic, polynomials, trigonometric functions, and some basic work with graphics and solving equations.
+In this chapter we will examine all of the commands that will allow you to use Sage much like a graphing calculator. This involves working with standard arithmetic, polynomials, trigonometric functions, and some basic work with graphics and solving equations.
 
 .. _basic_arithmetic:
 
 Basic Arithmetic
 ================
 
-The basic operators are ``+``, ``-``, ``*``, and ``/`` for addition, subtraction, multiplication and division and ``^`` is used for exponents. ::
+The basic arithmetic operators are ``+``, ``-``, ``*``, and ``/`` for addition, subtraction, multiplication, division and ``^`` is used for exponents. ::
 
-	sage: 1+1
-	2
-	sage: 103-101
-	2
-	sage: 7*9
-	63
-	sage: 7337/11
-	667
-	sage: 11/4
-	11/4
-	sage: 2^5
-	32
+  sage: 1+1
+  2
+  sage: 103-101
+  2
+  sage: 7*9
+  63
+  sage: 7337/11
+  667
+  sage: 11/4
+  11/4
+  sage: 2^5
+  32
 				
-We place the ``-`` symbol in front of a number to indicate it is
-negative ::
+The ``-`` symbol in front of a number indicates that it's negative. ::
 
-	sage: -6
-	-6
-	sage: -11+9
-	-2
+  sage: -6
+  -6
+  sage: -11+9
+  -2
 				
-As we would expect, Sage adheres to the standard order of operations,
+and as we would expect, Sage adheres to the standard order of operations,
 PEMDAS (parenthesis, exponents, multiplication, division, addition,
 subtraction). ::
 
-	sage: 2*4^2+1  
-	33
-	sage: (2*4)^2+1
-	65
-	sage: 2*4^(2+1)
-	128
-	sage: -3^2
-	-9
-	sage: (-3)^2
-	9
+  sage: 2*4^2+1  
+  33
+  sage: (2*4)^2+1
+  65
+  sage: 2*4^(2+1)
+  128
+  sage: -3^2
+  -9
+  sage: (-3)^2
+  9
 				
-There is one subtlety to deal with when dividing two integers; whether we use fractions or a decimal approximation. Sage attempts to be as *exact* as possible and will return a fraction unless you tell it otherwise. If we wish for Sage to return a decimal, then the expression must contain a decimal. ::
+There is a bit of a subtlety we must deal with when dividing two integers; whether Sage will return a fraction or it's decimal approximation. Unlike most graphing calculators, Sage will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way that we can tell Sage that we *want* the decimal approximation is to include a decimal in the expression itself. ::
 
 	sage: 11/4.0 
 	2.75000000000000
@@ -59,12 +58,12 @@ There is one subtlety to deal with when dividing two integers; whether we use fr
 	2.75000000000000
 	sage: 11/4*1.
 	2.75000000000000
-
+ 
 **Exercises:**
 
    #. Divide :math:`28` by :math:`3` raised to the 5th power.
-   #. Using exponentiation, find a decimal approximation of :math:`\sqrt{2}`. 
-   #. Describes what happens when you compute `(-9)^(1/2)`. 
+   #. Compute a decimal approximation of :math:`\sqrt{2}`
+   #. Use sage to compute `(-9)^(1/2)`. Describe the output. 
 
 Now that we have all of the basic arithmetic established we are ready move onto the next section.
 
@@ -76,77 +75,74 @@ Division and Factoring
 
 |		 You should be familiar with ":ref:`basic_arithmetic`"
 
-Sometimes, like when we divide :math:`4` into :math:`14` the division operator doesn't give us all of the information that we need. Sometimes we would like to not just know what the reduced fraction is, or even the decimal approximation, but the unique *quotient* and the *remainder* of the division. To calculate the quotient we use the ``//`` operator and to calculate the remainder we use the ``%`` operator. ::
+Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even it's decimal approximation, but rather the unique *quotient* and the *remainder* that are the consequence of the division. 
+
+To calculate the quotient we use the ``//`` operator and the ``%`` operator is used for the remainder. ::
 
 	sage: 14 // 4
 	3
 	sage: 14 % 4
 	2
 				
-Note that the quotient operator ``//`` is two backslashes. If we wish to obtain both the quotient and the remainder all at once, we may use the :func:`.divmod` command ::
+If we want both the quotient and the remainder all at once, we use the :func:`.divmod` command ::
 
 	sage: divmod(14,4)
 	(3, 2)
 				
-We say that :math:`b` *divides* :math:`a` if we get a remainder of 0 when we divide :math:`a` by :math:`b`. Integers in Sage have a built-in function ( or 'method' ) which allows us to check if an integer divides another: ::
+Recall that :math:`b` *divides* :math:`a` if :math:`0` is the remainder when we divide the two integers. The integers in Sage have a built-in command ( or 'method' ) which allows us to check whether one integer divides another. ::
 
 	sage: 3.divides(15)
 	True
 	sage: 5.divides(17)
 	False
 				
-Along these lines, given an integer we can compute the list of all of it's divisors using the :meth:`.divisors` method. ::
+A related command is the :meth:`.divisors` method. This method returns a list of all divisors of the integer specified. ::
 
 	sage: 12.divisors()
 	[1, 2, 3, 4, 6, 12]
 	sage: 101.divisors()
 	[1,101]
 				
-When the divisors of an integer are 1 and itself we say it is a prime number. To check if a number is prime in sage, we use the :meth:`.is_prime` method. ::
+When the divisors of an integer are only :math:`1` and itself then we say that the number is *prime*. To check if a number is prime in sage, we use it's :meth:`.is_prime` method. ::
 
 	sage: (2^19-1).is_prime()
 	True
 	sage: 153.is_prime()
 	False
 				
-We should take note of the parentheses around the number in the first example, which are important to the order of operations in Sage. Try evaluating ``2^19-1.is_prime()`` and see what happens. 
+Notice the parentheses around ``2^19 -1`` in the first example. They are important to the order of operations in Sage, and if they are not included then Sage will compute something very different than we intended. Try evaluating ``2^19-1.is_prime()`` and notice the result, but when in doubt the judicious use of *parenthesis* is encouraged. 
 
-Related to the divisors of an integer are its prime factors. We use the :meth:`.factor` method to obtain the prime factorization of an integer. ::
+Another concept that is related to divisors are the prime factorization of an integer. We use the :meth:`.factor` method to compute the *prime factorization* of an integer. ::
 
 	sage: 62.factor()
 	2 * 31
 	sage: 63.factor()
 	3^2 * 7
 				
-If we are interested in simply knowing which prime numbers divide an integer, we may use the :meth:`.prime_divisors` (or :meth:`.prime_factors`) method. ::
+If we are interested in simply knowing which prime numbers divide an integer, we may use it's :meth:`.prime_divisors` (or :meth:`.prime_factors`) method. ::
 
 	sage: 24.prime_divisors() 
 	[2, 3]
 	sage: 63.prime_factors()
 	[3, 7]
 				
-The final fundamental idea in factoring is that of the greatest common
-divisor. A common divisor of two integers :math:`a` and :math:`b` is
-any integer which is a divisor of each. The greatest common divisor
-(gcd), not too surprisingly, is then the greatest integer which
-divides each integer. We use the :func:`.gcd` command to calculate the greatest common divisor ::
+The final functions that are related to integers and division that we will cover is the *greatest common divisor* and *least common multiple* of a pair of integers. A *common divisor* of two integers is any integer which is a divisor of each, whereas a *common multiple* is a number which both integers divide.
 
-	sage: gcd(14,63)									
-	7
-	sage: gcd(15,19)  
-	1
+The greatest common divisor (gcd), not too surprisingly, is the largest of all of these common divisors. The :func:`.gcd` command is used to calculate this divisor. ::
+
+  sage: gcd(14,63)		
+  7
+  sage: gcd(15,19)  
+  1
 				
-Notice that if two integers share no common prime factor, then their gcd will be 1. 
+Notice that if two integers share no common divisors, then their gcd will be :math:`1`.
 
-Related to the gcd is the least common multiple (lcm) of two
-integers. The least common multiple of :math:`a` and :math:`b` is the
-smallest integer which is divisible by :math:`a` and :math:`b`. We use
-:func:`.lcm` command in Sage to calculate the least common multiple ::
+The least common multiple is the smallest integer which both integers divide. The :func:`.lcm` command is used to calculate the least common multiple. ::
 
-	sage: lcm(4,5)
-	20
-	sage: lcm(14,21)
-	42
+  sage: lcm(4,5)
+  20
+  sage: lcm(14,21)
+  42
 
 **Exercises:**
 
@@ -165,9 +161,9 @@ Standard Functions and Constants
 
 |	 You should be familiar with ":ref:`basic_arithmetic`"
 
-Nearly all standard functions that we run into in mathematics are included in Sage. In this section, we shall cover some of the more fundamental functions and constants, including the maximum, minimum, floor, ceiling, trigonometric, exponential, and logarithm functions and the :math:`e`, :math:`\pi` and the golden ratio :math:`\phi` constants. 
+Sage includes nearly all of the standard functions that one runs into when studying mathematics. In this section, we shall cover some of the most commonly used functions and constants. Including the *maximum*, *minimum*, *floor*, *ceiling*, *trigonometric*, *exponential*, and *logarithm* functions and many of the standard mathematical constants; such as *Euler's constant* (:math:`e`), :math:`\pi`, and *the golden ratio* (:math:`\phi`). 
 
-The :func:`.max` and :func:`.min` commands return the maximum and minimum of a set of numbers.::
+The :func:`.max` and :func:`.min` commands return the largest and smallest of a set of numbers. ::
 
 	sage: max(1,5,8)
 	8
@@ -176,7 +172,7 @@ The :func:`.max` and :func:`.min` commands return the maximum and minimum of a s
 				
 We may input any number of arguments into the max and min functions. 
 
-In Sage we use the :func:`abs` command to obtain the absolute value of
+In Sage we use the :func:`abs` command to compute the *absolute value* of
 a real number ::
 
 	sage: abs(-10)
@@ -184,14 +180,14 @@ a real number ::
 	sage: abs(4)
 	4
 				
-The :func:`.floor` command rounds down to the nearest integer, while :func:`.ceil` rounds up. Typically we denote the floor function with :math:`\lfloor x \rfloor` and the ceiling by :math:`\lceil x \rceil`.::
+The :func:`.floor` command rounds a number down to the nearest integer, while :func:`.ceil` rounds up. Typically we denote the *floor* with :math:`\lfloor x \rfloor` and the *ceiling* by :math:`\lceil x \rceil`.::
 
 	sage: floor(2.1)
 	2
 	sage: ceil(2.1)
 	3
 				
-We need to be very careful with decimals while using :func:`.floor` and :func:`.ceil`. ::
+We need to be very careful while using :func:`.floor` and :func:`.ceil`. ::
 
 	sage: floor(1/(2.1-2))
 	9
@@ -201,137 +197,122 @@ This is clearly not correct: :math:`\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfl
 	sage: 1/(2.1-2)
 	9.99999999999999
 				
-Computers use binary notation, while we are accustomed to decimal
-notation. The number 2.1 in decimal notation is quite simple and
-short, but when converted to binary it is :math:`10.0001\overline{1}=10.0001100110011\ldots`
-Since computers cannot store an infinite number of digits, this gets
-rounded off somewhere. Resulting in the slight error we saw. In Sage,
-however, rational numbers (fractions) have perfect precision, so we
-will never see this error. ::
+Computers store real numbers in *binary*, while we are accustomed to using the decimal representation. The :math:`2.1` in decimal notation is quite simple and short, but when converted to binary it is :math:`10.0001\overline{1}=10.0001100110011\ldots`
 
-	sage: floor(1/(21/10-2))
-	10
+Since computers cannot store an infinite number of digits, this gets rounded off somewhere. Resulting in the slight error we saw. In Sage, however, *rational numbers* (fractions) are exact, so we will never see this rounding error. ::
+
+  sage: floor(1/(21/10-2))
+  10
 				
-Due to this, it is a good idea to use rational numbers whenever possible instead of decimals. 
+Due to this, it is often a good idea to use rational numbers whenever possible instead of decimals. Especially if a certain level of precision is required. 
 
-The :func:`.sqrt` command calculates the square root of a real number. As we have seen earlier with fractions, if we want a decimal expression we need to give a decimal input.::
+The :func:`.sqrt` command calculates the *square root* of a real number. As we have seen earlier with fractions, if we want a decimal approximation we can get this by giving a decimal number as the input. ::
 
-	sage: sqrt(3)
-	sqrt(3)
-	sage: sqrt(3.0)
-	1.73205080756888
-	sage: sqrt(8,3)
+  sage: sqrt(3)
+  sqrt(3)
+  sage: sqrt(3.0)
+  1.73205080756888
+  sage: sqrt(8,3)
 
 To compute other roots, we use a rational exponent. Sage can compute any rational power. If either the exponent or the base is a decimal then the output will be a decimal. ::
 
-	sage: 3^(1/2)
-	sqrt(3)
-	sage: (3.0)^(1/2)
-	1.73205080756888
-	sage: 8^(1/2)
-	2*sqrt(2)
-	sage: 8^(1/3)
-	2
+  sage: 3^(1/2)
+  sqrt(3)
+  sage: (3.0)^(1/2)
+  1.73205080756888
+  sage: 8^(1/2)
+  2*sqrt(2)
+  sage: 8^(1/3)
+  2
 				
-Sage also has available all of the standard trigonometric functions: for sine and cosine we use the familiar :func:`.sin` and :func:`.cos` ::
+Sage also has available all of the standard trigonometric functions: for sine and cosine we use :func:`.sin` and :func:`.cos` ::
 
-	sage: sin(1)
-	sin(1)
-	sage: sin(1.0)
-	0.841470984807897
-	sage: cos(3/2)
-	cos(3/2)
-	sage: cos(3/2.0)
-	0.0707372016677029
+  sage: sin(1)
+  sin(1)
+  sage: sin(1.0)
+  0.841470984807897
+  sage: cos(3/2)
+  cos(3/2)
+  sage: cos(3/2.0)
+  0.0707372016677029
 				
 Again we see the same behavior that we saw with :func:`sqrt`. Essentially, Sage wants to give us an exact answer; there is, however, no way to simplify ``sin(1)``. So why bother? Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = 3/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
 
-	sage: pi
-	pi
-	sage: sin(pi/3)
-	1/2*sqrt(3)
+  sage: pi
+  pi
+  sage: sin(pi/3)
+  1/2*sqrt(3)
 				
 When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not some numerical approximation. However, we can call for a numerical approximation using the :meth:`.n` method::
 
-	sage: pi.n()
-	3.14159265358979
-	sage: sin(pi)
-	0
-	sage: sin(pi.n())
-	1.22464679914735e-16
+  sage: pi.n()
+  3.14159265358979
+  sage: sin(pi)
+  0
+  sage: sin(pi.n())
+  1.22464679914735e-16
 				
-We see that when using the symbolic `pi` Sage understands the identity
-:math:`\sin(\pi ) = 0`. When we use the approximation, however, we get
-an approximation back. The ``e-15`` is the shorthand for
-:math:`10^{-15}`. Basically 1.22464679914735e-16 should be zero, but
-there are errors due to the approximations. Here are a few commonly
-known examples of using the symbolic, precise :math:`\pi` vs the numerical
-approximation ::
+We see that when using the symbolic `pi` Sage returns the exact result. However,  when we use the approximation we get an approximation back. The ``e-15`` is the shorthand for :math:`10^{-15}` and the number :math:`1.22464679914735e-16` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation ::
 
-	sage: sin(pi/6)															
-	1/2
-	sage: sin(pi.n()/6)
-	0.500000000000000
-	sage: sin(pi/4)
-	1/2*sqrt(2)
-	sage: sin(pi.n()/4)
-	0.707106781186547
+  sage: sin(pi/6)
+  1/2
+  sage: sin(pi.n()/6)
+  0.500000000000000
+  sage: sin(pi/4)
+  1/2*sqrt(2)
+  sage: sin(pi.n()/4)
+  0.707106781186547
 				
-There are in fact some special angles for which the value of sine or
-cosine can be cleverly simplified. ::
+Continuing on with the theme, there are some special angles for which the value of sine or cosine can be cleverly simplified. ::
 
-	sage: sin(pi/10)					
-	1/4*sqrt(5) - 1/4
-	sage: cos(pi/5)
-	1/4*sqrt(5) + 1/4
-	sage: sin(5*pi/12)
-	1/12*(sqrt(3) + 3)*sqrt(6)
+  sage: sin(pi/10)					
+  1/4*sqrt(5) - 1/4
+  sage: cos(pi/5)
+  1/4*sqrt(5) + 1/4
+  sage: sin(5*pi/12)
+  1/12*(sqrt(3) + 3)*sqrt(6)
 				
 Other trigonometric functions, the inverse trigonometric functions and
 hyperbolic functions are also available. ::
 
-	sage: arctan(1.0)
-	0.785398163397448
-	sage: sinh(9.0)
-	4051.54190208279
+  sage: arctan(1.0)
+  0.785398163397448
+  sage: sinh(9.0)
+  4051.54190208279
 				
-Similar to ``pi`` Sage has a built-in symbolic constant for the number :math:`e`,
-the base of the natural logarithm. This constant is named, not surprisingly, ``e`` ::
+Similar to ``pi`` Sage has a built-in symbolic constant for the number :math:`e`, the base of the natural logarithm. ::
 
-	sage: e
-	e
-	sage: e.n()
-	2.71828182845905
+  sage: e
+  e
+  sage: e.n()
+  2.71828182845905
 				
-While some might be familiar with using ``ln(x)`` for natural log and
-``log(x)`` to represent logarithm base :math:`10`, these both represent logarithms
-base :math:`e` written as such. However, with the log function we may specify
-a different base as a second argument. Hence to compute :math:`\log_{b}(x)` in
-Sage we use the command ``log(x,b)`` ::
+While some might be familiar with using ``ln(x)`` for natural log and ``log(x)`` to represent logarithm base :math:`10`, in Sage both represent logarithm
+base :math:`e`. However, we may specify a different base as a second argument to the command. So to compute :math:`\log_{b}(x)` in Sage we use the command ``log(x,b)`` ::
 
-	sage: ln(e)
-	1
-	sage: log(e)
-	1
-	sage: log(e^2)
-	2
-	sage: log(10)
-	log(10)
-	sage: log(10.0)
-	2.30258509299405
-	sage: log(100,10)
-	2
+  sage: ln(e)
+  1
+  sage: log(e)
+  1
+  sage: log(e^2)
+  2
+  sage: log(10)
+  log(10)
+  sage: log(10.0)
+  2.30258509299405
+  sage: log(100,10)
+  2
 				
 Exponentiation base :math:`e` can done using both the :func:`.exp` function and by raising the constant ``e`` to a specified power. ::
 
-	sage: exp(2)
-	e^2
-	sage: exp(2.0)
-	7.38905609893065
-	sage: exp(log(pi))
-	pi
-	sage: e^(log(2))
-	2
+  sage: exp(2)
+  e^2
+  sage: exp(2.0)
+  7.38905609893065
+  sage: exp(log(pi))
+  pi
+  sage: e^(log(2))
+  2
 
 				
 **Exercises:**
