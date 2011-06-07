@@ -14,7 +14,7 @@ Integers and Modular Arithmetic
 Euclidean Algorithm
 -------------------
 
-|       You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`external_files_and_sessions`, and :ref:`while_loops`
+    You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`external_files_and_sessions`, and :ref:`while_loops`
 
 Recall that the division algorithm states that for :math:`a,b \in
 \mathbb{Z}` with :math:`b \neq 0`, there exist a unique :math:`q,r \in
@@ -63,7 +63,7 @@ In the first case, we see that the gcd was 1, while in the second the gcd was 5.
 Integers Modulo :math:`n`
 -------------------------
 
-|   You should be familiar with :ref:`universes_and_coercion` and :ref:`variables`
+    You should be familiar with :ref:`universes_and_coercion` and :ref:`variables`
 
 In this section we shall cover how to construct :math:`\mathbb{Z}_{n}` and do some basic computations. To construct this ring, we use the :class:`.Integers` command. ::
 
@@ -202,7 +202,7 @@ We can compute this list also by using a list comprehension. ::
 Linear Congruences
 ------------------
 
-|  You should be familiar with :ref:`integers_modulo_n` and :ref:`list_comprehensions`
+    You should be familiar with :ref:`integers_modulo_n` and :ref:`list_comprehensions`
 
 A linear congruence is an equation of the form :math:`ax=b` in :math:`\mathbb{Z}_{n}`. One way to see if there is a solution to such a problem is an exhaustive search. For example, to determine if there exists a solution to :math:`9x = 6` we can do the following: ::
 
@@ -782,7 +782,23 @@ If we ask Sage to compute the inverse of a matrix over the integers it will auto
        a) :math:`A + B`
        b) :math:`AB`
        c) :math:`B^{-1}`
-       d) :math:`B^{-1} A B` 
+       d) :math:`B^{-1} A B`
+
+  #. Which of the following matrices is invertable over :math:`\mathbb{Z}`? What about :math:`\mathbb{Q}`?
+
+     .. math:: 
+	A = \left(\begin{array}{cc}
+	2 & 8 \\
+	4 & 16 \end{array} \right) \qquad 
+	B = \left(\begin{array}{cc}
+	2 & 7 \\
+	13 & 24 \end{array} \right) \qquad
+	C = \left(\begin{array}{cc}
+	1 & 4 \\
+	2 & 7 \end{array} \right) \qquad
+	D = \left(\begin{array}{cc}
+	4 & 6 \\
+	8 & -2 \end{array} \right)
 
 
 .. _matrix_manipulation:
@@ -794,10 +810,10 @@ Matrix Manipulation
 
 In this section we will cover some of the commands that we can use to *manipulate* matrices. Let's begin by defining the a matrix over the rational numbers. ::
 
-      sage: M = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); M
-      [1 2 3]
-      [4 5 6]
-      [7 8 9]
+  sage: M = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); M
+  [1 2 3]
+  [4 5 6]
+  [7 8 9]
 
 To get a list of row and column vectors, we use the :meth:`rows` and :meth:`column` methods. ::
 
@@ -957,9 +973,63 @@ With some of the basic matrix operations under our belt, we are ready to move on
 
 **Exercises:**
 
+  #. Consider the matrix. 
+     
+     .. math::
+	A = \left(\begin{array}{ccc}
+	4 & 17 & 23  \\
+	1/32 & 2 & 17 \\
+	16 & -23 & 27 \end{array} \right)
 
+     Use only the elementary row operations discussed to put :math:`A` into *echelon* form.
 
+  #. Using the commands discussed in this section, transform the matrix on the left into the matrix on the right.
 
+  a)
+     .. math::
+	\left(\begin{array}{rrrrr}
+	-7 & -1 & 1 & 4 & 0 \\
+	-8 & -2 & 4 & 2 & 6 \\
+	1 & 1 & -3 & 3 & 0 \\
+	0 & 8 & 13 & -2 & 0 \\
+	1 & 4 & 0 & -1 & 4
+	\end{array}\right) \quad \quad
+	\left(\begin{array}{rrrrr}
+	-7 & -8 & 1 & 0 & 1 \\
+	-1 & -2 & 1 & 8 & 4 \\
+	1 & 4 & -3 & 13 & 0 \\
+	4 & 2 & 3 & -2 & -1 \\
+	0 & 6 & 0 & 0 & 4
+	\end{array}\right)
+
+  b)
+    .. math::
+
+       \left(\begin{array}{rrrr}
+       -1 & -2 & 1 & -13 \\
+       -3 & -1 & 1 & 1 \\
+       1 & 1 & -1 & 1 \\
+       -2 & -1 & -9 & 1
+       \end{array}\right) \quad \quad
+       \left(\begin{array}{rrrr}
+       1 & 0 & 0 & 100 \\
+       0 & 1 & 0 & 12 \\
+       0 & 0 & 1 & 111 \\
+       0 & 0 & 0 & 202
+       \end{array}\right)
+  c)
+    .. math::
+
+       \left(\begin{array}{rrr}
+       0 & -1 & 1 \\
+       -2 & 1 & -1 \\
+       1 & 0 & 1
+       \end{array}\right) \quad \quad
+       \left(\begin{array}{rrrr}
+       0 & -1 & 1 & -4 \\
+       -2 & 1 & -1 & -1 \\
+       1 & 0 & 1 & 1
+       \end{array}\right)
 
 
 .. _vectors_and_matrices__jordan_form:
@@ -967,13 +1037,18 @@ With some of the basic matrix operations under our belt, we are ready to move on
 The Jordan Canonical Form
 -------------------------
 
-For every linear transformation :math:`\mathrm{T}:\mathbb{R}^n \longrightarrow \mathbb{R}^{n}` there is a basis of :math:`\mathbb{R}^n` such that the matrix :math:`\left[m\right]_{\mathcal{B}}` is in an *almost* diagonal form. This unique matrix is called the *Jordan Canonical Form* of :math:`\mathrm{T}`. For more information on this please refer to this article_ on Wikipedia. To demonstrate some common tools that we use in Sage we will compute this basis for the linear transformation :math:`\mathrm{T}\left(x,y,z,t \right) = \left(2x+y, 2y+1, 3z, y-z+3t \right)`. First let define :math:`\mathrm{T}` in Sage. ::
+For every linear transformation :math:`\mathrm{T}:\mathbb{R}^n \longrightarrow \mathbb{R}^{n}` there is a basis of :math:`\mathbb{R}^n` such that the matrix :math:`\left[m\right]_{\mathcal{B}}` is in an *almost* diagonal form. This unique matrix is called the *Jordan Canonical Form* of :math:`\mathrm{T}`. For more information on this please refer to this article_ on Wikipedia. To demonstrate some common tools that we use in Sage we will compute this basis for the linear transformation
+
+.. math::
+   \mathrm{T}\left(x,y,z,t \right) = \left(2x+y, 2y+1, 3z, y-z+3t \right). 
+
+We will begin by defining :math:`\mathrm{T}` in Sage. ::
       
       sage: T = lambda x,y,z,t: (2*x+y, 2*y+1, 3*z, y - z + 3*t)
 
 Now, let's use the standard ordered basis of :math:`\mathbb{R}^3` to find the matrix form of :math:`\mathrm{T}`. Note that since Sage uses rows to construct a matrix we must use the  :func:`transpose` function to get the matrix we expect. ::
 
-       sage: m = transpose(matrix([[2,1,0,0],[0,2,1,0], [0,0,3,0],[0,1,-1,3]])); m 
+       sage: M = transpose(matrix([[2,1,0,0],[0,2,1,0], [0,0,3,0],[0,1,-1,3]])); <
        [ 2  1  0  0]
        [ 0  2  1  0]
        [ 0  0  3  0]
@@ -981,7 +1056,7 @@ Now, let's use the standard ordered basis of :math:`\mathbb{R}^3` to find the ma
 
 Once we have the matrix we will compute it's *characteristic polynomial*  and factorization. Note that in order to save a couple of keystrokes we use the `_` special variable. `_` is the variable that always contains the output of the last command. It's a handy variable to know, and we will use it often.  ::
 
-      sage: m.characteristic_polynomial()
+      sage: M.characteristic_polynomial()
       x^4 - 10*x^3 + 37*x^2 - 60*x + 36
       sage: factor(_)
       (x - 3)^2 * (x - 2)^2
@@ -989,19 +1064,19 @@ Once we have the matrix we will compute it's *characteristic polynomial*  and fa
 Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` and both are of algebraic multiplicity :math:`2`. Now we need to look at the associated  *eigenvectors*. To do so we will use the :meth:`eigenvectors_right` method. 
  ::
 
-      sage: ev_m = m.eigenvectors_right(); ev_m
+      sage: ev_M = M.eigenvectors_right(); ev_M      
       [(3, [
       (1, 1, 1, 0),
       (0, 0, 0, 1)
       ], 2), (2, [
       (1, 0, 0, 0)	
       ], 2)]
-      sage: ev_m[1][1][0]
+      sage: ev_M[1][1][0]
       (1, 0, 0, 0)
 
-What is returned is a :func:`list` of lists. Each list consisting of an eigenvalue and the associated linearly independent eigenvectors. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity of only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(m - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
+What is returned is a :func:`list` of lists. Each list consisting of an eigenvalue and the associated linearly independent eigenvectors. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity of only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
  
-      sage: (m - 2*identity_matrix(4)).augment(ev_m[1][1][0])
+      sage: (M - 2*identity_matrix(4)).augment(ev_M[1][1][0])
       [ 0  1  0  0  1]
       [ 0  0  1  0  0]
       [ 0  0  1  0  0]
@@ -1024,7 +1099,7 @@ With the generalized eigenvector `gv`, we now have the right number of linearly 
 
 Now we will compute the matrix representation of :math:`\mathrm{T}` with respect to this basis. ::
     
-      sage: S.inverse()*m*S
+      sage: S.inverse()*M*S
       [3 0 0 0]
       [0 3 0 0]
       [0 0 2 1]
@@ -1032,7 +1107,7 @@ Now we will compute the matrix representation of :math:`\mathrm{T}` with respect
 
 And there it is, the *Jordan Canonical Form* of the linear transformation :math:`\mathrm{T}`. Of course we could have just used Sage's built in :meth:`jordan_form` method to compute this directly.::
    
-   sage: m.jordan_form()
+   sage: M.jordan_form()
    [3|0|0 0]
    [-+-+---]
    [0|3|0 0]
@@ -1042,7 +1117,21 @@ And there it is, the *Jordan Canonical Form* of the linear transformation :math:
 
 But that wouldn't be any fun!
 
-.. _article: http://en.wikipedia.org/wiki/Jordan_normal_form 
+.. _article: http://en.wikipedia.org/wiki/Jordan_normal_form
+
+**Exercises:**
+
+  #. Compute a jordan basis for the following matrix using the steps outlined in this section.
+
+     .. math::
+
+	\left(\begin{array}{rrrr}
+	1 & 2 & 0 & 2 \\
+	0 & 2 & 0 & 0 \\
+	-1 & 2 & -\frac{1}{2} & -2 \\
+	0 & 2 & 0 & 2
+	\end{array}\right)
+
 
 .. _vector_and_matrix_spaces:
 
@@ -1100,6 +1189,26 @@ We may compute various spaces associated to a matrix. ::
 	[1 0 1 4]
 	[0 1 1 0]
 
+**Exercises:**
+
+#. For the following 5x3 matrix:
+
+   .. math::
+
+      \left(\begin{array}{rrr}
+      1 & -1 & -1 \\
+      0 & 1 & -3 \\
+      1 & 1 & 1 \\
+      0 & -6 & -20 \\
+      0 & 0 & 0
+      \end{array}\right)
+
+   Use Sage to compute the bases for the following spaces:
+
+     a) The right and left kernel. 
+     b) The row space.
+     c) The column space.
+ 
 .. _rings:
 
 
