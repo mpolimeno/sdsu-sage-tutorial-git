@@ -561,7 +561,7 @@ Another useful function when dealing with lists is the :func:`.map` function. Th
 The :func:`map` function is often used in *functional* programming. For more on this style of programming with python see the 'Python Documentation'_
 
 .. _'Python Documentation': http://docs.python.org/howto/functional.html
- 				 
+
 But probably the nicest feature of lists in python is the *slice* notation. Let say that I wanted to access the sub-list ``[0,3,4]`` of ``w``. This list starts at index ``2`` and ends before element ``5`` (remember that indices begin at zero), so using the slice notation I can do the following: ::
 
   sage: w[2:5]
@@ -855,9 +855,9 @@ Intermediate Programming
 Conditionals
 ----------------
 
-|  You should be familiar with :ref:`variables_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
+    You should be familiar with :ref:`variables_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
 
-A *conditional statement* is what we use when we need our code to do different things based upon certain conditionals. For example, suppose we wish to divide and integer by two only if that integer is even. Here is how we implement this example in Sage. ::
+A *conditional statement* is what we use when we need our code to actually make *decisions* on what to calculate. For example, suppose we wanted to divide an number by 2 only *if* it is even. We can do this in Sage by using an :obj:`if` statement. ::
 
 	sage: n=44
 	sage: if n%2 == 0:                             
@@ -871,11 +871,11 @@ A *conditional statement* is what we use when we need our code to do different t
 	sage:
 				
 
-Notice that since ``n=44`` is even, the condition is met and the :func:`print` command is executed, but when ``n=37``, nothing happens since the integer was not even. 
+Since ``n=44`` is even, the *condition* is met and the :func:`print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this. 
 
-Unlike some other languages, the syntax used in Sage is picky about indentation. All of the code to be run if a condition is met must have the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
+Unlike some other languages, Sage is picky about indentation which it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
 
-At times we may wish to check whether our expression satisfies one of many conditions. To do so we use the :obj:`elif` operator, which is short for else if. ::
+At times, we may wish to check whether our expression satisfies more than one condition. To do so the :obj:`elif`, which is short for else if, statement can be used.   ::
 
 	sage: m=31
 	sage: if m%3==0:
@@ -886,10 +886,7 @@ At times we may wish to check whether our expression satisfies one of many condi
 	10
 				
 
-Notice that we had to return to the original level of indentation of
-the if for the elif. :obj:`elif` must occur after an if, and we may use as
-many elifs as we desire. Once one of the conditions is met, the
-associated code is executed and Sage leaves the conditional. For example, consider the following: ::
+Notice that we return to the original level of indentation of the if for the elif and we may use as many elifs as we desire. The tests are evaluated in order and once the first one is met, the associated code is executed and Sage will leave the entire conditional. For a simple example, consider the following: ::
 
 	sage: r=55
 	sage: if 11.divides(r):
@@ -900,7 +897,9 @@ associated code is executed and Sage leaves the conditional. For example, consid
 	11
 				
 
-Here both conditions are met, but we only run the code of the first condition met. This is very fundamental to controlling the flow of code. There is also a subtle thing to note in the previous example. ``11.divides(r)`` already returns a boolean, hence we do not need to use an equality here. We could have just as easily used ``11.divides(r)==True`` but it is not necessary.
+Here both conditions are met, but only the code associated with the first condition is actually executed. Understanding how conditionals are executed fundamental to controlling the flow of your program. 
+
+There is also a subtle shortcut that we used in the previous example. ``11.divides(r)`` already returns either ``True`` or ``False``, hence we did not need to use an equality here. We could have used the more verbose ``11.divides(r)==True`` but it is not necessary.
 
 Often we wish to execute some code if none of our conditions above are
 met. For this we use the :obj:`else` operator. ::
@@ -915,14 +914,14 @@ met. For this we use the :obj:`else` operator. ::
 	....:     
 	31
 				
-Since none of the conditions were met, our code defaulted to the else and just printed the number :math:`31` . 
+Since none of the conditions were met, our code *defaulted* to printing the number :math:`31`. 
 
 .. _while_loops:
 
 While loops
 --------------------
 
-|  You should be familiar with :ref:`variables` and :ref:`booleans`
+    You should be familiar with :ref:`variables` and :ref:`booleans`
 
 While loops are one of the most useful techniques in
 programming. Essentially, a while loop runs a block of code while a
@@ -948,7 +947,7 @@ Once the condition i<5 is False, Sage exits the loop structure; the variable i s
 For Loops
 -------------------
 
-You should be familiar with :ref:`variables`, :ref:`booleans`, and :ref:`lists`
+    You should be familiar with :ref:`variables`, :ref:`booleans`, and :ref:`lists`
 
 
 A for loop repeatedly runs a block of code a fixed number of times. In
@@ -997,7 +996,7 @@ integers. Here are a few more (especially silly) examples ::
 List Comprehensions (Loops in Lists)
 ------------------------------------
 
-|  You should be familiar with :ref:`lists` and :ref:`for_loops`
+    You should be familiar with :ref:`lists` and :ref:`for_loops`
 
 A particularly useful technique in python (and Sage by extension) is the
 construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as 
@@ -1177,7 +1176,6 @@ Interactive Demonstrations in the Notebook
    single: interact; graphics
 
 In this section we will discuss the creation of interactive "applets" in the Sage notebook. These are done using the :obj:`@interact` decorator and are often called *interacts*.  A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise fashion. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
-
 
 .. _blog post:  http://www.artima.com/weblogs/viewpost.jsp?thread=240808
 .. _Thinking in Python: http://www.mindview.net/Books/TIPython

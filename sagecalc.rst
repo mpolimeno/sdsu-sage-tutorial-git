@@ -73,7 +73,7 @@ Now that we have all of the basic arithmetic established we are ready move onto 
 Division and Factoring
 ======================
 
-|		 You should be familiar with ":ref:`basic_arithmetic`"
+    You should be familiar with ":ref:`basic_arithmetic`"
 
 Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even it's decimal approximation, but rather the unique *quotient* and the *remainder* that are the consequence of the division. 
 
@@ -159,7 +159,7 @@ The least common multiple is the smallest integer which both integers divide. Th
 Standard Functions and Constants
 ================================
 
-|	 You should be familiar with ":ref:`basic_arithmetic`"
+    You should be familiar with ":ref:`basic_arithmetic`"
 
 Sage includes nearly all of the standard functions that one runs into when studying mathematics. In this section, we shall cover some of the most commonly used functions and constants. Including the *maximum*, *minimum*, *floor*, *ceiling*, *trigonometric*, *exponential*, and *logarithm* functions and many of the standard mathematical constants; such as *Euler's constant* (:math:`e`), :math:`\pi`, and *the golden ratio* (:math:`\phi`). 
 
@@ -330,7 +330,7 @@ Exponentiation base :math:`e` can done using both the :func:`.exp` function and 
 Variables, Equations and Inequalities
 =====================================
 
-|  You should be familiar with ":ref:`basic_arithmetic`" and ":ref:`basic_functions_and_constants`"
+    You should be familiar with ":ref:`basic_arithmetic`" and ":ref:`basic_functions_and_constants`"
 
 When we use the term 'variable', we can be referring to a couple of
 different things. In computer programming, a 'variable' is a space in
@@ -465,6 +465,8 @@ To find a complete set of solutions, the reader must use ``find_root()`` repeate
 
 Calculus
 ========
+
+    You should be familiar with :ref:`basic_arithmetic`, :ref:`basic_functions_and_constants`, and :ref:`variables`
 
 Sage has many commands that are useful for the study of differential and integral calculus. We will begin our investigation of these command by defining a few functions that we will use throughout the chapter. ::
 
@@ -635,29 +637,32 @@ Note that even though each of the last commands returned a callable *function* a
 
 **Exercises:**
 
-#. Use Sage to compute the following limits:
-a) :math:`\lim_{x \rightarrow 2} \frac{x^{2} + 2 \, x - 8}{x-2}`
-b) :math:`\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)` 
-c) :math:`\lim_{x \rightarrow (\pi/2)^{-}} \sec(x)`
+  #. Use Sage to compute the following limits:
+
+     a) :math:`\lim_{x \rightarrow 2} \frac{x^{2} + 2 \, x - 8}{x-2}`
+     b) :math:`\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)` 
+     c) :math:`\lim_{x \rightarrow (\pi/2)^{-}} \sec(x)`
 
 
-#. Use Sage to compute the following *derivatives* with respect to the specified variables:
-   a) :math:`\frac{d}{dx}\left[ x^{2}*e^{3x}*\cos(2x) \right]`
-   b) :math:`\frac{d}{dt}\left[\frac{t^2 + 1}{t-2}\right]` *remember to define ``t`` before you use it*
-   c) :math:`\frac{d}{dy}\left[ x\cos(x)\right]`  
+  #. Use Sage to compute the following *derivatives* with respect to the specified variables:
+
+     a) :math:`\frac{d}{dx}\left[ x^{2}e^{3x}\cos(2x) \right]`
+     b) :math:`\frac{d}{dt}\left[\frac{t^2 + 1}{t-2}\right]` *(remember to define ``t``)*
+     c) :math:`\frac{d}{dy}\left[ x\cos(x)\right]`  
 
 
-#. Use Sage to compute the following integrals:
-   a) :math:`\int \frac{x+1}{x^2 + 2*x + 1}dx`
-   b) :math:`\int_{-\pi/4}^{\pi/4} \sec(x) dx` 
-   c) :math:`\int x e^{-x^{2}} dx` 
+  #. Use Sage to compute the following integrals:
+
+     a) :math:`\int \frac{x+1}{x^2 + 2x + 1}dx`
+     b) :math:`\int_{-\pi/4}^{\pi/4} \sec(x) dx` 
+     c) :math:`\int x e^{-x^{2}} dx` 
 
 .. _basic_stats:
 
 Basic Statistics
 ================
 
-|  You should be familiar with :ref:`basic_arithmetic`
+    You should be familiar with :ref:`basic_arithmetic`
 
 In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in Sage. 
 
@@ -715,7 +720,7 @@ Plotting
 2D Graphics
 -----------
 
-|  You should be familiar with :ref:`basic_functions_and_constants`
+    You should be familiar with :ref:`basic_functions_and_constants`
 
 Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly get the reader up to speed with some of the basic commands used when plotting functions and working with graphics.
 
@@ -900,5 +905,5 @@ One nice thing about the way that Sage does this is that you can rotate your plo
 	:width: 400px
 	:height: 300px
 
-.. note:: 
-		If you are running Sage on windows or on sagenb.org that your file will be saved either in your VMware virtual machine or on sagenb.org.
+.. note::
+   If you are running Sage on windows or on sagenb.org that your file will be saved either in your VMware virtual machine or on sagenb.org.
