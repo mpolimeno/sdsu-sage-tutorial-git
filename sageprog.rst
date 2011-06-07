@@ -250,16 +250,16 @@ If two objects belong to a universe in which it makes sense to say one is greate
 Variables
 ----------
 
-In Sage, a variable is a label which is assigned a value. Here's an example. ::
+In Sage, a *variable* is a label which is assigned to a object to allow for quick reference. Here's an example. ::
 
 	sage: m=2^19-1
 	sage: m
 	524287
 				
 
-We use an ``=`` to assign the value on the right to the variable on the left. Having assigned a variable, we can reference by using its name, as seen in the previous example.
+We use an ``=`` to assign the value on the right to the variable on the left. Having declared a variable, we can reference by using its name, as seen in the previous example.
 
-In Sage, we may assign new values to the same variable. ::
+Sage, unlike some languages, allows us to re-assign a different value to a variable without making any special considerations. ::
 
 	sage: s=12
 	sage: s
@@ -268,15 +268,22 @@ In Sage, we may assign new values to the same variable. ::
 	sage: s
 	34
 				
+We should be careful doing this as it may have unintended consequences. ::
 
-We may also reference a variable while assigning it a new value. For example, ::
+  sage: x = 3.14
+  sage: a = 2
+  sage: b = 5
+  sage: f = x^2 + x + 1
+
+Since we have changed the definition of ``x``, ``f = 3`` and not the polynomial that we may have expected.
+
+The order of operations in Sage allow for us to reference a variable while assigning it a new value. For example, we can *increment* the variable ``t`` by doing the following: ::
 
 	sage: t=7
 	sage: t=t+1
 	sage: t
 	8
 				
-
 Sage also offers us a clever way to assign multiple variables at once. ::
 
 	sage: a,b=1,2
@@ -285,7 +292,6 @@ Sage also offers us a clever way to assign multiple variables at once. ::
 	sage: b
 	2
 				
-
 Additionally, we can display a sequence of variables using commas. ::
 
 	sage: c,d,e=2,3,5
@@ -312,27 +318,7 @@ There is also a quick way to initialize two variables with the same value. We do
   sage: b
   1
 
-When you define a variable, it stays in memory until you quit your session. Sage allows you to redefine a variable just by assigning a new value to it. ::
-
-  sage: a
-  1
-  sage: a = 2
-  sage: a
-  2
-  sage: a = x^2 + x + 1
-  sage: a
-  x^2 + x + 1
-
-We should be careful with doing this as it may have unintended consequences. ::
-
-  sage: x = 3.14
-  sage: a = 2
-  sage: b = 5
-  sage: f = x^2 + x + 1
-
-Since we have changed the definition of ``x``, ``f = 3`` and not the polynomial that we may have expected. 
-
-Sometimes we would like change a variable's definition back to it's default state. We do this with the :func:`restore` command. ::
+When you define a variable, it stays in memory until you quit your session and sometimes we would like restore a variable back to it's default value. We do this with the :func:`restore` command. ::
 
   sage: x = 1
   sage: a = 2
@@ -346,7 +332,7 @@ Sometimes we would like change a variable's definition back to it's default stat
   /home/ayeq/sage/local/lib/python2.6/site-packages/sage/all_cmdline.pyc in <module>()
   NameError: name 'a' is not defined
 
-You can restore the entire environment to it's default state by running the :func:`reset` command. ::
+You can *reset* the entire environment to it's defaults by running the :func:`reset` command. ::
 
   sage: a = 1 
   sage: b = 2
@@ -402,110 +388,119 @@ And finally if I *really* want the variable obliterated, I can use the sledgeham
 Lists
 -----
 
-Lists are one of the most used fundamental objects when programming in Python, and thus are fundamental in Sage also. 
-
-A list is an ordered collection of objects. The elements of a list are indexed by the integers, starting with 0. We may assign lists to a variable and access their elements through indices (the plural of index) Here is a trivial example. ::
+A *list* is an ordered collection of objects. The elements of a list are indexed by the integers, starting with :math:`0`. Here is a quick example of how to construct a list and access it's elements. ::
 
 	 sage: [6,28,496,8128]
 	 [6, 28, 496, 8128]
-	 sage: s=[2,3,5,7,11,13,17,2]
-	 sage: s[0]
+	 sage: L = [2,3,5,7,11,13,17,2]
+	 sage: L[0]
 	 2
-	 sage: s[1]
+	 sage: L[1]
 	 3
-	 sage: s[5]
+	 sage: L[5]
 	 13
-	 sage: s[6]
+	 sage: L[6]
 	 17
 					 
-Take careful note of how we access the elements: Though 2 is the first element of the list 's', it is accessed by the index 0.
+Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:``0``.
 
-If we wish to know the index of an element, we use the :func:`.index` function. It produces the index for the first occurrence.
+If we wish to know the index of an element, we use the :func:`.index` function. It returns the index for the first occurrence of the value given. ::
+
+
+         sage: M = [2,3,3,3,2,1,8,6,3]
+	 sage: M.index(2) 
+	 0
+	 sage: M.index(3)
+	 1
+	 sage: M.index(14)
+	 ...
+	 ValueError: list.index(x): x not in list
 
 We can also count the number of times that an element occurs in a list. ::
 
-         sage: y = [2,3,3,3,2,1,8,6,3]
-	 sage: y.index(2) 
-	 0
-	 sage: y.index(3)
-	 1
-	 sage: y.index(14)
-	 ...
-	 ValueError: list.index(x): x not in list
-	 sage: w.count(3)
+	 sage: M.count(3)
 	 4
 					 
+Sorting the list ``M`` can be done using the :meth:`.sort` method. ::
 
-We can sort the elements of 'y', which changes 'y'. ::
-
-         sage: y = [2,3,3,3,2,1,8,6,3]
-	 sage: y.sort(); y
+         sage: M = [2,3,3,3,2,1,8,6,3]
+	 sage: M.sort(); y
 	 [1, 2, 2, 3, 3, 3, 3, 6, 8]
-	 sage: y.index(2)
+	 sage: M.index(2)
 	 1
 					 
+The :meth:`.sort` method alters the list *in place*, actually changing the ordering of the elements. If we would like to keep the list the same we should sort a *copy* of the list and not the list itself. ::
+
+  sage:  M = [2,3,3,3,2,1,8,6,3]
+  sage: M
+  [2, 3, 3, 3, 2, 1, 8, 6, 3]
+  sage: N = M[:]
+  sage: N.sort()
+  sage: N
+  [1, 2, 2, 3, 3, 3, 3, 6, 8]
+  sage: M
+  [2, 3, 3, 3, 2, 1, 8, 6, 3]
 
 We may alter the elements of a list as follows: ::
 
-	 sage: u=[1,2,3,4]
-	 sage: u[0]=-1
-	 sage: u
+	 sage: L = [1,2,3,4]
+	 sage: L[0]=-1
+	 sage: L
 	 [-1, 2, 3, 4]
-					 
-To add an element to the end of a list, we use the :func:`append` function. ::
 
-	 sage: q=[1,2,3]
-	 sage: q.append(4)
-	 sage: q
+In programming speak, data-types that can be changed in place are called *mutable*. I mention this only since some data types in Sage do not allow assignment like this.
+					 
+To add an element to the end of a list, we use the :meth:`.append` method. ::
+	 sage: L = [1,2,3]
+	 sage: L.append(4)
+	 sage: L
 	 [1, 2, 3, 4]
 					 
-Similarly, we may use the :func:`extend` function to concatenate two lists, that is, to append a list to the end of a list. ::
+Similarly, we may use the :meth:`.extend` method to concatenate lists, that is, to *append* a list to the end of another list. ::
 
-	 sage: a=[1,2]
-	 sage: a.extend([10,11,12])
-	 sage: a
+	 sage: L=[1,2]
+	 sage: L.extend([10,11,12])
+	 sage: L
 	 [1, 2, 10, 11, 12]
 
-It is, perhaps, simpler to use the ``+`` operator to concatenate lists. Notice that for two lists ``a`` and ``b`` the two sums ``a+b`` and ``b+a`` are usually not equal. ::
+It is, perhaps, simpler to use the ``+`` operator to concatenate lists. Since the order of the list is significant, the concatenation ``L + M`` is not usually the same as ``M + L``, though they do contain the same elements. ::
 
 	 sage: [1,3,5]+[2,4,6]+[100]
 	 [1, 3, 5, 2, 4, 6, 100]
 	 sage: [2,4,6]+[1,3,5]+[100]
 	 [2, 4, 6, 1, 3, 5, 100]
 					 
-Lists need not contain only integers, or even numbers. For whatever reason, we can have lists of lists! ::
+Lists need not contain only integers, or even numbers for that matter. We can even have lists of lists! ::
 
-	 sage: T=[[1,2],[1,3],[1,4]]
-	 sage: T[2]
+	 sage: M = [[1,2],[1,3],[1,4]]
+	 sage: M[2]
 	 [1, 4]
 					 
-When dealing with lists of lists we often want to access particular elements within the lists. For example, say that instead of accessing the list ``[1,4]`` in the prior example we wanted to access the ``4`` within that list. We can issue the following command: ::
+To access a particular element within our list of lists we chain their indices. For example, to access the ``4`` within that list we issue the following command: ::
 
-  sage: T[2][1]
+  sage: M[2][1]
   4 
 
-Where we read ``T[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``T``. 
+Where we read ``M[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``M``. 
 
 If we wish to remove an element from a list, we use the meth:`.remove` method. ::
 
-	 sage: v=[3,5,11,13,17,19,29,31]
-	 sage: v.remove(11)
-	 sage: v
+	 sage: L = [3,5,11,13,17,19,29,31]
+	 sage: L.remove(11)
+	 sage: L
 	 [3, 5, 13, 17, 19, 29, 31]
 					 
-
 Note that a list may contain the same element more than once; ``remove()`` removes only the first instance of the given element. ::
 
-	 sage: w=[1,2,3,0,3,4,4,0,4,5]
-	 sage: w.remove(3)
-	 sage: w
+	 sage: M = [1,2,3,0,3,4,4,0,4,5]
+	 sage: M.remove(3)
+	 sage: M
 	 [1, 2, 0, 3, 4, 4, 0, 4, 5]
-	 sage: w.remove(4)
-	 sage: w
+	 sage: M.remove(4)
+	 sage: M
 	 [1, 2, 0, 3, 4, 0, 4, 5]
 
-Sage offers a convenient way to create lists containing consecutive integers. 
-::
+Since they are used rather frequently, Sage offers a convenient way to create lists of consecutive integers. ::
 
   sage: [1..7]
   [1, 2, 3, 4, 5, 6, 7]
@@ -528,14 +523,16 @@ Additionally, we can use this construction method with some of Sage's symbolic c
 	 sage: [pi,4*pi..32]
 	 [pi, 4*pi, 7*pi, 10*pi]
 					 
-Having constructed lists, we may now introduce some important functions which take lists as an argument. The most fundamental perhaps is the :func:`.len` function, which returns the number of elements of the list ::
+Having constructed lists, we may now introduce some important commands that take a list as its argument. 
+
+The :func:`.len` command returns the *length* of a list.  ::
 
 	 sage: len([1..1001])
 	 1001
 	 sage: len([2,3,5,7,11])
 	 5
 
-If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` take a list as an argument. ``sum`` function returns the sum of the elements of a list ::
+If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` do take a list as an argument. ``sum`` function returns the sum of the elements of a list ::
 
 	 sage: sum([1,2,3])
 	 6
@@ -546,8 +543,26 @@ and ``prod`` returns the product of the elements of the list ::
 
 	 sage: prod([1..4])
 	 24
-					 
-One must be careful using ``sum`` and ``prod.`` In particular, the elements of the list must all belong to a universe with a definition of addition and/or multiplication.
+
+The sum and product commands are defined on lists where the arithmetic make sense and will complain rather loudly when it doesn't. ::
+
+  sage: sum( [1,2,3,"cat",])
+  ---------------------------------------------------------------------------
+  TypeError                                 Traceback (most recent call last
+  ... (Lengthy error message)
+  TypeError: unsupported operand parent(s) for '+': 'Integer Ring' and '<type 'str'>'
+
+Concatenation isn't the only way which we can join together the elements of two lists. One useful tool is the :func:`.zip` command, which joins the elements of two lists by pairing them together in order. ::
+
+  sage: zip([1,2,3,4],['a','b','c','d'] )
+  [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
+
+When the lists aren't of the same length, :func:`.zip` joins the elements up to the items in the shorter list and just ignores the rest. ::
+
+  sage: zip([1,2,3,4],['a','b','c']   )
+  [(1, 'a'), (2, 'b'), (3, 'c')]
+  sage: zip([1],['a','b','c']   )
+  [(1, 'a')]
 
 Another useful function when dealing with lists is the :func:`.map` function. This function accepts two arguments, a function f and a list ``[a0,…,an-1]`` and returns that function applied to each member of that list, ``[f(a0),…,f(an-1)]`` ::
 
@@ -562,35 +577,43 @@ The :func:`map` function is often used in *functional* programming. For more on 
 
 .. _'Python Documentation': http://docs.python.org/howto/functional.html
 
-But probably the nicest feature of lists in python is the *slice* notation. Let say that I wanted to access the sub-list ``[0,3,4]`` of ``w``. This list starts at index ``2`` and ends before element ``5`` (remember that indices begin at zero), so using the slice notation I can do the following: ::
+Probably the nicest feature of lists in python is the *slice* notation. Let's say that you have the following list: ::
+ 
+ sage: M = [1, 2, 0, 3, 4, 0, 4, 5]
+ sage: M
+ [1, 2, 0, 3, 4, 0, 4, 5]
 
-  sage: w[2:5]
+and you would like to access the sub-list ``[0,3,4]``. Using the slice notation I can do that in the following way. ::
+
+  sage: M[2:5]
   [0, 3, 4]
 
-By leaving the last index off, the slice will go to the end of the list. Similarly, when the first index is left blank the slice will start at the beginning of the list. ::
+We use ``M[2:5]`` since the sub-list that we desire begins with the element with index :math:``2`` and ends *before* the element with index :math:`5`.
 
-  sage: w[2:]
+By leaving the last index blank, the slice will extend to the end of the list. Similarly, when the first index is left blank the slice will start at the beginning of the list. ::
+
+  sage: M[2:]
   [0, 3, 4, 0, 4, 5]
-  sage: w[:5]
+  sage: M[:5]
   [1, 2, 0, 3, 4]
 
 By leaving both indices blank, we get a copy of the entire list. ::
 
-  sage: w[:]
+  sage: M[:]
   [1, 2, 0, 3, 4, 0, 4, 5]
 
 Slices also can use negative indices. When a negative number is used the position is measured relative to the end of the list. For example: ::
 
-  sage: w[:-2]
+  sage: M[:-2]
   [1, 2, 0, 3, 4, 0]
-  sage: w[-2:]
+  sage: M[-2:]
   [4,5]
 
 The first *ends* the slice two elements before the end of the list while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list.::
 
-  sage: w[-4:-2]
+  sage: M[-4:-2]
   [4, 0]
-  sage: w[-2:-2]
+  sage: M[-2:-2]
   []
 
 You should note that the last *slice* is empty since the beginning of the list is the same position as the end.
@@ -602,7 +625,7 @@ You should note that the last *slice* is empty since the beginning of the list i
 
 **Exercises:**
 
-  #. Consider the lists ``L1 = [1, -2, 10, 13]`` and ``L2 = [4, 3, 5, -7]``. Append ``L1`` onto the end of ``L2``. Do the same beginning with ``L2``.
+  #. Consider the lists ``L = [1, -2, 10, 13]`` and ``M = [4, 3, 5, -7]``. Append ``L`` onto the end of ``M``. Do the same beginning with ``M``.
 
   #. Consider the list ``L = [1, 3, 4, [1,5,6], 8, -9]``. At what *index* is the element ``[1,5,6]``? Remove this element from ``L``.
 
@@ -870,8 +893,7 @@ A *conditional statement* is what we use when we need our code to actually make 
 	....:
 	sage:
 				
-
-Since ``n=44`` is even, the *condition* is met and the :func:`print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this. 
+Since ``n=44`` is even, the *condition* is met and the :func:`print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this.
 
 Unlike some other languages, Sage is picky about indentation which it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
 
@@ -896,7 +918,6 @@ Notice that we return to the original level of indentation of the if for the eli
 	....:     
 	11
 				
-
 Here both conditions are met, but only the code associated with the first condition is actually executed. Understanding how conditionals are executed fundamental to controlling the flow of your program. 
 
 There is also a subtle shortcut that we used in the previous example. ``11.divides(r)`` already returns either ``True`` or ``False``, hence we did not need to use an equality here. We could have used the more verbose ``11.divides(r)==True`` but it is not necessary.
