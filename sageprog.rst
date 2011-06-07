@@ -918,7 +918,7 @@ Notice that we return to the original level of indentation of the if for the eli
 	....:     
 	11
 				
-Here both conditions are met, but only the code associated with the first condition is actually executed. Understanding how conditionals are executed fundamental to controlling the flow of your program. 
+Here both conditions are met, but only the code associated with the first condition is actually executed. Understanding how conditionals are executed fundamental to controlling the flow of your program.  
 
 There is also a subtle shortcut that we used in the previous example. ``11.divides(r)`` already returns either ``True`` or ``False``, hence we did not need to use an equality here. We could have used the more verbose ``11.divides(r)==True`` but it is not necessary.
 
@@ -929,6 +929,7 @@ met. For this we use the :obj:`else` operator. ::
 	sage: if 2.divides(n):
 	....:     print 2
 	....: elif 3.divides(n):
+
 	....:     print 3
 	....: else:
 	....:     print n

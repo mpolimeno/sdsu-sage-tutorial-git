@@ -568,21 +568,14 @@ The homomorphism also comes equipped with a few useful methods, the most useful 
 Linear Algebra
 ==============
 
-
-
 .. _vectors_and_matrices:
 
 Vectors and Matrices
 --------------------
 
-.. _vectors_and_matrices_constructions:
-
-Constructions
-+++++++++++++
-
 To create a vector use the :func:`vector` command with a list of
 entries. Scalar multiples and the dot product are straightforward to
-compute. As with lists, vectors are indexed starting from 0. ::
+compute. As with lists, vectors are indexed starting from :math:`0`. ::
 
 	sage: v= vector([1,2,3,4])
         sage: 7*v
@@ -595,43 +588,48 @@ compute. As with lists, vectors are indexed starting from 0. ::
 	ERROR: An unexpected error occurred while tokenizing input
 				
 
-Use the matrix command with a list containing m lists of length n, to
-obtain an m×n matrix with the inputted lists as rows. Alternatively,
-input integers m,n and a list of length mn, to obtain an m×n
-matrix. Indexing of matrices also starts with 0. ::
+We use the :func:`.matrix` command to construct a matrix with a list of the *rows* of the matrix as the argument. ::
 
 	sage: matrix([[1,2],[3,4]])
 	[1 2]
 	[3 4]
-	sage: m = matrix(2,2, [1,2,3,4])
-	sage: m[1,1]
-	4
-				
 
-If we input an integer n and a list of length :math:`n^2` we obtain an
-n×n matrix by chopping up the list into n rows. ::
+We can also construct a matrix by specifying all of the coordinates in a single matrix while specifying the dimensions of the matrix. The following command creates a matrix with :math:`4` rows and :math:`2` columns.  ::
+
+  sage: matrix(4,2, [1,2,3,4,5,6,7,8])
+  [1 2]
+  [3 4]
+  [5 6]
+  [7 8]				
+
+If the matrix that we want to construct is square we can omit the number of columns from the argument. ::
 
 	sage: matrix(2,[1,2,3,4])  
 	[1 2]
 	[3 4]
-				
 
-We may specify the parent of the entries of the matrix. ::
+By default, Sage constructs the matrix over the smallest universe which contains the coordinates. ::
+ 
+  sage: parent(matrix(2,[1,2,3,4]))
+  Full MatrixSpace of 2 by 2 dense matrices over Integer Ring
+  sage: parent(matrix(2,[1,2/1,3,4]))
+  Full MatrixSpace of 2 by 2 dense matrices over Rational Field
+  sage: parent(matrix(2, [x,y,z,t]))
+  Full MatrixSpace of 2 by 2 dense matrices over Symbolic Ring
+			
+We can specify the universe for the coordinates of our matrix by giving it as an optional argument. ::
 
 	sage: matrix(QQ,2,[1.1,1.2,1.3,1.4])
 	[11/10   6/5]
 	[13/10   7/5]
 				
-
-There are also several special matrices built into Sage. To construct
-the identity matrix we use the :func:`identity_matrix` function. ::
+There are shortcuts in Sage to construct some of the more commonly used matrices. To construct the identity matrix we use the :func:`identity_matrix` function. ::
 
 	sage: identity_matrix(3)
 	[1 0 0]
 	[0 1 0]
 	[0 0 1]
 				
-
 To construct the zero matrix we may use :func:`zero_matrix` or the
 regular matrix function with no list inputted. ::
 
@@ -645,181 +643,30 @@ regular matrix function with no list inputted. ::
 	[0 0 0]
 	[0 0 0]
 				
-
 Note that if we use :func:`zero_matrix` we must input two integers.
 
-.. _vectors_and_matrices_manipulation:
 
-Matrix Manipulation
--------------------
+**Exercises:**
 
-So let's begin by defining the a matrix over the rational numbers. ::
+  #. Use Sage to construct the vector :math:`v = \left(4, 10, 17, 28, 2 \right)`
+  #. Construct the following matrix over the rational numbers in Sage.  
 
-      sage: m = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); m
-      [1 2 3]
-      [4 5 6]
-      [7 8 9]
+     .. math::
+	\left(\begin{array}{ccc}
+	5 & 3 & 2 \\
+	4 & 7 & 10 \\
+	2 & 11 & 1 \end{array}\right)
 
-To get a list of row and column vectors, we use the :meth:`rows` and :meth:`column` methods. ::
-
-   sage: m.rows()
-   [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
-   sage: m.columns()
-   [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
-
-If we want only one row or column vector then we use the singlular with the number row and or column as its argument. You should recall that Sage follows Python's convention and all of the indicies begin with zero.::
-
-   sage: m.row(0)
-   (1, 2, 3)
-   sage: m.row(2)
-   (7, 8, 9)
-   sage: m.column(1) 	
-   (2, 5, 8)
-   sage: m.column(2)
-   (3, 6, 9)
-
-You can even get a list of the diagonal entries, by calling the :meth:`diagonal` method. ::
-
-   sage: m.diagonal()
-   [1, 5, 9]
+  #. Construct a 10x10 identity matrix. 
+  #. Construct a 20x10 zero matrix.
 
 
-Sage also allows us to contruct new matrices from the row and/or column vectors. ::
-
-   sage: m.matrix_from_columns([0,2])
-   [1 3]
-   [4 6]
-   [7 9]
-   sage: m.matrix_from_rows([0,2])
-   [1 2 3]
-   [7 8 9]
-   sage: m.matrix_from_rows_and_columns([0,2],[0,2])
-   [1 3]
-   [7 9]
-
-It should be noted that the :meth:`matrix_from_rows_and_columns` returns the *intersection* of the rows and columns specified. In the above example we are selecting the matrix that consists of the four 'corners' of our :math:`3\times3` matrix. 
-
-Next we will discuss some of the elementary row operations. To multiply a row or column by a number we use the :meth:`rescale_row` or :meth:`rescale_column` methods. Note that these commands change the matrix itself. ::
-
-   sage: m.rescale_row(1,-1/4); m
-   [   1    2    3]
-   [  -1 -5/4 -3/2] 	
-   [   7    8    9]
-   sage: m.rescale_col(2,-1/3); m 
-   [   1    2   -1]
-   [  -1 -5/4  1/2]
-   [   7    8   -3]
-   sage: m.rescale_row(1,-4); m
-   [ 1  2 -1]
-   [ 4  5 -2]
-   [ 7  8 -3]
-
-
-We can add a multiple of a row or column to another row or column by using the :meth:`add_multiple_of_row` method. The first command takes :math:`-4` times the first row and adds it to the second row. Once again it helps to remember that everything with a matrices in Sage are index starting with zero. So `0` below is refering to the first row and `1` to the second. We can all blame the C programming language for this confusion.  ::
-   
-   sage: m.add_multiple_of_row(1,0,-4); m
-   [ 1  2 -1]
-   [ 0 -3  2]
-   [ 7  8 -3]
-   sage: m.add_multiple_of_row(2,0,-7); m 
-   [ 1  2 -1]
-   [ 0 -3  2]
-   [ 0 -6  4]
-
-The same can be done with the column vectors, which are also zero indexed. ::
-
-   sage: m.add_multiple_of_column(1,0,-2);m
-   [ 1  0 -1]
-   [ 0 -3  2]
-   [ 0 -6  4]
-   sage: m.add_multiple_of_column(2,0,1);m
-   [ 1  0  0]
-   [ 0 -3  2]
-   [ 0 -6  4]
-
-
-If we don't like the ordering of our rows or colums we can swap them in place.  ::
-
-   sage: m.swap_rows(1,0); m
-   [ 0 -3  2]
-   [ 1  0  0]
-   [ 0 -6  4]
-   sage: m.swap_columns(0,2); m
-   [ 2 -3  0]
-   [ 0  0  1]
-   [ 4 -6  0]
-
-
-If we want to change a row or column of `m` then we use the :meth:`set_column` or :meth:`set_row` methods. ::
-
-   sage: m.set_column(0,[1,2,3]);m
-   [ 1 -3  0]
-   [ 2  0  1]
-   [ 3 -6  0]
-   sage: m.set_row(0,[1,2,5]);m
-   [ 1  2  5]
-   [ 2  0  1]
-   [ 3 -6  0]
-
-And finally if we want to change a whole "block" of a matrix, we use the :meth:`set_block` method with the coordinates of where we want the upper right corner of the block to begin. ::
-
-   sage: b = matrix(QQ,[ [1,0 ],[0,1]]); b
-   [1 0]
-   [0 1] 
-   sage: m.set_block(1,1,b); m
-   [1 2 5]
-   [2 1 0]
-   [3 0 1]
-
-
-Of course, if all we want is the *echelon form* of the matrix we can use either the :meth:`echelon_form` or :meth:`echelonize` methods. The difference between the two is the former returns a copy of the matrix in echelon form without changing the original matrix and the latter alters the matrix itself. ::
-
-   sage: m.echelon_form()
-   [1 0 0]
-   [0 1 0]
-   [0 0 1]
-   
-   sage: m.echelonize(); m
-   [ 1  0  0]
-   [ 0  1  0]
-   [ 0  0  1]
-
-
-Next we would like to use the *augmented* metrix and the echelon form to solve a :math:`5\times5` system of the form :math:`mx = b`. First we define the matrix `m` and the vector `b` ::
-
-   sage: m = matrix(QQ, [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); m
-   [2 4 6 2 4]
-   [1 2 3 1 1]
-   [2 4 8 0 0]
-   [3 6 7 5 9]
-   sage: b = vector(QQ, [56, 23, 34, 101])
-
-Then we construct the augmented matrix :math:`\left( m\ \vert b  \right)`, store it in the variable `m_aug` and compute it's echelon form. ::
-
-   sage: m_aug = m.augment(b); m_aug
-   [  2   4   6   2   4  56]
-   [  1   2   3   1   1  23]
-   [  2   4   8   0   0  34]
-   [  3   6   7   5   9 101]
-   sage: m_aug.echelon_form()
-   [ 1  2  0  4  0 21]
-   [ 0  0  1 -1  0 -1]
-   [ 0  0  0  0  1  5]
-   [ 0  0  0  0  0  0]
-
-This tells us that we have a one dimensional solution space that consists of vectors of the form :math:`v = c \left(-2,1,0,0,0 \right) + \left(17,0,1,5\right)`
-
-If all we need is a *single* solution to this system, we can use the :meth:`solve_right` method. ::
-
-   sage: m.solve_right(b)
-   (21, 0, -1, 0, 5)
-
-With some of the basic matrix operations under our belt, we are ready to move on to the next section. 
-
-.. _vectors_and_matrices_arithmetic: 
+.. _matrix_arithmetic:
 
 Matrix Arithmetic
-+++++++++++++++++
+-----------------
+
+    You should be familiar with :ref:`vectors_and_matrices`.
 
 We may use ``+``, ``-``, ``*`` and ``^`` for matrix addition,
 subtraction, multiplication and exponents. ::
@@ -841,16 +688,23 @@ subtraction, multiplication and exponents. ::
 	sage: A^3
 	[1 3]
 	[0 1]
+
+We can compute the *inverse* of a matrix by raising it to the :math:`-1`-th power. ::
+
 	sage: A^-1
 	[ 1 -1]
 	[ 0  1]
 				
+If the matrix is not invertible Sage will complain about a :class:`ZeroDivisionError`. ::
 
-As usual, we must be careful about matrix dimensions. Notice how we computed the inverse of a matrix. If the matrix is not invertible Sage will complain about a :class:`ZeroDivisionError`.
+  sage: A = matrix([[4,2],[8,4]])
+  sage: A^-1
+  ---------------------------------------------------------------------------
+  ZeroDivisionError                         Traceback (most recent call last)
+  ... (Long error message)
+  ZeroDivisionError: input matrix must be nonsingular
 
-Vectors are considered both as rows and as columns, so you can
-multiply a 3-vector by a 3×n matrix on the right, or by a n×3 matrix
-on the left. ::
+When multiplying vectors and matrices; vectors can be considered both as rows or as columns, so you can multiply a 3-vector by a 3×n matrix on the right, or by a n×3 matrix on the left. ::
 
         sage: x = vector([12,3,3])
 	sage: x
@@ -868,42 +722,245 @@ on the left. ::
 	sage: x*B
 	(27, 81)
 				
+We use the :meth:`det` method to calculate the *determinant* of a square matrix. ::
 
-We use the :meth:`det` method to calculate the determinant of a square
-matrix. ::
-
-	sage: MS=MatrixSpace(QQ,3)
-	sage: A=MS.random_element()
-	sage: A
-	[-1/2    0   -1]
-	[   0   -2    2]
-	[   1    0 -1/2]
-	sage: A.det()
-	-5/2
+  sage: A= matrix([[-1/2,0,-1],[0,-2,2],[1,0,-1/2]]); A
+  [-1/2    0   -1]
+  [   0   -2    2]
+  [   1    0 -1/2]
+  sage: A.det()
+  -5/2
 				
+To check if a matrix is invertible we use the :meth:`is_invertible` method.::
 
-To check if a matrix is invertible we may use the :meth:`is_invertible`
-method ::
+  sage: A=matrix(2,[1,1,0,1])
+  sage: A.is_invertible()    
+  True
+  sage: A.det()
+  1
 
-	sage: A=matrix(2,[1,1,0,1])
-	sage: A.is_invertible()    
-	True
-	sage: A.det()
-	1
-	sage: B=matrix(2,[1,2,3,4])
-	sage: B.is_invertible()
-	False
-	sage: B.det()
-	-2
-	sage: B^-1
-	[  -2    1]
-	[ 3/2 -1/2]
+The invertablility of a matrix depends on the ring or field it is defined over. For example: ::
 
-				
-This example shows us an important, subtle fact. Sage assumes that the
-matrix B is defined over the integers not over the rationals. A matrix
-is invertible over :math:`\mathbb{Z}` if and only if its determinant
-is :math:`\pm 1`. Thus if we think of B as a matrix over the rationals, we should obtain different results. When we ask Sage for the inverse it will automatically treat B as a matrix over the rationals.
+  sage: B=matrix(2,[1,2,3,4])
+  sage: B.is_invertible()
+  False
+
+In this example, Sage assumes that the matrix ``B`` is defined over the integers and not the rationals, where it does not have an inverse. But if we define ``B`` as a matrix over the rationals, we obtain different results. ::
+
+  sage: B = matrix(QQ, 2,[1,2,3,4])
+  sage: B
+  [1 2]
+  [3 4]       
+  sage: B.is_invertible()
+  True
+
+If we ask Sage to compute the inverse of a matrix over the integers it will automatically coerce ``B`` into a matrix over the rationals if necessary. ::
+  
+  sage: B = matrix(2,[1,2,3,4])
+  sage: parent(B)
+  Full MatrixSpace of 2 by 2 dense matrices over Integer Ring
+  sage: B^-1
+  [  -2    1]
+  [ 3/2 -1/2]
+  sage: parent(B^-1)
+  Full MatrixSpace of 2 by 2 dense matrices over Rational Field
+
+**Exercises:**
+
+  #. Consider the matrices:
+
+     .. math:: 
+	A = \left(\begin{array}{cc}
+	1 & 3 \\
+	7 & 8 \end{array} \right) \quad \textrm{and} \quad
+	B = \left(\begin{array}{cc}
+	4 & 8 \\
+	9 & 15 \end{array} \right)
+
+     Compute the following:
+
+       a) :math:`A + B`
+       b) :math:`AB`
+       c) :math:`B^{-1}`
+       d) :math:`B^{-1} A B` 
+
+
+.. _matrix_manipulation:
+
+Matrix Manipulation
+-------------------
+
+    You should be familiar with :ref:`vectors_and_matrices` and :ref:`matrix_arithmetic`. 
+
+In this section we will cover some of the commands that we can use to *manipulate* matrices. Let's begin by defining the a matrix over the rational numbers. ::
+
+      sage: M = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); M
+      [1 2 3]
+      [4 5 6]
+      [7 8 9]
+
+To get a list of row and column vectors, we use the :meth:`rows` and :meth:`column` methods. ::
+
+   sage: M.rows()
+   [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+   sage: M.columns()
+   [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
+
+If we want only one row or column vector then we use the singlular with the number row and or column as its argument. You should recall that Sage follows Python's convention and all of the indicies begin with zero.::
+
+   sage: M.row(0)
+   (1, 2, 3)
+   sage: M.row(2)
+   (7, 8, 9)
+   sage: M.column(1) 	
+   (2, 5, 8)
+   sage: M.column(2)
+   (3, 6, 9)
+
+You can even get a list of the diagonal entries, by calling the :meth:`diagonal` method. ::
+
+   sage: M.diagonal()
+   [1, 5, 9]
+
+
+Sage also allows us to contruct new matrices from the row and/or column vectors. ::
+
+   sage: M.matrix_from_columns([0,2])
+   [1 3]
+   [4 6]
+   [7 9]
+   sage: M.matrix_from_rows([0,2])
+   [1 2 3]
+   [7 8 9]
+   sage: M.matrix_from_rows_and_columns([0,2],[0,2])
+   [1 3]
+   [7 9]
+
+It should be noted that the :meth:`matrix_from_rows_and_columns` returns the *intersection* of the rows and columns specified. In the above example we are selecting the matrix that consists of the four 'corners' of our :math:`3\times3` matrix. 
+
+Next we will discuss some of the elementary row operations. To multiply a row or column by a number we use the :meth:`rescale_row` or :meth:`rescale_column` methods. Note that these commands change the matrix itself. ::
+
+   sage: M.rescale_row(1,-1/4); M
+   [   1    2    3]
+   [  -1 -5/4 -3/2] 	
+   [   7    8    9]
+   sage: M.rescale_col(2,-1/3); M
+   [   1    2   -1]
+   [  -1 -5/4  1/2]
+   [   7    8   -3]
+   sage: M.rescale_row(1,-4); M
+   [ 1  2 -1]
+   [ 4  5 -2]
+   [ 7  8 -3]
+
+We can add a multiple of a row or column to another row or column by using the :meth:`add_multiple_of_row` method. The first command takes :math:`-4` times the first row and adds it to the second row. Once again it helps to remember that everything with a matrices in Sage are index starting with zero. So `0` below is refering to the first row and `1` to the second. We can all blame the C programming language for this confusion.  ::
+   
+   sage: M.add_multiple_of_row(1,0,-4); M
+   [ 1  2 -1]
+   [ 0 -3  2]
+   [ 7  8 -3]
+   sage: M.add_multiple_of_row(2,0,-7); M 
+   [ 1  2 -1]
+   [ 0 -3  2]
+   [ 0 -6  4]
+
+The same can be done with the column vectors, which are also zero indexed. ::
+
+   sage: M.add_multiple_of_column(1,0,-2);M
+   [ 1  0 -1]
+   [ 0 -3  2]
+   [ 0 -6  4]
+   sage: M.add_multiple_of_column(2,0,1);M
+   [ 1  0  0]
+   [ 0 -3  2]
+   [ 0 -6  4]
+
+
+If we don't like the ordering of our rows or colums we can swap them in place.  ::
+
+   sage: M.swap_rows(1,0); M
+   [ 0 -3  2]
+   [ 1  0  0]
+   [ 0 -6  4]
+   sage: M.swap_columns(0,2); M
+   [ 2 -3  0]
+   [ 0  0  1]
+   [ 4 -6  0]
+
+
+If we want to change a row or column of `M` then we use the :meth:`set_column` or :meth:`set_row` methods. ::
+
+   sage: M.set_column(0,[1,2,3]);M
+   [ 1 -3  0]
+   [ 2  0  1]
+   [ 3 -6  0]
+   sage: M.set_row(0,[1,2,5]);M
+   [ 1  2  5]
+   [ 2  0  1]
+   [ 3 -6  0]
+
+And finally if we want to change a whole "block" of a matrix, we use the :meth:`set_block` method with the coordinates of where we want the upper right corner of the block to begin. ::
+
+   sage: B = matrix(QQ,[ [1,0 ],[0,1]]); B
+   [1 0]
+   [0 1] 
+   sage: M.set_block(1,1,B); M
+   [1 2 5]
+   [2 1 0]
+   [3 0 1]
+
+
+Of course, if all we want is the *echelon form* of the matrix we can use either the :meth:`echelon_form` or :meth:`echelonize` methods. The difference between the two is the former returns a copy of the matrix in echelon form without changing the original matrix and the latter alters the matrix itself. ::
+
+   sage: M.echelon_form()
+   [1 0 0]
+   [0 1 0]
+   [0 0 1]
+   
+   sage: M.echelonize(); M
+   [ 1  0  0]
+   [ 0  1  0]
+   [ 0  0  1]
+
+
+Next we would like to use the *augmented* metrix and the echelon form to solve a :math:`5\times5` system of the form :math:`Mx = b`. First we define the matrix `M` and the vector `b` ::
+
+   sage: M = matrix(QQ, [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); M   [2 4 6 2 4]
+   [1 2 3 1 1]
+   [2 4 8 0 0]
+   [3 6 7 5 9]
+   sage: b = vector(QQ, [56, 23, 34, 101])
+
+Then we construct the augmented matrix :math:`\left( M\ \vert b  \right)`, store it in the variable `M_aug` and compute it's echelon form. ::
+
+   sage: M_aug = m.augment(b); M_aug
+   [  2   4   6   2   4  56]
+   [  1   2   3   1   1  23]
+   [  2   4   8   0   0  34]
+   [  3   6   7   5   9 101]
+   sage: M_aug.echelon_form()
+   [ 1  2  0  4  0 21]
+   [ 0  0  1 -1  0 -1]
+   [ 0  0  0  0  1  5]
+   [ 0  0  0  0  0  0]
+
+This tells us that we have a one dimensional solution space that consists of vectors of the form :math:`v = c \left(-2,1,0,0,0 \right) + \left(17,0,1,5\right)`
+
+If all we need is a *single* solution to this system, we can use the :meth:`solve_right` method. ::
+
+   sage: M.solve_right(b)
+   (21, 0, -1, 0, 5)
+
+With some of the basic matrix operations under our belt, we are ready to move on to the next section. 
+
+.. _vectors_and_matrices_arithmetic: 
+
+**Exercises:**
+
+
+
+
+
 
 .. _vectors_and_matrices__jordan_form:
 
