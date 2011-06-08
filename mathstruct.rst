@@ -1220,188 +1220,207 @@ Rings
 Polynomial Rings
 ----------------
 
-The construction of polynomial rings is straightforward in Sage. We
-must specify the name of the " indeterminate " variable as well as the
+Constructing polynomial rings in Sage is fairly straightforward. We
+just specify the name of the "indeterminate" variable as well as the
 coefficient ring. ::
 
 	sage: R.<x>=PolynomialRing(ZZ)
 	sage: R
 	Univariate Polynomial Ring in x over Integer Ring
-				
 
-Notice how we specify the variable which represents the
-indeterminate. We first specify the name of our ring, R in this
-case. We then type a . followed by the indeterminate's name in
-brackets. Though x is the most common choice, we could have used
-anything, for example ::
+Once the polynomial ring has been defined we can construct a polynomial without any special coercions. ::
+
+  sage: p = 2*x^2 + (1/2)*x + (3/5)
+  sage: parent(p)
+  Univariate Polynomial Ring in x over Rational Field
+
+Though x is the most common choice for a variable, we could have chosen
+any letter for the indeterminate.  ::
 
 	sage: R.<Y>=PolynomialRing(QQ) 
 	sage: R
 	Univariate Polynomial Ring in Y over Rational Field
-				
 
-We may use any ring R which we can construct in Sage ::
+Then polynomials with rational coefficients in Y are valid objects in Sage. ::
+
+  sage: q = Y^4 + (1/2)*Y^3 + (1/3)*Y + (1/4)
+  sage: q
+  Y^4 + 1/2*Y^3 + 1/3*Y + 1/4
+  sage: parent(q)
+  Univariate Polynomial Ring in Y over Rational Field
+				
+We can define polynomial rings over any ring or field.  ::
 
 	sage: Z7=Integers(7)
-	sage: R.<x>=PolynomialRing(Z7)
-	sage: R
+	sage: R.<x>=PolynomialRing(Z7); R
 	Univariate Polynomial Ring in x over Ring of integers modulo 7
-				
 
-Once we have specified a name for the indeterminate in Sage, we may
-proceed to construct polynomials. ::
+When entering a polynomial into Sage the coefficients are automatically coerced into the ring or field specified.  ::
 
-	sage: R.<x>=PolynomialRing(QQ)
-	sage: x^2+x+1
-	x^2 + x + 1
-	sage: 1/2*x-5
-	1/2*x - 5
-				
+  sage: p = 18*x^2 + 7*x + 16; p
+  4*x^2 + 2
+  sage: parent(p)
+  Univariate Polynomial Ring in x over Ring of integers modulo 7
 
-Sage understands coercion in polynomial rings as well. Witness, if we
-ask for a rational coefficient in a polynomial ring over
-:math:`\mathbb{Z}`, Sage will naturally coerce this into a ring over
-:math:`\mathbb{Q}` ::
+Of course this coercion has to be well defined.  ::
+
+  sage: q  = x^4 + (1/2)*x^3 + (1/3)*x^2 + (1/4)*x + (1/5)
+  ---------------------------------------------------------------------------
+  TypeError                                 Traceback (most recent call last)  ...
+  TypeError: unsupported operand parent(s) for '*': 'Rational Field' and 'Univariate Polynomial Ring in x over Ring of integers modulo 7'
+
+When prudent, Sage will extend the universe of definition to fit the polynomial entered. For example, if we ask for a rational coefficient in a polynomial ring over :math:`\mathbb{Z}`, Sage will naturally coerce this polynomial into a ring over :math:`\mathbb{Q}` ::
 
 	sage: S.<y>=PolynomialRing(ZZ)
 	sage: 1/2*y
 	1/2*y
-	sage: (1/2*y).parent()
+	sage: parent(1/2*y)
 	Univariate Polynomial Ring in y over Rational Field
+
+It should be noted that the ring ``S`` hasn't been changed at all. Nor is ``(1/2)*y` in the universe ``S``. This can be easily verified.  ::
+
+  sage: S
+  Univariate Polynomial Ring in y over Integer Ring
+  sage: (1/2)*y in S
+  False
+
+Once constructed, the basic arithmetic with polynomials is straightforward. ::
+
+  sage: R.<x>=PolynomialRing(QQ)
+  sage: f=x+1
+  sage: g=x^2+x-1
+  sage: h=1/2*x+3/4
+  sage: f+g
+  x^2 + 2*x
+  sage: g-h
+  x^2 + 1/2*x - 7/4
+  sage: f*g
+  x^3 + 2*x^2 - 1
+  sage: f/g
+  (x + 1)/(x^2 + x - 1)
+  sage: h^3
+  1/8*x^3 + 9/16*x^2 + 27/32*x + 27/64
 				
-Quite nice.
+A fundamental attribute of a polynomial is its degree. We use the :meth:`degree` method to calculate this. ::
 
-The basic arithmetic is straightforward ::
-
-	sage: R.<x>=PolynomialRing(QQ)
-	sage: f=x+1
-	sage: g=x^2+x-1
-	sage: h=1/2*x+3/4
-	sage: f+g
-	x^2 + 2*x
-	sage: g-h
-	x^2 + 1/2*x - 7/4
-	sage: f*g
-	x^3 + 2*x^2 - 1
-	sage: f/g
-	(x + 1)/(x^2 + x - 1)
-	sage: h^3
-	1/8*x^3 + 9/16*x^2 + 27/32*x + 27/64
+  sage: R.<x>=PolynomialRing(QQ)
+  sage: (x^3+3).degree()
+  3
+  sage: R(0).degree()
+  -1
 				
-
-A fundamental attribute of a polynomial is its degree. Not
-surprisingly, we use the :meth:`degree` method to calculate the degree of a
-polynomial ::
-
-	sage: R.<x>=PolynomialRing(QQ)
-	sage: (x^3+3).degree()
-	3
-	sage: R(0).degree()
-	-1
-				
-
 Notice that by convention Sage sets the degree of 0 to be -1.
 
-Recall that a polynomial in R[x] is irreducible if it cannot be
-written as the product of two polynomials of lesser degree. To check
-if a polynomial is irreducible, we use the :meth:`is_irreducible` method ::
+To check whether a polynomial is irreducible, we use it's :meth:`is_irreducible` method. ::
 
-	sage: R.<x>=PolynomialRing(Integers(5))
-	sage: (x^3+x+1).is_irreducible()
-	True
-	sage: (x^3+1).is_irreducible()  
-	False
+  sage: R.<x>=PolynomialRing(Integers(5))
+  sage: (x^3+x+1).is_irreducible()
+  True
+  sage: (x^3+1).is_irreducible()  
+  False
 				
+This method is only suitable for polynomial rings that are defined over a field, as polynomials defined more generally do not necessarily posses a unique factorization. 
 
-Please note that this method is only suitable for polynomials defined
-over a field. For example, we cannot determine if polynomials over
-:math:`\mathbb{Z}_{4}` are irreducible with the :meth:`is_irreducible`
-property. One reason for this is polynomial rings defined over fields
-always possess unique factorization into irreducibles. ::
+To compute the *factorization* of a polynomial, where defined, we use the :func:`.factor` command.  ::
 
-	sage: R.<x>=PolynomialRing(Integers(5))
-	sage: (x^3+x+1).factor()        
-	x^3 + x + 1
-	sage: (x^3+1).factor()        
-	(x + 1) * (x^2 + 4*x + 1)
+  sage: R.<x>=PolynomialRing(Integers(5))
+  sage: factor(x^3+x+1)        
+  x^3 + x + 1
+  sage: factor(x^3+1)        
+  (x + 1) * (x^2 + 4*x + 1)
 				
+In the example above, we see a confirmation that :math:`x^3+x+1` is irreducible in :math:`\mathbb{Z}_{5}[x]` whereas :math:`x^3+1` may be factored, hence is reducible.
 
-Here we see a confirmation that :math:`x^3+x+1` is irreducible in :math:`\mathbb{Z}_{5}[x]` while :math:`x^3+1` may be factored, hence is reducible.
+Just like with the integers, :math:`F[x]` has a division algorithm. And just like with integers, we may use the ``//`` operator to determine the *quotient* and the ``%`` operator to determine the *remainder* of a division. ::
 
-The division algorithm for :math:`F[x]` states that given
-:math:`a(x),b(x) \in F[x]` with :math:`b(x) \neq 0`, there exist
-unique :math:`q(x),r(x) \in F[x]` such that :math:`a(x)=b(x)q(x)+r(x)` and :math:`deg(r)<deg(b)`. Similar to the integers, we may use the ``//`` operator to determine the quotient and the ``%`` operator to determine the remainder.::
-
-	sage: R.<x>=PolynomialRing(Integers(7))
-	sage: f=x^6+x^2+1
-	sage: g=x^3+x+1
-	sage: f // g
-	x^3 + 6*x + 6
-	sage: f % g
-	2*x^2 + 2*x + 2
+  sage: R.<x>=PolynomialRing(Integers(7))
+  sage: f=x^6+x^2+1
+  sage: g=x^3+x+1
+  sage: f // g
+  x^3 + 6*x + 6
+  sage: f % g
+  2*x^2 + 2*x + 2
 				
+Additionally, if the coefficients of the polynomial are in :math:`\mathbb{Z}` or :math:`\mathbb{Q}`, we may use the :func:`.divmod` command to compute both a the same time.  ::
 
-Additionally, we may use :func:`divmod` if the coefficients of the
-polynomial are in :math:`\mathbb{Z}` or :math:`\mathbb{Q}` ::
-
-	sage: S.<y>=PolynomialRing(QQ)
-	sage: a=(y+1)*(y^2+1)
-	sage: b=(y+1)*(y+5)
-	sage: a // b
-	y - 5
-	sage: a % b
-	26*y + 26
-	sage: divmod(a,b)
-	(y - 5, 26*y + 26)
+  sage: S.<y>=PolynomialRing(QQ)
+  sage: a=(y+1)*(y^2+1)
+  sage: b=(y+1)*(y+5)
+  sage: a // b
+  y - 5
+  sage: a % b
+  26*y + 26
+  sage: divmod(a,b)
+  (y - 5, 26*y + 26)
 				
+Since :math:`F[x]` has unique factorization, we have a unique greatest common divisor (gcd) of polynomials. This can be computed using the :func:`gcd` command.  ::
 
-Since :math:`F[x]` has unique factorization, we have a unique monic great common divisor of polynomials.
+  sage: R.<x> = PolynomialRing(QQ)
+  sage: p = x^4 + 2*x^3 + 2*x^2 + 2*x + 1
+  sage: q = x^4 - 1
+  sage: gcd(p,q)
+  x^3 + x^2 + x + 1
 
-The extended Euclidean algorithm is to determine polynomials
-:math:`u(x),v(x)` such that
-:math:`a(x)u(x)+b(x)v(x)=gcd(a(x),b(x))`. For polynomials defined over
-the integers or rationals, we may use the :func:`xgcd` function to
-obtain gcd and the pair (u,v). ::
+As with integers, the greatest common divisor of two polynomials can be represented as a linear combination. The extended Euclidean algorithm is to determine polynomials which constitute that linear combination. For polynomials defined over the integers or rationals, we may use the :func:`xgcd` function to compute the extended Euclidean algorithm. ::
 
-	sage: R.<x>=PolynomialRing(ZZ)
-	sage: a=x^4-1
-	sage: b=(x+1)*x   
-	sage: xgcd(a,b)
-	(x + 1, -1, x^2 - x + 1)
-	sage: d,u,v=xgcd(a,b)
-	sage: a*u+b*v
-	x + 1
+  sage: R.<x>=PolynomialRing(ZZ)
+  sage: a=x^4-1
+  sage: b=(x+1)*x   
+  sage: xgcd(a,b)
+  (x + 1, -1, x^2 - x + 1)
+  sage: d,u,v=xgcd(a,b)
+  sage: a*u+b*v
+  x + 1
 				
+We can also consider polynomials in :math:`R[x]` as functions from :math:`R` to :math:`R` by *evaluation*, that is by substituting the indeterminate variable with a member of the coefficient ring. Evaluation of polynomials in Sage works as expected, by *calling* the polynomial like a function. ::
 
-It is common to think of polynomials in :math:`R[x]` as functions from
-:math:`R` to :math:`R`. The function is obtained by replacing the
-indeterminate x with an element of r of R. We write :math:`f(r)` to
-denote this ::
-
-	sage: R.<x>=PolynomialRing(Integers(3))
-	sage: f=2*x+1
-	sage: f(0)
-	1
-	sage: f(1)
-	0
-	sage: f(2)
-	2
+  sage: R.<x>=PolynomialRing(Integers(3))
+  sage: f=2*x+1
+  sage: f(0)
+  1
+  sage: f(1)
+  0
+  sage: f(2)
+  2
 				
+Calculating the *roots*, or *zeros*, of a polynomial can be done by using the :meth:`roots` method. ::
 
-We say :math:`r \in R` is a *root* of :math:`f \in R[x]` if
-:math:`f(r)=0 \in R`. In Sage we may calculate the roots of a
-polynomial using the :meth:`roots` method. ::
-
-	sage: ((x-1)^2*(x-2)*x^3).roots()
-	[(2, 1), (1, 2), (0, 3)]
+  sage: ((x-1)^2*(x-2)*x^3).roots()
+  [(2, 1), (1, 2), (0, 3)]
 				
+Sage returns a list of pairs :math:`(r,m)` where ``r`` is the root and ``m`` is it's multiplicity. Of course, a polynomial need not have any roots and in this case the *empty list* is returned.  ::
 
-Sage returns a list of pairs :math:`(r,m)` where r is a root of the polynomial
-and m is the exponent of :math:`(x-r)` in the polynomial. Of course, a
-polynomial need not have any roots ::
+  sage: (x^2+1).roots()
+  []
 
-	sage: (x^2+1).roots()
-	[]
+**Exercises:**
+
+  #. Use Sage to find out which of the following polynomials with rational coefficients are irreducible?
+
+     a) :math:`3 y^{4} - \frac{1}{2} y^{2} - \frac{1}{2} y - \frac{1}{2}`
+     b) :math:`2 y^{4} - y^{2} - y`
+     c) :math:`\frac{1}{5} y^{5} - \frac{1}{3} y^{4} + y^{3} - \frac{17}{2} y^{2} - 21 y`
+     d) :math:`y^{3} + \frac{1}{4} y^{2} - 6 y + \frac{1}{8}`
+     e) :math:`3 y^{7} + y^{6} + \frac{9}{2} y^{4} - y^{3} + y^{2} - \frac{1}{2} y`
+
+
+  #. Factor all of the polynomials over :math:`\mathbb{Z}[x]`. 
+
+     a) :math:`-x^{10} + 4x^{9} - x^{8} + x^{7} - x^{6} + 2x^{3} + x^{2} - 1`
+     b) :math:`x^{5} + 2x^{4} + x^{3} + 3x^{2} - 3`
+     c) :math:`x^{4} + x^{3} - x^{2} - x`
+     d) :math:`2x^{8} - 5x^{7} - 3x^{6} + 15x^{5} - 3x^{4} - 15x^{3} + 7x^{2} + 5x - 3`
+     e) :math:`6x^{6} - x^{5} - 8x^{4} - x^{3} + 3x^{2} + x`
+
+
+  #. Compute all of the *roots* and of the following polynomials defined over :math:`\mathbb{Z}_7`. Compare this list to their factorizations.
+
+     a) :math:`2 x^{7} + 3 x^{6} + 6 x^{5} + 4 x^{4} + x^{3} + 5 x^{2} + 2 x + 5`
+     b) :math:`3 x^{3} + x^{2} + 2 x + 1`
+     c) :math:`3 x^{8} + 5 x^{7} + 5 x^{5} + x^{3} + 2 x^{2} + 6 x`
+     d) :math:`x^{5} + 2 x^{4} + x^{3} + 2 x^{2} + 2 x + 1`
+     e) :math:`2 x^{10} + 2 x^{8} + 5 x^{6} + x^{5} + 3 x^{4} + 5 x^{3} + 2 x^{2} + 6 x + 5`
+
 
 .. _ideals_and_quotients:
 
