@@ -1765,33 +1765,32 @@ Linear Codes
 A *linear code* is just a finite-dimensional vector space usually defined over a finite field. To construct a linear code in Sage we must first define  a finite field and a matrix which will generate this vector space. ::
 
   sage: F = GF(2)
-  sage: G = matrix(F, [[0,0,0,1,1],[1,0,1,0,1],[1,0,1,1,0],[1,1,1,0,0]])
-  sage: G
-  [0 0 0 1 1]
-  [1 0 1 0 1]
-  [1 0 1 1 0]
-  [1 1 1 0 0]
+  sage: G = matrix(F, [(0,1,0,1,0),(0,1,1,1,0),(0,0,1,0,1),(0,1,0,0,1)]); G 
+  [0 1 0 1 0]
+  [0 1 1 1 0]
+  [0 0 1 0 1]
+  [0 1 0 0 1]
 
-We actually construct the code by using the :func:`LinearCode` command. ::
+We construct the code by using the :func:`LinearCode` command. ::
 
   sage: C = LinearCode(G); C
-  Linear code of length 5, dimension 3 over Finite Field of size 2
+  Linear code of length 5, dimension 4 over Finite Field of size 2
 
 While the *length* and *dimension* are displayed in the object's *description*, we can also obtain these properties of ``C`` using the code's :meth:`.length` and :meth:`.dimension` methods. ::
 
   sage: C.length()
   5
   sage: C.dimension()
-  3
+  4
 
 Given two code words, we can compute their *Hamming Weight* and *Distance* both using the :func:`hamming_weight` function. ::
 
-  sage: w1
-  (0, 1, 0, 0, 1)
+  sage: w1 = vector(F, (0,1,0,1,0)); w1
+  (0, 1, 0, 1, 0)
   sage: hamming_weight(w1)
   2
-  sage: w2
-  (1, 0, 1, 0, 1)
+  sage: w2 = vector(F, (0,1,1,0,1)); w2
+  (0, 1, 1, 0, 1)
   sage: hamming_weight(w2)
   3
   sage: hamming_weight(w1 - w2)
@@ -1800,64 +1799,60 @@ Given two code words, we can compute their *Hamming Weight* and *Distance* both 
 The *minimum distance* of ``C`` can be computed by using the code's :meth:`.minimum_distance` method. ::
 
   sage: C.minimum_distance()
-  2
+  1
 
 The codes *generating* and *check* matrices can be computed using the code's :meth:`gen_matrix` and :meth:`check_matrix` methods. ::
 
   sage: C.gen_mat()
-  [0 0 0 1 1]
-  [1 0 1 0 1]
-  [1 0 1 1 0]
-  [1 1 1 0 0]
+  [0 1 0 1 0]
+  [0 1 1 1 0]
+  [0 0 1 0 1]
+  [0 1 0 0 1]
   sage: C.check_mat()
-  [1 0 1 0 0]
-  [0 1 1 1 1]
+  [1 0 0 0 0]
 
 The *systematic* form of the generating matrix can be displayed using the code's :meth:`gen_mat_systematic` method. ::
 
   sage: C.gen_mat_systematic()
-  [1 0 1 0 1]
-  [0 1 0 0 1]
-  [0 0 0 1 1]
-  [0 0 0 0 0]
+  [0 1 0 0 0]
+  [0 0 1 0 0]
+  [0 0 0 1 0]
+  [0 0 0 0 1]
 
 The *extended code* is computed as follows; ::
 
   sage: Cx = C.extended_code(); Cx
-  Linear code of length 6, dimension 3 over Finite Field of size 2
+  Linear code of length 6, dimension 4 over Finite Field of size 2
   sage: Cx.gen_mat()
-  [0 0 0 1 1 0]
-  [1 0 1 0 1 1]
-  [1 0 1 1 0 1]
-  [1 1 1 0 0 1]
+  [0 1 0 1 0 0]
+  [0 1 1 1 0 1]
+  [0 0 1 0 1 0]
+  [0 1 0 0 1 0]
   sage: Cx.check_mat()
-  [1 0 0 0 0 1]
-  [0 1 0 1 1 1]
-  [0 0 1 0 0 1]
+  [1 0 0 0 0 0]
+  [0 1 1 1 1 1]
 
 You can also compute the *punctured* code by giving the code's :meth:`.punctured` method a list of columns to delete. The following example constructs the code that you get when you delete the 1st and 3rd coordinate from every code word in ``C``. Note that unlike vectors, lists and matrices the 1st column is indexed by 1 and not 0. ::
 
   sage: Cp = C.punctured([1,3]); Cp
   Linear code of length 3, dimension 2 over Finite Field of size 2
   sage: Cp.gen_mat()
-  [1 1 0]
+  [0 1 0]
   [0 0 1]
   sage: Cp.check_mat()
-  [1 1 0]
+  [1 0 0]
 
 You can also construct the code which is *dual* to ``C``. ::
 
   sage: Cd = C.dual_code(); Cd
-  Linear code of length 5, dimension 2 over Finite Field of size 2
+  Linear code of length 5, dimension 1 over Finite Field of size 2
   sage: Cd.gen_mat()
-  [1 0 1 0 0]
-  [0 1 1 1 1]
+  [1 0 0 0 0]
   sage: Cd.check_mat()
-  [1 0 1 0 1]
-  [0 1 0 0 1]
-  [0 0 0 1 1]
-
-
+  [0 1 0 0 0]
+  [0 0 1 0 0]
+  [0 0 0 1 0]
+  [0 0 0 0 1]
 
 .. seealso::
 
