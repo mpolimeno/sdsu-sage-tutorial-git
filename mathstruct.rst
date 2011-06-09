@@ -1034,6 +1034,82 @@ With some of the basic matrix operations under our belt, we are ready to move on
        1 & 0 & 1 & 1
        \end{array}\right)
 
+.. _vector_and_matrix_spaces:
+
+Vector and Matrix Spaces
+------------------------
+
+It is sometimes useful to create the space of all matrices of
+particular dimension, for which we use the :func:`MatrixSpace`
+function. We must specify the field (or indeed any ring) where the
+entries live. ::
+
+	sage: MatrixSpace(QQ,2,3)
+	Full MatrixSpace of 2 by 3 dense matrices over Rational Field
+				
+
+If we input a ring R and an integer n we get the matrix ring of n×n
+matrices of R. Coercion can be used to construct the zero matrix, the
+indentity matrix, or a matrix with specified entries as shown. ::
+
+	sage: Mat = MatrixSpace(ZZ,2); Mat
+	Full MatrixSpace of 2 by 2 dense matrices over Integer Ring
+	sage: Mat(1)
+	[1 0]
+	[0 1]
+	sage: Mat(0)
+	[0 0]
+	[0 0]
+	sage: Mat([1,2,3,4])
+	[1 2]
+	[3 4]
+
+				
+We may compute various spaces associated to a matrix. ::
+
+        sage: Mat = MatrixSpace(QQ, 3,4)
+	sage: A = Mat([[1,2,3,4], [1,3,4,4],[2,5,7,8]])
+	sage: A
+	[1 2 3 4]
+	[1 3 4 4]
+	[2 5 7 8]
+	sage: A.rank()
+	2
+	sage: A.right_kernel()
+	Vector space of degree 4 and dimension 2 over Rational Field
+	Basis matrix:
+	[   1    0    0 -1/4]
+	[   0    1   -1  1/4]
+	sage: A.left_kernel()
+	Vector space of degree 3 and dimension 1 over Rational Field
+	Basis matrix:
+	[ 1  1 -1]
+	sage: A.row_space()
+	Vector space of degree 4 and dimension 2 over Rational Field
+	Basis matrix:
+	[1 0 1 4]
+	[0 1 1 0]
+
+**Exercises:**
+
+#. For the following 5x3 matrix:
+
+   .. math::
+
+      \left(\begin{array}{rrr}
+      1 & -1 & -1 \\
+      0 & 1 & -3 \\
+      1 & 1 & 1 \\
+      0 & -6 & -20 \\
+      0 & 0 & 0
+      \end{array}\right)
+
+   Use Sage to compute the bases for the following spaces:
+
+     a) The right and left kernel. 
+     b) The row space.
+     c) The column space.
+ 
 
 .. _vectors_and_matrices__jordan_form:
 
@@ -1136,84 +1212,7 @@ But that wouldn't be any fun!
 	\end{array}\right)
 
 
-.. _vector_and_matrix_spaces:
-
-Vector and Matrix Spaces
-------------------------
-
-It is sometimes useful to create the space of all matrices of
-particular dimension, for which we use the :func:`MatrixSpace`
-function. We must specify the field (or indeed any ring) where the
-entries live. ::
-
-	sage: MatrixSpace(QQ,2,3)
-	Full MatrixSpace of 2 by 3 dense matrices over Rational Field
-				
-
-If we input a ring R and an integer n we get the matrix ring of n×n
-matrices of R. Coercion can be used to construct the zero matrix, the
-indentity matrix, or a matrix with specified entries as shown. ::
-
-	sage: Mat = MatrixSpace(ZZ,2); Mat
-	Full MatrixSpace of 2 by 2 dense matrices over Integer Ring
-	sage: Mat(1)
-	[1 0]
-	[0 1]
-	sage: Mat(0)
-	[0 0]
-	[0 0]
-	sage: Mat([1,2,3,4])
-	[1 2]
-	[3 4]
-
-				
-We may compute various spaces associated to a matrix. ::
-
-        sage: Mat = MatrixSpace(QQ, 3,4)
-	sage: A = Mat([[1,2,3,4], [1,3,4,4],[2,5,7,8]])
-	sage: A
-	[1 2 3 4]
-	[1 3 4 4]
-	[2 5 7 8]
-	sage: A.rank()
-	2
-	sage: A.right_kernel()
-	Vector space of degree 4 and dimension 2 over Rational Field
-	Basis matrix:
-	[   1    0    0 -1/4]
-	[   0    1   -1  1/4]
-	sage: A.left_kernel()
-	Vector space of degree 3 and dimension 1 over Rational Field
-	Basis matrix:
-	[ 1  1 -1]
-	sage: A.row_space()
-	Vector space of degree 4 and dimension 2 over Rational Field
-	Basis matrix:
-	[1 0 1 4]
-	[0 1 1 0]
-
-**Exercises:**
-
-#. For the following 5x3 matrix:
-
-   .. math::
-
-      \left(\begin{array}{rrr}
-      1 & -1 & -1 \\
-      0 & 1 & -3 \\
-      1 & 1 & 1 \\
-      0 & -6 & -20 \\
-      0 & 0 & 0
-      \end{array}\right)
-
-   Use Sage to compute the bases for the following spaces:
-
-     a) The right and left kernel. 
-     b) The row space.
-     c) The column space.
- 
 .. _rings:
-
 
 Rings
 =====
@@ -1541,7 +1540,7 @@ explicitly coerce all of our elements. ::
 
 .. _rings_properties_and_tests:
 
-Properties and Tests For Rings
+Properties of Rings
 ------------------------------
 
 In Sage, you may check some of the properties of the rings which have been constructed. For example, to check whether a ring is a *integral domain* or a *field* we use the :meth:`.is_integral_domain` or :meth:`.is_field` methods.   ::
@@ -1582,8 +1581,10 @@ The *characteristic* of the ring can be computed using the ring's :meth:`.charac
 	 sage: ZZ.characteristic()
 	 0
 
+.. mv_division_algorithm
+
 Mini-Topic: Multi-Variate Polynomial Division Algorithm
------------------------------------------------------------------------
+-------------------------------------------------------
 
 In this section we will use Sage to construct a *division* algorithm for multivariate polynomials. Specifically, for a given polynomial :math:`f` (the dividend) and a sequence of polynomials :math:`f_1, f_2, \ldots, f_k` (the divisors) we want to compute a sequence of quotients :math:`a_1, a_2,\ldots, a_k` and a remainder polynomial :math:`r` so that
 
@@ -1655,11 +1656,11 @@ Now we are ready to define the main loop of our algorithm. ::
 
   print A, p, r
         
+
 .. _finite_fields:
 
 Finite Fields
 =============
-
 
 In a prior section we constructied rings of integers modulo :math:`n`. We know that when :math:`n` is a prime number the *ring* :math:`\mathbb{Z}_{n}` is actually a *field*. Sage will allow us to construct this same object a either a ring or a field. ::
 
@@ -1744,6 +1745,8 @@ If we wanted all of the *irreducible* polynomials we would only change the last 
 It should be noted that the above code will only work if the polynomials are over *finite* rings or fields.
 
 **Exercises:**
+
+#. Compute the list of all *primitive polynomials* over :math:`GF(5)`.
 
 
 .. _primitive: http://en.wikipedia.org/wiki/Primitive_polynomial
@@ -1842,10 +1845,26 @@ You can also compute the *punctured* code by giving the code's :meth:`.punctured
   sage: Cp.check_mat()
   [1 1 0]
 
+You can also construct the code which is *dual* to ``C``. ::
+
+  sage: Cd = C.dual_code(); Cd
+  Linear code of length 5, dimension 2 over Finite Field of size 2
+  sage: Cd.gen_mat()
+  [1 0 1 0 0]
+  [0 1 1 1 1]
+  sage: Cd.check_mat()
+  [1 0 1 0 1]
+  [0 1 0 0 1]
+  [0 0 0 1 1]
+
+
+
 .. seealso::
 
    #. http://www.sagemath.org/doc/constructions/linear_codes.html
    #. http://www.sagemath.org/doc/reference/sage/coding/linear_code.html
+
+
 
 
 .. _cyclic_codes:
@@ -1913,8 +1932,8 @@ ode* and it's generating and parity check matrices. ::
 
 .. _mt_roots_of_unity:
 
-Mini-Topic: The factorization of :math:`x^n -1` over :math:`GF(q)`
-------------------------------------------------------------------
+Mini-Topic: Factoring :math:`x^n -1`
+++++++++++++++++++++++++++++++++++++
 
 The smallest field containing :math:`\mathbb{F}_{q}` and containing the roots of :math:`x^n - 1` is :math:`GF(q^t)` where :math:`t` is the order of :math:`q` in :math:`\mathbb{Z} \bmod{n}`.
 
@@ -1957,11 +1976,12 @@ Now let us factor :math:`x^n - 1` again. This time over a non-prime field.::
    #. Compute the order of 2, 4, 8 mod 19. What are your observations?
    #. Try other values of n and other fields.
 
-
-Idempotent polynomials and generator polynomials
-------------------------------------------------
-
 .. cyclic_codes_idempotents
+
+Mini-Topic: Idempotent Polynomials
+++++++++++++++++++++++++++++++++++
+
+
 
 We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuting with :math:`\mathbb{F}_{4}`. ::
 
