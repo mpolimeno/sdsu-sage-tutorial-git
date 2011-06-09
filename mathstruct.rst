@@ -11,8 +11,8 @@ Integers and Modular Arithmetic
 
 .. _euclidean_algorithm:
 
-Euclidean Algorithm
--------------------
+Mini-Topic: Euclidean Algorithm
+-------------------------------
 
     You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`external_files_and_sessions`, and :ref:`while_loops`
 
@@ -1037,8 +1037,8 @@ With some of the basic matrix operations under our belt, we are ready to move on
 
 .. _vectors_and_matrices__jordan_form:
 
-The Jordan Canonical Form
--------------------------
+Mini-Topic: The Jordan Canonical Form
+-------------------------------------
 
 For every linear transformation :math:`\mathrm{T}:\mathbb{R}^n \longrightarrow \mathbb{R}^{n}` there is a basis of :math:`\mathbb{R}^n` such that the matrix :math:`\left[m\right]_{\mathcal{B}}` is in an *almost* diagonal form. This unique matrix is called the *Jordan Canonical Form* of :math:`\mathrm{T}`. For more information on this please refer to this article_ on Wikipedia. To demonstrate some common tools that we use in Sage we will compute this basis for the linear transformation
 
@@ -1582,7 +1582,7 @@ The *characteristic* of the ring can be computed using the ring's :meth:`.charac
 	 sage: ZZ.characteristic()
 	 0
 
-Multi-variable polynomial division algorithm
+Mini-Topic: Multi-Variate Polynomial Division Algorithm
 -----------------------------------------------------------------------
 
 In this section we will use Sage to construct a *division* algorithm for multivariate polynomials. Specifically, for a given polynomial :math:`f` (the dividend) and a sequence of polynomials :math:`f_1, f_2, \ldots, f_k` (the divisors) we want to compute a sequence of quotients :math:`a_1, a_2,\ldots, a_k` and a remainder polynomial :math:`r` so that
@@ -1749,14 +1749,172 @@ It should be noted that the above code will only work if the polynomials are ove
 .. _primitive: http://en.wikipedia.org/wiki/Primitive_polynomial
 
 
+.. _coding_theory: 
 
-Cyclic Codes
-============
+Coding Theory
+=============
+
+.. _linear_codes:
+
+Linear Codes
+------------
+
+A *linear code* is just a finite-dimensional vector space usually defined over a finite field. To construct a linear code in Sage we must first define  a finite field and a matrix which will generate this vector space. ::
+
+  sage: F = GF(2)
+  sage: G = matrix(F, [[0,0,0,1,1],[1,0,1,0,1],[1,0,1,1,0],[1,1,1,0,0]])
+  sage: G
+  [0 0 0 1 1]
+  [1 0 1 0 1]
+  [1 0 1 1 0]
+  [1 1 1 0 0]
+
+We actually construct the code by using the :func:`LinearCode` command. ::
+
+  sage: C = LinearCode(G); C
+  Linear code of length 5, dimension 3 over Finite Field of size 2
+
+While the *length* and *dimension* are displayed in the object's *description*, we can also obtain these properties of ``C`` using the code's :meth:`.length` and :meth:`.dimension` methods. ::
+
+  sage: C.length()
+  5
+  sage: C.dimension()
+  3
+
+Given two code words, we can compute their *Hamming Weight* and *Distance* both using the :func:`hamming_weight` function. ::
+
+  sage: w1
+  (0, 1, 0, 0, 1)
+  sage: hamming_weight(w1)
+  2
+  sage: w2
+  (1, 0, 1, 0, 1)
+  sage: hamming_weight(w2)
+  3
+  sage: hamming_weight(w1 - w2)
+  3
+
+The *minimum distance* of ``C`` can be computed by using the code's :meth:`.minimum_distance` method. ::
+
+  sage: C.minimum_distance()
+  2
+
+The codes *generating* and *check* matrices can be computed using the code's :meth:`gen_matrix` and :meth:`check_matrix` methods. ::
+
+  sage: C.gen_mat()
+  [0 0 0 1 1]
+  [1 0 1 0 1]
+  [1 0 1 1 0]
+  [1 1 1 0 0]
+  sage: C.check_mat()
+  [1 0 1 0 0]
+  [0 1 1 1 1]
+
+The *systematic* form of the generating matrix can be displayed using the code's :meth:`gen_mat_systematic` method. ::
+
+  sage: C.gen_mat_systematic()
+  [1 0 1 0 1]
+  [0 1 0 0 1]
+  [0 0 0 1 1]
+  [0 0 0 0 0]
+
+The *extended code* is computed as follows; ::
+
+  sage: Cx = C.extended_code(); Cx
+  Linear code of length 6, dimension 3 over Finite Field of size 2
+  sage: Cx.gen_mat()
+  [0 0 0 1 1 0]
+  [1 0 1 0 1 1]
+  [1 0 1 1 0 1]
+  [1 1 1 0 0 1]
+  sage: Cx.check_mat()
+  [1 0 0 0 0 1]
+  [0 1 0 1 1 1]
+  [0 0 1 0 0 1]
+
+You can also compute the *punctured* code by giving the code's :meth:`.punctured` method a list of columns to delete. The following example constructs the code that you get when you delete the 1st and 3rd coordinate from every code word in ``C``. Note that unlike vectors, lists and matrices the 1st column is indexed by 1 and not 0. ::
+
+  sage: Cp = C.punctured([1,3]); Cp
+  Linear code of length 3, dimension 2 over Finite Field of size 2
+  sage: Cp.gen_mat()
+  [1 1 0]
+  [0 0 1]
+  sage: Cp.check_mat()
+  [1 1 0]
+
+.. seealso::
+
+   #. http://www.sagemath.org/doc/constructions/linear_codes.html
+   #. http://www.sagemath.org/doc/reference/sage/coding/linear_code.html
+
 
 .. _cyclic_codes:
 
-The factorization of :math:`x^n -1` over :math:`GF(q)`
-------------------------------------------------------
+Cyclic Codes
+------------
+In this section we will use Sage to construct a Cyclic Code and compute it's *generating* and *parity check* matrices. 
+
+We will begin by constructing a cyclic code of length :math:`3` over :math:`\mathbb{F}_2`. The first thing you will do is factor :math:`x^{3} - 1` to see which polynomials can be used as *generating* polynomials. ::
+
+  sage: P.<x> = PolynomialRing(GF(2),'x')
+  sage: factor(x^3 -1 )
+  (x + 1) * (x^2 + x + 1)
+
+This tells you that there are 2 choices for non-trivial generating polynomials.  To construct the code generated by :math:`g(x) = x + 1` we enter the following:  ::
+
+  sage: g = x + 1       
+  sage: C = CyclicCode(3,g) 
+  sage: C.list()
+  [(0, 0, 0), (1, 0, 1), (0, 1, 1), (1, 1, 0)]
+
+The code :math:`C` is a two dimensional vector space over :math:`\mathbb{F}_2`. Using the :meth:`.gen_mat` method, you can construct the code's *generating matrix*. Sage can also compute this matrix in *systematic* form using the :meth:`gen_math_systematic` method. ::
+
+  sage: G = C.gen_mat(); G
+  [1 1 0]
+  [0 1 1]
+  sage: Gs = C.gen_mat_systematic(); Gs
+  [1 0 1]
+  [0 1 1]
+
+Just to verify that this is the correct matrix we will see if the image of th linear transformation that it defines from :math:`\mathbb{F}_{2}^2 \rightarrow \mathbb{F}_{2}^3` is :math:`C` ::
+
+  sage: vector(GF(2),[0,0])*G
+  (0,0,0) 
+  sage: vector(GF(2),[1,0])*G
+  (1, 1, 0)
+  sage: vector(GF(2),[1,1])*G
+  (1, 0, 1)
+  sage: vector(GF(2),[0,1])*G
+  (0, 1, 1)
+
+Sage can also compute a *parity check* matrix of :math:`C` by using the code's :meth:`.check_mat` method. ::
+
+      sage: H = C.check_mat()
+      [1 1 1]
+
+Verifying that ``H`` is the *check matrix* for :math:`C` is straightforward. ::
+
+  sage: H*vector(GF(2),[0,1,1])
+  (0)
+  sage: H*vector(GF(2),[1,0,1])
+  (0)
+  sage: H*vector(GF(2),[1,0,0])
+  (1)
+
+You can also compute the *dual c
+ode* and it's generating and parity check matrices. ::
+
+  sage: Cp = C.dual_code() 
+  sage: Cp.gen_mat()
+  [1 1 1]
+  sage: Cp.check_mat()
+  [1 0 1]
+  [0 1 1]
+
+.. _mt_roots_of_unity:
+
+Mini-Topic: The factorization of :math:`x^n -1` over :math:`GF(q)`
+------------------------------------------------------------------
 
 The smallest field containing :math:`\mathbb{F}_{q}` and containing the roots of :math:`x^n - 1` is :math:`GF(q^t)` where :math:`t` is the order of :math:`q` in :math:`\mathbb{Z} \bmod{n}`.
 
@@ -1872,62 +2030,3 @@ Check the generating polynomial. ::
 For the reciprocal polynomials of idempotents, see Theorem 5 [MacWilliams1977]_ p. 219
 
 .. [MacWilliams1977] MacWilliams, F. J. and Sloane, N. J. A., *The theory of error-correcting codes.* North-Holland Publishing Co. 1977
-
-
-Constructing a Cyclic Code in Sage
----------------------------------- 
-Now in this section we will use Sage to actually construct a Cyclic Code and compute it's *generating* and *parity check* matrices. We will begin by constructing a cyclic code of length :math:`3` over :math:`\mathbb{F}_2`. The first thing I will do is factor :math:`x^{3} - 1` to see which polynomials can be used as *generating* polynomials. ::
-
-  sage: P.<x> = PolynomialRing(GF(2),'x')
-  sage: factor(x^3 -1 )
-  (x + 1) * (x^2 + x + 1)
-
-This tells me that there are 2 choices for non-trivial generating polynomials.  I will construct the code generated by :math:`g(x) = x + 1` ::
-
-  sage: g = x + 1       
-  sage: C = CyclicCode(3,g) 
-  sage: C.list()
-  [(0, 0, 0), (1, 0, 1), (0, 1, 1), (1, 1, 0)]
-
-The code :math:`C` is a two dimensional vector space over :math:`\mathbb{F}_2`. So we compute the :math:`3 \times 2` generating matrix using the :meth:`gen_mat` method. Sage can also compute the generating matrix in *systematic* form using the :meth:`gen_math_systematic` method. ::
-
-  sage: G = C.gen_mat(); G
-  [1 1 0]
-  [0 1 1]
-  sage: Gs = C.gen_mat_systematic(); Gs
-  [1 0 1]
-  [0 1 1]
-
-Just to verify that this is the correct matrix we will see if the image of th linear transformation that it defines from :math:`\mathbb{F}_{2}^2 \rightarrow \mathbb{F}_{2}^3` is :math:`C` ::
-
-  sage: vector(GF(2),[0,0])*G
-  (0,0,0) 
-  sage: vector(GF(2),[1,0])*G
-  (1, 1, 0)
-  sage: vector(GF(2),[1,1])*G
-  (1, 0, 1)
-  sage: vector(GF(2),[0,1])*G
-  (0, 1, 1)
-
- Sage can also compute a *parity check* matrix of :math:`C`.::
-
-      sage: H = C.check_mat()
-      [1 1 1]
-
-We can verify that :math:`Hc = 0` for :math:`c \in C` and `Hx \neq 0` for :math:`x \not\in C`. ::
-
-  sage: H*vector(GF(2),[0,1,1])
-  (0)
-  sage: H*vector(GF(2),[1,0,1])
-  (0)
-  sage: H*vector(GF(2),[1,0,0])
-  (1)
-
-Sage can also compute the *dual code* and it's generating and parity check matrices. ::
-
-  sage: Cp = C.dual_code() 
-  sage: Cp.gen_mat()
-  [1 1 1]
-  sage: Cp.check_mat()
-  [1 0 1]
-  [0 1 1]
