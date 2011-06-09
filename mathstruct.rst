@@ -1801,7 +1801,18 @@ The *minimum distance* of ``C`` can be computed by using the code's :meth:`.mini
   sage: C.minimum_distance()
   1
 
-The codes *generating* and *check* matrices can be computed using the code's :meth:`gen_matrix` and :meth:`check_matrix` methods. ::
+Sage can also compute the *distribution* of the weights for the code. ::
+
+  sage: C.weight_distribution()
+  [1, 4, 6, 4, 1, 0]
+
+Where the value listed at index ``i`` of the list, starting with zero and ending with the length of the code, is the number of codewords with that weight. 
+Related to the weight distribution is the *weight enumerator* polynomial, which you compute using the code's :meth:`.weight_enumerator` method. ::
+
+  sage: C.weight_enumerator()
+  x^5 + 4*x^4*y + 6*x^3*y^2 + 4*x^2*y^3 + x*y^4
+
+The *generating* and *check* matrices can be computed using the code's :meth:`gen_matrix` and :meth:`check_matrix` methods. ::
 
   sage: C.gen_mat()
   [0 1 0 1 0]
@@ -1811,7 +1822,7 @@ The codes *generating* and *check* matrices can be computed using the code's :me
   sage: C.check_mat()
   [1 0 0 0 0]
 
-The *systematic* form of the generating matrix can be displayed using the code's :meth:`gen_mat_systematic` method. ::
+The *systematic* form of the generating matrix can be computed using the code's :meth:`gen_mat_systematic` method. ::
 
   sage: C.gen_mat_systematic()
   [0 1 0 0 0]
@@ -1819,7 +1830,9 @@ The *systematic* form of the generating matrix can be displayed using the code's
   [0 0 0 1 0]
   [0 0 0 0 1]
 
-The *extended code* is computed as follows; ::
+Sage also allow for us to *extend* and *puncture* our codes. These are standard methods for constructing new codes from older ones. 
+
+The *extended code* is computed as follows: ; ::
 
   sage: Cx = C.extended_code(); Cx
   Linear code of length 6, dimension 4 over Finite Field of size 2
@@ -1832,7 +1845,7 @@ The *extended code* is computed as follows; ::
   [1 0 0 0 0 0]
   [0 1 1 1 1 1]
 
-You can also compute the *punctured* code by giving the code's :meth:`.punctured` method a list of columns to delete. The following example constructs the code that you get when you delete the 1st and 3rd coordinate from every code word in ``C``. Note that unlike vectors, lists and matrices the 1st column is indexed by 1 and not 0. ::
+The *punctured* code is computed by giving the code's :meth:`.punctured` method a list of coordinates to delete. The following example constructs the code that is given when the 1st and 3rd coordinate from every code word in ``C`` are deleted. Note that unlike vectors, lists and matrices the 1st column is indexed by 1 and not 0. ::
 
   sage: Cp = C.punctured([1,3]); Cp
   Linear code of length 3, dimension 2 over Finite Field of size 2
@@ -1853,6 +1866,7 @@ You can also construct the code which is *dual* to ``C``. ::
   [0 0 1 0 0]
   [0 0 0 1 0]
   [0 0 0 0 1]
+
 
 .. seealso::
 
