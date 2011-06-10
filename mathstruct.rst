@@ -1874,8 +1874,6 @@ You can also construct the code which is *dual* to ``C``. ::
    #. http://www.sagemath.org/doc/reference/sage/coding/linear_code.html
 
 
-
-
 .. _cyclic_codes:
 
 Cyclic Codes
@@ -2051,7 +2049,6 @@ Check the generating polynomial. ::
       sage: p0
       x^9 + (a + 1)*x^8 + (a + 1)*x^6 + (a + 1)*x^5 + a*x^4 + a*x^3 + a*x + 1
 
-
 **Exercises:**
 
 	#. Find the idempoent element of :math:`F\left[x\right]/\left<x^n -1\right>` For :math:`q = 4` and :math:`n =3, 5, 11` and :math:`17`. 
@@ -2059,3 +2056,45 @@ Check the generating polynomial. ::
 For the reciprocal polynomials of idempotents, see Theorem 5 [MacWilliams1977]_ p. 219
 
 .. [MacWilliams1977] MacWilliams, F. J. and Sloane, N. J. A., *The theory of error-correcting codes.* North-Holland Publishing Co. 1977
+
+
+Other Codes
+-----------
+
+Hamming Codes
++++++++++++++
+
+
+sage: C = HammingCode(3, F)
+sage: C.gen_mat()
+70 x 73 dense matrix over Finite Field in a of size 2^3
+sage: C.check_mat()
+3 x 73 dense matrix over Finite Field in a of size 2^3
+
+.. seealso::
+   http://en.wikipedia.org/wiki/Hamming_code
+
+
+BCH Codes
++++++++++
+
+.. seealso::
+   http://en.wikipedia.org/wiki/BCH_code
+
+
+Binary Golay Codes
+++++++++++++++++++
+
+
+Reed Solomon Codes
+++++++++++++++++++
+
+
+
+Torric Codes
+++++++++++++
+
+
+Walsh Codes
++++++++++++
+
