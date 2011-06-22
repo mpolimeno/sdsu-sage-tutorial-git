@@ -1395,6 +1395,83 @@ Sage returns a list of pairs :math:`(r,m)` where ``r`` is the root and ``m`` is 
   sage: (x^2+1).roots()
   []
 
+
+Multivariable Polynomial Rings
+++++++++++++++++++++++++++++++
+
+::
+
+  sage: R.<x,y,z> = PolynomialRing(QQ, 3)
+  sage: p = -1/2*x - y*z - y + 8*z^2; p
+  -y*z + 8*z^2 - 1/2*x - y
+
+::
+  sage: p.monomials()
+  [y*z, z^2, x, y]
+
+::
+  sage: p.coefficients()
+  [-1, 8, -1/2, -1]
+
+
+::
+  sage: [ a*b for a,b in zip(p.coefficients(),p.monomials())]
+  [-y*z, 8*z^2, -1/2*x, -y]
+
+::
+  sage: p.lc()
+  -1
+  sage: 
+  sage: p.lm()
+  y*z
+  sage: p.lt()
+  -y*z
+
+::
+  sage: p.total_degree()
+  2
+
+::
+  sage: p.exponents()
+  [(0, 1, 1), (0, 0, 2), (1, 0, 0), (0, 1, 0)]
+
+::
+  sage: p.lm().exponents()
+  [(0, 1, 1)]
+
+::
+  sage: R.<x,y,z> = PolynomialRing(QQ,3,order='lex')
+  sage: p = -1/2*x - y*z - y + 8*z^2; p
+  -1/2*x - y*z - y + 8*z^2
+
+::
+  sage: p.lm()
+  x
+  sage: p.lc()
+  -1/2
+  sage: p.lt()
+  -1/2*x           
+  sage: p.monomials()
+  [x, y*z, y, z^2]
+
+::
+  sage: R.<z,y,x> = PolynomialRing(QQ,3,order='lex')
+  sage:  p = -1/2*x - y*z - y + 8*z^2
+  sage: p
+  8*z^2 - z*y - y - 1/2*x
+  sage: p.lm()
+  z^2
+  sage: p.lc()
+  8
+  sage: p.lt()
+  8*z^2
+
+::
+  sage: r = -x^2 + 1/58*x*y - y + 1/2*z^2
+  sage: r.mod([p,q])
+  -238657765/29696*y^2 + 83193/14848*y*z^2 + 68345/14848*y - 1/1024*z^4 + 255/512*z^2 - 1/1024
+
+
 **Exercises:**
 
   #. Use Sage to find out which of the following polynomials with rational coefficients are irreducible?
@@ -1484,6 +1561,54 @@ Unfortunately, as of the time of this writing, many of these methods are not imp
   NotImplementedError                       Traceback (most recent call last)
 
 But we get a :obj:`NotImplementedError`, since Sage is not yet able to determine this.
+
+
+Ideals in Multivarate Polynomial Rings
+++++++++++++++++++++++++++++++++++++++
+
+::
+  sage: R.<x,y,z> = PolynomialRing(QQ,3,order='lex')
+  sage: p = -1/2*x - y*z - y + 8*z^2
+  sage: q = -32*x + 2869*y - z^2 - 1
+
+::
+  sage: I = [p,q]*R
+  sage: I
+  Ideal (-1/2*x - y*z - y + 8*z^2, -32*x + 2869*y - z^2 - 1) of Multivariate Polynomial Ring in x, y, z over Rational Field
+
+::
+  sage: I.groebner_basis()
+  [x - 2869/32*y + 1/32*z^2 + 1/32, y*z + 2933/64*y - 513/64*z^2 - 1/64]
+
+::
+  sage: set_verbose(3)
+  sage: I.groebner_basis('toy:buchberger')
+  (-32*x + 2869*y - z^2 - 1, -1/2*x - y*z - y + 8*z^2) => -2*y*z - 2933/32*y + 513/32*z^2 + 1/32
+  G: set([-2*y*z - 2933/32*y + 513/32*z^2 + 1/32, -1/2*x - y*z - y + 8*z^2, -32*x + 2869*y - z^2 - 1])
+  (-1/2*x - y*z - y + 8*z^2, -32*x + 2869*y - z^2 - 1) => 0
+  G: set([-2*y*z - 2933/32*y + 513/32*z^2 + 1/32, -1/2*x - y*z - y + 8*z^2, -32*x + 2869*y - z^2 - 1])
+  (-1/2*x - y*z - y + 8*z^2, -2*y*z - 2933/32*y + 513/32*z^2 + 1/32) => 0
+  G: set([-2*y*z - 2933/32*y + 513/32*z^2 + 1/32, -1/2*x - y*z - y + 8*z^2, -32*x + 2869*y - z^2 - 1])
+  (-32*x + 2869*y - z^2 - 1, -2*y*z - 2933/32*y + 513/32*z^2 + 1/32) => 0
+  G: set([-2*y*z - 2933/32*y + 513/32*z^2 + 1/32, -1/2*x - y*z - y + 8*z^2, -32*x + 2869*y - z^2 - 1])
+  3 reductions to zero.
+  [x + 2*y*z + 2*y - 16*z^2, x - 2869/32*y + 1/32*z^2 + 1/32, y*z + 2933/64*y - 513/64*z^2 - 1/64]
+
+::
+  sage: I.elimination_ideal([x])
+  Ideal (64*y*z + 2933*y - 513*z^2 - 1) of Multivariate Polynomial Ring in x, y, z over Rational Field
+  sage: I.elimination_ideal([x,y])
+  Ideal (0) of Multivariate Polynomial Ring in x, y, z over Rational Field
+  sage: I.elimination_ideal([x,z])
+  Ideal (0) of Multivariate Polynomial Ring in x, y, z over Rational Field
+  sage: I.elimination_ideal([x])
+  Ideal (64*y*z + 2933*y - 513*z^2 - 1) of Multivariate Polynomial Ring in x, y, z over Rational Field
+  sage: I.elimination_ideal([y])
+  Ideal (64*x*z + 2933*x + 2*z^3 - 45902*z^2 + 2*z + 2) of Multivariate Polynomial Ring in x, y, z over Rational Field
+  sage: I.elimination_ideal([z])
+  Ideal (263169*x^2 + 128*x*y^2 - 47095452*x*y + 16416*x - 11476*y^3 + 2106993608*y^2 - 1468864*y + 256) of Multivariate Polynomial Ring in x, y, z over Rational Field
+  sage: I.elimination_ideal([x,y])
+  Ideal (0) of Multivariate Polynomial Ring in x, y, z over Rational Field
 
 
 .. _quotient_rings:
