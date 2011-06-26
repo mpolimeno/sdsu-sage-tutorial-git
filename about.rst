@@ -3,7 +3,6 @@
 *********************
  About this tutorial
 *********************
-
 .. _about_tutorial_introduction:
 
 Introduction
