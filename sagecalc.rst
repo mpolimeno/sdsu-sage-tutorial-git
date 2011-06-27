@@ -893,8 +893,8 @@ Producing 3D plots can be done using the :func:`.plot3d` command ::
 				
 .. image:: pics/3d-plot-1.png
 	:alt: Snapshot of 3D plot
-	:width: 400px
-	:height: 300px
+	:width: 500px
+	:height: 500px
 
 Sage handles 3d plotting a bit differently than what we have seen thus far. It uses a program named jmol to generate interactive plots. So instead of just a static picture we will see either a window like pictured above or, if you are using Sage's notebook interface, a java applet in your browser's window.
 
@@ -902,8 +902,8 @@ One nice thing about the way that Sage does this is that you can rotate your plo
 
 .. image:: pics/3d-plot-2.png
 	:alt: Saving a 3d plot to a file in Jmol
-	:width: 400px
-	:height: 300px
+	:width: 500px
+	:height: 500px
 
 .. note::
    If you are running Sage on windows or on sagenb.org that your file will be saved either in your VMware virtual machine or on sagenb.org.

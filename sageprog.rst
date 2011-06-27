@@ -1206,35 +1206,35 @@ We will begin with the most simple applet. One that creates a single input box a
 
 .. image:: pics/interact_step1.png
 	:alt: Simple "Hello World" Interact Applet
-	:height: 485px
+	:height: 525px
 	:width: 800px
 
 Notice how changing the text in the input box changes the output. Every time something within the interact changes the "applet" is refreshed and will display those changes. This is the heart of the interactivity.
 
 .. image:: pics/interact_step2.png
 	:alt: Simple "Hello World" Interact Applet
-	:height: 485px
+	:height: 525px
 	:width: 800px
 
 Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as it's smallest number and :math:`10` as it's largest and moves in increments of :math:`1` unit. 
 
 .. image:: pics/interact_step3.png
 	:alt: Simple "Hello World" Interact Applet
-	:height: 485px
+	:height: 525px
 	:width: 800px
 
 Next we will add a selection control. This control allows the user to select one of a finite number of different options. In this case, the user can select any color, as long as that color is red, blue, green, or black. 
 
 .. image:: pics/interact_step4.png
 	:alt: Simple "Hello World" Interact Applet
-	:height: 485px
+	:height: 525px
 	:width: 800px
 
 While this initial example shows the use of a couple of common interactive controls, it still does not do anything very interesting.  The next example will combine both the use of sliding and selection controls toward creating an applet which plots the trigonometric functions and there standard transformations. 
 
 .. image:: pics/interact_step5.png
 	:alt: Example of Trigonometric Plotter Interact.
-	:height: 485px
+	:height: 525px
 	:width: 800px
 
 The example here only scratches the surface of what is possible with Sage interacts. For a, growing, list of examples of interacts see this page on the sage wiki_.

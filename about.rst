@@ -220,14 +220,14 @@ Suppose that instead of the least common multiple, you are looking for the *grea
 
 .. image:: pics/tabcompletion-ex1.png
         :alt: Finding the gcd() command using tab completion. 
-	:width: 400px
-	:height: 300px
+	:width: 800px
+	:height: 525px
 
 What you see is an overlay  of all the completions that you can scroll through using the arrow keys.  You can navigate the options using a mouse. Once again, I see an option which looks like it should be what I am looking for, the :func:`gcd` function, but I am not quite sure. So I type `gcd?` and click on the `evaluate` link at the bottom of the cell.
 
 .. image:: pics/tabcompletion-ex2.png
         :alt: Using ? to find a description of gcd() 
-	:width: 400px
-	:height: 300px
+	:width: 800px
+	:height: 525px
 
 To exit the help just click anywhere on the screen.
