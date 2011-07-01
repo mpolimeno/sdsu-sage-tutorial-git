@@ -16,11 +16,7 @@ Mini-Topic: Euclidean Algorithm
 
     You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`external_files_and_sessions`, and :ref:`while_loops`
 
-Recall that the division algorithm states that for :math:`a,b \in
-\mathbb{Z}` with :math:`b \neq 0`, there exist a unique :math:`q,r \in
-\mathbb{Z}` such that :math:`a=bq+r` and :math:`0 \leq r< b`. This
-result is the stepping stone which leads us to the Euclidean Algorithm
-to calculate the gcd of two integers :math:`a` and :math:`b` with :math:`b \neq 0`. Here is an implementation of the Euclidean algorithm in Sage (:download:`euclid.sage <./euclid.sage>`) 
+Recall that for :math:`a,b \in \mathbb{Z}` with :math:`b \neq 0`, there always exists unique :math:`q,r \in \mathbb{Z}` such that :math:`a=bq+r` with :math:`0 \leq r< b`. With that in mind, we will use Sage to calculate the *gcd* of two integers using the *Euclidean Algorithm*. The following code is an implementation of the Euclidean Algorithm in Sage.  
 
 .. code-block:: python
 
@@ -33,29 +29,22 @@ to calculate the gcd of two integers :math:`a` and :math:`b` with :math:`b \neq 
 	        print (a,b,r)
 	# End euclid.sage
 				
-
 If you create a file ``euclid.sage`` containing the text above, then the output after loading the file is: ::
 
-	sage: a=15; b=4 sage: load euclid.sage (15, 4, 3) (4, 3, 1)
-	(3, 1, 0) sage: a=15; b=5 sage: load euclid.sage (15, 5, 0)
+  sage: a=15; b=4 
+  sage: load euclid.sage 
+  (15, 4, 3) (4, 3, 1) (3, 1, 0) 
+  sage: a=15; b=5 
+  sage: load euclid.sage 
+  (15, 5, 0)
 				
-
-In the first case, we see that the gcd was 1, while in the second the gcd was 5.
+In the first case, we see that the ``gcd`` was :math:`1`, while in the second the ``gcd`` was :math:`5`.
 
 **Exercises:**
 
-    #. Revise the while loop so that only the :math:`gcd(a,b)` and the total number of divisions (i.e. the number of steps through the algorithm) are printed. Compare the speed of this version of the algorithm with the built-in sage function :func:`.gcd` You will need to test large integers. By backwards substitution, the Euclidean algorithm addit only allows us to determine integers :math:`u` and :math:`v` such that :math:`au+bv=gcd(a,b)`. This is known as the extended Euclidean algorithm. We use the :func:`.xgcd` function to obtain the triple :math:`(gcd(a,b),u,v)` ::
+    #. Revise the loop in the ``euclid.sage`` so that only the gcd and the total number of divisions (i.e. the number of steps through the algorithm) are printed. Compare the speed of this version of the algorithm with the built-in Sage function :func:`.gcd` by using both functions on large integers.
 
-
-	 sage: d,u,v=xgcd(24,33)
-	 sage: 24*u+33*v
-	 3	
-	 sage: d
-	 3
-
-
-    #. Write your own extended Euclidean algorithm by revising the while loop above.
-
+    #. Write your own *Extended Euclidean Algorithm* by revising the loop in ``euclid.sage``. 
 
 
 .. _integers_modulo_n:
@@ -1396,29 +1385,39 @@ Sage returns a list of pairs :math:`(r,m)` where ``r`` is the root and ``m`` is 
   []
 
 
-Multivariable Polynomial Rings
+Multivariate Polynomial Rings
 ++++++++++++++++++++++++++++++
 
-::
+Defining a polynomial ring with more that one variable can be done easily by supplying an extra argument to :func:`.PolynomialRing` which specifies the number of variables desired. ::
 
   sage: R.<x,y,z> = PolynomialRing(QQ, 3)
   sage: p = -1/2*x - y*z - y + 8*z^2; p
   -y*z + 8*z^2 - 1/2*x - y
 
-::
+Unlike with univariate polynomials, there is not a single way that we can order the terms of a polynomial. So to specify things like the *degree* and the *leading term* of a polynomial we must first fix a rule for deciding when one term is larger than another.  If no argument is specified, Sage defaults to the *graded reverse lexicographic* ordering, sometimes referred to as *grevlex*, to make these decisions. To read more about *Monomial Orderings*, see this page_ on Wikipedia. 
+
+.. _page: http: http://en.wikipedia.org/wiki/Monomial_order   
+
+
+To access a list of monomials, terms without coefficients, you use the :meth:`.monomials` method. ::
+
   sage: p.monomials()
   [y*z, z^2, x, y]
 
-::
+These monomials are listed in descending order using the term ordering specified when the ring was constructed. 
+
+To access a list of *coefficients* we use the :meth:`.coefficients` method.::
+
   sage: p.coefficients()
   [-1, 8, -1/2, -1]
 
+The list of coefficients is provided in the same order as the monomial listing computed earlier. This means that we can create a list of *terms* of our polynomial by  :func:`.zip`-ing up the two lists. ::
 
-::
   sage: [ a*b for a,b in zip(p.coefficients(),p.monomials())]
   [-y*z, 8*z^2, -1/2*x, -y]
 
-::
+Often you want to compute information pertaining to the *largest*, or *leading*, term. We can compute the *lead coefficient*, *leading monomial*, and the *lead term* as follows: ::
+
   sage: p.lc()
   -1
   sage: 
@@ -1427,24 +1426,29 @@ Multivariable Polynomial Rings
   sage: p.lt()
   -y*z
 
-::
+We can also compute the polynomial's *total degree* using the :meth:`.total_degree` method. ::
+
   sage: p.total_degree()
   2
 
-::
+The exponents of each variable in each term, once again specified in descending order, is computed using the :meth:`.exponents` method. ::
+
   sage: p.exponents()
   [(0, 1, 1), (0, 0, 2), (1, 0, 0), (0, 1, 0)]
 
-::
+and the exponent of the lead term is computed by chaining together two of the methods just presented. ::
+
   sage: p.lm().exponents()
   [(0, 1, 1)]
 
-::
+To change the term ordering we must reconstruct both the ring itself and all of the polynomials with which we were working. The following code constructs a multivariate polynomial ring in :math:`x,y,` and :math:`z` using the *lexicographic* monomial ordering. ::
+
   sage: R.<x,y,z> = PolynomialRing(QQ,3,order='lex')
   sage: p = -1/2*x - y*z - y + 8*z^2; p
   -1/2*x - y*z - y + 8*z^2
 
-::
+Once the term order is changes, all of the methods discussed earlier, even how Sage displays the polynomial, take this into account. ::
+
   sage: p.lm()
   x
   sage: p.lc()
@@ -1454,7 +1458,8 @@ Multivariable Polynomial Rings
   sage: p.monomials()
   [x, y*z, y, z^2]
 
-::
+Note that even with the same monomial ordering, in this case the lexicographic ordering, the order of the  indeterminates themselves is important. We can change the relative order of each indeterminate by changing the order in which we specify them when we construct the polynomial ring. The variables are considered to be in *descending* order. ::
+
   sage: R.<z,y,x> = PolynomialRing(QQ,3,order='lex')
   sage:  p = -1/2*x - y*z - y + 8*z^2
   sage: p
@@ -1466,10 +1471,14 @@ Multivariable Polynomial Rings
   sage: p.lt()
   8*z^2
 
-::
+Note again how all of the methods automatically take the new ordering into account. 
+
+Finally we can *reduce* a polynomial modulo a list of polynomials using the :meth:`.mod` method. ::
+
   sage: r = -x^2 + 1/58*x*y - y + 1/2*z^2
   sage: r.mod([p,q])
   -238657765/29696*y^2 + 83193/14848*y*z^2 + 68345/14848*y - 1/1024*z^4 + 255/512*z^2 - 1/1024
+
 
 
 **Exercises:**
@@ -2113,8 +2122,6 @@ Now let us factor :math:`x^n - 1` again. This time over a non-prime field.::
 Mini-Topic: Idempotent Polynomials
 ++++++++++++++++++++++++++++++++++
 
-
-
 We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuting with :math:`\mathbb{F}_{4}`. ::
 
       sage: F.<a> = GF(4, 'a')
@@ -2188,13 +2195,13 @@ Other Codes
 
 Hamming Codes
 +++++++++++++
+Aenean a dapibus risus. Aliquam erat volutpat. Phasellus ullamcorper, lacus vel scelerisque luctus, elit enim egestas lacus, non lobortis velit dolor eget nisl. Morbi commodo massa eu arcu porta sed eleifend eros tempor. Morbi nibh quam, vehicula et fringilla eget, sodales ut magna. Sed iaculis cursus arcu, non varius lectus fringilla in. Suspendisse non euismod leo. Suspendisse vel quam erat, vitae sagittis nisl. Mauris at mi sit amet nulla scelerisque convallis et in mauris. Etiam in risus nibh, vel interdum urna. ::
 
-
-sage: C = HammingCode(3, F)
-sage: C.gen_mat()
-70 x 73 dense matrix over Finite Field in a of size 2^3
-sage: C.check_mat()
-3 x 73 dense matrix over Finite Field in a of size 2^3
+  sage: C = HammingCode(3, F)
+  sage: C.gen_mat()
+  70 x 73 dense matrix over Finite Field in a of size 2^3
+  sage: C.check_mat()
+  3 x 73 dense matrix over Finite Field in a of size 2^3
 
 .. seealso::
    http://en.wikipedia.org/wiki/Hamming_code
@@ -2203,6 +2210,8 @@ sage: C.check_mat()
 BCH Codes
 +++++++++
 
+Curabitur at faucibus urna. Nam nulla leo, tincidunt non venenatis sed, scelerisque sed eros. Integer eget leo nibh, volutpat rhoncus enim. Mauris blandit semper nunc, nec venenatis massa posuere sed. Mauris varius purus non lorem hendrerit non suscipit libero porta. Nunc lorem est, dignissim a viverra laoreet, tempus et metus. Nam rutrum semper quam, ut mollis libero vehicula sed.
+
 .. seealso::
    http://en.wikipedia.org/wiki/BCH_code
 
@@ -2210,16 +2219,34 @@ BCH Codes
 Binary Golay Codes
 ++++++++++++++++++
 
+Etiam sodales condimentum tellus, eget condimentum nunc imperdiet at. Vivamus et consectetur mauris. Duis auctor mollis mi a hendrerit. Suspendisse eget lobortis felis. Nunc porttitor, turpis vel congue suscipit, velit est interdum dolor, volutpat luctus dui felis sed tellus. Nulla velit eros, porta ut mattis vel, tempor id ligula. Suspendisse eleifend orci vel elit tristique non ultricies orci euismod. Ut feugiat, nisi in accumsan vulputate, magna orci pellentesque nulla, eu sagittis dolor dolor sit amet neque. 
+
+.. seealso::
+   http://en.wikipedia.org/wiki/Binary_Golay_code
+
 
 Reed Solomon Codes
 ++++++++++++++++++
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sem dui, rutrum a tincidunt in, tempus at nisl. Donec sit amet odio id enim ultricies condimentum. In sodales sem quis nibh bibendum vitae mattis quam cursus. Sed elementum odio eget nulla varius eget eleifend turpis blandit.
+
+.. seealso::
+   http://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction
 
 
-Torric Codes
+Toric Codes
 ++++++++++++
+
+Integer ac mi at tortor porta varius eget interdum turpis. Etiam ante nulla, posuere ac porttitor non, suscipit ac lorem. Cras a tortor sed risus blandit feugiat consequat ac mi. Morbi faucibus mi non erat dictum nec scelerisque magna interdum. Nulla ac nisl in lorem vulputate posuere sed vel nisi. Pellentesque arcu massa, porta eget tincidunt ac, fringilla et ante.
+
+.. seealso::
+   http://en.wikipedia.org/wiki/Toric_code
 
 
 Walsh Codes
 +++++++++++
 
+Pellentesque accumsan ornare convallis. Sed sapien erat, tincidunt vel bibendum a, feugiat vel nulla. Nam vel lectus nibh. Quisque facilisis, quam ut faucibus rutrum, nulla leo fermentum nibh, a varius turpis sapien non mauris. Mauris auctor malesuada viverra.
+
+.. seealso::
+   http://en.wikipedia.org/wiki/Walsh_code
