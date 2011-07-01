@@ -2210,7 +2210,59 @@ Aenean a dapibus risus. Aliquam erat volutpat. Phasellus ullamcorper, lacus vel 
 BCH Codes
 +++++++++
 
-Curabitur at faucibus urna. Nam nulla leo, tincidunt non venenatis sed, scelerisque sed eros. Integer eget leo nibh, volutpat rhoncus enim. Mauris blandit semper nunc, nec venenatis massa posuere sed. Mauris varius purus non lorem hendrerit non suscipit libero porta. Nunc lorem est, dignissim a viverra laoreet, tempus et metus. Nam rutrum semper quam, ut mollis libero vehicula sed.
+BCH codes, or Bose-Chaudhuri-Hockenghem codes, are a special class of the cyclic codes with 3 required parameters, :math:`n, \delta, F` and one optional one :math:`b`. Where :math:`n` is the length of the code, :math:`\delta` is called the *designed distance* and :math:`F` is a finite field of order :math:`q^{n}` where :math:`gcd(n, q) = 1`. 
+
+If :math:`b` is not provided then a default value of zero is used. For example the following commands will construct a BCH code of length :math:`n = 13` with :math:`\delta = 5` over :math:`F = \mathrm{GF}(9)`. ::
+
+  sage: F.<a> = GF(3^2,'a')
+  sage: C = BCHCode(13, 5, F)
+  sage: C                    
+  Linear code of length 13, dimension 6 over Finite Field in a of size 3^2
+
+We can compute the code's minimum distance using it's :meth:`.minimum_distance` method. ::
+
+  sage: C.minimum_distance()
+  6
+
+Since BCH codes are also linear, you can use Sage to compute the code's generating and check matrices. ::
+
+  sage: C.gen_mat()
+  [2 2 1 2 0 0 1 1 0 0 0 0 0]
+  [0 2 2 1 2 0 0 1 1 0 0 0 0]
+  [0 0 2 2 1 2 0 0 1 1 0 0 0]
+  [0 0 0 2 2 1 2 0 0 1 1 0 0]
+  [0 0 0 0 2 2 1 2 0 0 1 1 0]
+  [0 0 0 0 0 2 2 1 2 0 0 1 1]
+  sage: C.check_mat()
+  [1 0 0 0 0 0 0 1 2 1 2 2 2]
+  [0 1 0 0 0 0 0 1 0 0 0 1 1]
+  [0 0 1 0 0 0 0 2 2 2 1 1 2]
+  [0 0 0 1 0 0 0 1 1 0 1 0 0]
+  [0 0 0 0 1 0 0 0 1 1 0 1 0]
+  [0 0 0 0 0 1 0 0 0 1 1 0 1]
+  [0 0 0 0 0 0 1 2 1 2 2 2 1]
+
+We can also compute it's *dual* code. ::
+
+  sage: Cp = C.dual_code(); Cp
+  Linear code of length 13, dimension 7 over Finite Field in a of size 3^2 
+  sage: Cp.gen_mat()
+  [1 0 0 0 0 0 0 1 2 1 2 2 2]
+  [0 1 0 0 0 0 0 1 0 0 0 1 1]
+  [0 0 1 0 0 0 0 2 2 2 1 1 2]
+  [0 0 0 1 0 0 0 1 1 0 1 0 0]
+  [0 0 0 0 1 0 0 0 1 1 0 1 0]
+  [0 0 0 0 0 1 0 0 0 1 1 0 1]
+  [0 0 0 0 0 0 1 2 1 2 2 2 1]
+  sage: Cp.check_mat()
+  [1 0 0 0 0 0 2 2 1 2 0 0 1]
+  [0 1 0 0 0 0 1 0 1 2 2 0 2]
+  [0 0 1 0 0 0 2 0 1 0 2 2 1]
+  [0 0 0 1 0 0 1 0 2 2 0 2 1]
+  [0 0 0 0 1 0 1 2 2 0 2 0 1]
+  [0 0 0 0 0 1 1 2 1 0 0 2 2]
+
+ 
 
 .. seealso::
    http://en.wikipedia.org/wiki/BCH_code
