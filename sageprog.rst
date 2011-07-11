@@ -1240,3 +1240,115 @@ While this initial example shows the use of a couple of common interactive contr
 The example here only scratches the surface of what is possible with Sage interacts. For a, growing, list of examples of interacts see this page on the sage wiki_.
 
 .. _wiki: http://wiki.sagemath.org/interact/
+
+
+Using other systems from Sage
+--------------------------------
+
+
+
+GAP
++++
+
+For this portion of the tutorial we are going to show how to use GAP from within a Sage session. The commands here follow closely with the `Groups and Homomorphisms`_  section of the GAP tutorial. A reader who is interested in learning more about the capabilities of this system shoud consult the `Gap Project's`_ main website. 
+
+
+.. _`Groups and Homomorphisms`: http://www.gap-system.org/Manuals/doc/htm/tut/CHAP005.htm 
+.. _`Gap Project's`: http://www.gap-system.org
+
+
+Sage will pass a command to GAP by using :func:`.gap` with the command as a *string*. Sage will begin a new GAP session if one hasn't already been started. The following example constructs the *symmetric group* on eight points in GAP.  ::
+
+  sage: s8 = gap('Group( (1,2), (1,2,3,4,5,6,7,8) )')
+  sage: s8
+  Group( [ (1,2), (1,2,3,4,5,6,7,8) ] )
+
+Note that ``s8`` has *GAP* as a parent. ::
+
+  sage: parent(s8)
+  Gap
+
+The Sage project has already developed a rather complete *interface* to the GAP system where the commands in GAP have been translated to *methods* in Sage. For example, to compute the *Derived Subroup* of :math:`S_8`, which in this case is the *Alternating Subgroup*, we use the :meth:`.DerivedSubgroup` method. ::
+
+  sage: a8 = s8.DerivedSubgroup(); a8
+  Group( [ (1,2,3), (2,3,4), (2,4)(3,5), (2,6,4), (2,4)(5,7), (2,8,6,4)(3,5) ] )
+  sage: a8.Size(); a8.IsAbelian(); a8.IsPerfect()
+  20160
+  false
+  true
+
+Notice how the output of `s8.DerivedSubgroup()` is the same as the GAP command `DerivedSubgroup(s8)`. This is the common covention in the GAP interface as written. When a command requres two arguments, say the group and and an additional parameter, the additional parameter is given as an argument to the method. For example the GAP command `SylowSubgroup(a8,2)` computes the maximal 2-subgroup of :math:`A_8`. The following Sage code does the same, and uses GAP to compute it's size.  ::
+  sage: sy12 = a8.SylowSubgroup(2); sy12.Size()
+  64
+
+In the same vein, we can use GAP to compute the *normalizer's* and *centralizers* of these groups. ::
+
+  sage: a8.Normalizer(sy12)
+  Group( [ (1,6)(2,4), (1,6)(5,8), (2,4)(3,7), (2,8)(4,5), (1,7)(2,8)(3,6)(4,5),
+    (1,8)(2,7)(3,4)(5,6) ] )
+  sage: a8.Normalizer(sy12) == sy12
+  True
+  sage: cent = a8.Centralizer(sy12.Centre()); 
+  sage: cent
+  Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), (3,5)(7,8), (3,7)(5,8), (2,3)(4,7), 
+    (1,2)(4,6) ] )
+  sage: cent.Size()
+  192
+
+
+Gap itself has commands which can maniputale lists of objects. In this example we first compute the *derived series* of `cent` and then compute the size of each of these subgroups using GAP's :func:`List` command. ::
+
+  sage: cent.DerivedSeries(); cent.DerivedSeries().List('Size')
+  [ Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), (3,5)(7,8), (3,7)(5,8), (2,3)(4,7), 
+	(1,2)(4,6) ] ), 
+    Group( [ (2,4)(3,7), ( 1, 3)( 2, 8)( 4, 5)( 6, 7), ( 1, 7, 4)( 2, 6, 3) ] ),
+    Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), ( 1, 6)( 3, 7), 
+	( 1, 4)( 2, 6)( 3, 5)( 7, 8), ( 1, 7)( 2, 5)( 3, 6)( 4, 8), 
+	( 1, 4, 6, 2)( 3, 8, 7, 5) ] ), 
+    Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8) ] ), Group( () ) ]
+  [ 192, 96, 32, 2, 1 ]
+
+Since the GAP command constructs a full-fledged Sage object we can so the same in a more Sage-y manner by using a list comprehension. ::
+
+  sage: [ g.Size() for g in cent.DerivedSeries() ] 
+  [192, 96, 32, 2, 1]
+
+To construct the same group as a native Sage group we first get a list of the generating objects and then pass them to the usual group contructing command. ::
+
+  sage: gens = s8.GeneratorsOfGroup(); gens
+  [ (1,2), (1,2,3,4,5,6,7,8) ]
+  sage: SG = PermutationGroup(gens); SG
+  Permutation Group with generators [(1,2), (1,2,3,4,5,6,7,8)]
+  sage: parent(SG)
+  <class 'sage.groups.perm_gps.permgroup.PermutationGroup_generic_with_category'>
+
+Going from a Sage group to a GAP one is even easier and can be done by using the :func:`gap` command. ::
+  sage: gap(SG)             
+  Group( [ (1,2), (1,2,3,4,5,6,7,8) ] )
+  sage: parent(gap(SG))
+  Gap
+
+
+
+
+.. seealso:: 
+   http://www.gap-system.org/Manuals/doc/htm/index.htm
+
+Pari/GP
++++++++
+
+
+Singular
+++++++++
+
+
+The R Statistical Language
+++++++++++++++++++++++++++
+
+
+
+Using Python packages in Sage
++++++++++++++++++++++++++++++
+
+
+
