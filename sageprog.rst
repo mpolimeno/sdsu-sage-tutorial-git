@@ -1250,25 +1250,23 @@ Using other systems from Sage
 GAP
 +++
 
-For this portion of the tutorial we are going to show how to use GAP from within a Sage session. The commands here follow closely with the `Groups and Homomorphisms`_  section of the GAP tutorial. A reader who is interested in learning more about the capabilities of this system shoud consult the `Gap Project's`_ main website. 
+For this portion of the tutorial we are going to show how to use GAP from within a Sage session. The commands here follow closely with the `Groups and Homomorphisms`__  section of the GAP tutorial. A reader who is interested in learning more about the capabilities of this system shoud consult the `Gap Project's`__ main website. 
 
+.. __: http://www.gap-system.org/Manuals/doc/htm/tut/CHAP005.htm 
+.. __: http://www.gap-system.org
 
-.. _`Groups and Homomorphisms`: http://www.gap-system.org/Manuals/doc/htm/tut/CHAP005.htm 
-.. _`Gap Project's`: http://www.gap-system.org
-
-
-Sage will pass a command to GAP by using :func:`.gap` with the command as a *string*. Sage will begin a new GAP session if one hasn't already been started. The following example constructs the *symmetric group* on eight points in GAP.  ::
+You can pass a command to GAP by using :func:`.gap` with the command as a *string*. The following example constructs the *symmetric group* on eight points using GAP.  ::
 
   sage: s8 = gap('Group( (1,2), (1,2,3,4,5,6,7,8) )')
   sage: s8
   Group( [ (1,2), (1,2,3,4,5,6,7,8) ] )
 
-Note that ``s8`` has *GAP* as a parent. ::
+``s8`` has *GAP* as a parent. ::
 
   sage: parent(s8)
   Gap
 
-The Sage project has already developed a rather complete *interface* to the GAP system where the commands in GAP have been translated to *methods* in Sage. For example, to compute the *Derived Subroup* of :math:`S_8`, which in this case is the *Alternating Subgroup*, we use the :meth:`.DerivedSubgroup` method. ::
+The  *interface* to the GAP system translates the commands in GAP to *methods* in Sage. For example, to compute the *Derived Subgroup* of :math:`S_8` you use the :meth:`.DerivedSubgroup` method. ::
 
   sage: a8 = s8.DerivedSubgroup(); a8
   Group( [ (1,2,3), (2,3,4), (2,4)(3,5), (2,6,4), (2,4)(5,7), (2,8,6,4)(3,5) ] )
@@ -1277,7 +1275,8 @@ The Sage project has already developed a rather complete *interface* to the GAP 
   false
   true
 
-Notice how the output of `s8.DerivedSubgroup()` is the same as the GAP command `DerivedSubgroup(s8)`. This is the common covention in the GAP interface as written. When a command requres two arguments, say the group and and an additional parameter, the additional parameter is given as an argument to the method. For example the GAP command `SylowSubgroup(a8,2)` computes the maximal 2-subgroup of :math:`A_8`. The following Sage code does the same, and uses GAP to compute it's size.  ::
+The output of `s8.DerivedSubgroup()` is identical to the output of the GAP command `DerivedSubgroup(s8)` and this is the common convention when the command has one argument. When it requires two, say the group and an additional parameter, the additional parameter is given as an argument to the method. For example, the GAP command `SylowSubgroup(a8,2)` computes the maximal 2-subgroup of :math:`A_8`. The following Sage code does the same, then uses GAP to compute it's size.  ::
+
   sage: sy12 = a8.SylowSubgroup(2); sy12.Size()
   64
 
@@ -1294,7 +1293,6 @@ In the same vein, we can use GAP to compute the *normalizer's* and *centralizers
     (1,2)(4,6) ] )
   sage: cent.Size()
   192
-
 
 Gap itself has commands which can maniputale lists of objects. In this example we first compute the *derived series* of `cent` and then compute the size of each of these subgroups using GAP's :func:`List` command. ::
 
@@ -1313,7 +1311,7 @@ Since the GAP command constructs a full-fledged Sage object we can so the same i
   sage: [ g.Size() for g in cent.DerivedSeries() ] 
   [192, 96, 32, 2, 1]
 
-To construct the same group as a native Sage group we first get a list of the generating objects and then pass them to the usual group contructing command. ::
+To convert a GAP group to a native Sage one we first extract a list of generators. Then feed that list to the usual group constructor. ::
 
   sage: gens = s8.GeneratorsOfGroup(); gens
   [ (1,2), (1,2,3,4,5,6,7,8) ]
@@ -1322,29 +1320,125 @@ To construct the same group as a native Sage group we first get a list of the ge
   sage: parent(SG)
   <class 'sage.groups.perm_gps.permgroup.PermutationGroup_generic_with_category'>
 
-Going from a Sage group to a GAP one is even easier and can be done by using the :func:`gap` command. ::
+Going from a Sage group to a GAP one is even easier. ::
+
   sage: gap(SG)             
   Group( [ (1,2), (1,2,3,4,5,6,7,8) ] )
   sage: parent(gap(SG))
   Gap
 
+From time to time you will want to just use GAP directly without using the interface. When working from the command line, the :func:`gap_console` command does just this.  ::
 
+  sage: gap_console()
+  GAP4, Version: 4.4.12 of 17-Dec-2008, x86_64-unknown-linux-gnu-gcc
+  gap> 
+
+From which we can exit by typing ``quit;`` at the gap prompt. ::
+ 
+  gap> quit;
+  sage: 
+
+If the reader is using the notebook then using GAP directly is even easier. It is done by just selecting GAP from a drop down menu.  
+
+.. image:: pics/gap_example.png
+   :alt: Using GAP directly from the Sage Notebook
+   :height: 525px
+   :width: 800px
+
+Now the Sage notebook acts as a web interface to the GAP system. 
 
 
 .. seealso:: 
    http://www.gap-system.org/Manuals/doc/htm/index.htm
 
-Pari/GP
-+++++++
-
-
 Singular
 ++++++++
 
+As with the GAP interface, the Sage interface to Singular substitutes the language commands with *methods* in Sage. For example, the following code in Singular: ::
 
-The R Statistical Language
-++++++++++++++++++++++++++
+  > ring R = 0,(x,y,z),lp; 
+  > R;
+  //   characteristic : 0
+  //   number of vars : 3
+  //        block   1 : ordering lp
+  //                  : names    x y z
+  //        block   2 : ordering C
 
+Constructs a polynomial ring in three variables; x,y and z over the field of characteristic 0 using the *lexicographic* term ordering. To do the same within Sage we use the :meth:`ring` method of the :obj:`singular` object. ::
+
+  sage: R = singular.ring('0','(x,y,z)','lp')
+  sage: R
+  //   characteristic : 0
+  //   number of vars : 3
+  //        block   1 : ordering lp
+  //                  : names    x y z
+  //        block   2 : ordering C
+
+Since much of the language that Singular uses is not valid in Sage the quotations around the arguments are important.
+
+Polynomials are constructed in this ring by using the :meth:`poly` method.::
+
+  sage: p = singular.poly('x^2 * y^2 - 1')
+  sage: q = singular.poly('x^2 * y^2 - z')
+  sage: singular.ideal([p,q])
+  x^2*y^2-1,
+  x^2*y^2-z
+
+
+To construct the ideal (in R) generated by those polynomials and a Groebner basis it you enter the following. ::
+
+  sage: I = singular.ideal([p,q])
+  sage: I.groebner()
+  z-1,
+  x^2*y^2-z
+
+Reduction modulo this ideal is accomplished using the :meth:`.reduce` method. ::
+
+  sage: r = singular.poly('x^3 - x^2 * y^2 - x^2 * z  + x')
+  sage: singular.reduce(p,I)
+  z-1
+  sage: singular.reduce(q,I)
+  0
+  sage: singular.reduce(r,I)
+  x^3-x^2*z+x-z
+
+
+and if you would like this reduction done using a Groebner basis, we just combine the methods discussed previously.::
+
+  sage: singular.reduce(q,I.groebner())
+  0
+  sage: singular.reduce(p,I.groebner())
+  0
+  sage: singular.reduce(r,I.groebner())
+  x^3-x^2+x-1
+
+
+The quotations are not necessary when passing a Singular object as in the last few examples as there is no ambiguity. 
+
+Finally a task that Singular excels at is the factorization of multivariate polynomials. This is done using the :meth:`factorize` method. ::
+
+  sage: p.factorize()
+  [1]:
+     _[1]=1
+     _[2]=x*y-1
+     _[3]=x*y+1
+  [2]:
+     1,1,1
+  sage: q.factorize()
+  [1]:
+     _[1]=1
+     _[2]=x^2*y^2-z
+  [2]:
+     1,1
+  sage: r.factorize()
+  [1]:
+     _[1]=-1
+     _[2]=x
+     _[3]=-x^2+x*y^2+x*z-1
+  [2]:
+     1,1,1
+
+.. seealso:: http://www.singular.uni-kl.de
 
 
 Using Python packages in Sage
