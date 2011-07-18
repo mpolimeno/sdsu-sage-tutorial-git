@@ -1896,7 +1896,7 @@ Coding Theory
 Linear Codes
 ------------
 
-A *linear code* is just a finite-dimensional vector space usually defined over a finite field. To construct a linear code in Sage we must first define  a finite field and a matrix which will generate this vector space. ::
+A *linear code* is just a finite-dimensional vector space commonly defined over a finite field. To construct a linear code in Sage we first define a finite field and a matrix over this field whose range will define this vector space. ::
 
   sage: F = GF(2)
   sage: G = matrix(F, [(0,1,0,1,0),(0,1,1,1,0),(0,0,1,0,1),(0,1,0,0,1)]); G 
@@ -1905,19 +1905,19 @@ A *linear code* is just a finite-dimensional vector space usually defined over a
   [0 0 1 0 1]
   [0 1 0 0 1]
 
-We construct the code by using the :func:`LinearCode` command. ::
+The code itself is constructed by the :func:`LinearCode` command. ::
 
   sage: C = LinearCode(G); C
   Linear code of length 5, dimension 4 over Finite Field of size 2
 
-While the *length* and *dimension* are displayed in the object's *description*, we can also obtain these properties of ``C`` using the code's :meth:`.length` and :meth:`.dimension` methods. ::
+While the *length* and *dimension* of the code are displayed in the object's *description*, you can also obtain these properties at anytime using the code's :meth:`.length` and :meth:`.dimension` methods. ::
 
   sage: C.length()
   5
   sage: C.dimension()
   4
 
-Given two code words, we can compute their *Hamming Weight* and *Distance* both using the :func:`hamming_weight` function. ::
+Given two code words, we can compute their *Hamming Weight* and *Distance* both by using the :func:`hamming_weight` function. ::
 
   sage: w1 = vector(F, (0,1,0,1,0)); w1
   (0, 1, 0, 1, 0)
@@ -1930,23 +1930,24 @@ Given two code words, we can compute their *Hamming Weight* and *Distance* both 
   sage: hamming_weight(w1 - w2)
   3
 
-The *minimum distance* of ``C`` can be computed by using the code's :meth:`.minimum_distance` method. ::
+The *minimum distance* of ``C`` can be computed by using the :meth:`.minimum_distance` method. ::
 
   sage: C.minimum_distance()
   1
 
-Sage can also compute the *distribution* of the weights for the code. ::
+Sage can also compute the *distribution* of weights for the code. ::
 
   sage: C.weight_distribution()
   [1, 4, 6, 4, 1, 0]
 
 Where the value listed at index ``i`` of the list, starting with zero and ending with the length of the code, is the number of codewords with that weight. 
+
 Related to the weight distribution is the *weight enumerator* polynomial, which you compute using the code's :meth:`.weight_enumerator` method. ::
 
   sage: C.weight_enumerator()
   x^5 + 4*x^4*y + 6*x^3*y^2 + 4*x^2*y^3 + x*y^4
 
-The *generating* and *check* matrices can be computed using the code's :meth:`gen_matrix` and :meth:`check_matrix` methods. ::
+The *generating* and *check* matrices are computed using the :meth:`gen_mat` and :meth:`check_mat` methods. ::
 
   sage: C.gen_mat()
   [0 1 0 1 0]
@@ -1956,7 +1957,7 @@ The *generating* and *check* matrices can be computed using the code's :meth:`ge
   sage: C.check_mat()
   [1 0 0 0 0]
 
-The *systematic* form of the generating matrix can be computed using the code's :meth:`gen_mat_systematic` method. ::
+The *systematic* form of the generating matrix is computed using :meth:`gen_mat_systematic`. ::
 
   sage: C.gen_mat_systematic()
   [0 1 0 0 0]
@@ -1964,9 +1965,7 @@ The *systematic* form of the generating matrix can be computed using the code's 
   [0 0 0 1 0]
   [0 0 0 0 1]
 
-Sage also allow for us to *extend* and *puncture* our codes. These are standard methods for constructing new codes from older ones. 
-
-The *extended code* is computed as follows: ; ::
+Sage can both *extend* and *puncture* our code. The *extended code* is computed as follows:  ::
 
   sage: Cx = C.extended_code(); Cx
   Linear code of length 6, dimension 4 over Finite Field of size 2
@@ -1979,7 +1978,7 @@ The *extended code* is computed as follows: ; ::
   [1 0 0 0 0 0]
   [0 1 1 1 1 1]
 
-The *punctured* code is computed by giving the code's :meth:`.punctured` method a list of coordinates to delete. The following example constructs the code that is given when the 1st and 3rd coordinate from every code word in ``C`` are deleted. Note that unlike vectors, lists and matrices the 1st column is indexed by 1 and not 0. ::
+The *punctured* code is computed by supplying the code's :meth:`.punctured` method a list of coordinates in which to delete. The following commands construct the code that results when the 1st and 3rd coordinate from every code word in ``C`` are deleted. Note that unlike vectors, lists and matrices the 1st column is indexed by 1 and not 0 when puncturing a code. ::
 
   sage: Cp = C.punctured([1,3]); Cp
   Linear code of length 3, dimension 2 over Finite Field of size 2
@@ -1989,7 +1988,7 @@ The *punctured* code is computed by giving the code's :meth:`.punctured` method 
   sage: Cp.check_mat()
   [1 0 0]
 
-You can also construct the code which is *dual* to ``C``. ::
+Sage can also compute the *dual* of ``C``. ::
 
   sage: Cd = C.dual_code(); Cd
   Linear code of length 5, dimension 1 over Finite Field of size 2
@@ -2001,6 +2000,20 @@ You can also construct the code which is *dual* to ``C``. ::
   [0 0 0 1 0]
   [0 0 0 0 1]
 
+And finally Sage can *decode* a received vector. The following simulates a communications channel; We begin with a code word, introduce an error and then correct this error by *decoding* the received message. ::
+
+  sage: wrd = vector(F,(0,0,0,0,1))
+  sage: err = vector(F,(0,0,1,0,0))
+  sage: msg = wrd + err; msg 
+  (0, 0, 1, 0, 1)
+  sage: C.decode(msg)
+  (0, 0, 0, 0, 1)
+  sage: C.decode(msg) == wrd
+  True
+
+It should be noted that since the above code has a minimum distance of only 1 that decoding will not always produce the code word that you may have expected. 
+
+These are only some of the commands that Sage offers for computing and working with linear codes. There is much more information on the following web sites:
 
 .. seealso::
 
@@ -2012,22 +2025,21 @@ You can also construct the code which is *dual* to ``C``. ::
 
 Cyclic Codes
 ------------
-In this section we will use Sage to construct a Cyclic Code and compute it's *generating* and *parity check* matrices. 
 
-We will begin by constructing a cyclic code of length :math:`3` over :math:`\mathbb{F}_2`. The first thing you will do is factor :math:`x^{3} - 1` to see which polynomials can be used as *generating* polynomials. ::
+To construct a cyclic code of length :math:`3` over :math:`\mathbb{F}_2` we first need a *generating polynomial*, which can be any *irreducible* factor of :math:`x^{3} - 1`. A list of irreducible factors is computed using the :func:`.factor` command.  ::
 
   sage: P.<x> = PolynomialRing(GF(2),'x')
   sage: factor(x^3 -1 )
   (x + 1) * (x^2 + x + 1)
 
-This tells you that there are 2 choices for non-trivial generating polynomials.  To construct the code generated by :math:`g(x) = x + 1` we enter the following:  ::
+The output above tells you that there are 2 choices for non-trivial generating polynomials. The following commands will construct the code generated by :math:`g(x) = x + 1`.  ::
 
   sage: g = x + 1       
   sage: C = CyclicCode(3,g) 
   sage: C.list()
   [(0, 0, 0), (1, 0, 1), (0, 1, 1), (1, 1, 0)]
 
-The code :math:`C` is a two dimensional vector space over :math:`\mathbb{F}_2`. Using the :meth:`.gen_mat` method, you can construct the code's *generating matrix*. Sage can also compute this matrix in *systematic* form using the :meth:`gen_math_systematic` method. ::
+Cyclic codes are a special type of linear code. So the commands that you worked with in the prior section all work in the same way. For example, the generating matrix is computed, in the usual and systematic forms, as follows:  ::
 
   sage: G = C.gen_mat(); G
   [1 1 0]
@@ -2036,7 +2048,7 @@ The code :math:`C` is a two dimensional vector space over :math:`\mathbb{F}_2`. 
   [1 0 1]
   [0 1 1]
 
-Just to verify that this is the correct matrix we will see if the image of th linear transformation that it defines from :math:`\mathbb{F}_{2}^2 \rightarrow \mathbb{F}_{2}^3` is :math:`C` ::
+Just to verify that this is the generating matrix, and to practice working with matrices and vectors,  we will see if the image of :math:`G` spans the code. ::
 
   sage: vector(GF(2),[0,0])*G
   (0,0,0) 
@@ -2047,12 +2059,12 @@ Just to verify that this is the correct matrix we will see if the image of th li
   sage: vector(GF(2),[0,1])*G
   (0, 1, 1)
 
-Sage can also compute a *parity check* matrix of :math:`C` by using the code's :meth:`.check_mat` method. ::
+Sage can also compute a *parity check* matrix of :math:`C` using the code's :meth:`.check_mat` method. ::
 
       sage: H = C.check_mat()
       [1 1 1]
 
-Verifying that ``H`` is the *check matrix* for :math:`C` is straightforward. ::
+Verifying that ``H`` is a *check matrix* for :math:`C` is straightforward. ::
 
   sage: H*vector(GF(2),[0,1,1])
   (0)
@@ -2061,8 +2073,7 @@ Verifying that ``H`` is the *check matrix* for :math:`C` is straightforward. ::
   sage: H*vector(GF(2),[1,0,0])
   (1)
 
-You can also compute the *dual c
-ode* and it's generating and parity check matrices. ::
+You can also compute the *dual code* and it's generating and parity check matrices. ::
 
   sage: Cp = C.dual_code() 
   sage: Cp.gen_mat()
@@ -2071,9 +2082,10 @@ ode* and it's generating and parity check matrices. ::
   [1 0 1]
   [0 1 1]
 
+
 .. _mt_roots_of_unity:
 
-Mini-Topic: Factoring :math:`x^n -1`
+Mini-Tangent: Factoring :math:`x^n -1`
 ++++++++++++++++++++++++++++++++++++
 
 The smallest field containing :math:`\mathbb{F}_{q}` and containing the roots of :math:`x^n - 1` is :math:`GF(q^t)` where :math:`t` is the order of :math:`q` in :math:`\mathbb{Z} \bmod{n}`.
@@ -2119,7 +2131,7 @@ Now let us factor :math:`x^n - 1` again. This time over a non-prime field.::
 
 .. cyclic_codes_idempotents
 
-Mini-Topic: Idempotent Polynomials
+Mini-Tangent: Idempotent Polynomials
 ++++++++++++++++++++++++++++++++++
 
 We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuting with :math:`\mathbb{F}_{4}`. ::
