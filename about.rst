@@ -15,14 +15,14 @@ How to use this tutorial
 
 This tutorial is divided into four main parts. This part, *About this Tutorial*,  is intended to introduce  readers to the basic structure of the tutorial and how to contribute to the project if they desire.  
 
-The second part *Sage as a Calculator* will get the reader up to speed
-with topics such as how to do arithmetic, evaluate functions, create simple graphs, and do some basic computations like integrals and derivatives. We call this section *Sage as a calculator* because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
+The second part, *Sage as a Calculator*, will get the reader up to speed
+with topics such as how to do arithmetic, evaluate functions, create simple graphs, and do some basic computations like integrals and derivatives. We call this section *Sage as a Calculator* because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
-*Programming in Sage*  begins to introduce the reader to some of the more *subtle* issues about how Sage works:  how Sage handles numbers, how to define and use variables and functions; How to manipulate lists, strings, and sets; and a practical introduction to how Sage deals with the *universes* and *coercion*. 
+*Programming in Sage*  begins to introduce the reader to some of the more *subtle* issues about how Sage works:  how Sage handles numbers, how to define and use variables and functions; how to manipulate lists, strings, and sets; and how Sage deals with the *universes* and *coercion*. 
 
 The final part, *Mathematical Structures*,  introduces the topics that one finds in college level curriculum: number theory, groups, rings, fields, etc. 
  
-Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along with as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
+Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along  as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
 
 While the tutorial mostly progresses in a linear fashion--material covered early is then used later--we still include at the beginning of each section a list of topics which you should understand before proceeding. This list follows the text "You should be familiar with." and by clicking one of these links you will be taken to the relevant portion of the tutorial. We have also tried to include links to further information and other on-line references, these will follow the "**See also:**" text. 
 
@@ -53,33 +53,6 @@ Installing Sage
 
 The Sage web-site already contains detailed instructions for installing sage on all popular operating systems. So we will not duplicate that effort but rather just point the reader to the sage project's `official installation guide <http://www.sagemath.org/doc/installation/>`_.
  
-.. _contributing: 
-
-Contributing to the Tutorial
-============================
-
-Additions to this tutorial are encouraged as are suggestions for additional topics for inclusion.
-
-All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_ which is written in the `Python Programming Language <http://www.python.org>`_ We are excited to see any changes that you make so let `us <monarres@rohan.sdsu.edu>`_ know of any new material that you may add. We want for this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
-
-The content of the this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_ which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
-
-There are  four parts to the tutorial: "How to use this tutorial" has basic instructions about using and amending the tutorial, and the others have mathematical content. "Sage as a Calculator" is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
-
-"Programming in Sage" eases the transition to higher level mathematics by treating topics that relate to the interface between mathematical concepts and computational issues. This chapter covers basic structures like: lists, sets and strings; the universe for a number or variable, rational numbers versus real numbers (of specificied precision); programming essentials like booleans, conditionals and iterative computation; file handlingand data handling; etc.
-
-"Mathematical Structures" is written at a more sophisticated level that the earlier material, since the intended audience is college students taking upper division math courses.  The emphasis is on learning about specific mathematical structures that have a Sage class associated to them.
-
-.. seealso::
-   #. `reStructured Text Primer <http://sphinx.pocoo.org/rest.html>`_
-
-.. _credits_and_license:
-
-Credits and License
--------------------
-
-The content and code for this tutorial were written by David Monarres and Ryan Rosenbaum under the supervision of Mike O'Sullivan. The work was supported by San Diego State University's Presidential Leadership Fund and is licensed under the `Creative Commons Attribution-ShareAlike 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are free to share and to remix, but attribution should be given to the original funder and creators.
-
 .. _tips:
 
 Helpful Tips
@@ -231,3 +204,30 @@ What you see is an overlay  of all the completions that you can scroll through u
 	:height: 525px
 
 To exit the help just click anywhere on the screen.
+
+.. _contributing: 
+
+Contributing to the Tutorial
+============================
+
+Additions to this tutorial are encouraged as are suggestions for additional topics for inclusion.
+
+All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_ which is written in the `Python Programming Language <http://www.python.org>`_ We are excited to see any changes that you make so let `us <monarres@rohan.sdsu.edu>`_ know of any new material that you may add. We want for this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
+
+The content of the this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_ which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
+
+There are  four parts to the tutorial: "How to use this tutorial" has basic instructions about using and amending the tutorial, and the others have mathematical content. "Sage as a Calculator" is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
+
+"Programming in Sage" eases the transition to higher level mathematics by treating topics that relate to the interface between mathematical concepts and computational issues. This chapter covers basic structures like: lists, sets and strings; the universe for a number or variable, rational numbers versus real numbers (of specificied precision); programming essentials like booleans, conditionals and iterative computation; file handling and data handling; etc.
+
+"Mathematical Structures" is written at a more sophisticated level than the earlier material, since the intended audience is college students taking upper division math courses.  The emphasis is on learning about specific mathematical structures that have a Sage class associated to them.
+
+.. seealso::
+   #. `reStructured Text Primer <http://sphinx.pocoo.org/rest.html>`_
+
+.. _credits_and_license:
+
+Credits and License
+-------------------
+
+The content and code for this tutorial were written by David Monarres and Ryan Rosenbaum under the supervision of Mike O'Sullivan. The work was supported by San Diego State University's Presidential Leadership Fund and is licensed under the `Creative Commons Attribution-ShareAlike 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are free to share and to remix, but attribution should be given to the original funder and creators.

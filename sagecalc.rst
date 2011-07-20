@@ -4,14 +4,14 @@
 
 .. _arithmetic_and_functions:
 
-In this chapter we will examine all of the commands that will allow you to use Sage much like a graphing calculator. This involves working with standard arithmetic, polynomials, trigonometric functions, and some basic work with graphics and solving equations.
+This part of the tutorial will examine all of the commands that will allow you to use Sage much like a graphing calculator. This includes working with standard arithmetic, polynomials, trigonometric functions, and some basic work with graphics and solving equations.
 
 .. _basic_arithmetic:
 
 Basic Arithmetic
 ================
 
-The basic arithmetic operators are ``+``, ``-``, ``*``, and ``/`` for addition, subtraction, multiplication, division and ``^`` is used for exponents. ::
+The basic arithmetic operators are ``+``, ``-``, ``*``, and ``/`` for addition, subtraction, multiplication and division, while ``^`` is used for exponents. ::
 
   sage: 1+1
   2
@@ -65,7 +65,6 @@ There is a bit of a subtlety we must deal with when dividing two integers; wheth
    #. Compute a decimal approximation of :math:`\sqrt{2}`
    #. Use sage to compute `(-9)^(1/2)`. Describe the output. 
 
-Now that we have all of the basic arithmetic established we are ready move onto the next section.
 
 
 .. _division_and_factoring:
@@ -110,7 +109,7 @@ When the divisors of an integer are only :math:`1` and itself then we say that t
 	sage: 153.is_prime()
 	False
 				
-Notice the parentheses around ``2^19 -1`` in the first example. They are important to the order of operations in Sage, and if they are not included then Sage will compute something very different than we intended. Try evaluating ``2^19-1.is_prime()`` and notice the result, but when in doubt the judicious use of *parenthesis* is encouraged. 
+Notice the parentheses around ``2^19 -1`` in the first example. They are important to the order of operations in Sage, and if they are not included then Sage will compute something very different than we intended. Try evaluating ``2^19-1.is_prime()`` and notice the result.  When in doubt the judicious use of *parenthesis* is encouraged. 
 
 Another concept that is related to divisors are the prime factorization of an integer. We use the :meth:`.factor` method to compute the *prime factorization* of an integer. ::
 
@@ -173,7 +172,7 @@ The :func:`.max` and :func:`.min` commands return the largest and smallest of a 
 We may input any number of arguments into the max and min functions. 
 
 In Sage we use the :func:`abs` command to compute the *absolute value* of
-a real number ::
+a real number. ::
 
 	sage: abs(-10)
 	10
@@ -332,10 +331,10 @@ Variables, Equations and Inequalities
 
     You should be familiar with ":ref:`basic_arithmetic`" and ":ref:`basic_functions_and_constants`"
 
-When we use the term 'variable', we can be referring to a couple of
-different things. In computer programming, a 'variable' is a space in
+The term 'variable',  can have several different meanings.
+In computer programming, a 'variable' is a space in
 memory used to store and retrieve a certain piece of information. In
-mathematics we use the term to describe a indeterminate placeholder,
+mathematics, a variable such as :math:`x` is a quantity with indeterminate value.
 or symbol, which we can manipulate in order to gain insight on a
 problem. This is the type of 'variable' in which we are writing in
 this section. Sage has special facilities for dealing with these
@@ -360,7 +359,7 @@ cause Sage to complain about a :exc:`.NameError`. ::
 	...
 	NameError: name 'u' is not defined
 				
-We can un-declare a symbolic variable by using the :func:`.restore`
+We can un-declare a symbolic variable, like the variable :func:`phi` defined above,  by using the :func:`.restore`
 command.::
 
 	sage: restore('phi')
@@ -401,14 +400,14 @@ Equations can have multiple solutions, Sage just returns all solutions found as 
 				
 
 The solution set of certain inequalities consist of the union and
-intersection of open intervals ::
+intersection of open intervals. ::
 
 	sage: solve( x^2 - 6 >= 3, x )
 	[[x <= -3], [x >= 3]]
 	sage: solve( x^2 - 6 <= 3, x )
 	[[x >= -3, x <= 3]]
 				
-Small systems of equations can be solved also and can result in either
+Small systems of equations can be also solved. The result may be  either
 a unique solution, infinitely many solutions, or no solutions at all. ::
 
 	sage: solve( [3*x - y == 2, -2*x -y == 1 ], x,y)
@@ -420,7 +419,7 @@ a unique solution, infinitely many solutions, or no solutions at all. ::
 				
 In the second equation above, ``r1`` signifies that there is a free
 variable which parametrizes the solution set. When there is more than
-one free variable, Sage enumerates them ::
+one free variable, Sage enumerates them. ::
 
 	sage: solve([ 2*x + 3*y + 5*z == 1, 4*x + 6*y + 10*z == 2, 6*x + 9*y + 15*z == 3], x,y,z)
 	[[x == -5/2*r1 - 3/2*r2 + 1/2, y == r2, z == r1]]
@@ -429,7 +428,7 @@ Using :func:`.solve` can be very slow for large systems of equations. For these 
 
 The :func:`.solve` command will attempt to express the solution of an
 equation without the use of floating point numbers. If this cannot be
-done, it will return the solution in a symbolic form ::
+done, it will return the solution in a symbolic form. ::
  
 	sage: solve( sin(x) == x, x)
 	[x == sin(x)]
@@ -442,7 +441,7 @@ done, it will return the solution in a symbolic form ::
 				
 To find a numeric approximation of the solution we can use the
 :func:`.find_root` command. Which requires both the expression and a closed
-interval on which to search for a solution	::
+interval on which to search for a solution.	::
 
 	sage: find_root(sin(x) == x, -pi/2 , pi/2)
 	0.0
@@ -504,7 +503,7 @@ We can do the same with :math:`g(x)`. To evaluate the limit of :math:`g(x) = x^{
   sage: limit(g, x=2)
   4*cos(4)
 
-The functions ``f(x)`` and ``g(x)`` aren't all that exciting as far as limits are concerned since they are both *continuous* for all real number. But :math:`h(x)` has a discontinuity at :math:`x=4`, so to investigate what is happening near this discontinuity we will look at the limit of :math:`h(x)`  as :math:`x \rightarrow 4`: ::
+The functions ``f(x)`` and ``g(x)`` aren't all that exciting as far as limits are concerned since they are both *continuous* for all real numbers. But :math:`h(x)` has a discontinuity at :math:`x=4`, so to investigate what is happening near this discontinuity we will look at the limit of :math:`h(x)`  as :math:`x \rightarrow 4`: ::
 
   sage: limit(h, x = 4)
   Infinity
@@ -568,7 +567,7 @@ With the *derivative function* computed, we can then find the *Critical points* 
   sage: solve( gp(x) == 0, x)
   [x == 0, x == cos(2*x)/sin(2*x)]
 
-Also constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is something that is important to do. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
+Constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is something that is important to do. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
 
   sage: T_f = fp(0)*( x - 0 ) + f(0) 
   sage: T_f
@@ -610,7 +609,7 @@ The function that is returned is only *one* of the many anti-derivatives that ex
 
 Wait, none of these look right. But a little algebra, and the use of a trig-identity or two in the case of ``1/2*(2*x^2 - 1)*cos(2*x) + 1/2*cos(2*x)``, you will see that they are indeed the same.
 
-It should also be noted that there are some functions which are continuous and yet there doesn't exist a *closed form* integral. A common example is :math:`e^{-x^2}` which forms the basis for the *normal distribution* which is ubiquitous throughout statistics. Sage uses the :math:`\mathrm{erf}`, otherwise known as the *error function*, to represent this function even though no closed form expression exists.  ::
+It should also be noted that there are some functions which are continuous and yet there doesn't exist a *closed form* integral. A common example is :math:`e^{-x^2}` which forms the basis for the *normal distribution* which is ubiquitous throughout statistics.  The antiderivative for :math:`er^{-x^2}` is commonly called  :math:`\mathrm{erf}`, otherwise known as the *error function*. ::
 
   sage: y(x) = exp(-x^2)
   sage: integral(y,x)
@@ -625,7 +624,7 @@ We can also compute the *definite* integral for the functions that we defined ea
   sage: integral(h, x,0,1)
   x |--> 18*log(3) - 18*log(4) + 11/2
 
-Note that even though each of the last commands returned a callable *function* as it's results, each of these functions are constant which is what we would expect. Like it was pointed out earlier, Sage will return the expression that retains the most precision and will not use decimals unless told to. A quick way to tell Sage that an approximation is desired is wrap the :func:`integrate` command with :func:`n`, the numerical approximation command.  ::
+In each case above Sage returns *function* as its result,  each of these functions are constant which is what we would expect. Like it was pointed out earlier, Sage will return the expression that retains the most precision and will not use decimals unless told to. A quick way to tell Sage that an approximation is desired is wrap the :func:`integrate` command with :func:`n`, the numerical approximation command.  ::
 
   sage: n(integral(f, x,0,1))
   1.00000000000000
@@ -666,7 +665,7 @@ Basic Statistics
 
 In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in Sage. 
 
-To demonstrate their usage we will first generate a psudo-random list
+To demonstrate their usage we will first generate a pseudo-random list
 of integers to describe. The :func:`.random` function generates a random
 number from :math:`[0,1)`, so we will use a trick. Note, by the nature
 of random number generation your list of numbers will be different. ::
@@ -803,9 +802,9 @@ expecting. ::
 	:width: 400px
 	:height: 300px
 
-The vertical asymptotes of this rational functions cause Sage to
+The vertical asymptotes of this rational function cause Sage to
 adjust the aspect ratio of the plot to display the rather large y
-values near :math:`x=-1` and :math:`x=2`. This however obfuscates most of the features
+values near :math:`x=-1` and :math:`x=2`. This  obfuscates most of the features
 of this function in a way that we may have not intended. To remedy
 this we can explicitly adjust the vertical and horizontal limits of
 our plot ::
@@ -817,7 +816,7 @@ our plot ::
 	:width: 400px
 	:height: 300px
 
-Which, in the author's opinion, displays the features of this particular function in a much more pleasing fashion.
+This, in the author's opinion, displays the features of this particular function in a much more pleasing fashion.
 
 Sage can handle parametric plots with the :func:`.parametric_plot` command. The following is a simple circle of radius 3::
 
