@@ -43,19 +43,19 @@ We can check if certain objects *live* in a universe using the :obj:`.in` operat
 	sage: sqrt(2) in RR
 	True
 
-The letter ``I`` in Sage is the square root of -1 (`i` also works).
+The letter ``I`` in Sage is the square root of -1 (`i` also works).::
 
         sage: i^2
         -1
         sage: i^3
         -I
-	sage: i in RR
+	sage: I in RR
 	False
-	sage: i in CC
+	sage: I in CC
 	True
 				
-To directly check which universe a number is in, we use the :func:`.parent` function. ::
-Sage will choose the simplest universe for each number.
+To directly check which universe a number is in, we use the :func:`.parent` function.
+Sage will choose the simplest universe for each number. ::
 
 	sage: parent(1)
 	Integer Ring
@@ -67,8 +67,8 @@ Sage will choose the simplest universe for each number.
 	Real Field with 53 bits of precision
 
 Another important universe is the Symbolic Ring.  You might think that :math:`\sqrt{2}`
-or :math:`\pi` would have parent RR, the real numbers, while :math:`I` would be in the CC.
-But RR and CC have finite precision, and these numbers satisfy special formulas that make them special, for example :math:`\sqrt{2}^2=2` and :math:`\sin(\pi)= 0`.  The Symbolic Ring is where Sage stores these numbers with special properties.  The Symbolic Ring also contains symbolic variables, see  ":ref:`variables`.
+or :math:`\pi` would have parent RR, the real numbers, while :math:`I` would be in  CC.
+But RR and CC have finite precision, and these numbers satisfy  formulas that make them special, for example :math:`\sqrt{2}^2=2` and :math:`\sin(\pi)= 0`.  The Symbolic Ring is where Sage stores these numbers with special properties.  The Symbolic Ring also contains symbolic variables, see  ":ref:`variables`.::
 
 	sage: parent(sqrt(2))
 	Symbolic Ring
@@ -156,8 +156,8 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
 Booleans
 -------------
 
-Another important universe is the Booleans, which are important for programming.
-The Boolean universe is just known as `bool` in Sage, and it contains just two elements  ``True`` and ``False``. 
+Another important universe is the Booleans.
+The Boolean universe is just known as `bool` in Sage, and it contains just two elements  ``True`` and ``False``. ::
 
        sage: parent(True)
        <type 'bool'>
@@ -170,10 +170,10 @@ We can  *negate* a Boolean using the not operator. ::
 	sage: not False
 	True
 
-Two fundamental operators for Booleans are ``and`` and ``or``. Suppose X and Y are Booleans.
+We can combine two Booleans with the operators ``and`` and ``or``. Suppose X and Y are Booleans.
 
       * (X and Y) is True if both X and Y are True.
-      * If at least one of them is False, then it is False.
+        If at least one of them is False, then it is False.
       * (X or Y) is True if at least one of X or Y is True. 
 
 As demonstrated by the following example ::
@@ -213,6 +213,9 @@ The result is a Boolean::
 	True
 	sage: 1 == 0
 	False
+	sage: not(True or False) == True and False
+	True
+
 				
 
 Please take note that we use two equals signs, not one! To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
@@ -225,7 +228,8 @@ Please take note that we use two equals signs, not one! To check if two things a
 	True
 				
 
-If two objects belong to a universe in which it makes sense to say one is greater than the other, then we also check this in Sage. This is what is meant by an inequality. We use ``>`` for greater-than and ``<`` for less-than; Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. The following examples may seem silly. In practice, Boolean tests are used to test when some varying object satisfies a property of interest. ::
+If two objects belong to a universe that has an ordering, ``<`` then we may ccomparing two elements of the universe  gives a Boolean output.
+Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to.::
 
 	sage: 1 > 2
 	False
@@ -252,7 +256,7 @@ If two objects belong to a universe in which it makes sense to say one is greate
      f) ``x > 1/2``
 
   #. What is the parent of ``x > 1/2``? Why do you think that Sage treats this expression differently from the rest?
-  #. Use Sage to find out if :math:`e` is greater than :math:`\pi`? (*Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default?*)
+  #. Use Sage to find out if :math:`e` is greater than :math:`\pi`? (*Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default.*)
 
 
 .. _variables:
@@ -260,30 +264,49 @@ If two objects belong to a universe in which it makes sense to say one is greate
 Variables
 ----------
 
+You should be familiar with ":ref:`declare_variables`"
+
 The term 'variable',  can have several different meanings.
 In computer programming, a 'variable' is a space in
 memory used to store and retrieve a certain piece of information. In
 mathematics, a variable such as :math:`x` is a quantity with indeterminate value;
 a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
 
+In Sage, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
 
-In Sage This is the type of 'variable' that 
-this section. Sage has special facilities for dealing with these
-'variables' which we will often call 'symbolic variables'.	
+Sage initializes the Symbolic Ring to have one symbolic variable, :obj:`x`. It obeys  the arithmetical rules that we expect.::
 
+     sage: 3*x - x
+     2*x
+     sage: e*e^x
+     e^(x + 1)
+
+If we need another symbolic variable, we have to declare it, using the :obj:`var` command.::
+
+     sage: e^x*e^y
+     ---------------------------------------------------------------------------
+     NameError                                 Traceback (most recent call last)
+     
+     /Users/mosullivan/<ipython console> in <module>()
+     
+     NameError: name 'y' is not defined
+     sage: var("y")
+     y
+     sage: e^x*e^y
+     e^(x + y)
+     sage: 
+
+Now, let's look at variables, which are used to store a particular number. ::
 
 	sage: m=2^19-1
 	sage: m
 	524287
-				
-	sage: parent(x)
-	Symbolic Ring
+	sage: (m+1).factor()
+	2^19
 
+We use an ``=`` to assign the value on the right to the variable on the left. Having declared a variable, we can reference by using its name, as seen above.
 
-
-We use an ``=`` to assign the value on the right to the variable on the left. Having declared a variable, we can reference by using its name, as seen in the previous example.
-
-Sage, unlike some languages, allows us to re-assign a different value to a variable without making any special considerations. ::
+Sage allows us to re-assign a different value to a variable. ::
 
 	sage: s=12
 	sage: s
@@ -291,15 +314,6 @@ Sage, unlike some languages, allows us to re-assign a different value to a varia
 	sage: s=34
 	sage: s
 	34
-				
-We should be careful doing this as it may have unintended consequences. ::
-
-  sage: x = 3.14
-  sage: a = 2
-  sage: b = 5
-  sage: f = x^2 + x + 1
-
-Since we have changed the definition of ``x``, ``f = 3`` and not the polynomial that we may have expected.
 
 The order of operations in Sage allow for us to reference a variable while assigning it a new value. For example, we can *increment* the variable ``t`` by doing the following: ::
 
@@ -308,7 +322,7 @@ The order of operations in Sage allow for us to reference a variable while assig
 	sage: t
 	8
 				
-Sage also offers us a clever way to assign multiple variables at once. ::
+Sage also offers us a convenient way to assign multiple variables at once. ::
 
 	sage: a,b=1,2
 	sage: a
@@ -342,7 +356,7 @@ There is also a quick way to initialize two variables with the same value. We do
   sage: b
   1
 
-When you define a variable, it stays in memory until you quit your session and sometimes we would like restore a variable back to it's default value. We do this with the :func:`restore` command. ::
+When you define either a variable or a symbolic variable it stays in memory until you quit your session.  Sometimes we would like restore a variable back to it's default value. We do this with the :func:`restore` command. ::
 
   sage: x = 1
   sage: a = 2
@@ -475,6 +489,7 @@ We may alter the elements of a list as follows: ::
 In programming speak, data-types that can be changed in place are called *mutable*. I mention this only since some data types in Sage do not allow assignment like this.
 					 
 To add an element to the end of a list, we use the :meth:`.append` method. ::
+
 	 sage: L = [1,2,3]
 	 sage: L.append(4)
 	 sage: L
@@ -904,7 +919,7 @@ Conditionals
 
     You should be familiar with :ref:`variables_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
 
-A *conditional statement* is what we use when we need our code to actually make *decisions* on what to calculate. For example, suppose we wanted to divide an number by 2 only *if* it is even. We can do this in Sage by using an :obj:`if` statement. ::
+A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we wanted to divide a number by 2 only *if* it is even. We can do this in Sage by using an :obj:`if` statement. ::
 
 	sage: n=44
 	sage: if n%2 == 0:                             
@@ -919,9 +934,9 @@ A *conditional statement* is what we use when we need our code to actually make 
 				
 Since ``n=44`` is even, the *condition* is met and the :func:`print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this.
 
-Unlike some other languages, Sage is picky about indentation which it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
+Unlike some other languages, Sage is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
 
-At times, we may wish to check whether our expression satisfies more than one condition. To do so the :obj:`elif`, which is short for else if, statement can be used.   ::
+At times, we may wish to check whether our expression satisfies more than one condition. To do so, use the :obj:`elif` statement, which is short for else if.::
 
 	sage: m=31
 	sage: if m%3==0:
@@ -932,7 +947,7 @@ At times, we may wish to check whether our expression satisfies more than one co
 	10
 				
 
-Notice that we return to the original level of indentation of the if for the elif and we may use as many elifs as we desire. The tests are evaluated in order and once the first one is met, the associated code is executed and Sage will leave the entire conditional. For a simple example, consider the following: ::
+Notice that we return to the same level of indentation for :obj:`elif` as was used for :obj:`if`.  We may use as many elifs as we desire. The tests are evaluated in order and once the first one is met, the associated code is executed and Sage will leave the entire conditional. For a simple example, consider the following: ::
 
 	sage: r=55
 	sage: if 11.divides(r):

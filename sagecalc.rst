@@ -2,7 +2,7 @@
  Sage as a Calculator
 ======================
 
-This part of the tutorial  examines commands that  allow you to use Sage much like a graphing calculator.  The chapter on  arithmetic and functions and the chapter on solving equations and inequalities are important to read first.   The chapters on plotting, statistics and  calculus are independent of each other.  You will probably want to read the chapter on plotting next since plotting graphs is so is useful in calculus and in statistics.
+This part of the tutorial examines commands that  allow you to use Sage much like a graphing calculator.  The chapter on  arithmetic and functions and the chapter on solving equations and inequalities serve as a foundation for the rest of the material.   The chapters on plotting, statistics and  calculus are independent of each other.  You will probably want to read the chapter on plotting next since plotting graphs is so is useful in calculus and in statistics.
 
 .. _arithmetic_and_functions:
 
@@ -254,7 +254,7 @@ When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not som
   sage: sin(pi.n())
   1.22464679914735e-16
 				
-We see that when using the symbolic `pi` Sage returns the exact result. However,  when we use the approximation we get an approximation back. The ``e-15`` is the shorthand for :math:`10^{-15}` and the number :math:`1.22464679914735e-16` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation ::
+We see that when using the symbolic :obj:`pi` Sage returns the exact result. However,  when we use the approximation we get an approximation back. The :obj:`e-15` is the shorthand for :math:`10^{-15}` and the number :math:`1.22464679914735e-16` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation ::
 
   sage: sin(pi/6)
   1/2
@@ -282,7 +282,7 @@ hyperbolic functions are also available. ::
   sage: sinh(9.0)
   4051.54190208279
 				
-Similar to ``pi`` Sage has a built-in symbolic constant for the number :math:`e`, the base of the natural logarithm. ::
+Similar to :obj:`pi` Sage has a built-in symbolic constant for the number :math:`e`, the base of the natural logarithm. ::
 
   sage: e
   e
@@ -685,10 +685,10 @@ In each case above, Sage returns a *function* as its result. Each of these funct
 
 .. _basic_stats:
 
-Basic Statistics
+Statistics
 ================
 
-    You should be familiar with :ref:`basic_arithmetic`
+You should be familiar with :ref:`basic_arithmetic`
 
 In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in Sage. 
 
