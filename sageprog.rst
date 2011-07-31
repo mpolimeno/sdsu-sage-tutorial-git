@@ -5,10 +5,10 @@
 Programming in Sage
 *************************
 
-.. _intro_to_programming:
+.. _sage objects:
 
 ============
-Introduction
+Sage Objects
 ============
 
 .. _universes_and_coercion:
@@ -16,13 +16,10 @@ Introduction
 Universes and Coercion
 ----------------------
 
-In order to effectively work with Sage, you will need to understand the concepts of *universes* and *coercion*. Mathematically, a *universe* in Sage is a lot like the concept of *universe* in set theory. For example, :math:`1` lies in the *universe of integers*, :math:`1/2` lives in the *universe of rational numbers*, :math:`\sqrt{2}` lies in the *universe of real numbers*, and :math:`i` lives in the universe of complex numbers*.  Now of course a number can live in more than one universe, as is the case for the number :math:`1` which is an integer, rational, real and complex number, but in general we say that a number's universe is the smallest one that the operations we are defined.
-
-Both the mathematical and programmatic details of universe are deeper and beyond the scope of this particular tutorial. Luckily you do not need to know these details in order to effectively *use* Sage.
-
-The most effective way to gain a familiarity with *universes* and *coercion* is to see a few examples. We will begin by discussion some of the common universes used when dealing with numbers; such as the integers, rational, real and complex numbers.
+A key concept in Sage is the *universe* of an object.
+The most effective way to gain a familiarity with *universes* and the related concept, *coercion*, is to see a few examples. We begin with the most common universes: the integers,  and the rational, real and complex numbers.
  
-The integers are given the name ``ZZ``, the rationals ``QQ``,  and the real numbers ``RR``. ::
+In Sage, the integers are given the name ``ZZ``, the rationals ``QQ``,   the real numbers ``RR`` and the complex numbers ``CC``. ::
 
 	sage: ZZ 
 	Integer Ring
@@ -30,14 +27,11 @@ The integers are given the name ``ZZ``, the rationals ``QQ``,  and the real numb
 	Rational Field
 	sage: RR
 	Real Field with 53 bits of precision
-				
-
-In addition to these, we may also work with complex numbers :math:`\mathbb{C}` in Sage. The complex numbers, sometimes called imaginary numbers, are given the name ``CC``. ::
-
 	sage: CC
 	Complex Field with 53 bits of precision
 				
 We can check if certain objects *live* in a universe using the :obj:`.in` operator. ::
+
 	sage: 1 in ZZ  
 	True
 	sage: 1/2 in ZZ
@@ -48,25 +42,43 @@ We can check if certain objects *live* in a universe using the :obj:`.in` operat
 	False
 	sage: sqrt(2) in RR
 	True
+
+The letter ``I`` in Sage is the square root of -1 (`i` also works).
+
+        sage: i^2
+        -1
+        sage: i^3
+        -I
 	sage: i in RR
 	False
 	sage: i in CC
 	True
 				
 To directly check which universe a number is in, we use the :func:`.parent` function. ::
+Sage will choose the simplest universe for each number.
 
 	sage: parent(1)
 	Integer Ring
 	sage: parent(1/2)
 	Rational Field
-	sage: parent(pi)
-	Symbolic Ring
+	sage: parent(5.7)
+	Real Field with 53 bits of precision
 	sage: parent(pi.n())
 	Real Field with 53 bits of precision
-				
-Notice that ``pi`` is contained in the ``Symbolic Ring`` and not the real numbers. This is why expressions involving ``pi`` are evaluated using exact identities as opposed to numerical approximations. However, ``pi.n()`` is the numerical approximation of :math:`\pi` and it does live in the universe of real numbers as shown in the last line in the example above.
 
-Now mathematically, we often perform operations with elements from *different* universes as long as there is some sort of natural *conversion* that can be done to both elements so that they live in the *same* universe. For example when we do the computation  :math:`1 + 1/2 = 3/2` we implicitly preform a conversion of :math:`1` to the universe of rational numbers before we preform the operation. This conversion is often so natural that we don't even think of it and, luckily for you, Sage does many of these conversions without you having to think about them either. ::
+Another important universe is the Symbolic Ring.  You might think that :math:`\sqrt{2}`
+or :math:`\pi` would have parent RR, the real numbers, while :math:`I` would be in the CC.
+But RR and CC have finite precision, and these numbers satisfy special formulas that make them special, for example :math:`\sqrt{2}^2=2` and :math:`\sin(\pi)= 0`.  The Symbolic Ring is where Sage stores these numbers with special properties.  The Symbolic Ring also contains symbolic variables, see  ":ref:`variables`.
+
+	sage: parent(sqrt(2))
+	Symbolic Ring
+	sage: parent(I)
+	Symbolic Ring
+	sage: parent(pi)
+	Symbolic Ring
+				
+
+We often perform operations with elements from *different* universes as long as there is some sort of natural *conversion* that can be done to both elements so that they live in the *same* universe. For example when we do the computation  :math:`1 + 1/2 = 3/2` we implicitly preform a conversion of :math:`1` to the universe of rational numbers before we preform the operation. This conversion is often so natural that we don't even think of it and, luckily for you, Sage does many of these conversions without you having to think about them either. ::
 
   sage: parent(1 + 2)
   Integer Ring
@@ -93,7 +105,7 @@ Sage will always choose the universe which offers the most precision.  Sage does
   sage: parent(2*pi + 2.0*e)
   Symbolic Ring
 
-We can explicitly preform these conversion through a process called *coercion*. We coerce a number into another universe, if it makes sense, by *applying* the parent structure to the object like it was a function. For example: ::
+We can explicitly perform conversion through a process called *coercion*. We coerce a number into another universe, if it makes sense, by *applying* the parent structure to the object like it was a function. For example: ::
 
 	sage: QQ(.5)              
 	1/2
@@ -144,15 +156,21 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
 Booleans
 -------------
 
-A boolean is a truth value, represented by ``True`` or ``False``. ::
+Another important universe is the Booleans, which are important for programming.
+The Boolean universe is just known as `bool` in Sage, and it contains just two elements  ``True`` and ``False``. 
 
-	sage: True        
-	True
-	sage: False
+       sage: parent(True)
+       <type 'bool'>
+
+There are several operations on Booleans (instead of the operations like `+`, `*` on numbers).
+We can  *negate* a Boolean using the not operator. ::
+
+	sage: not True
 	False
-				
+	sage: not False
+	True
 
-It is important to understand how to work with booleans for programming. The two most fundamental operators for booleans are ``and`` and ``or``. Suppose X and Y are booleans.
+Two fundamental operators for Booleans are ``and`` and ``or``. Suppose X and Y are Booleans.
 
       * (X and Y) is True if both X and Y are True.
       * If at least one of them is False, then it is False.
@@ -179,7 +197,7 @@ We may use parentheses to control the order of evaluation of these truth stateme
 
 In the first example (True or False) is evaluated to be True first, then True and False evaluates to be False. In the second example, (False and False) evaluates to be False, but True or False is True.
 
-Another important operator on booleans is the exclusive or operator, represented by ``^^`` in Sage. (``X ^^ Y``) is ``True`` if exactly one of X or Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
+Another important operator on Booleans is the exclusive or operator, represented by ``^^`` in Sage. (``X ^^ Y``) is ``True`` if exactly one of X or Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
 
 	sage: True ^^ True         # xor (exclusive or) operator
 	False
@@ -188,16 +206,8 @@ Another important operator on booleans is the exclusive or operator, represented
 	sage: False ^^ False
 	False
 				
-
-We can also negate a boolean using the not operator. ::
-
-	sage: not True
-	False
-	sage: not False
-	True
-				
-
-Equalities are boolean statements which indicate whether two objects are equal. To check equality we use the ``==`` operator. ::
+We check whether two whether two objects are equal using the ``==`` operator. 
+The result is a Boolean::
 
 	sage: 1 == 1
 	True
@@ -215,7 +225,7 @@ Please take note that we use two equals signs, not one! To check if two things a
 	True
 				
 
-If two objects belong to a universe in which it makes sense to say one is greater than the other, then we also check this in Sage. This is what is meant by an inequality. We use ``>`` for greater-than and ``<`` for less-than; Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. The following examples may seem silly. In practice, boolean tests are used to test when some varying object satisfies a property of interest. ::
+If two objects belong to a universe in which it makes sense to say one is greater than the other, then we also check this in Sage. This is what is meant by an inequality. We use ``>`` for greater-than and ``<`` for less-than; Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. The following examples may seem silly. In practice, Boolean tests are used to test when some varying object satisfies a property of interest. ::
 
 	sage: 1 > 2
 	False
@@ -250,12 +260,26 @@ If two objects belong to a universe in which it makes sense to say one is greate
 Variables
 ----------
 
-In Sage, a *variable* is a label which is assigned to a object to allow for quick reference. Here's an example. ::
+The term 'variable',  can have several different meanings.
+In computer programming, a 'variable' is a space in
+memory used to store and retrieve a certain piece of information. In
+mathematics, a variable such as :math:`x` is a quantity with indeterminate value;
+a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
+
+
+In Sage This is the type of 'variable' that 
+this section. Sage has special facilities for dealing with these
+'variables' which we will often call 'symbolic variables'.	
+
 
 	sage: m=2^19-1
 	sage: m
 	524287
 				
+	sage: parent(x)
+	Symbolic Ring
+
+
 
 We use an ``=`` to assign the value on the right to the variable on the left. Having declared a variable, we can reference by using its name, as seen in the previous example.
 
@@ -402,7 +426,7 @@ A *list* is an ordered collection of objects. The elements of a list are indexed
 	 sage: L[6]
 	 17
 					 
-Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:``0``.
+Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:`0``.
 
 If we wish to know the index of an element, we use the :func:`.index` function. It returns the index for the first occurrence of the value given. ::
 
@@ -1242,9 +1266,11 @@ The example here only scratches the surface of what is possible with Sage intera
 .. _wiki: http://wiki.sagemath.org/interact/
 
 
-Using other systems from Sage
---------------------------------
+Packages within Sage
+============================
 
+There are many open-source software packages available for doing specialized mathematics. One of the objectives of  Sage developers is to create a single clean interface from which  these packages may all be accessed.  For many computations in  advanced mathematics Sage uses the functionality in one of these packages.  A Sage use user can also explicitly call a function from one of the packages.
+This chapter briefly describes how to do so.
 
 
 GAP

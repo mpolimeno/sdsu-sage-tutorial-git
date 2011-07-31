@@ -15,22 +15,22 @@ How to use this tutorial
 
 This tutorial is divided into four main parts. This part, *About this Tutorial*,  is intended to introduce  readers to the basic structure of the tutorial and how to contribute to the project if they desire.  
 
-The second part, *Sage as a Calculator*, will get the reader up to speed
-with topics such as how to do arithmetic, evaluate functions, create simple graphs, and do some basic computations like integrals and derivatives. We call this section *Sage as a Calculator* because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
+The second part, *Sage as a Calculator*, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and  basic calculus. We call this section *Sage as a Calculator* because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
-*Programming in Sage*  begins to introduce the reader to some of the more *subtle* issues about how Sage works:  how Sage handles numbers, how to define and use variables and functions; how to manipulate lists, strings, and sets; and how Sage deals with the *universes* and *coercion*. 
+*Programming in Sage*  begins to introduce the reader to some of the more *subtle* issues about how Sage works:  how Sage handles numbers, how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage   *universes* and *coercion*. 
 
-The final part, *Mathematical Structures*,  introduces the topics that one finds in college level curriculum: number theory, groups, rings, fields, etc. 
+The final part, *Mathematical Structures*,  introduces the topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc. 
  
 Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along  as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
 
-While the tutorial mostly progresses in a linear fashion--material covered early is then used later--we still include at the beginning of each section a list of topics which you should understand before proceeding. This list follows the text "You should be familiar with." and by clicking one of these links you will be taken to the relevant portion of the tutorial. We have also tried to include links to further information and other on-line references, these will follow the "**See also:**" text. 
+While the tutorial mostly progresses in a linear fashion, we still include at the beginning of each section a list of the most important prerequisite topics. This list follows the text "You should be familiar with." and by clicking one of these links you will be taken to the relevant portion of the tutorial. We have also tried to include links to further information and other on-line references. These will follow the "**See also:**" text. 
 
 Some sections may contain numbered citations such as "[1]_." At the bottom of a section with at least one citation will be a list of references, with the entries correspondingly numbered.
 
 **References:**
 
-.. [1] example citation: Alfred P. Nobody
+.. [1] William A. Stein et al. Sage Mathematics Software (Version x.y.z),
+   The Sage Development Team, 2011, http://www.sagemath.org. 
 
 .. _about_sage:
 
@@ -65,7 +65,7 @@ Sage has two common ways to enter commands, the *command line* and a web-based *
 `?` and Tab Completion
 -----------------------
 
-The most useful feature both in the command-line interface and the notebook is probably *tab completion*. For long time unix shell users this feature can e taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Suppose that I wanted to compute  :math:`56!` and I don't remember the exact command name to do this. Well, I just type `fac` then hit the tab-key. ::
+The most useful feature both in the command-line interface and the notebook is probably *tab completion*. For long time unix shell users this feature can be taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Suppose that I wanted to compute  :math:`56!` and I don't remember the exact command name to do this. Well, I just type `fac` then hit the tab-key. ::
 
   sage: fac[TAB]
   factor     factorial  
@@ -212,9 +212,9 @@ Contributing to the Tutorial
 
 Additions to this tutorial are encouraged as are suggestions for additional topics for inclusion.
 
-All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_ which is written in the `Python Programming Language <http://www.python.org>`_ We are excited to see any changes that you make so let `us <monarres@rohan.sdsu.edu>`_ know of any new material that you may add. We want for this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
+All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_, which is written in the `Python Programming Language <http://www.python.org>`_.  We are excited to see any changes that you make so please let `us <monarres@rohan.sdsu.edu>`_ know of any new material that you  add. We want for this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
 
-The content of the this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_ which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
+The content of the this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
 
 There are  four parts to the tutorial: "How to use this tutorial" has basic instructions about using and amending the tutorial, and the others have mathematical content. "Sage as a Calculator" is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
 
