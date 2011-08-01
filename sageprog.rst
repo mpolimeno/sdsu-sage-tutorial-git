@@ -98,11 +98,7 @@ Sage will always choose the universe which offers the most precision.  Sage does
 
   sage: parent(2 + i)
   Symbolic Ring
-  sage: parent(2 + x)
-  Symbolic Ring
   sage: parent(2 + 2.0*x)
-  Symbolic Ring
-  sage: parent(2*pi + 2.0*e)
   Symbolic Ring
 
 We can explicitly perform conversion through a process called *coercion*. We coerce a number into another universe, if it makes sense, by *applying* the parent structure to the object like it was a function. For example: ::
@@ -174,9 +170,8 @@ We can combine two Booleans with the operators ``and`` and ``or``. Suppose X and
 
       * (X and Y) is True if both X and Y are True.
         If at least one of them is False, then it is False.
-      * (X or Y) is True if at least one of X or Y is True. 
+      * (X or Y) is True if at least one of X or Y is True. ::
 
-As demonstrated by the following example ::
 
 	sage: True and False
 	False
@@ -269,13 +264,15 @@ You should be familiar with ":ref:`declare_variables`"
 The term 'variable',  can have several different meanings.
 In computer programming, a 'variable' is a space in
 memory used to store and retrieve a certain piece of information. In
-mathematics, a variable such as :math:`x` is a quantity with indeterminate value;
+mathematics, a variable such as :math:`x` has unspecified or indeterminate value; it is 
 a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
 
 In Sage, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
 
 Sage initializes the Symbolic Ring to have one symbolic variable, :obj:`x`. It obeys  the arithmetical rules that we expect.::
 
+     sage: parent(x)
+     Symbolic Ring 
      sage: 3*x - x
      2*x
      sage: e*e^x
@@ -294,9 +291,8 @@ If we need another symbolic variable, we have to declare it, using the :obj:`var
      y
      sage: e^x*e^y
      e^(x + y)
-     sage: 
 
-Now, let's look at variables, which are used to store a particular number. ::
+Now, let's look at programming variables, which are used to store a particular number. ::
 
 	sage: m=2^19-1
 	sage: m
@@ -522,7 +518,7 @@ To access a particular element within our list of lists we chain their indices. 
 
 Where we read ``M[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``M``. 
 
-If we wish to remove an element from a list, we use the meth:`.remove` method. ::
+If we wish to remove an element from a list, we use the :meth:`.remove` method. ::
 
 	 sage: L = [3,5,11,13,17,19,29,31]
 	 sage: L.remove(11)
@@ -548,7 +544,7 @@ Since they are used rather frequently, Sage offers a convenient way to create li
   sage: [2,4..10]
   [2, 4, 6, 8, 10]
 					 
-In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap some examples will clear things up ::
+In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. Some examples will make this clear. ::
 
 	 sage: [1,4..13]
 	 [1, 4, 7, 10, 13]
@@ -792,7 +788,7 @@ Just like with lists, we can *concatenate* strings just by adding them together.
   sage: b + " is " + a
   'Gauss is mathematics'
 
-and we can separate a list by using the :meth:`split` method. ::
+and we can separate a list by using the :meth:`split` method, which divises the string into a list of words. ::
 
   sage: s.split()
   ['I', 'am', 'a', 'string']
@@ -844,10 +840,10 @@ Just like when I *split* a sting, I can join a list using a different separating
 External Files and Sessions
 ------------------------------
 
-In practice, especially when using sage for research and projects, it is much more convenient to load external files into Sage. There are many situations in which it is convenient to use an external file. One such instance is when we have a block of code which we wish to run for several different cases. It would be quite tedious to retype all of our code, and thus we can write it to an external file.
+There are many situations in which it is convenient to load external files into Sage, rather than type commands.
+This is particularly true when we have a block of code to run for several different cases or when  using sage for research and projects.
 
-Let us move on to an example. Suppose we have a file in the same
-directory from which we started Sage called :download:`pythag.sage <pythag.sage>` with the following content.
+Suppose we have a file in the same directory from which we started Sage called :download:`pythag.sage <pythag.sage>` with the following content.
 
 .. code-block:: python
 
@@ -906,10 +902,10 @@ And again we load our session ``ramanujan`` with :func:`.load_session`. ::
 	sage: T
 	1729
 
-.. _intermediate_programming:
+.. _program_control:
 
 =========================
-Intermediate Programming
+Program Control
 =========================
 
 .. _conditionals: 
@@ -934,7 +930,7 @@ A *conditional statement* is what we use when we want our code to make *decision
 				
 Since ``n=44`` is even, the *condition* is met and the :func:`print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this.
 
-Unlike some other languages, Sage is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
+Unlike some other languages, Sage is picky about indentation, a practice it inherits from Python. Instead of using punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run when a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
 
 At times, we may wish to check whether our expression satisfies more than one condition. To do so, use the :obj:`elif` statement, which is short for else if.::
 
@@ -968,7 +964,6 @@ met. For this we use the :obj:`else` operator. ::
 	sage: if 2.divides(n):
 	....:     print 2
 	....: elif 3.divides(n):
-
 	....:     print 3
 	....: else:
 	....:     print n
@@ -1138,9 +1133,9 @@ Since list comprehensions allow for us to put any valid expression, we can add a
 Functions
 ----------------------
 
-A function in Sage an object containing a block of code which processes a set of arguments and returns some value. Well, that's a bit abstract. Essentially a function in Sage is much like a function in mathematics, but certainly not the exact same. A function might better be called a process or a subroutine.
+A function in Sage is an object containing a block of code which processes a set of arguments and returns some value.  That explanation is a bit abstract, but essentially, a function in Sage is much like a function in mathematics. From a computer science perspective a function might better be called a process or a subroutine.
 
-Anyway, consider the following common mathematical function
+Consider the following common mathematical function
 :math:`f(x)=x^2`. This function f takes a number x and returns its
 square. Here's how we might implement this in Sage ::
 
