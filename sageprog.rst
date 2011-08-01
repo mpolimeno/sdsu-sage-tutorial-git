@@ -116,7 +116,7 @@ We can explicitly perform conversion through a process called *coercion*. We coe
 	sage: parent(RR(sqrt(2)))
 	Real Field with 53 bits of precision
 				
-Fortunately, Sage protects us from making *some* nonsensical conversions by raising a :obj:`TypeError`. ::
+Fortunately, Sage protects us from making *some* nonsensical conversions by raising a :obj:`.TypeError`. ::
 
   sage: QQ(i)
   ERROR: An unexpected error occurred while tokenizing input
@@ -143,7 +143,7 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
 
      a) ``RR(1/2)``
      b) ``QQ(1)``
-     c)  ``ZZ(1/2)``
+     c) ``ZZ(1/2)``
      d) ``SR(1/2)`` (SR is the *Symbolic Ring*)
      e) ``CC(x)``
 
@@ -156,21 +156,19 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
 Booleans
 -------------
 
-Another important universe is the Booleans.
-The Boolean universe is just known as `bool` in Sage, and it contains just two elements  ``True`` and ``False``. ::
+Another important universe is the Booleans. The Boolean universe is just known as `bool` in Sage, and it contains just two elements  ``True`` and ``False``. ::
 
        sage: parent(True)
        <type 'bool'>
 
-There are several operations on Booleans (instead of the operations like `+`, `*` on numbers).
-We can  *negate* a Boolean using the not operator. ::
+There are several operations on Booleans (instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
 
 	sage: not True
 	False
 	sage: not False
 	True
 
-We can combine two Booleans with the operators ``and`` and ``or``. Suppose X and Y are Booleans.
+We combine two Booleans with  :obj:`and` and :obj:`or`. Suppose X and Y are Booleans.
 
       * (X and Y) is True if both X and Y are True.
         If at least one of them is False, then it is False.
@@ -274,14 +272,14 @@ a symbol that we can manipulate with the same rules of arithmetic that are appli
 
 In Sage, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
 
-Sage initializes the Symbolic Ring to have one symbolic variable, :obj:`x`. It obeys  the arithmetical rules that we expect.::
+Sage initializes the Symbolic Ring to have one symbolic variable, ``x``. It obeys  the arithmetical rules that we expect.::
 
      sage: 3*x - x
      2*x
      sage: e*e^x
      e^(x + 1)
 
-If we need another symbolic variable, we have to declare it, using the :obj:`var` command.::
+If we need another symbolic variable, we have to declare it, using the :func:`.var` command.::
 
      sage: e^x*e^y
      ---------------------------------------------------------------------------
@@ -356,7 +354,7 @@ There is also a quick way to initialize two variables with the same value. We do
   sage: b
   1
 
-When you define either a variable or a symbolic variable it stays in memory until you quit your session.  Sometimes we would like restore a variable back to it's default value. We do this with the :func:`restore` command. ::
+When you define either a variable or a symbolic variable it stays in memory until you quit your session.  Sometimes we would like restore a variable back to it's default value. We do this with the :func:`.restore` command. ::
 
   sage: x = 1
   sage: a = 2
@@ -370,7 +368,7 @@ When you define either a variable or a symbolic variable it stays in memory unti
   /home/ayeq/sage/local/lib/python2.6/site-packages/sage/all_cmdline.pyc in <module>()
   NameError: name 'a' is not defined
 
-You can *reset* the entire environment to it's defaults by running the :func:`reset` command. ::
+You can *reset* the entire environment to it's defaults by running the :func:`.reset` command. ::
 
   sage: a = 1 
   sage: b = 2
@@ -386,7 +384,7 @@ You can *reset* the entire environment to it's defaults by running the :func:`re
   sage: x
   x
 
-And finally if I *really* want the variable obliterated, I can use the sledgehammer of memory management, the :obj:`del` command. ::
+And finally if I *really* want the variable obliterated, I can use the sledgehammer of memory management, the :func:`.del` command. ::
 
   sage: a = [2, 3,4 ,5 ] 
   sage: del a
@@ -440,7 +438,7 @@ A *list* is an ordered collection of objects. The elements of a list are indexed
 	 sage: L[6]
 	 17
 					 
-Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:`0``.
+Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:`0`.
 
 If we wish to know the index of an element, we use the :func:`.index` function. It returns the index for the first occurrence of the value given. ::
 
@@ -529,7 +527,7 @@ If we wish to remove an element from a list, we use the meth:`.remove` method. :
 	 sage: L
 	 [3, 5, 13, 17, 19, 29, 31]
 					 
-Note that a list may contain the same element more than once; ``remove()`` removes only the first instance of the given element. ::
+Note that a list may contain the same element more than once; :meth:`.remove` removes only the first instance of the given element. ::
 
 	 sage: M = [1,2,3,0,3,4,4,0,4,5]
 	 sage: M.remove(3)
@@ -571,14 +569,14 @@ The :func:`.len` command returns the *length* of a list.  ::
 	 sage: len([2,3,5,7,11])
 	 5
 
-If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` do take a list as an argument. ``sum`` function returns the sum of the elements of a list ::
+If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands do take a list as an argument. :func:`sum` returns the sum of the elements of a list ::
 
 	 sage: sum([1,2,3])
 	 6
 	 sage: sum([1..100])
 	 5050
 					 
-and ``prod`` returns the product of the elements of the list ::
+and :func:`.prod` returns the product of the elements of the list ::
 
 	 sage: prod([1..4])
 	 24
@@ -612,7 +610,7 @@ Another useful function when dealing with lists is the :func:`.map` function. Th
   sage: sum(map(exp,[1,2,3,4,5]))
   e + e^2 + e^3 + e^4 + e^5
 
-The :func:`map` function is often used in *functional* programming. For more on this style of programming with python see the 'Python Documentation'_
+The :func:`.map` function is often used in *functional* programming. For more on this style of programming with python see the 'Python Documentation'_
 
 .. _'Python Documentation': http://docs.python.org/howto/functional.html
 
@@ -673,7 +671,7 @@ You should note that the last *slice* is empty since the beginning of the list i
      b) Do the same but this time altering ``L`` in place. 
      c) Insert ``M`` as an element at the end of ``L``, alterting ``L`` in place. 
      d) Remove the ``M`` that you had just inserted.  
-     d) Explain the differences between the :meth:`extend` and the :meth:`append` methods.  
+     d) Explain the differences between the :meth:`.extend` and the :meth:`.append` methods.  
 
   #. Let ``L = [1,2,5, 14, 17, 20]``.  What are the sub-lists are accessed using the following *slices*. 
      a) ``L[:-1]``
@@ -681,7 +679,7 @@ You should note that the last *slice* is empty since the beginning of the list i
      c) ``L[3:]``
      d) ``L[0:3]``
      e) ``L[-4:-1]``
-  #.  Using the same ``L`` as the previous problem. Find a slice that will extract the following sub-lists from ``L``: *(Try and do it two different ways)* 
+  #.  Using the same ``L`` as the previous problem. Find a slice that will extract the following sub-lists from ``L``: *(Do this in two different ways)* 
       a) ``[5,14,17]``. 
       b) ``[1,2,5]``.
       c) ``[1]``
@@ -706,12 +704,12 @@ To see an example of that last point, we will construct a Set by converting a li
 	 sage: A
 	 {8, 1, 2, 3, 6}
 
-To find the size of a Set we will use the :meth:`cardnality` method. ::
+To find the size of a Set we will use the :meth:`.cardnality` method. ::
 
 	 sage: A.cardinality()
 	 5
 
-Testing for membership can be done easily by using the :obj:`in` operator. ::
+Testing for membership can be done easily by using the :obj:`.in` operator. ::
 
   sage: 8 in A
   True
@@ -792,7 +790,7 @@ Just like with lists, we can *concatenate* strings just by adding them together.
   sage: b + " is " + a
   'Gauss is mathematics'
 
-and we can separate a list by using the :meth:`split` method. ::
+and we can separate a list by using the :meth:`.split` method. ::
 
   sage: s.split()
   ['I', 'am', 'a', 'string']
@@ -803,25 +801,25 @@ Which divided the string into a list of words. We can divide a list using differ
   sage: vals.split(',')
   ['18', 'spam', 'eggs', '28', '70', '287', 'cats']
 
-We can use the :func:`map` and :meth:`split` functions to *convert* a string of integers into something that we can use in sage. This is particularly useful when you must read data from a file. ::
+We can use the :func:`.map` and :meth:`.split` commands to *convert* a string of integers into something that we can use in sage. This is particularly useful when you must read data from a file. ::
 
   sage: map(Integer, data.split(',')) 
   [17, 18, 20, 19, 18, 20]
 
-You should note how the output above differs from what we get when we use only the :meth:`split` function. ::
+You should note how the output above differs from what we get when we use only the :meth:`.split` method. ::
 
   sage: data.split(',')
   ['17', '18', '20', '19', '18', '20']
 
 The list directly above contains *strings* which represent numbers. We must convert those strings into what we need in order to actually use them. 
  
-The opposite of *splitting* up a string into a list is the *joining* of elements of a list. We do this with the :func:`join` command. ::
+The opposite of *splitting* up a string into a list is the *joining* of elements of a list. We do this with the :func:`.join` command. ::
 
   sage: L = ['Learning', 'Sage', 'is', 'easy.'] 
   sage: join(L)
   'Learning Sage is easy.'
 
-Just like when I *split* a sting, I can join a list using a different separating value than just a space. I do so by supplying an optional second argument to the :func:`join` command. ::
+Just like when I *split* a sting, I can join a list using a different separating value than just a space. I do so by supplying an optional second argument to the :func:`.join` command. ::
 
   sage: join(L,',')
   'Learning,Sage,is,easy.'
@@ -837,7 +835,7 @@ Just like when I *split* a sting, I can join a list using a different separating
 
   #.  Consider the list of strings ``L = ['This is', 'a', 'string']``. Join the elements of the list to form the string ``'This is a string'``. 
 
-  #. We can use the :func:`map` and :func:`Integer` functions to take a string of integers and convert them into *Sage* integers.  
+  #. We can use the :func:`.map` and :func:`.Integer` commands to take a string of integers and convert them into *Sage* integers.  
 
 .. _external_files_and_sessions:
 
@@ -919,7 +917,7 @@ Conditionals
 
     You should be familiar with :ref:`variables_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
 
-A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we wanted to divide a number by 2 only *if* it is even. We can do this in Sage by using an :obj:`if` statement. ::
+A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we wanted to divide a number by 2 only *if* it is even. We can do this in Sage by using an :obj:`.if` statement. ::
 
 	sage: n=44
 	sage: if n%2 == 0:                             
@@ -932,11 +930,11 @@ A *conditional statement* is what we use when we want our code to make *decision
 	....:
 	sage:
 				
-Since ``n=44`` is even, the *condition* is met and the :func:`print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this.
+Since ``n=44`` is even, the *condition* is met and the :func:`.print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this.
 
 Unlike some other languages, Sage is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
 
-At times, we may wish to check whether our expression satisfies more than one condition. To do so, use the :obj:`elif` statement, which is short for else if.::
+At times, we may wish to check whether our expression satisfies more than one condition. To do so, use the :obj:`.elif` statement, which is short for else if.::
 
 	sage: m=31
 	sage: if m%3==0:
@@ -947,7 +945,7 @@ At times, we may wish to check whether our expression satisfies more than one co
 	10
 				
 
-Notice that we return to the same level of indentation for :obj:`elif` as was used for :obj:`if`.  We may use as many elifs as we desire. The tests are evaluated in order and once the first one is met, the associated code is executed and Sage will leave the entire conditional. For a simple example, consider the following: ::
+Notice that we return to the same level of indentation for :obj:`.elif` as was used for :obj:`.if`.  We may use as many elifs as we desire. The tests are evaluated in order and once the first one is met, the associated code is executed and Sage will leave the entire conditional. For a simple example, consider the following: ::
 
 	sage: r=55
 	sage: if 11.divides(r):
@@ -962,7 +960,7 @@ Here both conditions are met, but only the code associated with the first condit
 There is also a subtle shortcut that we used in the previous example. ``11.divides(r)`` already returns either ``True`` or ``False``, hence we did not need to use an equality here. We could have used the more verbose ``11.divides(r)==True`` but it is not necessary.
 
 Often we wish to execute some code if none of our conditions above are
-met. For this we use the :obj:`else` operator. ::
+met. For this we use the :obj:`.else` operator. ::
 
 	sage: n=2*3*5+1
 	sage: if 2.divides(n):
@@ -1072,7 +1070,7 @@ Where we do not explicitly list the elements of the set but rather give a *rule*
 			
 This concept may seem a bit intimidating at first, but it is extremely concise way to write some powerful code.
 
-We can use list comprehension to apply a function to each number of a given list, much like we did before with the :func:`map` command. ::
+We can use list comprehension to apply a function to each number of a given list, much like we did before with the :func:`.map` command. ::
 
   sage: [pi/4,pi/2..2*pi]
   [1/4*pi, 1/2*pi, 3/4*pi, pi, 5/4*pi, 3/2*pi, 7/4*pi, 2*pi]
@@ -1335,7 +1333,7 @@ In the same vein, we can use GAP to compute the *normalizer's* and *centralizers
   sage: cent.Size()
   192
 
-Gap itself has commands which can maniputale lists of objects. In this example we first compute the *derived series* of `cent` and then compute the size of each of these subgroups using GAP's :func:`List` command. ::
+Gap itself has commands which can maniputale lists of objects. In this example we first compute the *derived series* of ``cent`` and then compute the size of each of these subgroups using GAP's :func:`.List` command. ::
 
   sage: cent.DerivedSeries(); cent.DerivedSeries().List('Size')
   [ Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), (3,5)(7,8), (3,7)(5,8), (2,3)(4,7), 
@@ -1368,7 +1366,7 @@ Going from a Sage group to a GAP one is even easier. ::
   sage: parent(gap(SG))
   Gap
 
-From time to time you will want to just use GAP directly without using the interface. When working from the command line, the :func:`gap_console` command does just this.  ::
+From time to time you will want to just use GAP directly without using the interface. When working from the command line, the :func:`.gap_console` command does just this.  ::
 
   sage: gap_console()
   GAP4, Version: 4.4.12 of 17-Dec-2008, x86_64-unknown-linux-gnu-gcc
@@ -1405,7 +1403,7 @@ As with the GAP interface, the Sage interface to Singular substitutes the langua
   //                  : names    x y z
   //        block   2 : ordering C
 
-Constructs a polynomial ring in three variables; x,y and z over the field of characteristic 0 using the *lexicographic* term ordering. To do the same within Sage we use the :meth:`ring` method of the :obj:`singular` object. ::
+Constructs a polynomial ring in three variables; x,y and z over the field of characteristic 0 using the *lexicographic* term ordering. To do the same within Sage we use the :meth:`.ring` method of the :obj:`.singular` object. ::
 
   sage: R = singular.ring('0','(x,y,z)','lp')
   sage: R
@@ -1417,7 +1415,7 @@ Constructs a polynomial ring in three variables; x,y and z over the field of cha
 
 Since much of the language that Singular uses is not valid in Sage the quotations around the arguments are important.
 
-Polynomials are constructed in this ring by using the :meth:`poly` method.::
+Polynomials are constructed in this ring by using the :meth:`.poly` method.::
 
   sage: p = singular.poly('x^2 * y^2 - 1')
   sage: q = singular.poly('x^2 * y^2 - z')
@@ -1456,7 +1454,7 @@ and if you would like this reduction done using a Groebner basis, we just combin
 
 The quotations are not necessary when passing a Singular object as in the last few examples as there is no ambiguity. 
 
-Finally a task that Singular excels at is the factorization of multivariate polynomials. This is done using the :meth:`factorize` method. ::
+Finally a task that Singular excels at is the factorization of multivariate polynomials. This is done using the :meth:`.factorize` method. ::
 
   sage: p.factorize()
   [1]:

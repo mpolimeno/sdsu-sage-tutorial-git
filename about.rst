@@ -65,24 +65,24 @@ Sage has two common ways to enter commands, the *command line* and a web-based *
 `?` and Tab Completion
 -----------------------
 
-The most useful feature both in the command-line interface and the notebook is probably *tab completion*. For long time unix shell users this feature can be taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Suppose that I wanted to compute  :math:`56!` and I don't remember the exact command name to do this. Well, I just type `fac` then hit the tab-key. ::
+The most useful feature both in the command-line interface and the notebook is probably *tab completion*. For long time unix shell users this feature can be taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Suppose that I wanted to compute  :math:`56!` and I don't remember the exact command name to do this. Well, I just type ``fac`` then hit the tab-key. ::
 
   sage: fac[TAB]
   factor     factorial  
   sage: factor
 
-This tells me that the only two Sage commands which begin with `fac` are :py:func:`factor` and :func:`factorial`. Note also that Sage has already changed my command from `fac` to `factor` because that is the common root of both commands. Since factorial is what I am looking for i just type the next letter `i` and hit tab again. ::
+This tells me that the only two Sage commands which begin with ``fac`` are :py:func:`factor` and :func:`factorial`. Note also that Sage has already changed my command from ``fac`` to ``factor`` because that is the common root of both commands. Since factorial is what I am looking for I just type the next letter ``i`` and hit tab again. ::
 
   sage: factorial   
 
-This time no list is returned because the only command that begins with `factori` is :func:`factorial`, so it just *completes* the command for me. So I can computer :math:`56!` by just completing the command by adding the `(56)`.  ::
+This time no list is returned because the only command that begins with ``factori`` is :func:`factorial`, so it just *completes* the command for me. So I can computer :math:`56!` by just completing the command by adding the ``(56)``.  ::
 
   sage: factorial(56)
   710998587804863451854045647463724949736497978881168458687447040000000000000
 
 Another good use of tab-completion is  to discover what *methods* an *object* has. Don't worry if you have never heard of the term object or method before, it will become clear as you  follow along. What I am presenting now is assuming that you are using tab-completion on the command line.  The notebook works slightly differently, and we will discuss that in the next section.
 
-Say I have the integer :math:`a = 56`. In this case the :math:`a` is our object and we can find all of the *methods* associated with integers by typing `a.` then hitting the tab-key. ::
+Say I have the integer :math:`a = 56`. In this case the :math:`a` is our object and we can find all of the *methods* associated with integers by typing ``a.`` then hitting the tab-key. ::
 
   sage: a = 56
   sage: a.[TAB]
@@ -94,16 +94,16 @@ Say I have the integer :math:`a = 56`. In this case the :math:`a` is our object 
   a.exact_log                    a.powermodm_ui
   --More--
 
-Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. I want to draw your attention to the `--More--` at the bottom of the screen. This is telling us that the list is actually longer than what is shown. To scroll through this list a page at a time, just hit any key and Sage will show you the next page.
+Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. I want to draw your attention to the ``--More--`` at the bottom of the screen. This is telling us that the list is actually longer than what is shown. To scroll through this list a page at a time, just hit any key and Sage will show you the next page.
 
-On the second page I see something that I recognize. I understand what it means to :meth:`factor` an integer so I will use this method by entering `a.factor()` and hitting return. ::
+On the second page I see something that I recognize. I understand what it means to :meth:`factor` an integer so I will use this method by entering ``a.factor()`` and hitting return. ::
  
   sage: a.factor()
   2^3 * 7
 
 Now that I know how to *discover* new commands in Sage, I will sometime need to figure out *what* a new command does and *how* to use it. Sage has a built-in help system to solve this very problem. 
 
-Lets say that I want to compute  *lowest common multiple* of two integers and I do not know which command does this. Starting from a command prompt I just type `l` and then hit the tab-key.  ::
+Lets say that I want to compute  *lowest common multiple* of two integers and I do not know which command does this. Starting from a command prompt I just type ``l`` and then hit the tab-key.  ::
 
   sage: l
   laguerre                    list_plot3d
@@ -124,7 +124,7 @@ Lets say that I want to compute  *lowest common multiple* of two integers and I 
   list_plot                   lx
 
 
-Once again I have quite a few options to select. As I scan, I see the :func:`lcm` function which seems like the closest match to what I want. To make sure I will type in `lcm?` and then hit enter. ::
+Once again I have quite a few options to select. As I scan, I see the :func:`lcm` function which seems like the closest match to what I want. To make sure I will type in ``lcm?`` and then hit enter. ::
 
   sage: lcm?
 
@@ -154,9 +154,9 @@ What I get is the following. ::
 	    sage: LCM(97,100)
 
 
-Again, there will be a whole lot of information, usually more than will fit on one screen.  To see the next page you hit the space bar, and you can hit `b`, or the up-arrow key, to move backward in the documentation. To exit the help system just hit `q`. Remember, things are slightly different if you are using the notebook, we will talk about the differences later.  
+Again, there will be a whole lot of information, usually more than will fit on one screen.  To see the next page you hit the space bar, and you can hit ``b``, or the up-arrow key, to move backward in the documentation. To exit the help system just hit ``q``. Remember, things are slightly different if you are using the notebook, we will talk about the differences later.  
 
-The most important part to read in the help system, when you are first starting out, is probably the description, the `INPUT`, and the `EXAMPLES` sections. The input tells you what you should provide as arguments to the function, and the examples section gives you a template that you can modify for your own computations.
+The most important part to read in the help system, when you are first starting out, is probably the description, the ``INPUT``, and the ``EXAMPLES`` sections. The input tells you what you should provide as arguments to the function, and the examples section gives you a template that you can modify for your own computations.
 
 The description ::
 
@@ -164,7 +164,7 @@ The description ::
   omitted the least common multiple of all elements of a.
   Note that LCM is an alias for lcm.
 
-From this description, I can tell that this is the command that I am looking for. To see how to  use :func:`lcm`, we will read the `INPUT` section. ::
+From this description, I can tell that this is the command that I am looking for. To see how to  use :func:`lcm`, we will read the ``INPUT`` section. ::
 
        EXAMPLES:
     
@@ -184,19 +184,19 @@ From this description, I can tell that this is the command that I am looking for
 
 .. _notebook_help:
 
-`?` and the notebook
+``?`` and the notebook
 --------------------------
 
 As noted before, there are small differences between the comand line and the notebook.  The note book is generally  more intuitive for those  who are used to point-and-click interfaces. 
 
-Suppose that instead of the least common multiple, you are looking for the *greatest common divisor* of two integers. In the notebook, I begin by typing into an input box `g` and then hitting the tab key. 
+Suppose that instead of the least common multiple, you are looking for the *greatest common divisor* of two integers. In the notebook, I begin by typing into an input box ``g`` and then hitting the tab key. 
 
 .. image:: pics/tabcompletion-ex1.png
         :alt: Finding the gcd() command using tab completion. 
 	:width: 800px
 	:height: 525px
 
-What you see is an overlay  of all the completions that you can scroll through using the arrow keys.  You can navigate the options using a mouse. Once again, I see an option which looks like it should be what I am looking for, the :func:`gcd` function, but I am not quite sure. So I type `gcd?` and click on the `evaluate` link at the bottom of the cell.
+What you see is an overlay  of all the completions that you can scroll through using the arrow keys.  You can navigate the options using a mouse. Once again, I see an option which looks like it should be what I am looking for, the :func:`gcd` function, but I am not quite sure. So I type ``gcd?`` and click on the ``evaluate`` link at the bottom of the cell.
 
 .. image:: pics/tabcompletion-ex2.png
         :alt: Using ? to find a description of gcd() 
@@ -223,7 +223,7 @@ There are  four parts to the tutorial: "How to use this tutorial" has basic inst
 "Mathematical Structures" is written at a more sophisticated level than the earlier material, since the intended audience is college students taking upper division math courses.  The emphasis is on learning about specific mathematical structures that have a Sage class associated to them.
 
 .. seealso::
-   #. `reStructured Text Primer <http://sphinx.pocoo.org/rest.html>`_
+   `reStructured Text Primer <http://sphinx.pocoo.org/rest.html>`_
 
 .. _credits_and_license:
 

@@ -65,7 +65,7 @@ When dividing two integers, there is a subtlety; whether Sage will return a frac
 
    #. Divide :math:`28` by :math:`3` raised to the 5th power.
    #. Compute a decimal approximation of :math:`\sqrt{2}`
-   #. Use sage to compute `(-9)^(1/2)`. Describe the output. 
+   #. Use sage to compute ``(-9)^(1/2)``. Describe the output. 
 
 
 
@@ -182,7 +182,7 @@ a real number. ::
 	sage: abs(4)
 	4
 				
-The :func:`.floor` command rounds a number down to the nearest integer, while :func:`.ceil` rounds up. Typically we denote the *floor* with :math:`\lfloor x \rfloor` and the *ceiling* by :math:`\lceil x \rceil`.::
+The :func:`.floor` command rounds a number down to the nearest integer, while :func:`.ceil` rounds up.::
 
 	sage: floor(2.1)
 	2
@@ -254,7 +254,7 @@ When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not som
   sage: sin(pi.n())
   1.22464679914735e-16
 				
-We see that when using the symbolic :obj:`pi` Sage returns the exact result. However,  when we use the approximation we get an approximation back. The :obj:`e-15` is the shorthand for :math:`10^{-15}` and the number :math:`1.22464679914735e-16` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation ::
+We see that when using the symbolic :obj:`.pi` Sage returns the exact result. However,  when we use the approximation we get an approximation back. ``e-15`` is a shorthand for :math:`10^{-15}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation ::
 
   sage: sin(pi/6)
   1/2
@@ -401,7 +401,7 @@ interval on which to search for a solution.::
 	3.9269908169872414
 
 This command will only return one solution on the specified interval, if one exists. It will not find the complete solution set over the entire real numbers. 
-To find a complete set of solutions, the reader must use ``find_root()`` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10. :-) 
+To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10. :-) 
 
 .. _declare_variables:
 
@@ -431,7 +431,7 @@ cause Sage to complain about a :exc:`.NameError`. ::
  	NameError                                 Traceback (most recent call last)
 	NameError: name 'u' is not defined
 				
-We can un-declare a symbolic variable, like the variable :func:`phi` defined above,  by using the :func:`.restore`
+We can un-declare a symbolic variable, like the variable :func:`.phi` defined above,  by using the :func:`.restore`
 command.::
 
 	sage: restore('phi')
@@ -527,7 +527,7 @@ We can do the same with :math:`g(x)`. To evaluate the limit of :math:`g(x) = x^{
   sage: limit(g, x=2)
   4*cos(4)
 
-The functions ``f(x)`` and ``g(x)`` aren't all that exciting as far as limits are concerned since they are both *continuous* for all real numbers. But :math:`h(x)` has a discontinuity at :math:`x=4`, so to investigate what is happening near this discontinuity we will look at the limit of :math:`h(x)`  as :math:`x \rightarrow 4`: ::
+The functions :math:`f(x)` and :math:`g(x)` aren't all that exciting as far as limits are concerned since they are both *continuous* for all real numbers. But :math:`h(x)` has a discontinuity at :math:`x=4`, so to investigate what is happening near this discontinuity we will look at the limit of :math:`h(x)`  as :math:`x \rightarrow 4`: ::
 
   sage: limit(h, x = 4)
   Infinity
@@ -551,7 +551,7 @@ What we have when :math:`x=4` is a *vertical asymptote* with the function tendin
 Derivatives
 -----------
 
-The next thing we are going to do is use Sage to compute some *derivatives* of the functions that we defined. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :func:`derivative` command. ::
+The next thing we are going to do is use Sage to compute some *derivatives* of the functions that we defined. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :func:`.derivative` command. ::
 
   sage: fp  =  derivative(f,x)
   sage: fp
@@ -563,7 +563,7 @@ The next thing we are going to do is use Sage to compute some *derivatives* of t
   sage: hp
   x |--> (2*x + 1)/(x - 4) - (x^2 + x - 2)/(x - 4)^2
 
-The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, Sage will hold ``x`` constant and take the derivative with respect to that variable. ::
+The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, Sage will hold :math:`x` constant and take the derivative with respect to that variable. ::
 
   sage: y = var('y')
   sage: derivative(f,y)
@@ -574,7 +574,7 @@ The first argument is the function which you would like to differentiate and the
   x |--> 0
 
  
-The :func:`derivative` command returns another function that can be evaluated like any other function. ::
+The :func:`.derivative` command returns another function that can be evaluated like any other function. ::
 
   sage: fp(10)
   11*e^10
@@ -584,7 +584,7 @@ The :func:`derivative` command returns another function that can be evaluated li
   sage: hp(10)
   1/2
 
-With the *derivative function* computed, we can then find the *critical points* using the :func:`solve` command. ::
+With the *derivative function* computed, we can then find the *critical points* using the :func:`.solve` command. ::
 
   sage: solve( fp(x) == 0, x)
   [x == -1, e^x == 0]
@@ -613,7 +613,7 @@ The same can be done for :math:`g(x)` and :math:`h(x)`. ::
 Integrals
 ---------
 
-Sage has the facility to compute both *definite* and *indefinite* integral for many common functions. We will begin by computing the *indefinite* integral, otherwise known as the *anti-derivative*,  for each of the functions that we defined earlier. This will be done by using the :func:`integral` command which has arguments that are similar to :func:`derivative`. ::
+Sage has the facility to compute both *definite* and *indefinite* integral for many common functions. We will begin by computing the *indefinite* integral, otherwise known as the *anti-derivative*,  for each of the functions that we defined earlier. This will be done by using the :func:`.integral` command which has arguments that are similar to :func:`.derivative`. ::
 
   sage: integral(f,x)
   x |--> (x - 1)*e^x
@@ -651,7 +651,7 @@ We can also compute the *definite* integral for the functions that we defined ea
   sage: integral(h, x,0,1)
   x |--> 18*log(3) - 18*log(4) + 11/2
 
-In each case above, Sage returns a *function* as its result. Each of these functions is a constant function, which is what we would expect. As it was pointed out earlier, Sage will return the expression that retains the most precision and will not use decimals unless told to. A quick way to tell Sage that an approximation is desired is wrap the :func:`integrate` command with :func:`n`, the numerical approximation command.  ::
+In each case above, Sage returns a *function* as its result. Each of these functions is a constant function, which is what we would expect. As it was pointed out earlier, Sage will return the expression that retains the most precision and will not use decimals unless told to. A quick way to tell Sage that an approximation is desired is wrap the :func:`.integrate` command with :func:`.n`, the numerical approximation command.  ::
 
   sage: n(integral(f, x,0,1))
   1.00000000000000
@@ -733,7 +733,7 @@ We can also compute a rolling, or moving, average of the data with the :func:`.m
   #. Use Sage to generate a list of 20 random integers. 
   #. The heights of eight students, measured in inches, are :math:`71,\ 73,\  59,\ 62,\ 65,\ 61,\ 73,\ 61`. Find the *average*, *median* and *mode* of the heights of these students. 
   #. Using the same data, compute the *standard deviation* and *variance* of the sampled heights.
-  #. Find the *range* of the heights. (*Hint: use the* :func:`max` *and* :func:`min` *commands*) 
+  #. Find the *range* of the heights. (*Hint: use the* :func:`.max` *and* :func:`.min` *commands*) 
   
 
 .. _basic_plotting:
@@ -800,7 +800,7 @@ We can display the graphs of two functions on the same axes by adding the plots 
 	:width: 400px
 
 To tie together our plotting commands with some material we have
-learned earlier, let's use the ``find_root()`` command to find the
+learned earlier, let's use the :func:`.find_root` command to find the
 point where :math:`\sin(x)` and :math:`\cos(x)` intersect. We will then add this point to the graph and label it. ::
 
 	sage: find_root( sin(x) == cos(x),-pi/2, pi/2 )
@@ -895,7 +895,7 @@ Polar plots can be done using the :func:`.polar_plot` command ::
 **Exercises:**
 
   #. Plot the graph of :math:`y = \sin\left(\pi x - \pi  \right)` for :math:`-1 \leq x \leq 1` using a thick red line.
-  #. Plot the graph of :math:\cos\left(\pi x - \pi \right)` on the same interval using a thick blue line. 
+  #. Plot the graph of :math:`\cos\left(\pi x - \pi \right)` on the same interval using a thick blue line. 
   #. Plot the two graphs above on the same set of axes. 
   #. Plot the graph of :math:`y = 1/x` for :math:`-1 \leq x \leq 1` adjusting the range so that only :math:`-10 \leq y \leq 10`. 
   #. Use the commands in this section to produce the following image:
