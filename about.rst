@@ -58,7 +58,7 @@ The Sage web-site already contains detailed instructions for installing Sage on 
 Helpful Tips
 ============
 
-Sage has two common ways to enter commands, the *command line* and a web-based *notebook* which is similar in design and purpose to the interfaces of other computer algebra systems like *Maple*, *Mathematica* and *Matlab*. On the mailing lists these are often referred to as *The M's*.  
+Sage has two common ways to enter commands, the *command line* and a web-based *notebook* which is similar in design and purpose to the interfaces of other computer algebra systems like *Maple*, *Mathematica* and *Matlab*.
 
 .. _help_tabcompletion:
 
@@ -71,16 +71,16 @@ An extremely useful feature both in the command-line interface and the notebook 
   factor     factorial  
   sage: factor
 
-This tells you that the only two Sage commands which begin with ``fac`` are :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because that is the common root of both commands. Since factorial looks like the command that  you are looking, for just type the next letter, ``i``, and hit tab again. ::
+This tells you that only two Sage commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command to factor an integer we will select this by typing the next letter, ``i``, and hitting the tab key again. ::
 
   sage: factorial   
 
-This time no list is returned because the only command that begins with ``factori`` is :func:`factorial`, so it just *completes* the command. So to compute :math:`56!` you just complete the command by adding the ``(56)``. ::
+This time no list is returned because the only command that begins with ``factori`` is :func:`factorial`. So to compute :math:`56!` you just complete the command by adding the argument ``(56)``. ::
 
   sage: factorial(56)
   710998587804863451854045647463724949736497978881168458687447040000000000000
 
-Another good use of tab-completion is to discover what *methods* an *object* has. Don't worry if you have never heard of the term object or method before, it will become clear as you follow along. The commands presented now are assuming that you are using tab-completion on the command line. The notebook works slightly differently, and we will discuss those differences in the next section.
+Another good use of tab-completion is to discover what *methods* an *object* has. Don't worry if you have never heard of the term object or method before, their meaning will become clearer as you follow along. The commands presented now are assuming that you are using the command line interface,  the notebook behaves slightly differently, and we will address those differences in the next section.
 
 Say you have the integer :math:`a = 56` and you were wondering which commands Sage offers for working with integers like :math:`56`. In this case the :math:`a` is our object and we can find all of the *methods* associated with integers by typing ``a.`` then hitting the tab-key. ::
 
@@ -94,16 +94,18 @@ Say you have the integer :math:`a = 56` and you were wondering which commands Sa
   a.exact_log                    a.powermodm_ui
   --More--
 
-Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. You should direct your attention to the ``--More--`` at the bottom of the screen. This is telling us that the list is actually longer than what is shown. To scroll through this list a page at a time, just hit any key and Sage will show you the next page.
+Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. You should note the ``--More--`` at the bottom of the screen. This little cue is telling us that the list of possible commands is longer than what can fit on a single screen. To scroll through this list a page at a time, just hit any key and Sage will display the next page.
 
 On the second page you see that :meth:`.factor` is an option. To use this method, which *factors* :math:`56` into unique prime factors, you enter ``a.factor()`` and hit return. ::
  
   sage: a.factor()[RET]
   2^3 * 7
 
-What this allows you to do is to *discover* new commands in Sage. Once you identify a command of interest you  will sometime need to figure out *what* a new command does and *how* to actually use it. Sage has a built-in help system to solve this very problem. 
+What this allows you to do is to *discover* new commands in Sage. 
 
-Lets say that you want to compute the *lowest common multiple* of two integers and you are not sure which command does this. A good place to begin is by typing ``l`` at the command prompt and then hitting the tab-key.  ::
+Once you have identified a command that interests you, the next step is to find out exactly *what* this command does and *how* to use it. Sage has a built-in help system to help you achieve this very goal. 
+
+Let's suppose that you wish to compute the *lowest common multiple* of two integers and are not sure which command does this. A good place to begin the search is by typing ``l`` at the command prompt and then hitting the tab-key.  ::
 
   sage: l[TAB]
   laguerre                    list_plot3d
@@ -154,9 +156,9 @@ Which outputs: ::
 	    sage: LCM(97,100)
 
 
-Again, there will be a whole lot of information, usually more than will fit on one screen.  To see the next page you hit the space bar, and ``b``, or the up-arrow key, to move backward in the documentation. To exit the help system just hit ``q``. Remember, things are slightly different if you are using the notebook, we will talk about those later.  
+Again, there will be a whole lot of information, usually more than will fit on one screen.  Navigation is easy; hitting the space bar will take you to the next page, and ``b``, or the up-arrow key, will move backward in the documentation. To exit the help system hit the ``q`` key. Remember, navigation through the help system is slightly different if you are using the notebook. 
 
-When first starting out; the description,  the ``INPUT``, and the ``EXAMPLES`` sections are good things to read. The description gives a short summary describing what the command does,  ``INPUT`` gives you information on what you should provide as *arguments* to the command, and ``EXAMPLES`` gives concrete examples of the command's usage.
+When first starting out; the description,  the ``INPUT``, and the ``EXAMPLES`` sections are good sections to read. The description gives a short summary describing what the command does,  ``INPUT`` gives you information on what you should provide as *arguments* to the command, and ``EXAMPLES`` gives concrete examples of the command's usage.
 
 The description in this case is:  ::
 
@@ -164,13 +166,13 @@ The description in this case is:  ::
   omitted the least common multiple of all elements of a.
   Note that LCM is an alias for lcm.
 
-From this description, you can be pretty sure that this is the command that you am looking for. Next examine the ``INPUT`` of this command. ::
+From this description, you can be pretty sure that this is the command that you am looking for. Next examine the ``INPUT``: ::
 
   INPUT:
   * ``a,b`` - two elements of a ring with lcm or
   * ``a`` - a list or tuple of elements of a ring with lcm
 
-Here you see that ``lcm`` can either accept two arguments, for our purposes two integers, or a list of objects.  And finally by perusing the ``EXAMPLES`` you can get a good idea on how this command is actually used. ::
+Here you see that ``lcm`` can either accept two arguments, for our purposes two integers, or a list of objects. Finally by perusing the ``EXAMPLES`` you can get a good idea on how this command is actually used in practice. ::
 
        EXAMPLES:
     
@@ -188,30 +190,30 @@ Here you see that ``lcm`` can either accept two arguments, for our purposes two 
           sage: len(str(v))
           4349
 
-Having a comprehensive help system built into Sage is one of it's greatest features and the sooner you get comfortable with using it the faster you will be able to use the full power of this CAS.
+Having a comprehensive help system built into Sage is one of it's best features and the sooner you get comfortable with using it the faster you will be able to use the full power of this CAS.
 
 .. _notebook_help:
 
 ``?`` and the notebook
 --------------------------
 
-As noted before, there are small differences between the comand line and the notebook.  The note book is generally  more intuitive for those  who are used to point-and-click interfaces. 
+As noted before, there are small differences between the comand line and the notebook.  The notebook is generally more intuitive for those  who are used to point-and-click interfaces. 
 
-Suppose that instead of the least common multiple, you are looking for the *greatest common divisor* of two integers. In the notebook, I begin by typing into an input box ``g`` and then hitting the tab key. 
+Suppose that instead of the least common multiple, you are looking to compute the *greatest common divisor* of two integers. In the notebook, you begin the search in much the same way as you did on the command line, by typing into an input box ``g`` and then hitting the tab key. 
 
 .. image:: pics/tabcompletion-ex1.png
         :alt: Finding the gcd() command using tab completion. 
 	:width: 800px
 	:height: 525px
 
-What you see is an overlay  of all the completions that you can scroll through using the arrow keys.  You can navigate the options using a mouse. Once again, I see an option which looks like it should be what I am looking for, the :func:`gcd` function, but I am not quite sure. So I type ``gcd?`` and click on the ``evaluate`` link at the bottom of the cell.
+What you see is an overlay of all the completions. You can scroll through this list by using the arrow keys or by using a mouse to highlight the desired options. Like previously, you see the :func:`gcd` function which looks like it is what you are looking for. To confirm this, you type ``gcd?`` and click on the ``evaluate`` link at the bottom of the cell.
 
 .. image:: pics/tabcompletion-ex2.png
         :alt: Using ? to find a description of gcd() 
 	:width: 800px
 	:height: 525px
 
-To exit the help just click anywhere on the screen.
+To exit the help system overlay just click anywhere on the screen.
 
 .. _contributing: 
 
