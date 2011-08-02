@@ -17,15 +17,15 @@ This tutorial is divided into four main parts. This part, *About this Tutorial*,
 
 The second part, *Sage as a Calculator*, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and  basic calculus. We call this section *Sage as a Calculator* because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
-*Programming in Sage*  begins to introduce the reader to some of the more *subtle* issues about how Sage works:  how Sage handles numbers, how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage   *universes* and *coercion*. 
+*Programming in Sage* begins to introduce the reader to some more *advanced* topics such as:  how Sage handles numbers, how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
 
-The final part, *Mathematical Structures*,  introduces the topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc. 
+The final part, *Mathematical Structures*,  introduces the reader to topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc.
  
-Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along  as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
+Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
 
 While the tutorial mostly progresses in a linear fashion, we still include at the beginning of each section a list of the most important prerequisite topics. This list follows the text "You should be familiar with." and by clicking one of these links you will be taken to the relevant portion of the tutorial. We have also tried to include links to further information and other on-line references. These will follow the "**See also:**" text. 
 
-Some sections may contain numbered citations such as "[1]_." At the bottom of a section with at least one citation will be a list of references, with the entries correspondingly numbered.
+Some sections may contain numbered citations such as "[1]_." The list of these citations will be at the bottom of a section with at least one citation. These citations will direct the reader to texts which contain more information about the topic being presented. 
 
 **References:**
 
@@ -51,7 +51,7 @@ As an open source project, Sage invites contributions from all of its users. Thi
 Installing Sage
 ---------------
 
-The Sage web-site already contains detailed instructions for installing sage on all popular operating systems. So we will not duplicate that effort but rather just point the reader to the sage project's `official installation guide <http://www.sagemath.org/doc/installation/>`_.
+The Sage web-site already contains detailed instructions for installing Sage on all popular operating systems. So we will not duplicate that effort but rather just point the reader to the sage project's `official installation guide <http://www.sagemath.org/doc/installation/>`_.
  
 .. _tips:
 
@@ -65,24 +65,24 @@ Sage has two common ways to enter commands, the *command line* and a web-based *
 `?` and Tab Completion
 -----------------------
 
-The most useful feature both in the command-line interface and the notebook is probably *tab completion*. For long time unix shell users this feature can be taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Suppose that I wanted to compute  :math:`56!` and I don't remember the exact command name to do this. Well, I just type ``fac`` then hit the tab-key. ::
+An extremely useful feature both in the command-line interface and the notebook is *tab completion* of Sage commands. For long-time UNIX shell users this feature is often taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Foe example, suppose that you wanted to compute :math:`56!` and don't remember the exact command name to do this. Well, you can just type the first three letters ``fac`` and then hit the tab-key. ::
 
   sage: fac[TAB]
   factor     factorial  
   sage: factor
 
-This tells me that the only two Sage commands which begin with ``fac`` are :py:func:`factor` and :func:`factorial`. Note also that Sage has already changed my command from ``fac`` to ``factor`` because that is the common root of both commands. Since factorial is what I am looking for I just type the next letter ``i`` and hit tab again. ::
+This tells you that the only two Sage commands which begin with ``fac`` are :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because that is the common root of both commands. Since factorial looks like the command that  you are looking, for just type the next letter, ``i``, and hit tab again. ::
 
   sage: factorial   
 
-This time no list is returned because the only command that begins with ``factori`` is :func:`factorial`, so it just *completes* the command for me. So I can computer :math:`56!` by just completing the command by adding the ``(56)``.  ::
+This time no list is returned because the only command that begins with ``factori`` is :func:`factorial`, so it just *completes* the command. So to compute :math:`56!` you just complete the command by adding the ``(56)``. ::
 
   sage: factorial(56)
   710998587804863451854045647463724949736497978881168458687447040000000000000
 
-Another good use of tab-completion is  to discover what *methods* an *object* has. Don't worry if you have never heard of the term object or method before, it will become clear as you  follow along. What I am presenting now is assuming that you are using tab-completion on the command line.  The notebook works slightly differently, and we will discuss that in the next section.
+Another good use of tab-completion is to discover what *methods* an *object* has. Don't worry if you have never heard of the term object or method before, it will become clear as you follow along. The commands presented now are assuming that you are using tab-completion on the command line. The notebook works slightly differently, and we will discuss those differences in the next section.
 
-Say I have the integer :math:`a = 56`. In this case the :math:`a` is our object and we can find all of the *methods* associated with integers by typing ``a.`` then hitting the tab-key. ::
+Say you have the integer :math:`a = 56` and you were wondering which commands Sage offers for working with integers like :math:`56`. In this case the :math:`a` is our object and we can find all of the *methods* associated with integers by typing ``a.`` then hitting the tab-key. ::
 
   sage: a = 56
   sage: a.[TAB]
@@ -94,18 +94,18 @@ Say I have the integer :math:`a = 56`. In this case the :math:`a` is our object 
   a.exact_log                    a.powermodm_ui
   --More--
 
-Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. I want to draw your attention to the ``--More--`` at the bottom of the screen. This is telling us that the list is actually longer than what is shown. To scroll through this list a page at a time, just hit any key and Sage will show you the next page.
+Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. You should direct your attention to the ``--More--`` at the bottom of the screen. This is telling us that the list is actually longer than what is shown. To scroll through this list a page at a time, just hit any key and Sage will show you the next page.
 
-On the second page I see something that I recognize. I understand what it means to :meth:`factor` an integer so I will use this method by entering ``a.factor()`` and hitting return. ::
+On the second page you see that :meth:`.factor` is an option. To use this method, which *factors* :math:`56` into unique prime factors, you enter ``a.factor()`` and hit return. ::
  
-  sage: a.factor()
+  sage: a.factor()[RET]
   2^3 * 7
 
-Now that I know how to *discover* new commands in Sage, I will sometime need to figure out *what* a new command does and *how* to use it. Sage has a built-in help system to solve this very problem. 
+What this allows you to do is to *discover* new commands in Sage. Once you identify a command of interest you  will sometime need to figure out *what* a new command does and *how* to actually use it. Sage has a built-in help system to solve this very problem. 
 
-Lets say that I want to compute  *lowest common multiple* of two integers and I do not know which command does this. Starting from a command prompt I just type ``l`` and then hit the tab-key.  ::
+Lets say that you want to compute the *lowest common multiple* of two integers and you are not sure which command does this. A good place to begin is by typing ``l`` at the command prompt and then hitting the tab-key.  ::
 
-  sage: l
+  sage: l[TAB]
   laguerre                    list_plot3d
   lambda                      lk
   laplace                     ll
@@ -124,11 +124,11 @@ Lets say that I want to compute  *lowest common multiple* of two integers and I 
   list_plot                   lx
 
 
-Once again I have quite a few options to select. As I scan, I see the :func:`lcm` function which seems like the closest match to what I want. To make sure I will type in ``lcm?`` and then hit enter. ::
+Once again you have quite a long list of commands from which to select. Scanning down the list, you see the :func:`lcm` command listed which seems like what you are trying to compute. To make sure of this type ``lcm?`` and then hit enter. ::
 
   sage: lcm?
 
-What I get is the following. ::
+Which outputs: ::
 
   Base Class:     <type 'function'>
   String Form:    <function lcm at 0x32db6e0>
@@ -154,17 +154,23 @@ What I get is the following. ::
 	    sage: LCM(97,100)
 
 
-Again, there will be a whole lot of information, usually more than will fit on one screen.  To see the next page you hit the space bar, and you can hit ``b``, or the up-arrow key, to move backward in the documentation. To exit the help system just hit ``q``. Remember, things are slightly different if you are using the notebook, we will talk about the differences later.  
+Again, there will be a whole lot of information, usually more than will fit on one screen.  To see the next page you hit the space bar, and ``b``, or the up-arrow key, to move backward in the documentation. To exit the help system just hit ``q``. Remember, things are slightly different if you are using the notebook, we will talk about those later.  
 
-The most important part to read in the help system, when you are first starting out, is probably the description, the ``INPUT``, and the ``EXAMPLES`` sections. The input tells you what you should provide as arguments to the function, and the examples section gives you a template that you can modify for your own computations.
+When first starting out; the description,  the ``INPUT``, and the ``EXAMPLES`` sections are good things to read. The description gives a short summary describing what the command does,  ``INPUT`` gives you information on what you should provide as *arguments* to the command, and ``EXAMPLES`` gives concrete examples of the command's usage.
 
-The description ::
+The description in this case is:  ::
 
   The least common multiple of a and b, or if a is a list and b is
   omitted the least common multiple of all elements of a.
   Note that LCM is an alias for lcm.
 
-From this description, I can tell that this is the command that I am looking for. To see how to  use :func:`lcm`, we will read the ``INPUT`` section. ::
+From this description, you can be pretty sure that this is the command that you am looking for. Next examine the ``INPUT`` of this command. ::
+
+  INPUT:
+  * ``a,b`` - two elements of a ring with lcm or
+  * ``a`` - a list or tuple of elements of a ring with lcm
+
+Here you see that ``lcm`` can either accept two arguments, for our purposes two integers, or a list of objects.  And finally by perusing the ``EXAMPLES`` you can get a good idea on how this command is actually used. ::
 
        EXAMPLES:
     
@@ -181,6 +187,8 @@ From this description, I can tell that this is the command that I am looking for
           sage: v = LCM(range(1,10000))   # *very* fast!
           sage: len(str(v))
           4349
+
+Having a comprehensive help system built into Sage is one of it's greatest features and the sooner you get comfortable with using it the faster you will be able to use the full power of this CAS.
 
 .. _notebook_help:
 
