@@ -182,7 +182,7 @@ a real number. ::
 	sage: abs(4)
 	4
 				
-The :func:`.floor` command rounds a number down to the nearest integer, while :func:`.ceil` rounds up.::
+The :func:`.floor` command rounds a number down to the nearest integer, while :func:`.ceil` rounds up. ::
 
 	sage: floor(2.1)
 	2
@@ -194,7 +194,7 @@ We need to be very careful while using :func:`.floor` and :func:`.ceil`. ::
 	sage: floor(1/(2.1-2))
 	9
 				
-This is clearly not correct: :math:`\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfloor = \lfloor 10 \rfloor = 10`. So what happened?::
+This is clearly not correct: :math:`\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfloor = \lfloor 10 \rfloor = 10`. So what happened? ::
 
 	sage: 1/(2.1-2)
 	9.99999999999999
@@ -227,7 +227,7 @@ To compute other roots, we use a rational exponent. Sage can compute any rationa
   sage: 8^(1/3)
   2
 				
-Sage also has available all of the standard trigonometric functions: for sine and cosine we use :func:`.sin` and :func:`.cos` ::
+Sage also has available all of the standard trigonometric functions: for sine and cosine we use :func:`.sin` and :func:`.cos`. ::
 
   sage: sin(1)
   sin(1)
@@ -238,7 +238,7 @@ Sage also has available all of the standard trigonometric functions: for sine an
   sage: cos(3/2.0)
   0.0707372016677029
 				
-Again we see the same behavior that we saw with :func:`sqrt`, Sage wants to give us an exact answer.  You might think that since there is no way to simplify ``sin(1)``,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = 3/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
+Again we see the same behavior that we saw with :func:`sqrt`, Sage will give us an exact answer.  You might think that since there is no way to simplify ``sin(1)``,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = 3/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
 
   sage: pi
   pi
@@ -254,7 +254,7 @@ When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not som
   sage: sin(pi.n())
   1.22464679914735e-16
 				
-We see that when using the symbolic :obj:`.pi` Sage returns the exact result. However,  when we use the approximation we get an approximation back. ``e-15`` is a shorthand for :math:`10^{-15}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation ::
+We see that when using the symbolic :obj:`.pi`, Sage returns the exact result. However,  when we use the approximation we get an approximation back. ``e-15`` is a shorthand for :math:`10^{-15}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation: ::
 
   sage: sin(pi/6)
   1/2
@@ -290,7 +290,7 @@ Similar to :obj:`pi` Sage has a built-in symbolic constant for the number :math:
   2.71828182845905
 				
 While some might be familiar with using ``ln(x)`` for natural log and ``log(x)`` to represent logarithm base :math:`10`, in Sage both represent logarithm
-base :math:`e`.  We may specify a different base as a second argument to the command: to compute :math:`\log_{b}(x)` in Sage we use the command ``log(x,b)`` ::
+base :math:`e`.  We may specify a different base as a second argument to the command: to compute :math:`\log_{b}(x)` in Sage we use the command ``log(x,b)``. ::
 
   sage: ln(e)
   1
@@ -305,7 +305,7 @@ base :math:`e`.  We may specify a different base as a second argument to the com
   sage: log(100,10)
   2
 				
-Exponentiation base :math:`e` can done using both the :func:`.exp` function and by raising the constant ``e`` to a specified power. ::
+Exponentiation base :math:`e` can done using both the :func:`.exp` function and by raising the symbolic constant ``e`` to a specified power. ::
 
   sage: exp(2)
   e^2
@@ -337,10 +337,9 @@ Solving Equations and Inequalities
 Solving for x
 -------------------------------------------------
 
-..You should be familiar with ":ref:`basic_arithmetic`" and ":ref:`basic_functions_and_constants`"
+  You should be familiar with ":ref:`basic_arithmetic`" and ":ref:`basic_functions_and_constants`"
 				
-In Sage, equations and inequalities are defined using the conditional
-operators ``==``, ``<=``, and ``>=`` and will return either ``True``, ``False``, or, if there is a variable, just the equation/inequality. ::
+In Sage, equations and inequalities are defined using the *operators* ``==``, ``<=``, and ``>=`` and will return either ``True``, ``False``, or, if there is a variable, just the equation/inequality. ::
 
 	sage: 9 == 9
 	True
@@ -350,7 +349,7 @@ operators ``==``, ``<=``, and ``>=`` and will return either ``True``, ``False``,
 	3*x - 10 == 5
 				
 To solve an equation or an inequality we use using the, aptly
-named, :func:`.solve` command. For the moment, we will only solve for :math:`x`.  The section on variables below explains how to use other variables.::
+named, :func:`.solve` command. For the moment, we will only solve for :math:`x`.  The section on variables below explains how to use other variables. ::
 
 	sage: solve(3*x - 2 == 5,x)
 	[x == (7/3)]
@@ -361,7 +360,7 @@ named, :func:`.solve` command. For the moment, we will only solve for :math:`x`.
 	sage: solve( 3*x -2 > 5, x) 
 	[[x > (7/3)]]
 				
-Equations can have multiple solutions, Sage just returns all solutions found as a list. ::
+Equations can have multiple solutions, Sage returns all solutions found as a list. ::
 
 	sage: solve( x^2 + x  == 6, x)
 	[x == -3, x == 2]
@@ -380,7 +379,7 @@ The solution set of certain inequalities consists of the union and intersection 
 			
 The :func:`.solve` command will attempt to express the solution of an
 equation without the use of floating point numbers. If this cannot be
-done, it will return the solution in a symbolic form.::
+done, it will return the solution in a symbolic form. ::
  
 	sage: solve( sin(x) == x, x)
 	[x == sin(x)]
@@ -393,7 +392,7 @@ done, it will return the solution in a symbolic form.::
 				
 To find a numeric approximation of the solution we can use the
 :func:`.find_root` command. Which requires both the expression and a closed
-interval on which to search for a solution.::
+interval on which to search for a solution. ::
 
 	sage: find_root(sin(x) == x, -pi/2 , pi/2)
 	0.0
@@ -401,7 +400,7 @@ interval on which to search for a solution.::
 	3.9269908169872414
 
 This command will only return one solution on the specified interval, if one exists. It will not find the complete solution set over the entire real numbers. 
-To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10. :-) 
+To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10. 
 
 .. _declare_variables:
 
@@ -409,8 +408,7 @@ Declaring Variables
 ----------------------
 
 In the previous section we only solved equations in one variable, and we always used :math:`x`.
-When a Sage session is started, Sage creates one symbolic variable, :math:`x`, and it can be used to 
-solve equations.  If you want to use  an additional symbolic variable, you have to *declare it*  using the :func:`.var` command.
+When a session is started, Sage creates one symbolic variable, :math:`x`, and it can be used to solve equations.  If you want to use  an additional symbolic variable, you have to *declare it*  using the :func:`.var` command.
 The name of a symbolic variable can be a letter, or a combination of letters and numbers::
 
 	sage: y,z,t = var("y z t")
@@ -419,10 +417,9 @@ The name of a symbolic variable can be a letter, or a combination of letters and
 
 .. note::
 	Variable names cannot contain spaces, for example "square root"
-	would not be a valid variable name, but "square_root" would be. 
+	is not a valid variable name, whereas "square_root" is. 
 				
-Attempting to use a symbolic variable before it has been declared will
-cause Sage to complain about a :exc:`.NameError`. ::
+Attempting to use a symbolic variable before it has been declared will result in a :exc:`.NameError`. ::
 
 	sage: u
 	...
@@ -431,8 +428,8 @@ cause Sage to complain about a :exc:`.NameError`. ::
  	NameError                                 Traceback (most recent call last)
 	NameError: name 'u' is not defined
 				
-We can un-declare a symbolic variable, like the variable :func:`.phi` defined above,  by using the :func:`.restore`
-command.::
+We can un-declare a symbolic variable, like the variable ``phi`` defined above,  by using the :func:`.restore` command.
+command. ::
 
 	sage: restore('phi')
 	sage: phi
@@ -457,16 +454,16 @@ a unique solution, infinitely many solutions, or no solutions at all. ::
 				
 In the second equation above, ``r1`` signifies that there is a free
 variable which parametrizes the solution set. When there is more than
-one free variable, Sage enumerates them. ::
+one free variable, Sage enumerates them ``r1,r2,..., rk``. ::
 
 	sage: solve([ 2*x + 3*y + 5*z == 1, 4*x + 6*y + 10*z == 2, 6*x + 9*y + 15*z == 3], x,y,z)
 	[[x == -5/2*r1 - 3/2*r2 + 1/2, y == r2, z == r1]]
 
 				
-Using :func:`.solve` can be very slow for large systems of equations. For these systems, it is best to use the linear algebra functions as they are quite efficient. 
+:func:`.solve` can be very slow for large systems of equations. For these systems, it is best to use the linear algebra functions as they are quite efficient. 
 
 Solving inequalities in several variables can lead to complicated expressions, since the regions they define are complicated.
-In the first example below, Sage's solution is a list containing the point of interesection of the lines, then  two rays, then the region between the two rays.::
+In the example below, Sage's solution is a list containing the point of interesection of the lines, then  two rays, then the region between the two rays. ::
 
         sage: solve([ x-y >=2, x+y <=3], x,y)
 	[[x == (5/2), y == (1/2)], [x == -y + 3, y < (1/2)], [x == y + 2, y < (1/2)], [y + 2 < x, x < -y + 3, y < (1/2)]]
@@ -510,14 +507,14 @@ Sage uses ``x |-->`` to tell you that the expression returned is actually a func
   sage: h(-1)
   2/5
 
-With these functions defined, we will first look at how we can use Sage to compute the *limit* of these functions. 
+With these functions defined, we will look at how we can use Sage to compute the *limit* of these functions. 
  
 .. _limits:
 
 Limits
 ------
 
-To evaluate the limit of :math:`f(x) = xe^{x}` as :math:`x \rightarrow 1` we enter the following command into Sage: ::
+The limit of :math:`f(x) = xe^{x}` as :math:`x \rightarrow 1` is computed in Sage by entering the following command into Sage: ::
 
   sage: limit(f, x=1)
   e
@@ -527,7 +524,7 @@ We can do the same with :math:`g(x)`. To evaluate the limit of :math:`g(x) = x^{
   sage: limit(g, x=2)
   4*cos(4)
 
-The functions :math:`f(x)` and :math:`g(x)` aren't all that exciting as far as limits are concerned since they are both *continuous* for all real numbers. But :math:`h(x)` has a discontinuity at :math:`x=4`, so to investigate what is happening near this discontinuity we will look at the limit of :math:`h(x)`  as :math:`x \rightarrow 4`: ::
+The functions :math:`f(x)` and :math:`g(x)` aren't all that exciting as far as limits are concerned since they are both *continuous* for all real numbers. But :math:`h(x)` has a discontinuity at :math:`x=4`, so to investigate what is happening near this discontinuity we will look at the limit of :math:`h(x)` as :math:`x \rightarrow 4`: ::
 
   sage: limit(h, x = 4)
   Infinity
@@ -551,7 +548,7 @@ What we have when :math:`x=4` is a *vertical asymptote* with the function tendin
 Derivatives
 -----------
 
-The next thing we are going to do is use Sage to compute some *derivatives* of the functions that we defined. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :func:`.derivative` command. ::
+The next thing we are going to do is use Sage to compute the *derivatives* of the functions that we defined earlier. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :func:`.derivative` command. ::
 
   sage: fp  =  derivative(f,x)
   sage: fp
@@ -593,7 +590,7 @@ With the *derivative function* computed, we can then find the *critical points* 
   sage: solve( gp(x) == 0, x)
   [x == 0, x == cos(2*x)/sin(2*x)]
 
-Constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is something that is important to do. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
+Constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is an important computation which is easily done in Sage. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
 
   sage: T_f = fp(0)*( x - 0 ) + f(0) 
   sage: T_f
@@ -746,11 +743,11 @@ Plotting
 2D Graphics
 -----------
 
-    You should be familiar with :ref:`basic_functions_and_constants`
+    You should be familiar with :ref:`basic_functions_and_constants` and :ref:`solving_equations_inequalities`
 
-Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly get the reader up to speed with some of the basic commands used when plotting functions and working with graphics.
+Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly you up to speed with some of the basic commands used when plotting functions and working with graphics.
 
-To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :math:`x=\frac{\pi}{2}` we will use the :func:`.plot()` command.::
+To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :math:`x=\frac{\pi}{2}` we will use the :func:`.plot()` command. ::
 
 	sage: f(x) = sin(x)
 	sage: p = plot(f(x), (x, -pi/2, pi/2))
@@ -763,7 +760,7 @@ To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :mat
  
 By default, the plot created will be quite plain. To add axis labels
 and make our plotted line purple, we can alter the plot attribute by
-adding the ``axes_labels`` and ``color`` options ::
+adding the ``axes_labels`` and ``color`` options. ::
 
 	sage: p = plot(f(x), (x,-pi/2, pi/2), axes_labels=['x','sin(x)'], color='purple') 
 	sage: p.show()
@@ -775,7 +772,7 @@ adding the ``axes_labels`` and ``color`` options ::
 
 The ``color`` option accepts string color designations ( 'purple', 'green', 'red', 'black', etc...), an RGB triple such as (.25,.10,1), or an HTML-style hex triple such as #ff00aa.
 
-We can change the style of line, whether it is solid, dashed, and it's thickness by using the ``linestyle`` and the ``thickness`` options.::
+We can change the style of line, whether it is solid, dashed, and it's thickness by using the ``linestyle`` and the ``thickness`` options. ::
 
 	sage: p = plot(f(x), (x,-pi/2, pi/2), linestyle='--', thickness=3) 
 	sage: p.show()
@@ -785,7 +782,7 @@ We can change the style of line, whether it is solid, dashed, and it's thickness
 	:width: 400px
 	:height: 300px
 
-We can display the graphs of two functions on the same axes by adding the plots together.::
+We can display the graphs of two functions on the same axes by adding the plots together. ::
 
 	sage: f(x) = sin(x)
 	sage: g(x) = cos(x)
@@ -829,12 +826,7 @@ expecting. ::
 	:width: 400px
 	:height: 300px
 
-The vertical asymptotes of this rational function cause Sage to
-adjust the aspect ratio of the plot to display the rather large y
-values near :math:`x=-1` and :math:`x=2`. This  obfuscates most of the features
-of this function in a way that we may have not intended. To remedy
-this we can explicitly adjust the vertical and horizontal limits of
-our plot ::
+The vertical asymptotes of this rational function cause Sage to adjust the aspect ratio of the plot to display the rather large :math:`y` values near :math:`x=-1` and :math:`x=2`. This obfuscates most of the features of this function in a way that we may have not intended. To remedy this we can explicitly adjust the vertical and horizontal limits of our plot ::
 
 	sage: p.show(xmin=-2, xmax=4, ymin=-20, ymax=20)
 
@@ -845,7 +837,7 @@ our plot ::
 
 This, in the author's opinion, displays the features of this particular function in a much more pleasing fashion.
 
-Sage can handle parametric plots with the :func:`.parametric_plot` command. The following is a simple circle of radius 3::
+Sage can handle parametric plots with the :func:`.parametric_plot` command. The following is a simple circle of radius 3. ::
 
 	sage: t = var('t')
 	sage: p = parametric_plot( [3*cos(t), 3*sin(t)], (t, 0, 2*pi) )
@@ -858,7 +850,7 @@ Sage can handle parametric plots with the :func:`.parametric_plot` command. The 
 
 The default choice of aspect ratio makes the plot above decidedly
 "un-circle like". We can adjust this by using the ``aspect_ratio``
-option ::
+option. ::
 
 	sage: p.show(aspect_ratio=1)
 				
@@ -880,7 +872,7 @@ a thick red dashed line. ::
 	:width: 400px
 	:height: 300px
 
-Polar plots can be done using the :func:`.polar_plot` command ::
+Polar plots can be done using the :func:`.polar_plot` command. ::
 
 	sage: theta = var("theta")						 
 	sage: r(theta) = sin(4*theta)					 
