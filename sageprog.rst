@@ -43,7 +43,7 @@ We can check if certain objects *live* in a universe using the :obj:`.in` operat
 	sage: sqrt(2) in RR
 	True
 
-The letter ``I`` in Sage is the square root of -1 (`i` also works).::
+The letter ``I`` in Sage is the square root of -1 (`i` also works). ::
 
         sage: i^2
         -1
@@ -68,7 +68,7 @@ Sage will choose the simplest universe for each number. ::
 
 Another important universe is the Symbolic Ring.  You might think that :math:`\sqrt{2}`
 or :math:`\pi` would have parent RR, the real numbers, while :math:`I` would be in  CC.
-But RR and CC have finite precision, and these numbers satisfy  formulas that make them special, for example :math:`\sqrt{2}^2=2` and :math:`\sin(\pi)= 0`.  The Symbolic Ring is where Sage stores these numbers with special properties.  The Symbolic Ring also contains symbolic variables, see  ":ref:`variables`.::
+But RR and CC have finite precision, and these numbers satisfy  formulas that make them special, for example :math:`\sqrt{2}^2=2` and :math:`\sin(\pi)= 0`.  The Symbolic Ring is where Sage stores these numbers with special properties.  The Symbolic Ring also contains symbolic variables, see  ":ref:`variables`". ::
 
 	sage: parent(sqrt(2))
 	Symbolic Ring
@@ -227,7 +227,7 @@ Please take note that we use two equals signs, not one! To check if two things a
 				
 
 If two objects belong to a universe that has an ordering, ``<`` then we may ccomparing two elements of the universe  gives a Boolean output.
-Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to.::
+Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. ::
 
 	sage: 1 > 2
 	False
@@ -272,14 +272,14 @@ a symbol that we can manipulate with the same rules of arithmetic that are appli
 
 In Sage, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
 
-Sage initializes the Symbolic Ring to have one symbolic variable, ``x``. It obeys  the arithmetical rules that we expect.::
+Sage initializes the Symbolic Ring to have one symbolic variable, ``x``. It obeys  the arithmetical rules that we expect. ::
 
      sage: 3*x - x
      2*x
      sage: e*e^x
      e^(x + 1)
 
-If we need another symbolic variable, we have to declare it, using the :func:`.var` command.::
+If we need another symbolic variable, we have to declare it, using the :func:`.var` command. ::
 
      sage: e^x*e^y
      ---------------------------------------------------------------------------
@@ -546,7 +546,7 @@ Since they are used rather frequently, Sage offers a convenient way to create li
   sage: [2,4..10]
   [2, 4, 6, 8, 10]
 					 
-In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap some examples will clear things up ::
+In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap the the following examples will clear things up. ::
 
 	 sage: [1,4..13]
 	 [1, 4, 7, 10, 13]
@@ -555,7 +555,7 @@ In the first two examples it is quite clear what is happening; In the last examp
 	 sage: [1,11..35]
 	 [1, 11, 21, 31]
 					 
-Additionally, we can use this construction method with some of Sage's symbolic constants such as ``pi`` ::
+Additionally, we can use this construction method with some of Sage's symbolic constants such as ``pi``. ::
 
 	 sage: [pi,4*pi..32]
 	 [pi, 4*pi, 7*pi, 10*pi]
@@ -569,14 +569,16 @@ The :func:`.len` command returns the *length* of a list.  ::
 	 sage: len([2,3,5,7,11])
 	 5
 
-If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands do take a list as an argument. :func:`sum` returns the sum of the elements of a list ::
+If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands accept a list as it's argument. 
+
+:func:`sum` returns the sum of it's argument:  ::
 
 	 sage: sum([1,2,3])
 	 6
 	 sage: sum([1..100])
 	 5050
 					 
-and :func:`.prod` returns the product of the elements of the list ::
+where :func:`.prod` returns the product. ::
 
 	 sage: prod([1..4])
 	 24
@@ -594,14 +596,14 @@ Concatenation isn't the only way which we can join together the elements of two 
   sage: zip([1,2,3,4],['a','b','c','d'] )
   [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
 
-When the lists aren't of the same length, :func:`.zip` joins the elements up to the items in the shorter list and just ignores the rest. ::
+When the lists aren't of the same length, :func:`.zip` joins the elements up to the items in the shorter list and ignores the rest. ::
 
   sage: zip([1,2,3,4],['a','b','c']   )
   [(1, 'a'), (2, 'b'), (3, 'c')]
   sage: zip([1],['a','b','c']   )
   [(1, 'a')]
 
-Another useful function when dealing with lists is the :func:`.map` function. This function accepts two arguments, a function f and a list ``[a0,…,an-1]`` and returns that function applied to each member of that list, ``[f(a0),…,f(an-1)]`` ::
+Another useful command when dealing with lists is :func:`.map`. This command accepts two arguments, a function f and a list ``[a0,…,an-1]`` and returns that function applied to each member of that list, ``[f(a0),…,f(an-1)]`` ::
 
   sage: map( cos, [0, pi/4, pi/2, 3*pi/4, pi] )
   [1, 1/2*sqrt(2), 0, -1/2*sqrt(2), -1]
@@ -610,17 +612,17 @@ Another useful function when dealing with lists is the :func:`.map` function. Th
   sage: sum(map(exp,[1,2,3,4,5]))
   e + e^2 + e^3 + e^4 + e^5
 
-The :func:`.map` function is often used in *functional* programming. For more on this style of programming with python see the 'Python Documentation'_
+:func:`.map` is often used in *functional* programming. For more on this style of programming with python see the 'Python Documentation'_
 
 .. _'Python Documentation': http://docs.python.org/howto/functional.html
 
-Probably the nicest feature of lists in python is the *slice* notation. Let's say that you have the following list: ::
+Probably the nicest feature of lists in python is the *slice* notation. Let's suppose you have the following list: ::
  
  sage: M = [1, 2, 0, 3, 4, 0, 4, 5]
  sage: M
  [1, 2, 0, 3, 4, 0, 4, 5]
 
-and you would like to access the sub-list ``[0,3,4]``. Using the slice notation I can do that in the following way. ::
+and you would like to access the sub-list ``[0,3,4]``. Using the slice notation I can do that in the following way: ::
 
   sage: M[2:5]
   [0, 3, 4]
@@ -639,14 +641,14 @@ By leaving both indices blank, we get a copy of the entire list. ::
   sage: M[:]
   [1, 2, 0, 3, 4, 0, 4, 5]
 
-Slices also can use negative indices. When a negative number is used the position is measured relative to the end of the list. For example: ::
+Slices also can use negative indices. When a negative number is used the position is measured relative to the end (or beginning) of the list. For example: ::
 
   sage: M[:-2]
   [1, 2, 0, 3, 4, 0]
   sage: M[-2:]
   [4,5]
 
-The first *ends* the slice two elements before the end of the list while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list.::
+The first *ends* the slice two elements before the end of the list while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list. ::
 
   sage: M[-4:-2]
   [4, 0]
@@ -716,7 +718,7 @@ Testing for membership can be done easily by using the :obj:`.in` operator. ::
   sage: 10 in A
   False
  
-All of the usual set operations: :meth:`.union`, :meth:`.intersection`, :meth:`.difference` and :meth:`.symmetric_difference` are implemented. For example, ::
+All of the usual set operations: :meth:`.union`, :meth:`.intersection`, :meth:`.difference` and :meth:`.symmetric_difference` are implemented. For example: ::
 
   sage: B = Set([8,6,17,-4,20, -2 ])
   sage: B
@@ -763,7 +765,7 @@ Use the :meth:`.subsets` method to construct the set of all subsets of a set, or
 Strings
 -------
 
-To construct a string in Sage we may use single or double quotes. For consistency, we will always use single quotes ::
+To construct a string in Sage we may use single or double quotes.  ::
 
 	 sage: s='I am a string'
 	 sage: s
@@ -771,7 +773,7 @@ To construct a string in Sage we may use single or double quotes. For consistenc
 	 sage: print s
 	 I am a string
 					 
-Note the difference between asking for the value of a and asking Sage to print a. Like lists, we can access the elements of a string through their indices ::
+Note the difference between asking for the value of ``a`` and asking Sage to ``print a``. Like lists, we can access the elements of a string through their indices. ::
 
 	 sage: a='mathematics'
 	 sage: a[0]
@@ -872,7 +874,7 @@ exist in our Sage session. ::
 				
 Sage allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit Sage, power off our computer, or what have you. At any later time, we may load the file by opening Sage from the directory containing the save file and using the load_session function.
 
-Here is an example. ::
+Here is an example: ::
 
 	sage: a=101
 	sage: b=103
@@ -881,7 +883,7 @@ Here is an example. ::
 	Exiting SAGE (CPU time 0m0.06s, Wall time 0m31.27s).
 				
 
-Now start Sage from the same folder as the save file: ::
+Now start Sage from the same folder as the save file. ::
 
 	sage: load_session()
 	sage: a
@@ -915,7 +917,7 @@ Intermediate Programming
 Conditionals
 ----------------
 
-    You should be familiar with :ref:`variables_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
+    You should be familiar with :ref:`solving_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
 
 A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we wanted to divide a number by 2 only *if* it is even. We can do this in Sage by using an :obj:`.if` statement. ::
 
@@ -934,7 +936,7 @@ Since ``n=44`` is even, the *condition* is met and the :func:`.print` command is
 
 Unlike some other languages, Sage is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
 
-At times, we may wish to check whether our expression satisfies more than one condition. To do so, use the :obj:`.elif` statement, which is short for else if.::
+At times, we may wish to check whether our expression satisfies more than one condition. To do so, use the :obj:`.elif` statement, which is short for else if. ::
 
 	sage: m=31
 	sage: if m%3==0:
@@ -959,8 +961,7 @@ Here both conditions are met, but only the code associated with the first condit
 
 There is also a subtle shortcut that we used in the previous example. ``11.divides(r)`` already returns either ``True`` or ``False``, hence we did not need to use an equality here. We could have used the more verbose ``11.divides(r)==True`` but it is not necessary.
 
-Often we wish to execute some code if none of our conditions above are
-met. For this we use the :obj:`.else` operator. ::
+Often we wish to execute some code if none of our conditions above are met. For this we use the :obj:`.else` operator. ::
 
 	sage: n=2*3*5+1
 	sage: if 2.divides(n):
@@ -982,9 +983,7 @@ While loops
 
     You should be familiar with :ref:`variables` and :ref:`booleans`
 
-While loops are one of the most useful techniques in
-programming. Essentially, a while loop runs a block of code while a
-condition is still satisfied. Let's see a simple example. ::
+While loops are one of the most useful techniques in programming. Essentially, a while loop runs a block of code while a condition is still satisfied. Let's see a simple example: ::
 
 	sage: i=0
 	sage: while i < 5:
@@ -998,7 +997,7 @@ condition is still satisfied. Let's see a simple example. ::
 	16
 				
 
-Once the condition i<5 is False, Sage exits the loop structure; the variable i still exists, though.
+Once the condition ``i<5`` is False, Sage exits the loop structure; the variable ``i`` still exists, though.
 
 
 .. _for_loops:
@@ -1023,7 +1022,7 @@ Sage, for loops iterate over a fixed list. ::
 				
 
 We may iterate over any list, it need not be consecutive
-integers. Here are a few more (especially silly) examples ::
+integers. Here are a few more (especially silly) examples. ::
 
 	sage: for str in ["apple","banana","coconut","dates"]:                            
 	....:     print str.capitalize()
@@ -1058,7 +1057,7 @@ List Comprehensions (Loops in Lists)
     You should be familiar with :ref:`lists` and :ref:`for_loops`
 
 A particularly useful technique in python (and Sage by extension) is the
-construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as 
+construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as: 
 
 .. math::
    \left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\} 
@@ -1088,7 +1087,7 @@ mathematical way that we would write the same set of numbers:
 .. math::
    \left\{ k \in \mathbb{N}\ \vert\ k < 20 \ \textrm{and}\ \gcd(k,20) = 1 \right\}
 
-In mathematics we often construct the *Cartesian Product* of two sets
+In mathematics we often construct the *Cartesian Product* of two sets:
 
 .. math::
    A \times B = \left\{ \left(a, b \right)\ | \ a \in A, b \in B \right\}
@@ -1138,18 +1137,15 @@ Functions
 
 A function in Sage an object containing a block of code which processes a set of arguments and returns some value. Well, that's a bit abstract. Essentially a function in Sage is much like a function in mathematics, but certainly not the exact same. A function might better be called a process or a subroutine.
 
-Anyway, consider the following common mathematical function
-:math:`f(x)=x^2`. This function f takes a number x and returns its
-square. Here's how we might implement this in Sage ::
+Anyway, consider the following common mathematical function :math:`f(x)=x^2`. This function :math:`f` takes a number :math:`x` and returns its square. Here's how we might define this function in Sage.  ::
 
 	sage: def f(x):
 	....:     return x^2
 				
 
-def tells Sage we are going to define a function. Following def we supply the name of the function and the arguments it takes in parentheses. Here we named our function f and it takes a single argument x.
+``def`` tells Sage we are going to define a function. Following ``def`` we supply the name of the function and the arguments it takes in parentheses. Here we named our function ``f`` and it takes a single argument ``x``.
 
-The evaluations of functions in Sage mimics the regular mathematical
-notation. Let's evaluate our function f from above ::
+The evaluations of functions in Sage mimics the regular mathematical notation. To evaluate the function ``f`` from above: ::
 
 	sage: f(2)
 	4
@@ -1159,8 +1155,7 @@ notation. Let's evaluate our function f from above ::
 
 Certainly these are the results we'd expect.
 
-Functions may have any number of arguments. It is permissible for a
-function to have no arguments ::
+Functions may have any number of arguments including none at all. ::
 
 	sage: def g(x,y):
 	....:     return x*y
@@ -1176,10 +1171,9 @@ function to have no arguments ::
 	1/2
 				
 
-Here our function g is essentially a multiplication operator. The function h takes no arguments and simply returns the value 1/2.
+Here our function ``g`` is essentially a multiplication operator. The function ``h`` takes no arguments and simply returns the value ``1/2``.
 
-All functions in Sage return an object. If we do not specify something
-to return in our function, then Sage returns the empty object None. ::
+All functions in Sage return an object. If we do not specify something to return in our function, then Sage returns the empty object :obj:`None`. ::
 
 	sage: def lazy(x):
 	....:     print x^2
@@ -1191,7 +1185,7 @@ to return in our function, then Sage returns the empty object None. ::
 	None
 				
 
-Notice that the function prints 3 no matter what, but returns None.
+Notice that the function prints ``3`` no matter what, and returns :obj:`None`.
 
 A function may return multiple values separated by commas ::
 
@@ -1209,9 +1203,7 @@ A function may return multiple values separated by commas ::
 	27
 				
 
-In Sage functions may reference themselves (very metaphysical). A
-function which does this is typically called recursive. The most
-common example of a recursive function is the factorial function ::
+Functions may reference themselves (very metaphysical). A function which does this is typically called recursive. The most common example of a function which had a natural recursive definition is the factorial. ::
 
 	sage: def fac(n):
 	....:     if n==1:
@@ -1225,8 +1217,7 @@ common example of a recursive function is the factorial function ::
 	24
 				
 
-For the sake of completeness let's examine exactly what is happening
-in this last example when we call ``fac(3)``. For n=3, since ``3≠1``, ``fac()`` decides to return ``3*fac(2)``, hence we must evaluate ``fac(2)``. Since ``2≠1``, ``fac()`` decides to return ``2*fac(1)``. Since 1=1, ``fac(1)`` will automatically return 1. Hence we go back into the ``fac(2)`` process and return ``2*1`` which is then returned to the ``fac(3)`` process to obtain ``3*2*1`` which is of course 6. In general, ``fac(n)`` will evaluate to be the product of the first n positive numbers.
+Let's examine exactly what is happening in this last example when we evaluate ``fac(3)``. For :math:`n=3`, since :math:`3 \neq 1`, ``fac()`` returns ``3*fac(2)``, hence we must evaluate ``fac(2)``. Since :math:`2 \neq 1`, ``fac()`` returns ``2*fac(1)``. Since :math:`1=1`, ``fac(1)`` will automatically return 1. Hence we go back into the ``fac(2)`` process and return ``2*1`` which is then returned to the ``fac(3)`` process to obtain ``3*2*1`` which is :math:`6`. In general, ``fac(n)`` will evaluate to be the product of the first :math:`n` positive numbers.
 
 Interactive Demonstrations in the Notebook
 ------------------------------------------

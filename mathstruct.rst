@@ -2085,8 +2085,8 @@ You can also compute the *dual code* and it's generating and parity check matric
 
 .. _mt_roots_of_unity:
 
-Mini-Tangent: Factoring :math:`x^n -1`
-++++++++++++++++++++++++++++++++++++
+Mini-Topic: Factoring :math:`x^n -1`
+------------------------------------
 
 The smallest field containing :math:`\mathbb{F}_{q}` and containing the roots of :math:`x^n - 1` is :math:`GF(q^t)` where :math:`t` is the order of :math:`q` in :math:`\mathbb{Z} \bmod{n}`.
 
@@ -2131,8 +2131,8 @@ Now let us factor :math:`x^n - 1` again. This time over a non-prime field.::
 
 .. cyclic_codes_idempotents
 
-Mini-Tangent: Idempotent Polynomials
-++++++++++++++++++++++++++++++++++
+Mini-Topic: Idempotent Polynomials
+----------------------------------
 
 We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuting with :math:`\mathbb{F}_{4}`. ::
 
