@@ -219,7 +219,7 @@ We can also use the :func:`solve_mod` function to compute the same results. ::
   sage: solve_mod( 9*x == 2, 21)
   []
 
-:func:`solve_mod` can handle linear congruences of more than one variable.::
+:func:`solve_mod` can handle linear congruences of more than one variable. ::
 
   sage: solve_mod( 9*x + 7*y == 2, 21)
   [(15, 14), (15, 8), (15, 2), (15, 17), (15, 11), (15, 5), (15, 20), (1, 14), (1, 8), (1, 2), (1, 17), (1, 11), (1, 5), (1, 20), (8, 14), (8, 8), (8, 2), (8, 17), (8, 11), (8, 5), (8, 20)]
@@ -723,7 +723,7 @@ We use the :meth:`det` method to calculate the *determinant* of a square matrix.
   sage: A.det()
   -5/2
 				
-To check if a matrix is invertible we use the :meth:`is_invertible` method.::
+To check if a matrix is invertible we use the :meth:`is_invertible` method. ::
 
   sage: A=matrix(2,[1,1,0,1])
   sage: A.is_invertible()    
@@ -807,14 +807,14 @@ In this section we will cover some of the commands that we can use to *manipulat
   [4 5 6]
   [7 8 9]
 
-To get a list of row and column vectors, we use the :meth:`rows` and :meth:`column` methods. ::
+To get a list of row and column vectors, we use the :meth:`rows` and :meth:`columns` methods. ::
 
    sage: M.rows()
    [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
    sage: M.columns()
    [(1, 4, 7), (2, 5, 8), (3, 6, 9)]
 
-If we want only one row or column vector then we use the singlular with the number row and or column as its argument. You should recall that Sage follows Python's convention and all of the indicies begin with zero.::
+If we want only one row or column vector then we use the singular with the number row and or column as its argument. You should recall that Sage follows Python's convention and all of the indicies begin with zero. ::
 
    sage: M.row(0)
    (1, 2, 3)
@@ -1173,7 +1173,7 @@ Now we will compute the matrix representation of :math:`\mathrm{T}` with respect
       [0 0 2 1]
       [0 0 0 2]
 
-And there it is, the *Jordan Canonical Form* of the linear transformation :math:`\mathrm{T}`. Of course we could have just used Sage's built in :meth:`jordan_form` method to compute this directly.::
+And there it is, the *Jordan Canonical Form* of the linear transformation :math:`\mathrm{T}`. Of course we could have just used Sage's built in :meth:`jordan_form` method to compute this directly. ::
    
    sage: M.jordan_form()
    [3|0|0 0]
@@ -1406,7 +1406,7 @@ To access a list of monomials, terms without coefficients, you use the :meth:`.m
 
 These monomials are listed in descending order using the term ordering specified when the ring was constructed. 
 
-To access a list of *coefficients* we use the :meth:`.coefficients` method.::
+To access a list of *coefficients* we use the :meth:`.coefficients` method. ::
 
   sage: p.coefficients()
   [-1, 8, -1/2, -1]
@@ -1824,7 +1824,7 @@ Recall that the finite field of order :math:`5^2` can be thought of a an *extens
   sage: p
   a^2 + 4*a + 2
 
-We can quickly verify that ``a`` satisfies this polynomial.::
+We can quickly verify that ``a`` satisfies this polynomial. ::
 
   sage: a^2 + 4*a + 2
   0
@@ -2116,7 +2116,7 @@ Now let us repeat what we just did, but this time letting :math:`q=2^2`. Changin
     sage: F.<a> = GF(4,'a')
     sage: P.<x> = PolynomialRing(F,'x')
 
-Now let us factor :math:`x^n - 1` again. This time over a non-prime field.::
+Now let us factor :math:`x^n - 1` again. This time over a non-prime field. ::
 
       sage: A = factor(x^n-1); A
       (x + 1) * (x^9 + a*x^8 + a*x^6 + a*x^5 + (a + 1)*x^4 + (a + 1)*x^3 + (a + 1)*x + 1) * (x^9 + (a + 1)*x^8 + (a + 1)*x^6 + (a + 1)*x^5 + a*x^4 + a*x^3 + a*x + 1)

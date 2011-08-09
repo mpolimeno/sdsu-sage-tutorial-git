@@ -1406,7 +1406,7 @@ Constructs a polynomial ring in three variables; x,y and z over the field of cha
 
 Since much of the language that Singular uses is not valid in Sage the quotations around the arguments are important.
 
-Polynomials are constructed in this ring by using the :meth:`.poly` method.::
+Polynomials are constructed in this ring by using the :meth:`.poly` method. ::
 
   sage: p = singular.poly('x^2 * y^2 - 1')
   sage: q = singular.poly('x^2 * y^2 - z')
@@ -1433,7 +1433,7 @@ Reduction modulo this ideal is accomplished using the :meth:`.reduce` method. ::
   x^3-x^2*z+x-z
 
 
-and if you would like this reduction done using a Groebner basis, we just combine the methods discussed previously.::
+and if you would like this reduction done using a Groebner basis, we just combine the methods discussed previously. ::
 
   sage: singular.reduce(q,I.groebner())
   0
