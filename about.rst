@@ -71,7 +71,7 @@ An extremely useful feature both in the command-line interface and the notebook 
   factor     factorial  
   sage: factor
 
-This tells you that only two Sage commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command to factor an integer we will select this by typing the next letter, ``i``, and hitting the tab key again. ::
+This tells you that only two Sage commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command we will select it by typing the next letter, ``i``, and hitting the tab key again. ::
 
   sage: factorial   
 
