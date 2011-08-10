@@ -115,6 +115,7 @@ division, Sage will complain ::
   ZeroDivisionError: Inverse does not exist.
 				
 We have to be a little bit careful when we are doing this since we are asking Sage to coerce a rational number into the :math:`\mathbb{Z}_{24}` This may cause some unexpected consequences since some reduction is done on rational numbers before the coercion. For an example, consider the following: ::
+
   sage: R(20).is_unit()
   False
   sage: R(16/20)
@@ -136,6 +137,7 @@ We can also compute some properties of the ring itself. ::
   True
 
 and if the ring is finite then we can have sage list all of it's elements. ::
+
   sage: R.list()
   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
@@ -171,7 +173,8 @@ We can compute this list also by using a list comprehension. ::
 **Exercises:**
 
   #. Construct the ring of integers modulo :math:`16` and compute the following:
-     a) Compute the multiplicative orders of :math:`2,4,5,6,13` and `15`?
+
+     a) Compute the multiplicative orders of :math:`2,4,5,6,13` and :math:`15`?
      b) Which of the elements listed above is a unit? 
      c) What are the generators for the group of units? 
      d) Compute a list of all of the elements in the group of units.
@@ -209,6 +212,7 @@ Notice that the above tells us only that there exists at least one solution to t
   [3, 10, 17]
 
 We can also determine when a solution does not exist in a similar fashion. ::
+
   sage: [ x for x in R if R(9)*x == R(2) ]
   []
 
@@ -235,16 +239,18 @@ Where the solution of the form :math:`\left(x,y\right)` where the variables are 
 **Exercises:**
 
   #. Find all solutions to the following congruences over :math:`\mathbb{Z}_{42}`.
+
      a) :math:`41x = 2`
      b) :math:`5x = 13`
      c) :math:`6x = 0`
-     c) :math:`6x = 12`
-     d) :math:`6x = 18`
-     e) :math:`37x = 21`
+     d) :math:`6x = 12`
+     e) :math:`6x = 18`
+     f) :math:`37x = 21`
 
-  #. Above you computed the solution sets for the congruences :math:`6x =0`, :math:`6x = 12` and ':math:`6x = 18`. What are the similarities? What are the differences? Can you use these results to say something in general about the structure of the set :math:`\left\{ 6x \ \vert\ x \in \mathbb{Z}_{42} \right\}`?
+  #. Above you computed the solution sets for the congruences :math:`6x =0`, :math:`6x = 12` and :math:`6x = 18`. What are the similarities? What are the differences? Can you use these results to say something in general about the structure of the set :math:`\left\{ 6x \ \vert\ x \in \mathbb{Z}_{42} \right\}`?
 
-  #. Use the :func:`solve_mod` command find all of the solutions to the following congruences modulo :math:`36`:
+  #. Use the :func:`solve_mod` command find all of the solutions to the following congruences modulo :math:`36`.
+
      a) :math:`3x = 21`
      b) :math:`7x = 13`
      c) :math:`23x = 32`
