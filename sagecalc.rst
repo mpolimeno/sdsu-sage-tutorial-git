@@ -1,6 +1,8 @@
-======================
- Sage as a Calculator
-======================
+.. _sage_as_a_calculator: 
+
+====================
+Sage as a Calculator
+====================
 
 This part of the tutorial examines commands that  allow you to use Sage much like a graphing calculator.  The chapter on  arithmetic and functions and the chapter on solving equations and inequalities serve as a foundation for the rest of the material.   The chapters on plotting, statistics and  calculus are independent of each other.  You will probably want to read the chapter on plotting next since plotting graphs is so is useful in calculus and in statistics.
 
