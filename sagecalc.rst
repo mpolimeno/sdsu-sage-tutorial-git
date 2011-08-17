@@ -1,15 +1,21 @@
+.. index:: Sage as a Calculator
+
 .. _sage_as_a_calculator: 
 
 ====================
 Sage as a Calculator
 ====================
 
-This part of the tutorial examines commands that  allow you to use Sage much like a graphing calculator.  The chapter on  arithmetic and functions and the chapter on solving equations and inequalities serve as a foundation for the rest of the material.   The chapters on plotting, statistics and  calculus are independent of each other.  You will probably want to read the chapter on plotting next since plotting graphs is so is useful in calculus and in statistics.
+This part of the tutorial examines commands that  allow you to use Sage much like a graphing calculator.  The chapter on  arithmetic and functions and the chapter on solving equations and inequalities serve as a foundation for the rest of the material.   The chapters on plotting, statistics and  calculus are independent of each other, although plotting may be useful to read next since plotting graphs is so is useful in calculus and in statistics.
+
+.. index:: Basic Arithmetic and Functions
 
 .. _arithmetic_and_functions:
 
 Arithmetic and Functions
 ========================
+
+.. index:: Basic Arithmetic 
 
 .. _basic_arithmetic:
 
@@ -40,7 +46,7 @@ The ``-`` symbol in front of a number indicates that it is negative. ::
   sage: -11+9
   -2
 
-.. index:: order of operations
+.. index:: Order of operations
 				
 As we would expect, Sage adheres to the standard order of operations,
 PEMDAS (parenthesis, exponents, multiplication, division, addition,
@@ -75,6 +81,7 @@ When dividing two integers, there is a subtlety; whether Sage will return a frac
    #. Use sage to compute ``(-9)^(1/2)``. Describe the output. 
 
 
+.. index:: Division and factoring
 
 .. _division_and_factoring:
 
@@ -177,6 +184,8 @@ The least common multiple is the smallest integer which both integers divide. Th
   #. Which of the integers above are *prime*? 
   #. Calculate :math:`\mathrm{gcd}(a,b)`,  :math:`\mathrm{lcm}(a,b)` and :math:`a \cdot b` for the pairs of integers :math:`\left(2,5\right),\ \left(4,10\right)` and :math:`\left(18,51\right)`. How do the gcd, lcm and the product of the numbers relate?
 
+
+.. index:: Standard functions and constants
 
 .. _basic_functions_and_constants:
 
@@ -367,10 +376,14 @@ Exponentiation base :math:`e` can done using both the :func:`.exp` function and 
   #. Compare :math:`e^{i \pi}` with a numerical approximation of it using ``pi.n()``. 
   #. Compute :math:`\sin(\pi/2)`, :math:`\cot(0)` and :math:`\csc(\pi/16)`.
 
+.. index:: Solving equations and inequalities
+
 .. _solving_equations_inequalities:
 
 Solving Equations and Inequalities
 =====================================
+
+.. index:: Solving for x
 
 .. _solving_x:
 
@@ -447,6 +460,9 @@ interval on which to search for a solution. ::
 This command will only return one solution on the specified interval, if one exists. It will not find the complete solution set over the entire real numbers. 
 To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10. 
 
+
+.. index:: Declaring Variables
+
 .. _declare_variables:
 
 Declaring Variables
@@ -483,9 +499,11 @@ command. ::
 	...
 	NameError: name 'phi' is not defined
 
+.. index:: Solving equations with several variables
+
 .. _solve_several_variables:
 
-Solving for Several Variables
+Solving Equations with Several Variables
 -------------------------------------------------
 	
 Small systems of linear equations can be also solved using  :func:`.solve`, provided that all the symbolic variables have been declared. 
@@ -524,6 +542,8 @@ Solving inequalities in several variables can lead to complicated expressions, s
   #. Use :func:`find_root` to find a solution of the equation :math:`e^{x} = \cos(x)` on the interval :math:`\left[-\pi/2, 0\right]`. 
   #. Change the command above so that :func:`find_root` finds the other solution in the same interval.
   
+.. index:: Calculus Commands
+
 .. _calculus:
 
 Calculus
@@ -556,6 +576,8 @@ Sage uses ``x |-->`` to tell you that the expression returned is actually a func
 
 With these functions defined, we will look at how we can use Sage to compute the *limit* of these functions. 
  
+.. index:: Limits
+
 .. _limits:
 
 Limits
@@ -585,7 +607,7 @@ Now this is an example of why we have to be a little careful when using computer
    :height: 300px
    :alt: "Rational Function with vertical asymptote x=4"
 
-.. index:: limit; directional
+.. index:: Limits; directional
  
 What we have when :math:`x=4` is a *vertical asymptote* with the function tending toward *positive* infinity if :math:`x` is larger than :math:`4` and *negative* infinity from when :math:`x` less than :math:`4`. We can takes these *directional* limits using Sage to confirm this by supplying the extra *dir* argument. ::
 
@@ -593,6 +615,8 @@ What we have when :math:`x=4` is a *vertical asymptote* with the function tendin
   +Infinity
   sage: limit(h, x=4, dir="left")
   -Infinity
+
+.. index:: Derivatives
 
 .. _derivatives:
 
@@ -613,7 +637,7 @@ The next thing we are going to do is use Sage to compute the *derivatives* of th
   sage: hp
   x |--> (2*x + 1)/(x - 4) - (x^2 + x - 2)/(x - 4)^2
 
-.. index:: derivative; partial
+.. index:: Derivatives; partial
 
 The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, Sage will hold :math:`x` constant and take the derivative with respect to that variable. ::
 
@@ -636,7 +660,7 @@ The :func:`.derivative` command returns another function that can be evaluated l
   sage: hp(10)
   1/2
 
-.. index:: finding critical points
+.. index:: Finding critical points
 
 With the *derivative function* computed, we can then find the *critical points* using the :func:`.solve` command. ::
 
@@ -647,7 +671,7 @@ With the *derivative function* computed, we can then find the *critical points* 
   sage: solve( gp(x) == 0, x)
   [x == 0, x == cos(2*x)/sin(2*x)]
 
-.. index:: line tangent to a curve
+.. index:: Line tangent to a curve
 
 Constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is an important computation which is easily done in Sage. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
 
@@ -664,12 +688,14 @@ The same can be done for :math:`g(x)` and :math:`h(x)`. ::
   sage: T_h
   -1/8*x + 1/2
 
+.. index:: Integrals
+
 .. _integrals:
 
 Integrals
 ---------
 
-.. index:: integral, integral; definate, integral; indefinite, anti-derivative
+.. index:: integral, Integrals; definate, Integrals; indefinite, Anti-derivative
 
 Sage has the facility to compute both *definite* and *indefinite* integral for many common functions. We will begin by computing the *indefinite* integral, otherwise known as the *anti-derivative*,  for each of the functions that we defined earlier. This will be done by using the :func:`.integral` command which has arguments that are similar to :func:`.derivative`. ::
 
@@ -741,6 +767,8 @@ In each case above, Sage returns a *function* as its result. Each of these funct
      b) :math:`\int_{-\pi/4}^{\pi/4} \sec(x) dx` 
      c) :math:`\int x e^{-x^{2}} dx` 
 
+.. index:: Statistics
+
 .. _basic_stats:
 
 Statistics
@@ -800,6 +828,8 @@ We can also compute a rolling, or moving, average of the data with the :func:`.m
   #. Find the *range* of the heights. (*Hint: use the* :func:`.max` *and* :func:`.min` *commands*) 
   
 
+.. index:: Plotting
+
 .. _basic_plotting:
 
 Plotting
@@ -814,7 +844,7 @@ Plotting
 
 Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly you up to speed with some of the basic commands used when plotting functions and working with graphics.
 
-.. index:: plot, plot; 2D,  show, graphics 
+.. index:: plot, Plotting; 2D,  show, Graphics 
 
 To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :math:`x=\frac{\pi}{2}` we will use the :func:`.plot()` command. ::
 
@@ -827,7 +857,7 @@ To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :mat
 	:width: 400px
 	:height: 300px
 
-.. index:: axes_labels, graphics;color 
+.. index:: axes_labels, Graphics; color 
 
 By default, the plot created will be quite plain. To add axis labels
 and make our plotted line purple, we can alter the plot attribute by
@@ -855,7 +885,7 @@ We can change the style of line, whether it is solid, dashed, and it's thickness
 	:width: 400px
 	:height: 300px
 
-.. index:: graphics; adding two plots
+.. index:: Graphics; adding two plots
 
 We can display the graphs of two functions on the same axes by adding the plots together. ::
 
@@ -925,7 +955,7 @@ Sage can handle parametric plots with the :func:`.parametric_plot` command. The 
 	:width: 400px
 	:height: 300px
 
-.. index:: graphics; aspect_ratio, plot; aspect_ratio,  aspect_ratio
+.. index:: Graphics; aspect_ratio, Plotting; aspect_ratio,  aspect_ratio
 
 The default choice of aspect ratio makes the plot above decidedly
 "un-circle like". We can adjust this by using the ``aspect_ratio``
@@ -950,7 +980,7 @@ a thick red dashed line. ::
 	:width: 400px
 	:height: 300px
 
-.. index:: plot; polar, polar_plot
+.. index:: Plotting; polar, polar_plot
 
 Polar plots can be done using the :func:`.polar_plot` command. ::
 
@@ -982,7 +1012,7 @@ Polar plots can be done using the :func:`.polar_plot` command. ::
 3D Graphics
 -----------
 
-.. index:: plot; 3D, plot3d
+.. index:: Plotting; 3D, plot3d
 
 Producing 3D plots can be done using the :func:`.plot3d` command ::
 

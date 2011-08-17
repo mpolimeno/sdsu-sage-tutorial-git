@@ -1284,7 +1284,7 @@ With the generalized eigenvector `gv`, we now have the right number of linearly 
       [ 1  0  0  0]
       [ 0  1  0 -1]
 
-.. index:: index
+.. index:: inverse
 
 Now we will compute the matrix representation of :math:`\mathrm{T}` with respect to this basis. ::
     
@@ -1648,7 +1648,7 @@ Note that even with the same monomial ordering, in this case the lexicographic o
 
 Note again how all of the methods automatically take the new ordering into account. 
 
-.. index:: Reduction modulo an Ideal, mod
+.. index:: Reduction modulo an ideal, mod
 
 Finally we can *reduce* a polynomial modulo a list of polynomials using the :meth:`.mod` method. ::
 
@@ -1766,6 +1766,8 @@ To construct an ideal within a polynomial ring, we must first construct a Polyno
   sage: p = -1/2*x - y*z - y + 8*z^2
   sage: q = -32*x + 2869*y - z^2 - 1
 
+.. index:: Ideals; construction
+
 The ideal is constructed in the same manner as before. ::
 
   sage: I = [p,q]*R
@@ -1845,7 +1847,7 @@ To  preform arithmetic in the quotient ring, we must first *coerce* elements int
 	2
 	sage: Q(10 + 12)
 	2
-					
+.. index:: quotient, Indeterminants, ideal, parent					
 When working with quotients of polynomial rings it is a good idea to give
 the indeterminate a new name. ::
 
@@ -1898,7 +1900,10 @@ You can check some of the properties of the rings which have been constructed. F
 
 These properties are often determined instantaneously since they built into the definitions of the rings and not calculated on the fly. 
 
+.. index:: Tab-completion
+
 For a complete listing of properties that are built into a ring, you can use Sage's built in *tab-completion*. For example, to see all of the properties which can be determined for the rational numbers we type ``QQ.is`` then the tab key. What we get is a list of all of the properties that we can compute. ::
+
   sage: QQ.is[TAB]
   QQ.is_absolute           QQ.is_finite             QQ.is_ring
   QQ.is_atomic_repr        QQ.is_integral_domain    QQ.is_subring
@@ -1906,7 +1911,7 @@ For a complete listing of properties that are built into a ring, you can use Sag
   QQ.is_exact              QQ.is_noetherian         
   QQ.is_field              QQ.is_prime_field        
 
-.. index:: characteristic 
+.. index:: characteristic, Rings; characteristic 
 
 The *characteristic* of the ring can be computed using the ring's :meth:`.characteristic` method. ::
 
@@ -1935,6 +1940,7 @@ In this section we will use Sage to construct a *division* algorithm for multiva
 
 where no terms of :math:`r` are divisible by any of the leading terms of :math:`f_i`.
 
+.. index:: GF
 
 The first thing that we will do is to construct the base field for the polynomial ring and determine how many variables we want for the polynomial ring. In this case, lets define a two variable polynomial ring over the finite field :math:`\mathbb{F}_{2}`. ::
 
@@ -2166,6 +2172,8 @@ The *minimum distance* of ``C`` can be computed by using the :meth:`.minimum_dis
   sage: C.minimum_distance()
   1
 
+.. index:: weight_distribution
+
 Sage can also compute the *distribution* of weights for the code. ::
 
   sage: C.weight_distribution()
@@ -2173,10 +2181,14 @@ Sage can also compute the *distribution* of weights for the code. ::
 
 Where the value listed at index ``i`` of the list, starting with zero and ending with the length of the code, is the number of codewords with that weight. 
 
+.. index:: weight_enumerator
+
 Related to the weight distribution is the *weight enumerator* polynomial, which you compute using the code's :meth:`.weight_enumerator` method. ::
 
   sage: C.weight_enumerator()
   x^5 + 4*x^4*y + 6*x^3*y^2 + 4*x^2*y^3 + x*y^4
+
+.. index:: gen_mat, check_mat, Coding Theory; generating matrix, Coding Theory; check matrix
 
 The *generating* and *check* matrices are computed using the :meth:`gen_mat` and :meth:`check_mat` methods. ::
 
@@ -2188,6 +2200,8 @@ The *generating* and *check* matrices are computed using the :meth:`gen_mat` and
   sage: C.check_mat()
   [1 0 0 0 0]
 
+.. index:: gen_mat_systematic
+
 The *systematic* form of the generating matrix is computed using :meth:`gen_mat_systematic`. ::
 
   sage: C.gen_mat_systematic()
@@ -2195,6 +2209,8 @@ The *systematic* form of the generating matrix is computed using :meth:`gen_mat_
   [0 0 1 0 0]
   [0 0 0 1 0]
   [0 0 0 0 1]
+
+.. index:: extended_code
 
 Sage can both *extend* and *puncture* our code. The *extended code* is computed as follows:  ::
 
@@ -2209,6 +2225,8 @@ Sage can both *extend* and *puncture* our code. The *extended code* is computed 
   [1 0 0 0 0 0]
   [0 1 1 1 1 1]
 
+.. index:: punctured
+
 The *punctured* code is computed by supplying the code's :meth:`.punctured` method a list of coordinates in which to delete. The following commands construct the code that results when the 1st and 3rd coordinate from every code word in ``C`` are deleted. Note that unlike vectors, lists and matrices the 1st column is indexed by 1 and not 0 when puncturing a code. ::
 
   sage: Cp = C.punctured([1,3]); Cp
@@ -2218,6 +2236,8 @@ The *punctured* code is computed by supplying the code's :meth:`.punctured` meth
   [0 0 1]
   sage: Cp.check_mat()
   [1 0 0]
+
+.. index:: dual_code
 
 Sage can also compute the *dual* of ``C``. ::
 
@@ -2230,6 +2250,8 @@ Sage can also compute the *dual* of ``C``. ::
   [0 0 1 0 0]
   [0 0 0 1 0]
   [0 0 0 0 1]
+
+.. index:: decode
 
 And finally Sage can *decode* a received vector. The following simulates a communications channel; We begin with a code word, introduce an error and then correct this error by *decoding* the received message. ::
 
@@ -2251,6 +2273,7 @@ These are only some of the commands that Sage offers for computing and working w
    #. http://www.sagemath.org/doc/constructions/linear_codes.html
    #. http://www.sagemath.org/doc/reference/sage/coding/linear_code.html
 
+.. index:: Cyclic Codes
 
 .. _cyclic_codes:
 
@@ -2262,6 +2285,8 @@ To construct a cyclic code of length :math:`3` over :math:`\mathbb{F}_2` we firs
   sage: P.<x> = PolynomialRing(GF(2),'x')
   sage: factor(x^3 -1 )
   (x + 1) * (x^2 + x + 1)
+
+.. index:: CyclicCode
 
 The output above tells you that there are 2 choices for non-trivial generating polynomials. The following commands will construct the code generated by :math:`g(x) = x + 1`.  ::
 
@@ -2330,9 +2355,13 @@ Let us begin by first defining :math:`n` and :math:`q` and constructing the ambi
     sage: F = GF(2)
     sage: P.<x> = PolynomialRing(F, 'x')
 
+.. index:: factor 
+
 Remembering that since we are constructing a finite field that :math:`q` has to either be prime or a prime power. Now let us compute all of the irreducable factors of :math:`x^{n} -1` over :math:`\mathbb{F}_{q}`. ::
 
     sage: A = factor(x^n-1); A
+
+.. index:: multiplicative_order
 
 Now to verify the facts about the degrees of the factors computed that was stated ealier. Compare the list above with the order of :math:`2` in :math:`\mathbb{Z}_{n}`. ::
 
@@ -2360,15 +2389,20 @@ Now let us factor :math:`x^n - 1` again. This time over a non-prime field. ::
    #. Compute the order of 2, 4, 8 mod 19. What are your observations?
    #. Try other values of n and other fields.
 
-.. cyclic_codes_idempotents
+
+.. index:: Idempotent Polynomials, Mini-Topic; Idempotent Polynomials
+
+.. _cyclic_codes_idempotents:
 
 Mini-Topic: Idempotent Polynomials
 ----------------------------------
 
-We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuting with :math:`\mathbb{F}_{4}`. ::
+We'll find the idempotent which is 1 modulo the ith factor of :math:`x^n -1`. Continuing with :math:`\mathbb{F}_{4}`. ::
 
       sage: F.<a> = GF(4, 'a')
       sage: P.<x> = PolynomialRing(F, 'x')
+
+.. index:: quotient, factor
 
 Then we will create the quotient ring. ::
 
@@ -2384,10 +2418,13 @@ Now we will just select one of these factors. The reader should also try differe
 
     sage: p0 = A[2]
 
+.. index:: prod
+
 Now we take the product of all of the other factors. ::
 
     sage: ap = prod( [p for p in A if p != a])
     x^10 + (a + 1)*x^9 + a*x^8 + a*x^7 + x^5 + (a + 1)*x^3 + (a + 1)*x^2 + a*x + 1
+.. index:: xgcd
 
 Then compute the :func:`xgcd` of `p0` and `ap`. ::
 
@@ -2417,6 +2454,8 @@ Now we will check that the polynomial that we computed is an idempotent in :math
     sage: f^2 == f
     True
 
+.. index:: gcd 
+
 Check the generating polynomial. ::
 
       sage: gcd(b*p0, x^19-1)
@@ -2436,6 +2475,10 @@ For the reciprocal polynomials of idempotents, see Theorem 5 [MacWilliams1977]_ 
 Other Codes
 -----------
 
+.. index:: Hamming Codes 
+
+.. _hamming_codes: 
+
 Hamming Codes
 +++++++++++++
 Aenean a dapibus risus. Aliquam erat volutpat. Phasellus ullamcorper, lacus vel scelerisque luctus, elit enim egestas lacus, non lobortis velit dolor eget nisl. Morbi commodo massa eu arcu porta sed eleifend eros tempor. Morbi nibh quam, vehicula et fringilla eget, sodales ut magna. Sed iaculis cursus arcu, non varius lectus fringilla in. Suspendisse non euismod leo. Suspendisse vel quam erat, vitae sagittis nisl. Mauris at mi sit amet nulla scelerisque convallis et in mauris. Etiam in risus nibh, vel interdum urna. ::
@@ -2449,11 +2492,16 @@ Aenean a dapibus risus. Aliquam erat volutpat. Phasellus ullamcorper, lacus vel 
 .. seealso::
    http://en.wikipedia.org/wiki/Hamming_code
 
+.. index:: BCH Codes
+
+.. _bch_codes:
 
 BCH Codes
 +++++++++
 
 BCH codes, or Bose-Chaudhuri-Hockenghem codes, are a special class of the cyclic codes with 3 required parameters, :math:`n, \delta, F` and one optional one :math:`b`. Where :math:`n` is the length of the code, :math:`\delta` is called the *designed distance* and :math:`F` is a finite field of order :math:`q^{n}` where :math:`gcd(n, q) = 1`. 
+
+.. index:: BCHCode
 
 If :math:`b` is not provided then a default value of zero is used. For example the following commands will construct a BCH code of length :math:`n = 13` with :math:`\delta = 5` over :math:`F = \mathrm{GF}(9)`. ::
 
@@ -2510,6 +2558,9 @@ We can also compute it's *dual* code. ::
 .. seealso::
    http://en.wikipedia.org/wiki/BCH_code
 
+..index:: Binary Golay Codes
+
+.. _binary_golay_codes:
 
 Binary Golay Codes
 ++++++++++++++++++
@@ -2519,6 +2570,9 @@ Etiam sodales condimentum tellus, eget condimentum nunc imperdiet at. Vivamus et
 .. seealso::
    http://en.wikipedia.org/wiki/Binary_Golay_code
 
+.. index:: Reed Solomon Codes
+
+.. _reed_solomon_codes:
 
 Reed Solomon Codes
 ++++++++++++++++++
@@ -2528,6 +2582,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sem dui, rutrum a
 .. seealso::
    http://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction
 
+.. index:: Toric Codes
+
+.. _toric_codes:
 
 Toric Codes
 ++++++++++++
@@ -2537,6 +2594,10 @@ Integer ac mi at tortor porta varius eget interdum turpis. Etiam ante nulla, pos
 .. seealso::
    http://en.wikipedia.org/wiki/Toric_code
 
+
+.. index:: Walsh Codes
+
+.. _walsh_codes:
 
 Walsh Codes
 +++++++++++

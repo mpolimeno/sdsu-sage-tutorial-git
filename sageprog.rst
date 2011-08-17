@@ -1,8 +1,12 @@
+.. index:: Programming in Sage
+
 .. _programming_in_sage:
 
 *************************
 Programming in Sage
 *************************
+
+.. index:: Objects
 
 .. _sage objects:
 
@@ -10,12 +14,14 @@ Programming in Sage
 Sage Objects
 ============
 
+.. index:: Universes and coercion
+
 .. _universes_and_coercion:
 
 Universes and Coercion
 ----------------------
 
-.. index:: universes
+.. index:: Universes
 
 A key concept in Sage is the *universe* of an object. The most effective way to gain a familiarity with *universes* and the related concept, *coercion*, is to see a few examples. We begin with the most common universes: the integers,  and the rational, real and complex numbers.
 
@@ -83,7 +89,7 @@ But RR and CC have finite precision, and these numbers satisfy  formulas that ma
 	sage: parent(pi)
 	Symbolic Ring
 
-.. index:: coercion, coercion; implicit
+.. index:: Coercion, Coercion; implicit
 
 We often perform operations with elements from *different* universes as long as there is some sort of natural *conversion* that can be done to both elements so that they live in the *same* universe. For example when we do the computation  :math:`1 + 1/2 = 3/2` we implicitly preform a conversion of :math:`1` to the universe of rational numbers before we preform the operation. This conversion is often so natural that we don't even think of it and, luckily for you, Sage does many of these conversions without you having to think about them either. ::
 
@@ -112,7 +118,7 @@ Sage will always choose the universe which offers the most precision.  Sage does
   sage: parent(2*pi + 2.0*e)
   Symbolic Ring
 
-.. index:: coercion; explicit
+.. index:: Coercion; explicit
 
 We can explicitly perform conversion through a process called *coercion*. We coerce a number into another universe, if it makes sense, by *applying* the parent structure to the object like it was a function. For example: ::
 
@@ -158,14 +164,14 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
 
   #. If I enter ``x=1/2`` into Sage, what *universe* does ``x`` live in?
 
-
+.. index:: Booleans
 
 .. _booleans:
 
 Booleans
 -------------
 
-.. index:: booleans, bool, True, False
+.. index:: bool, True, False
 
 Another important universe is the Booleans. The Boolean universe is just known as `bool` in Sage, and it contains just two elements  ``True`` and ``False``. ::
 
@@ -218,7 +224,9 @@ Another important operator on Booleans is the exclusive or operator, represented
 	True
 	sage: False ^^ False
 	False
-				
+
+.. index:: ==				
+
 We check whether two whether two objects are equal using the ``==`` operator. 
 The result is a Boolean::
 
@@ -229,6 +237,8 @@ The result is a Boolean::
 	sage: not(True or False) == True and False
 	True
 
+.. index:: !=, <>
+
 Please take note that we use two equals signs, not one! To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
 
 	sage: 1 != 1
@@ -238,6 +248,7 @@ Please take note that we use two equals signs, not one! To check if two things a
 	sage: 1 <> 0
 	True
 				
+.. index:: <, <=, >= 
 
 If two objects belong to a universe that has an ordering, ``<`` then we may ccomparing two elements of the universe  gives a Boolean output.
 Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. ::
@@ -269,6 +280,7 @@ Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for
   #. What is the parent of ``x > 1/2``? Why do you think that Sage treats this expression differently from the rest?
   #. Use Sage to find out if :math:`e` is greater than :math:`\pi`? (*Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default.*)
 
+.. index:: Variables
 
 .. _variables:
 
@@ -277,15 +289,11 @@ Variables
 
 You should be familiar with ":ref:`declare_variables`"
 
-The term 'variable',  can have several different meanings.
-In computer programming, a 'variable' is a space in
-memory used to store and retrieve a certain piece of information. In
-mathematics, a variable such as :math:`x` is a quantity with indeterminate value;
-a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
+The term 'variable',  can have several different meanings.In computer programming, a 'variable' is a space in memory used to store and retrieve a certain piece of information. In mathematics, a variable such as :math:`x` is a quantity with indeterminate value; a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
 
 In Sage, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
 
-.. index:: symbolic variables
+.. index:: Variables; symbolic
 
 Sage initializes the Symbolic Ring to have one symbolic variable, ``x``. It obeys  the arithmetical rules that we expect. ::
 
@@ -294,7 +302,7 @@ Sage initializes the Symbolic Ring to have one symbolic variable, ``x``. It obey
      sage: e*e^x
      e^(x + 1)
 
-.. index:: symbolic variables; definition, var
+.. index:: var
 
 If we need another symbolic variable, we have to declare it, using the :func:`.var` command. ::
 
@@ -311,7 +319,7 @@ If we need another symbolic variable, we have to declare it, using the :func:`.v
      e^(x + y)
      sage: 
 
-.. index:: variables, variables; assignment
+.. index:: Variables; assignment
 
 Now, let's look at variables, which are used to store a particular number. ::
 
