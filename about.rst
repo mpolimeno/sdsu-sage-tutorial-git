@@ -17,13 +17,13 @@ Introduction
 How to use this tutorial
 ------------------------
 
-This tutorial is divided into four parts. This part, *About this Tutorial*,  is intended to introduce you   to  the basic structure of the tutorial and how to contribute to the project if you so desire.  
+This tutorial is divided into four parts. This part, :ref:`about_tutorial`,  is intended to introduce you   to  the basic structure of the tutorial and how to contribute to the project if you so desire.  
 
-The second part, *Sage as a Calculator*, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section *Sage as a Calculator* because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
+The second part, :ref:`sage_as_a_calculator`, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
-*Programming in Sage* begins to introduce the reader to some more *advanced* topics such as:  how Sage handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
+:ref:`programming_in_sage` begins to introduce the reader to some more *advanced* topics such as:  how Sage handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
 
-The final part, *Mathematical Structures*,  introduces the reader to topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc.
+The final part, :ref:`mathematical_structures`,  introduces the reader to topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc.
  
 Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
 

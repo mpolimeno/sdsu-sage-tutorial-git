@@ -92,7 +92,7 @@ And by explicitly coercing our numbers into the ring :math:`\mathbb{Z}_{n}` we c
 
 .. index:: inverse 
 
-If the element is a unit, the *inverses* of this element are computed naturally, using ``-a`` and ``a^(-1)``::
+The additive inverse of :math:`a` is computed using ``-a`` and, if :math:`a` is a unit, the multiplicative inverse is computed using ``a^(-1)`` or ``1/a``. ::
 
   sage: (-a)
   7
@@ -137,26 +137,28 @@ We have to be a little bit careful when we are doing this since we are asking Sa
 We can also compute some properties of the ring itself. ::
 
   sage: R
-  Ring of integers modulo 13
+  Ring of integers modulo 24
   sage: R.order()
-  13
+  24
   sage: R.is_ring()
   True
   sage: R.is_integral_domain()
-  True
+  False
   sage: R.is_field()
-  True
+  False
 
 .. index:: list, rings; list
 
-and if the ring is finite then we can have sage list all of it's elements. ::
+and if the ring is finite then we can have Sage list all of it's elements. ::
 
+  sage: R = Integers(13)
   sage: R.list()
   [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
 .. index:: unit group, rings; unit group, unit_gens
 
-``R`` in this example is a field, since :math:`13` is a prime number, if our ring is not a field then the group of *units* is an subgroup of :math:`\left(\mathbb{Z}_{n}, \cdot \right)` of interest. Sage can compute a list of generators of the *group of units* using it's :meth:`unit_gens` method. ::
+``R`` in this example is a field, since :math:`13` is a prime number.  If our ring is not a field then the *units*  in :math:`\mathbb{Z}_{n}`
+146form a group under multiplication . Sage can compute a list of generators of the *group of units* using it's :meth:`unit_gens` method. ::
 
   sage: R = Integers(12)
   sage: R.uni
@@ -200,16 +202,18 @@ We can compute this list also by using a list comprehension. ::
 
   #. Do all of the steps above again, but with the ring of integers modulo :math:`17`.
 
-  #. Use Sage to determine whether the following Rings are fields:
+  #. Use an exhaustive search method to write a function which determines if a is a unit modulo n.
+
+  #. For :math:`n = 13, 15` and :math:`21` determine which of :math:`3,4` and :math:`5` are units in :math:`\mathbb{Z}_{n}`. When you find a unit, determine its inverse and compare this to the output of :math:`xgcd(a,n)`. Try and explain this relationship.
+
+  #. Use Sage to determine whether the following Rings are fields. For each  example, describe the unit group using generators and relations.
 
      a) :math:`\mathbb{Z}_{1091}`
      b) :math:`\mathbb{Z}_{1047}`
      c) :math:`\mathbb{Z}_{1037}`
      d) :math:`\mathbb{Z}_{1087}`
 
-  #. Use an exhaustive search method to write a function which determines if a is a unit modulo n.
-
-  #. For :math:`n = 13, 15` and :math:`21` determine which of :math:`3,4` and :math:`5` are units in :math:`\mathbb{Z}_{n}`. When you find a unit, determine its inverse and compare this to the output of :math:`xgcd(a,n)`. Try and explain this relationship.
+ 
  
 .. _linear_congruences:
 
@@ -251,7 +255,7 @@ We can also use the :func:`solve_mod` function to compute the same results. ::
   sage: solve_mod( 9*x + 7*y == 2, 21)
   [(15, 14), (15, 8), (15, 2), (15, 17), (15, 11), (15, 5), (15, 20), (1, 14), (1, 8), (1, 2), (1, 17), (1, 11), (1, 5), (1, 20), (8, 14), (8, 8), (8, 2), (8, 17), (8, 11), (8, 5), (8, 20)]
 
-Where the solution of the form :math:`\left(x,y\right)` where the variables are listed in alphabetical order. 
+The solutions are in the form :math:`\left(x,y\right)`, where the variables are listed in alphabetical order. 
 
 :func:`solve_mod` can even solve systems of linear congruences. ::
 
@@ -289,25 +293,6 @@ Groups
 
 Permutation Groups
 ------------------
-.. index:: groups; permutation, permuation groups
-
-.. sectionauthor:: David Monarres <dmmonarres@gmail.com>
-
-In Sage a permutation is given in *cycle* notation, however since
-parenthesis have another meaning to Python we must enclose our cycles
-in quotations before we use them. ::
-
-	sage: r = '(1,3)(2,4)(5)'
-	sage: s = '(1,3,2)'
-
-.. index:: PermutationGroup
-
-Constructing a permutation group is done by giving a list of these
-permutation to the :class:`.PermutationGroup` command. ::
-
-        sage: G = PermutationGroup([r,s])
-	sage: G
-	Permutation Group with generators [(1,3,2), (1,3)(2,4)]
 
 .. index:: SymmetricGroup
 
@@ -323,9 +308,7 @@ Once the group has been constructed we can list all of it's
         sage: G.list()
     	[(), (4,5), (3,4), (3,4,5), (3,5,4), (3,5), (2,3), (2,3)(4,5), (2,3,4), (2,3,4,5), (2,3,5,4), (2,3,5), (2,4,3), (2,4,5,3), (2,4), (2,4,5), (2,4)(3,5), (2,4,3,5), (2,5,4,3), (2,5,3), (2,5,4), (2,5), (2,5,3,4), (2,5)(3,4), (1,2), (1,2)(4,5), (1,2)(3,4), (1,2)(3,4,5), (1,2)(3,5,4), (1,2)(3,5), (1,2,3), (1,2,3)(4,5), (1,2,3,4), (1,2,3,4,5), (1,2,3,5,4), (1,2,3,5), (1,2,4,3), (1,2,4,5,3), (1,2,4), (1,2,4,5), (1,2,4)(3,5), (1,2,4,3,5), (1,2,5,4,3), (1,2,5,3), (1,2,5,4), (1,2,5), (1,2,5,3,4), (1,2,5)(3,4), (1,3,2), (1,3,2)(4,5), (1,3,4,2), (1,3,4,5,2), (1,3,5,4,2), (1,3,5,2), (1,3), (1,3)(4,5), (1,3,4), (1,3,4,5), (1,3,5,4), (1,3,5), (1,3)(2,4), (1,3)(2,4,5), (1,3,2,4), (1,3,2,4,5), (1,3,5,2,4), (1,3,5)(2,4), (1,3)(2,5,4), (1,3)(2,5), (1,3,2,5,4), (1,3,2,5), (1,3,4)(2,5), (1,3,4,2,5), (1,4,3,2), (1,4,5,3,2), (1,4,2), (1,4,5,2), (1,4,2)(3,5), (1,4,3,5,2), (1,4,3), (1,4,5,3), (1,4), (1,4,5), (1,4)(3,5), (1,4,3,5), (1,4,2,3), (1,4,5,2,3), (1,4)(2,3), (1,4,5)(2,3), (1,4)(2,3,5), (1,4,2,3,5), (1,4,2,5,3), (1,4,3)(2,5), (1,4)(2,5,3), (1,4,3,2,5), (1,4)(2,5), (1,4,2,5), (1,5,4,3,2), (1,5,3,2), (1,5,4,2), (1,5,2), (1,5,3,4,2), (1,5,2)(3,4), (1,5,4,3), (1,5,3), (1,5,4), (1,5), (1,5,3,4), (1,5)(3,4), (1,5,4,2,3), (1,5,2,3), (1,5,4)(2,3), (1,5)(2,3), (1,5,2,3,4), (1,5)(2,3,4), (1,5,3)(2,4), (1,5,2,4,3), (1,5,3,2,4), (1,5)(2,4,3), (1,5,2,4), (1,5)(2,4)]
 
-We construct some elements in :math:`S_5` by coercing the
-permutations, written in *cycle notation*, into the group constructed
-earlier.  ::
+As you can see from the list, in Sage a permutation is written in *cycle* notation. We can construct an elements in :math:`S_5` by coercing a permutation, written in *cycle notation*, into :math:`G`. Since parenthesis have another meaning to Python we must enclose our cycles in quotations before we use them. ::
 
         sage: r = G('(1,3)(2,4)')  
 	sage: s = G('(1,4,3,2)')
@@ -383,7 +366,7 @@ certain properties by using the appropriate methods. ::
 
 Next we will construct a different subgroup of :math:`S_5` and list
 it's members. This subgroup may look familiar if you have studied
-group theory before.  ::
+group theory before. ::
 
         sage: r = G('(1,2,5,4,3)') 
 	sage: s = G('(1,5),(3,4)') 
@@ -414,9 +397,7 @@ isomorphic. ::
 
 Often when we have two groups which are isomorphic we will want to
 compute a concrete isomorphism between the two groups. A useful tool
-for examining the structure is by examining the groups *Cayley
-Table*. You can do this by invoking the group's :meth:`cayley_table()`
-method. ::
+for examining the structure is the *Cayley Table*. You can do this by invoking the group's :meth:`cayley_table()` method. ::
 
         sage: H.cayley_table()
 	*  a b c d e f g h i j
@@ -446,11 +427,9 @@ method. ::
 	i| i c e a g d j f h b
 	j| j d f b h c i e g a
 		    
-Now, the way that Sage displays the group's cayley table may be a bit
-confusing. Instead of listing the elements themselves, Sage decides to
-encode the results alphabetically using the same ordering as the
-output of ``H.list()`` and ``D.list()``. In this example the encoding
-summarized in the following table.
+The way that Sage displays the group's cayley table may be a bit
+confusing. Instead of listing the elements themselves, Sage encodes the results alphabetically using the same ordering as the
+output of ``H.list()`` and ``D.list()``. The following table summarizes the encoding for this example.
 
 .. table:: Example encoding for `cayley_table()`
 
@@ -479,6 +458,18 @@ summarized in the following table.
 	j          (1,5,3,2,4)     (1,5)(2,4)
 
 	========== =============== ===============
+
+.. index:: PermutationGroup, Groups; permutation
+
+Constructing a permutation group is done by giving a list of permutations to the :class:`.PermutationGroup` command. ::
+
+  sage: r = '(1,3)(2,4)(5)'
+  sage: s = '(1,3,2)'
+  sage: K = PermutationGroup([r,s])
+  sage: K
+  Permutation Group with generators [(1,3,2), (1,3)(2,4)]
+  sage: K.order()
+  12
 
 .. index:: sign
 
@@ -534,7 +525,7 @@ it's elements listed. ::
 
 By using python's *list comprehensions* (see :ref:`lists`) we can
 create a list of elements with certain properties. In this case we can
-construct the list of all transpositions. ::
+construct the list of all elements or order 2. ::
 
         sage: T = [s for s in G  if s.order() == 2 ] 
 	sage: T
@@ -608,12 +599,10 @@ Note that we get the, rather unhelpful in this case, :exc:`AttributeError` becau
 
 .. index:: kernel, groups; kernel of homomorphism
 
-The homomorphism also comes equipped with a few useful methods, the most useful is the :meth:`.kernel` method, which yields the kernel of the homomorphism. Which, since this homomorphism is an injection is just the trivial group. ::
+The homomorphism also comes equipped with a few useful methods, the most useful is the :meth:`.kernel` method, which yields the kernel of the homomorphism. Since this homomorphism is an injection, the kernel is just the trivial group. ::
 
 	sage: phi.kernel()
 	Permutation Group with generators [()]
-
-
 
 .. _linear_algebra:
 
@@ -630,19 +619,34 @@ Vectors and Matrices
 
 .. index:: vector
 
-To create a vector use the :func:`vector` command with a list of
+To create a vector, use the :func:`vector` command with a list of
 entries. Scalar multiples and the dot product are straightforward to
 compute. As with lists, vectors are indexed starting from :math:`0`. ::
 
 	sage: v= vector([1,2,3,4])
-        sage: 7*v
-	(7, 14, 21, 28)
-	sage: v*v
-	30
 	sage: v[0]
 	1
 	sage: v[4]
 	ERROR: An unexpected error occurred while tokenizing input
+
+Arithmetic on vectors is what one would expect.  Sage will produce an error message if you add two vectors of different lengths. ::
+
+        sage: 7*v
+	(7, 14, 21, 28)
+	sage: v + vector([2,1,4,5])	
+	(3, 3, 7, 9)
+	sage: v*v
+	sage: v + vector([2,1,4])
+	---------------------------------------------------------------------------
+	TypeError                                 Traceback (most recent call last)
+	
+	/Users/mosullivan/Work/Sage/Tutorial/sdsu-sage-tutorial/<ipython console> in <module>()
+	
+	/Applications/sage/local/lib/python2.6/site-packages/sage/structure/element.so in sage.structure.element.ModuleElement.__add__ (sage/structure/element.c:7627)()
+	
+	/Applications/sage/local/lib/python2.6/site-packages/sage/structure/coerce.so in sage.structure.coerce.CoercionModel_cache_maps.bin_op (sage/structure/coerce.c:6995)()
+	
+	TypeError: unsupported operand parent(s) for '+': 'Ambient free module of rank 4 over the principal ideal domain Integer Ring' and 'Ambient free module of rank 3 over the principal ideal domain Integer Ring'
 
 .. index:: matrix				
 
@@ -672,10 +676,10 @@ By default, Sage constructs the matrix over the smallest universe which contains
   Full MatrixSpace of 2 by 2 dense matrices over Integer Ring
   sage: parent(matrix(2,[1,2/1,3,4]))
   Full MatrixSpace of 2 by 2 dense matrices over Rational Field
-  sage: parent(matrix(2, [x,y,z,t]))
+  sage: parent(matrix(2,[x,x^2,x-1,x^3])
   Full MatrixSpace of 2 by 2 dense matrices over Symbolic Ring
 			
-We can specify the universe for the coordinates of our matrix by giving it as an optional argument. ::
+We can specify the universe for the coordinates of a matrix or vector by giving it as an optional argument. ::
 
 	sage: matrix(QQ,2,[1.1,1.2,1.3,1.4])
 	[11/10   6/5]
@@ -1004,7 +1008,7 @@ If we want to change a row or column of `M` then we use the :meth:`set_column` o
 
 .. index:: set_block
 
-And finally if we want to change a whole "block" of a matrix, we use the :meth:`set_block` method with the coordinates of where we want the upper right corner of the block to begin. ::
+And finally if we want to change a whole "block" of a matrix, we use the :meth:`set_block` method with the coordinates of where we want the upper left corner of the block to begin. ::
 
    sage: B = matrix(QQ,[ [1,0 ],[0,1]]); B
    [1 0]
@@ -1060,8 +1064,6 @@ If all we need is a *single* solution to this system, we can use the :meth:`solv
 
    sage: M.solve_right(b)
    (21, 0, -1, 0, 5)
-
-With some of the basic matrix operations under our belt, we are ready to move on to the next section. 
 
 .. _vectors_and_matrices_arithmetic: 
 
@@ -1259,7 +1261,7 @@ Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` a
 
 .. index:: identity_matrix, augment
 
-What is returned is a :func:`list` of lists. Each list consisting of an eigenvalue and the associated linearly independent eigenvectors. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity of only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
+What is returned is a :func:`list` of lists. Each list consisting of an eigenvalue and the associated linearly independent eigenvectors. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
  
       sage: (M - 2*identity_matrix(4)).augment(ev_M[1][1][0])
       [ 0  1  0  0  1]
@@ -1471,7 +1473,7 @@ To compute the *factorization* of a polynomial, where defined, we use the :func:
 				
 In the example above, we see a confirmation that :math:`x^3+x+1` is irreducible in :math:`\mathbb{Z}_{5}[x]` whereas :math:`x^3+1` may be factored, hence is reducible.
 
-Just like with the integers, :math:`F[x]` has a division algorithm. And just like with integers, we may use the ``//`` operator to determine the *quotient* and the ``%`` operator to determine the *remainder* of a division. ::
+Similar to the integers, :math:`F[x]` has a division algorithm. As with the integers, we may use the ``//`` operator to determine the *quotient* and the ``%`` operator to determine the *remainder* of a division. ::
 
   sage: R.<x>=PolynomialRing(Integers(7))
   sage: f=x^6+x^2+1
@@ -1483,7 +1485,7 @@ Just like with the integers, :math:`F[x]` has a division algorithm. And just lik
 
 .. index:: divmod
 				
-Additionally, if the coefficients of the polynomial are in :math:`\mathbb{Z}` or :math:`\mathbb{Q}`, we may use the :func:`.divmod` command to compute both a the same time.  ::
+Additionally, if the coefficients of the polynomial are in :math:`\mathbb{Z}` or :math:`\mathbb{Q}`, we may use the :func:`.divmod` command to compute both at the same time.  ::
 
   sage: S.<y>=PolynomialRing(QQ)
   sage: a=(y+1)*(y^2+1)
