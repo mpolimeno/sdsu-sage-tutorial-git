@@ -65,6 +65,8 @@ Sage has two common ways to enter commands, the *command line* and a web-based *
 `?` and Tab Completion
 -----------------------
 
+.. index:: tab completion, help, help; command line, ? 
+
 An extremely useful feature both in the command-line interface and the notebook is *tab completion* of Sage commands. For long-time UNIX shell users this feature is often taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Foe example, suppose that you wanted to compute :math:`56!` and don't remember the exact command name to do this. Well, you can just type the first three letters ``fac`` and then hit the tab-key. ::
 
   sage: fac[TAB]
@@ -158,6 +160,8 @@ Which outputs: ::
 
 Again, there will be a whole lot of information, usually more than will fit on one screen.  Navigation is easy; hitting the space bar will take you to the next page, and ``b``, or the up-arrow key, will move backward in the documentation. To exit the help system hit the ``q`` key. Remember, navigation through the help system is slightly different if you are using the notebook. 
 
+.. index:: help; INPUT, help; EXAMPLES, help; DESCRIPTION
+
 When first starting out; the description,  the ``INPUT``, and the ``EXAMPLES`` sections are good sections to read. The description gives a short summary describing what the command does,  ``INPUT`` gives you information on what you should provide as *arguments* to the command, and ``EXAMPLES`` gives concrete examples of the command's usage.
 
 The description in this case is:  ::
@@ -197,6 +201,8 @@ Having a comprehensive help system built into Sage is one of it's best features 
 ``?`` and the notebook
 --------------------------
 
+.. index:: help; notebook
+
 As noted before, there are small differences between the comand line and the notebook.  The notebook is generally more intuitive for those  who are used to point-and-click interfaces. 
 
 Suppose that instead of the least common multiple, you are looking to compute the *greatest common divisor* of two integers. In the notebook, you begin the search in much the same way as you did on the command line, by typing into an input box ``g`` and then hitting the tab key. 
@@ -220,13 +226,15 @@ To exit the help system overlay just click anywhere on the screen.
 Contributing to the Tutorial
 ============================
 
+.. index:: contribution, tutorial source, bitbucket, reStructured Text
+
 Additions to this tutorial are encouraged as are suggestions for additional topics for inclusion.
 
 All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_, which is written in the `Python Programming Language <http://www.python.org>`_.  We are excited to see any changes that you make so please let `us <monarres@rohan.sdsu.edu>`_ know of any new material that you  add. We want for this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
 
 The content of the this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
 
-There are  four parts to the tutorial: "How to use this tutorial" has basic instructions about using and amending the tutorial, and the others have mathematical content. "Sage as a Calculator" is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
+There are  four parts to the tutorial: :ref:`about_this_tutorial` has basic instructions about using and amending the tutorial, and the others have mathematical content. :ref:`sage_as_a_calculator` is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
 
 "Programming in Sage" eases the transition to higher level mathematics by treating topics that relate to the interface between mathematical concepts and computational issues. This chapter covers basic structures like: lists, sets and strings; the universe for a number or variable, rational numbers versus real numbers (of specificied precision); programming essentials like booleans, conditionals and iterative computation; file handling and data handling; etc.
 
