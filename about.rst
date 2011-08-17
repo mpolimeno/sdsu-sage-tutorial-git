@@ -1,4 +1,4 @@
-.. _about_this_tutorial:
+.. _about_tutorial:
 
 *********************
  About this tutorial
@@ -13,13 +13,13 @@ Introduction
 How to use this tutorial
 ------------------------
 
-This tutorial is divided into four main parts. This part, :ref:`about_this_tutorial`,  is intended to introduce readers to the basic structure of the tutorial, how to use Sage's built-in help system, and how they can contribute to this tutorial if they desire.   
+This tutorial is divided into four parts. This part, *About this Tutorial*,  is intended to introduce you   to  the basic structure of the tutorial and how to contribute to the project if you so desire.  
 
-The second part, :ref:`sage_as_a_calculator`, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
+The second part, *Sage as a Calculator*, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section *Sage as a Calculator* because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
-:ref:`programming_in_sage` begins to introduce the reader to some more *advanced* topics such as:  how Sage handles numbers, how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
+*Programming in Sage* begins to introduce the reader to some more *advanced* topics such as:  how Sage handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
 
-The final part, :ref:`mathematical_structures`, introduces the reader to topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc.
+The final part, *Mathematical Structures*,  introduces the reader to topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc.
  
 Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
 
@@ -71,7 +71,7 @@ An extremely useful feature both in the command-line interface and the notebook 
   factor     factorial  
   sage: factor
 
-This tells you that only two Sage commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command we will select it by typing the next letter, ``i``, and hitting the tab key again. ::
+This tells you that only two Sage commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command to factor an integer we will select this by typing the next letter, ``i``, and hitting the tab key again. ::
 
   sage: factorial   
 
