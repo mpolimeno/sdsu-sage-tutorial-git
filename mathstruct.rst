@@ -2058,6 +2058,7 @@ It should be noted that ``a`` already lives in the field and no special coercion
   3
 
 But if we are using only integers we must coerce the arithmetic into the field. ::
+
   sage: 3+4 
   7
   sage: parent(_)
