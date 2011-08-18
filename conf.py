@@ -130,7 +130,7 @@ html_static_path = ['_static']
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
-#html_use_smartypants = True
+html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
@@ -143,7 +143,7 @@ html_static_path = ['_static']
 #html_domain_indices = True
 
 # If false, no index is generated.
-#html_use_index = True
+html_use_index = True
 
 # If true, the index is split into individual pages for each letter.
 #html_split_index = False
@@ -172,10 +172,10 @@ htmlhelp_basename = 'SDSUSageTutorialdoc'
 # -- Options for LaTeX output --------------------------------------------------
 
 # The paper size ('letter' or 'a4').
-#latex_paper_size = 'letter'
+latex_paper_size = 'a4'
 
 # The font size ('10pt', '11pt' or '12pt').
-#latex_font_size = '10pt'
+latex_font_size = '10pt'
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
@@ -199,7 +199,7 @@ latex_documents = [
 #latex_show_urls = False
 
 # Additional stuff for the LaTeX preamble.
-#latex_preamble = ''
+latex_preamble = '\usepackage{amsmath,amssymb,amsthm}'
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []

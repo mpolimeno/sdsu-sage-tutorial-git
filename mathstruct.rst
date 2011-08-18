@@ -2484,13 +2484,28 @@ Other Codes
 
 Hamming Codes
 +++++++++++++
-Aenean a dapibus risus. Aliquam erat volutpat. Phasellus ullamcorper, lacus vel scelerisque luctus, elit enim egestas lacus, non lobortis velit dolor eget nisl. Morbi commodo massa eu arcu porta sed eleifend eros tempor. Morbi nibh quam, vehicula et fringilla eget, sodales ut magna. Sed iaculis cursus arcu, non varius lectus fringilla in. Suspendisse non euismod leo. Suspendisse vel quam erat, vitae sagittis nisl. Mauris at mi sit amet nulla scelerisque convallis et in mauris. Etiam in risus nibh, vel interdum urna. ::
 
-  sage: C = HammingCode(3, F)
-  sage: C.gen_mat()
-  70 x 73 dense matrix over Finite Field in a of size 2^3
+A Hamming Code is a simple linear code which has the capability to detect up to 2 contiguous errors and correct for any single error.  
+
+.. index:: HammingCode
+
+We will begin by constructing a binary Hamming code with 3 parity checks. ::
+
+  sage: F = GF(2)    
+  sage: C = HammingCode(3,F); C
+  Linear code of length 7, dimension 4 over Finite Field of size 2
+
+Hamming codes always have a length, :math:`\vert \mathbb{F} \vert^r - 1` where :math:`r` is the number of parity checks and :math:`\mathbb{F}` is the finite-field over which the code is defined. This is because the columns of it's *parity check* matrix consists of all non-zero elements of :math:`\mathbb{F}^r`. ::
+
   sage: C.check_mat()
-  3 x 73 dense matrix over Finite Field in a of size 2^3
+  [1 0 1 0 1 0 1]
+  [0 1 1 0 0 1 1]
+  [0 0 0 1 1 1 1]
+
+A Ternary Hamming Code is constructed by supplying a non-binary finite field as the base field. Here we will construct the ternary Hamming code over :math:`GF(2^3)` also with 3 parity checks. ::
+
+  sage: C = HammingCode(3, F); C
+  Linear code of length 73, dimension 70 over Finite Field in a of size 2^3 
 
 .. seealso::
    http://en.wikipedia.org/wiki/Hamming_code
@@ -2502,11 +2517,11 @@ Aenean a dapibus risus. Aliquam erat volutpat. Phasellus ullamcorper, lacus vel 
 BCH Codes
 +++++++++
 
-BCH codes, or Bose-Chaudhuri-Hockenghem codes, are a special class of the cyclic codes with 3 required parameters, :math:`n, \delta, F` and one optional one :math:`b`. Where :math:`n` is the length of the code, :math:`\delta` is called the *designed distance* and :math:`F` is a finite field of order :math:`q^{n}` where :math:`gcd(n, q) = 1`. 
+BCH codes, or Bose-Chaudhuri-Hockenghem codes, are a special class of the cyclic codes with 3 required parameters, :math:`n, \delta, F` and one optional one :math:`b`. Here :math:`n` is the length of the code words, :math:`\delta` is a parameter called the *designed distance* and :math:`F` is a finite field of order :math:`q^{n}` where :math:`gcd(n, q) = 1`. 
 
 .. index:: BCHCode
 
-If :math:`b` is not provided then a default value of zero is used. For example the following commands will construct a BCH code of length :math:`n = 13` with :math:`\delta = 5` over :math:`F = \mathrm{GF}(9)`. ::
+If :math:`b` is not provided then a default value of zero is used. For example, you construct construct a BCH code of length :math:`n = 13` with :math:`\delta = 5` over :math:`F = \mathrm{GF}(9)`. ::
 
   sage: F.<a> = GF(3^2,'a')
   sage: C = BCHCode(13, 5, F)
