@@ -396,12 +396,12 @@ Solving for x
 				
 In Sage, equations and inequalities are defined using the *operators* ``==``, ``<=``, and ``>=`` and will return either ``True``, ``False``, or, if there is a variable, just the equation/inequality. ::
 
-	sage: 9 == 9
-	True
-	sage: 9 <= 10
-	True
-	sage: 3*x - 10 == 5
-	3*x - 10 == 5
+  sage: 9 == 9
+  True
+  sage: 9 <= 10
+  True
+  sage: 3*x - 10 == 5
+  3*x - 10 == 5
 
 .. index:: solving equations, solve
 				
@@ -993,6 +993,17 @@ Polar plots can be done using the :func:`.polar_plot` command. ::
 	:alt: Eight Petal 'folium' curve
 	:width: 400px
 	:height: 300px
+
+And finally, Sage can do the plots for functions that are implicitly defined. For example, to display all points :math:`(x,y)` that satisfy the equation :math:`4x^2y - 3y = x^3 -1`, we enter the following: ::
+
+  sage: implicit_plot(4*x^2*y - 3*y == x^3 - 1, (x,-10,10),(y,-10,10))
+
+.. image:: pics/implicit_plot1.png
+   :alt: Example of plotting a curve defined implicitly
+   :width: 400px
+   :height: 300px
+
+
 
 **Exercises:**
 

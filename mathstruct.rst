@@ -956,7 +956,7 @@ Next we will discuss some of the elementary row operations. To multiply a row or
 
 .. index:: add_multiple_of_row
 
-We can add a multiple of a row or column to another row or column by using the :meth:`add_multiple_of_row` method. The first command takes :math:`-4` times the first row and adds it to the second row. Once again it helps to remember that everything with a matrices in Sage are index starting with zero. So `0` below is refering to the first row and `1` to the second. We can all blame the C programming language for this confusion.  ::
+We can add a multiple of a row or column to another row or column by using the :meth:`add_multiple_of_row` method. The first command takes :math:`-4` times the first row and adds it to the second row. Once again it helps to remember that everything with a matrices in Sage are index starting with zero. So `0` below is referring to the first row and `1` to the second. We can all blame the C programming language for this confusion.  ::
    
    sage: M.add_multiple_of_row(1,0,-4); M
    [ 1  2 -1]
@@ -1033,7 +1033,7 @@ Of course, if all we want is the *echelon form* of the matrix we can use either 
    [ 0  0  1]
 
 
-Next we would like to use the *augmented* metrix and the echelon form to solve a :math:`5\times5` system of the form :math:`Mx = b`. First we define the matrix `M` and the vector `b` ::
+Next we would like to use the *augmented* matrix and the echelon form to solve a :math:`3\times 4` system of the form :math:`Mx = b`. First we define the matrix `M` and the vector `b` ::
 
    sage: M = matrix(QQ, [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); M   [2 4 6 2 4]
    [1 2 3 1 1]
@@ -1223,41 +1223,45 @@ For every linear transformation :math:`\mathrm{T}:\mathbb{R}^n \longrightarrow \
 
 We will begin by defining :math:`\mathrm{T}` in Sage. ::
       
-      sage: T = lambda x,y,z,t: (2*x+y, 2*y+1, 3*z, y - z + 3*t)
+      sage: T(x,y,z,t) = (2*x+y, 2*y+1, 3*z, y - z + 3*t)
 
 .. index:: transpose
 
-Now, let's use the standard ordered basis of :math:`\mathbb{R}^3` to find the matrix form of :math:`\mathrm{T}`. Note that since Sage uses rows to construct a matrix we must use the  :func:`transpose` function to get the matrix we expect. ::
+Now, let's use the standard ordered basis of :math:`\mathbb{R}^3` to find the matrix form of :math:`\mathrm{T}`. ::
 
-       sage: M = transpose(matrix([[2,1,0,0],[0,2,1,0], [0,0,3,0],[0,1,-1,3]])); <
-       [ 2  1  0  0]
-       [ 0  2  1  0]
-       [ 0  0  3  0]
-       [ 0  1 -1  3]
+  sage: T(1,0,0,0), T(0,1,0,0), T(0,0,1,0), T(0,0,0,1)
+  ((2, 1, 0, 0), (1, 3, 0, 1), (0, 1, 3, -1), (0, 1, 0, 3))
+
+Note that since Sage uses rows to construct a matrix we must use the  :func:`transpose` function to get the matrix we expect. ::
+
+  sage: M = transpose(matrix([[2,1,0,0],[0,2,1,0], [0,0,3,0],[0,1,-1,3]])); <
+  [ 2  1  0  0]
+  [ 0  2  1  0]
+  [ 0  0  3  0]
+  [ 0  1 -1  3]
 
 .. index:: characteristic_polynomial, factor 
 
-Once we have the matrix we will compute it's *characteristic polynomial*  and factorization. Note that in order to save a couple of keystrokes we use the `_` special variable. `_` is the variable that always contains the output of the last command. It's a handy variable to know, and we will use it often.  ::
+Once we have the matrix we will compute it's *characteristic polynomial* and then factor it. ::
 
-      sage: M.characteristic_polynomial()
-      x^4 - 10*x^3 + 37*x^2 - 60*x + 36
-      sage: factor(_)
-      (x - 3)^2 * (x - 2)^2
+  sage: M.characteristic_polynomial()
+  x^4 - 10*x^3 + 37*x^2 - 60*x + 36
+  sage: factor(x^4 - 10*x^3 + 37*x^2 - 60*x + 36)
+  (x - 3)^2 * (x - 2)^2
 
 .. index:: eigenvectors_right
 
-Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` and both are of algebraic multiplicity :math:`2`. Now we need to look at the associated  *eigenvectors*. To do so we will use the :meth:`eigenvectors_right` method. 
- ::
+Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` and both are of algebraic multiplicity :math:`2`. Now we need to look at the associated  *eigenvectors*. To do so we will use the :meth:`eigenvectors_right` method. ::
 
-      sage: ev_M = M.eigenvectors_right(); ev_M      
-      [(3, [
-      (1, 1, 1, 0),
-      (0, 0, 0, 1)
-      ], 2), (2, [
-      (1, 0, 0, 0)	
-      ], 2)]
-      sage: ev_M[1][1][0]
-      (1, 0, 0, 0)
+  sage: ev_M = M.eigenvectors_right(); ev_M      
+  [(3, [
+  (1, 1, 1, 0),
+  (0, 0, 0, 1)
+  ], 2), (2, [
+  (1, 0, 0, 0)	
+  ], 2)]
+  sage: ev_M[1][1][0]
+  (1, 0, 0, 0)
 
 .. index:: identity_matrix, augment
 
@@ -1849,7 +1853,9 @@ To  preform arithmetic in the quotient ring, we must first *coerce* elements int
 	2
 	sage: Q(10 + 12)
 	2
-.. index:: quotient, Indeterminants, ideal, parent					
+
+.. index:: quotient, Indeterminants, ideal, parent
+	
 When working with quotients of polynomial rings it is a good idea to give
 the indeterminate a new name. ::
 
@@ -2427,6 +2433,7 @@ Now we take the product of all of the other factors. ::
 
     sage: ap = prod( [p for p in A if p != a])
     x^10 + (a + 1)*x^9 + a*x^8 + a*x^7 + x^5 + (a + 1)*x^3 + (a + 1)*x^2 + a*x + 1
+
 .. index:: xgcd
 
 Then compute the :func:`xgcd` of `p0` and `ap`. ::
