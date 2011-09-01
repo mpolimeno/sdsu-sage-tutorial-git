@@ -194,7 +194,6 @@ We can compute this list also by using a list comprehension. ::
   sage: [ x for x in R if x.is_unit()]
   [1, 5, 7, 11]
 
-
 **Exercises:**
 
   #. Construct the ring of integers modulo :math:`16` and compute the following:
@@ -259,13 +258,26 @@ We can also use the :func:`solve_mod` function to compute the same results. ::
   sage: solve_mod( 9*x + 7*y == 2, 21)
   [(15, 14), (15, 8), (15, 2), (15, 17), (15, 11), (15, 5), (15, 20), (1, 14), (1, 8), (1, 2), (1, 17), (1, 11), (1, 5), (1, 20), (8, 14), (8, 8), (8, 2), (8, 17), (8, 11), (8, 5), (8, 20)]
 
-The solutions are in the form :math:`\left(x,y\right)`, where the variables are listed in alphabetical order. 
+The solutions are in the form :math:`\left(x,y\right)`, where the
+variables are listed in the order in which they appear in the equations. 
 
 :func:`solve_mod` can even solve systems of linear congruences. ::
 
   sage: solve_mod( [9*x + 2*y == 2, 3*x + 2*y == 11   ], 21)
   [(9, 13), (16, 13), (2, 13)]
- 
+
+Just like when using the :func:`solve` command, it will tend to be
+slow when working with systems that have a lot of variables and/or
+equations. For these systems the linear algebra capabilities are
+recommended. 
+
+Finally, we can also compute the solutions for non-linear congruences
+using Sage. ::
+
+  sage: solve_mod(x^2 + y^2 == 1, 7)
+  [(0, 1), (0, 6), (1, 0), (2, 2), (2, 5), (5, 2), (5, 5), (6, 0)]
+  sage: solve_mod([x^2 + y^2 == 1, x^2 - y == 2], 7)
+  [(2, 2), (5, 2)]
        
 **Exercises:**
 
