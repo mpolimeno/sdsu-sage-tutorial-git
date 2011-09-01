@@ -69,7 +69,10 @@ To construct this ring, you use the :class:`.Integers` command. ::
   sage: Integers(100)
   Ring of integers modulo 100
 				
-We could do computations modulo an integer by repeatedly using the ``%`` operator in all of our expressions, but by constructing the ring explicitly we have access to a more natural method for doing arithmetic. ::
+We could do computations modulo an integer by repeatedly using the
+``%`` operator in all of our expressions, but by constructing the ring
+explicitly we have access to a more natural method for doing
+arithmetic. ::
 
   sage: R=Integers(13)
   sage: a=R(6)
@@ -190,6 +193,35 @@ We can compute this list also by using a list comprehension. ::
 
   sage: [ x for x in R if x.is_unit()]
   [1, 5, 7, 11]
+
+.. index:: solve_mod
+
+Finally, we would like to solve a few simple equations modulo
+:math:`n`. To do so we use the :func:`solve_mod` command. ::
+
+  sage: var('x y')
+  (x, y)
+  sage: solve_mod(3*x - 1 == 1, 7)
+  [(3,)]
+  sage: solve_mod(3*x + 5 == 8, 6)
+  [(3,), (1,), (5,)]
+
+Sage can solve systems of equations modulo :math:`n`. ::
+
+  sage: solve_mod([ 2*x + y == 1, 3*x - 2*y == 2] 7)
+  sage: solve_mod([ 2*x + y == 1, 4*x + 2*y == 2] ,7)
+  [(0, 1), (1, 6), (2, 4), (3, 2), (4, 0), (5, 5), (6, 3)]
+
+and when the equations have no solution, the empty list ``[]`` is
+returned. ::
+
+  sage: solve_mod([ 2*x + y == 1, 3*x - 2*y == 2] ,7)
+  []
+
+Using :func:`solve_mod` for systems with many variable and/or many
+equations can be slow. For those systems the use of the linear algebra
+facilities of Sage is recommended.
+
 
 **Exercises:**
 
