@@ -1486,7 +1486,7 @@ To check whether a polynomial is irreducible, we use it's :meth:`is_irreducible`
   sage: (x^3+1).is_irreducible()  
   False
 				
-This method is only suitable for polynomial rings that are defined over a field, as polynomials defined more generally do not necessarily posses a unique factorization. 
+This method is only suitable for polynomial rings that are defined over a field, as polynomials defined more generally may not  posses a unique factorization. 
 
 .. index:: factor
 
@@ -1651,7 +1651,7 @@ To change the term ordering we must reconstruct both the ring itself and all of 
   sage: p = -1/2*x - y*z - y + 8*z^2; p
   -1/2*x - y*z - y + 8*z^2
 
-Once the term order is changes, all of the methods discussed earlier, even how Sage displays the polynomial, take this into account. ::
+Once the term order  changes, all of the methods discussed earlier, even how Sage displays the polynomial, take this into account. ::
 
   sage: p.lm()
   x
@@ -1689,7 +1689,7 @@ Finally we can *reduce* a polynomial modulo a list of polynomials using the :met
 
 **Exercises:**
 
-  #. Use Sage to find out which of the following polynomials with rational coefficients are irreducible?
+  #. Use Sage to find out which of the following polynomials with rational coefficients are irreducible.
 
      a) :math:`3 y^{4} - \frac{1}{2} y^{2} - \frac{1}{2} y - \frac{1}{2}`
      b) :math:`2 y^{4} - y^{2} - y`
@@ -1742,7 +1742,7 @@ Once a ring is constructed and a list of generating elemets have been selected, 
 
 .. index:: gens, Ideals; gens
 					
-Sage automatically reduces the set of generators. This can be see by using the :meth:`.gens` method which returns the list of the ideal's generating elements. ::
+Sage automatically reduces the set of generators. This can be seen by using the :meth:`.gens` method which returns the list of the ideal's generating elements. ::
 
   sage: I.gens()
   (x - 1,)
@@ -1766,7 +1766,9 @@ Ideal membership can be determined by using the ``in`` conditional. ::
 
 .. index:: is_prime, is_idempotent, is_principal
 					
-You can determine some properties of the ideal by using the corresponding ``is_*`` method. For example, to determine weather the ideals are *prime*,*principal*, or *idempotent* we enter the following: ::
+You can determine some properties of the ideal by using the
+corresponding ``is_*`` method. For example, to determine weather the
+ideals are *prime*, *principal*, or *idempotent* we enter the following: ::
 
 	sage: J.is_prime()
 	True
@@ -1789,7 +1791,8 @@ But we get a :obj:`NotImplementedError`, since Sage is not yet able to determine
 Ideals in Multivarate Polynomial Rings
 ++++++++++++++++++++++++++++++++++++++
 
-To construct an ideal within a polynomial ring, we must first construct a Polynomial ring with, when the polynomial ring is multivariate, a term ordering and a collection of polynomials that will generate the ideal. ::
+To construct an ideal within a multivariate polynomial ring, we must
+first construct the Polynomial ring with a term ordering and a collection of polynomials that will generate the ideal. ::
 
   sage: R.<x,y,z> = PolynomialRing(QQ,3,order='lex')
   sage: p = -1/2*x - y*z - y + 8*z^2
@@ -1914,7 +1917,7 @@ Properties of Rings
 
 .. index:: is_field, is_integral_domain
 
-You can check some of the properties of the rings which have been constructed. For example, to check whether a ring is a *integral domain* or a *field* we use the :meth:`.is_integral_domain` or :meth:`.is_field` methods.   ::
+You can check some of the properties of the rings which have been constructed. For example, to check whether a ring is an *integral domain* or a *field* we use the :meth:`.is_integral_domain` or :meth:`.is_field` methods.   ::
 
 	sage: QQ.is_field()
 	True
@@ -1929,7 +1932,7 @@ You can check some of the properties of the rings which have been constructed. F
 	sage: S.is_field()
 	True
 
-These properties are often determined instantaneously since they built into the definitions of the rings and not calculated on the fly. 
+These properties are often determined instantaneously since they are built into the definitions of the rings and not calculated on the fly. 
 
 .. index:: Tab-completion
 
@@ -2109,7 +2112,7 @@ Sometimes we would like to specify the polynomial used to construct out extensio
   sage: a^2
   4*a + 4
 
-Remember that the modulus must be a polynomial which is *irreducible* over :math:`\mathbb{F}_{5}[x]`. Many times we would like for the modulus to not just be irreducible, but to be primitive_. Next we will construct all of the primitive polynomials of degree :math:`2`. The following example uses some constructions that we haven't discussed yet, like :ref:`polynomial_rings` and :ref:`list_comprehensions`. First thing that we will do is construct a list of all polynomials over :math:`\mathrm{GF}(5)` ::
+Remember that the modulus must be a polynomial which is *irreducible* over :math:`\mathbb{F}_{5}[x]`. Many times we would like for the modulus to not just be irreducible, but to be primitive_. Next we will construct all of the primitive polynomials of degree :math:`2`. The following example uses :ref:`polynomial_rings` and :ref:`list_comprehensions`. First thing that we will do is construct a list of all polynomials over :math:`\mathrm{GF}(5)` ::
 
   sage: F5 = GF(5)
   sage: P.<x> = PolynomialRing(F, 'x')
