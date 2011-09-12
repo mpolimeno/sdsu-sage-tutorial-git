@@ -161,7 +161,7 @@ and if the ring is finite then we can have Sage list all of it's elements. ::
 .. index:: unit group, rings; unit group, unit_gens
 
 ``R`` in this example is a field, since :math:`13` is a prime number.  If our ring is not a field then the *units*  in :math:`\mathbb{Z}_{n}`
-146form a group under multiplication . Sage can compute a list of generators of the *group of units* using it's :meth:`unit_gens` method. ::
+form a group under multiplication. Sage can compute a list of generators of the *group of units* using it's :meth:`unit_gens` method. ::
 
   sage: R = Integers(12)
   sage: R.uni
@@ -177,7 +177,7 @@ We can also compute the order of this subgroup. ::
   sage: R.unit_group_order()
   4
 
-Unfortunately, Sage doesn't seem to have a function which directly computes the group of units for integer modulo :math:`m`, but using the information above we can do that ourselves without much trouble. ::
+Unfortunately, Sage doesn't seem to have a function which directly returns the units in :math:`\mathbb{Z}_{n}` as a group.  We can list the elements in a couple of different ways using the information above. ::
 
   sage: (a,b) = R.unit_gens()
   sage: a
@@ -189,14 +189,14 @@ Unfortunately, Sage doesn't seem to have a function which directly computes the 
 
 .. index:: is_unit
 
-We can compute this list also by using a list comprehension. ::
+We can also compute this  by using a list comprehension. ::
 
   sage: [ x for x in R if x.is_unit()]
   [1, 5, 7, 11]
 
 **Exercises:**
 
-  #. Construct the ring of integers modulo :math:`16` and compute the following:
+  #. Construct the ring of integers modulo :math:`16` and answer the following:
 
      a) Compute the multiplicative orders of :math:`2,4,5,6,13` and :math:`15`?
      b) Which of the elements listed above is a unit? 
@@ -207,7 +207,7 @@ We can compute this list also by using a list comprehension. ::
 
   #. Use an exhaustive search method to write a function which determines if a is a unit modulo n.
 
-  #. For :math:`n = 13, 15` and :math:`21` determine which of :math:`3,4` and :math:`5` are units in :math:`\mathbb{Z}_{n}`. When you find a unit, determine its inverse and compare this to the output of :math:`xgcd(a,n)`. Try and explain this relationship.
+  #. For :math:`n = 13, 15` and :math:`21` determine which of :math:`3,4` and :math:`5` are units in :math:`\mathbb{Z}_{n}`. When you find a unit, determine its inverse and compare this to the output of :math:`xgcd(a,n)`. Try to explain this relationship.
 
   #. Use Sage to determine whether the following Rings are fields. For each  example, describe the unit group using generators and relations.
 
@@ -266,8 +266,7 @@ variables are listed in the order in which they appear in the equations.
   sage: solve_mod( [9*x + 2*y == 2, 3*x + 2*y == 11   ], 21)
   [(9, 13), (16, 13), (2, 13)]
 
-Just like when using the :func:`solve` command, it will tend to be
-slow when working with systems that have a lot of variables and/or
+As with  the :func:`solve` command, computations can be slow when working with systems that have a lot of variables and/or
 equations. For these systems the linear algebra capabilities are
 recommended. 
 
@@ -305,13 +304,15 @@ Groups
 ======
 .. index:: groups
 
-.. _permutation_groups:
+.. _symmetric_groups:
 
-Permutation Groups
+Symmetric  Groups
 ------------------
 
 .. index:: SymmetricGroup
 
+The Symmetric Group :math:`S_n` is the group of all permutations on
+:math:`n` elements.  
 First we will construct the symmetric group on :math:`\{ 1, 2, 3, 4 ,
 5 \}` which is done by using the :class:`.SymmetricGroup` command.  ::
  
@@ -324,7 +325,7 @@ Once the group has been constructed we can list all of it's
         sage: G.list()
     	[(), (4,5), (3,4), (3,4,5), (3,5,4), (3,5), (2,3), (2,3)(4,5), (2,3,4), (2,3,4,5), (2,3,5,4), (2,3,5), (2,4,3), (2,4,5,3), (2,4), (2,4,5), (2,4)(3,5), (2,4,3,5), (2,5,4,3), (2,5,3), (2,5,4), (2,5), (2,5,3,4), (2,5)(3,4), (1,2), (1,2)(4,5), (1,2)(3,4), (1,2)(3,4,5), (1,2)(3,5,4), (1,2)(3,5), (1,2,3), (1,2,3)(4,5), (1,2,3,4), (1,2,3,4,5), (1,2,3,5,4), (1,2,3,5), (1,2,4,3), (1,2,4,5,3), (1,2,4), (1,2,4,5), (1,2,4)(3,5), (1,2,4,3,5), (1,2,5,4,3), (1,2,5,3), (1,2,5,4), (1,2,5), (1,2,5,3,4), (1,2,5)(3,4), (1,3,2), (1,3,2)(4,5), (1,3,4,2), (1,3,4,5,2), (1,3,5,4,2), (1,3,5,2), (1,3), (1,3)(4,5), (1,3,4), (1,3,4,5), (1,3,5,4), (1,3,5), (1,3)(2,4), (1,3)(2,4,5), (1,3,2,4), (1,3,2,4,5), (1,3,5,2,4), (1,3,5)(2,4), (1,3)(2,5,4), (1,3)(2,5), (1,3,2,5,4), (1,3,2,5), (1,3,4)(2,5), (1,3,4,2,5), (1,4,3,2), (1,4,5,3,2), (1,4,2), (1,4,5,2), (1,4,2)(3,5), (1,4,3,5,2), (1,4,3), (1,4,5,3), (1,4), (1,4,5), (1,4)(3,5), (1,4,3,5), (1,4,2,3), (1,4,5,2,3), (1,4)(2,3), (1,4,5)(2,3), (1,4)(2,3,5), (1,4,2,3,5), (1,4,2,5,3), (1,4,3)(2,5), (1,4)(2,5,3), (1,4,3,2,5), (1,4)(2,5), (1,4,2,5), (1,5,4,3,2), (1,5,3,2), (1,5,4,2), (1,5,2), (1,5,3,4,2), (1,5,2)(3,4), (1,5,4,3), (1,5,3), (1,5,4), (1,5), (1,5,3,4), (1,5)(3,4), (1,5,4,2,3), (1,5,2,3), (1,5,4)(2,3), (1,5)(2,3), (1,5,2,3,4), (1,5)(2,3,4), (1,5,3)(2,4), (1,5,2,4,3), (1,5,3,2,4), (1,5)(2,4,3), (1,5,2,4), (1,5)(2,4)]
 
-As you can see from the list, in Sage a permutation is written in *cycle* notation. We can construct an elements in :math:`S_5` by coercing a permutation, written in *cycle notation*, into :math:`G`. Since parenthesis have another meaning to Python we must enclose our cycles in quotations before we use them. ::
+As you can see from the list, in Sage a permutation is written in *cycle* notation. We can construct an element in :math:`S_5` by coercing a permutation, written in *cycle notation*, into :math:`G`. Since parentheses have another meaning to Python we must enclose our cycles in quotations before we use them. ::
 
         sage: r = G('(1,3)(2,4)')  
 	sage: s = G('(1,4,3,2)')
@@ -381,8 +382,7 @@ certain properties by using the appropriate methods. ::
 	[(1,4,3,2)]
 
 Next we will construct a different subgroup of :math:`S_5` and list
-it's members. This subgroup may look familiar if you have studied
-group theory before. ::
+it's members. This subgroup shold  look familiar. ::
 
         sage: r = G('(1,2,5,4,3)') 
 	sage: s = G('(1,5),(3,4)') 
@@ -398,8 +398,8 @@ group theory before. ::
 
 The subgroup that we have constructed is the *Dihedral Group* . You
 can construct this group directly by using the :class:`DihedralGroup()`
-function. You can also test whether or not these two groups are
-isomorphic. ::
+function. Notice that the two groups have different elements. 
+but we  can  test that they are isomorphic. ::
 
         sage: D = DihedralGroup(5)
 	sage: D
@@ -475,8 +475,15 @@ output of ``H.list()`` and ``D.list()``. The following table summarizes the enco
 
 	========== =============== ===============
 
+
+.. _permutation_groups:
+
+Permutation Groups
+++++++++++++++++++++++++
+
 .. index:: PermutationGroup, Groups; permutation
 
+A permutation group is a subgroup of some symmetric group.  
 Constructing a permutation group is done by giving a list of permutations to the :class:`.PermutationGroup` command. ::
 
   sage: r = '(1,3)(2,4)(5)'
@@ -1389,7 +1396,7 @@ any letter for the indeterminate.  ::
 
 .. index:: parent
 
-Then polynomials with rational coefficients in Y are valid objects in Sage. ::
+Polynomials with rational coefficients in Y are now valid objects in Sage. ::
 
   sage: q = Y^4 + (1/2)*Y^3 + (1/3)*Y + (1/4)
   sage: q
