@@ -302,6 +302,7 @@ using Sage. ::
 
 Groups
 ======
+
 .. index:: groups
 
 .. _symmetric_groups:
