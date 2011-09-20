@@ -48,25 +48,41 @@ Sage is a free open source mathematical software system based on the Python prog
 As an open source project, Sage invites contributions from all of its users. This tutorial is one of many sources of information for learning about Sage. See the Sage webpage for more information.
 
 .. seealso::
-   `Sage on the Web <http://www.sagemath.org>`_ 
+   `Sage on the Web <http://www.sagemath.org>`_
 
-.. index:: Installing Sage
-
-.. _installing_sage:
-
-Installing Sage
----------------
-
-The Sage web-site already contains detailed instructions for installing Sage on all popular operating systems. So we will not duplicate that effort but rather just point the reader to the sage project's `official installation guide <http://www.sagemath.org/doc/installation/>`_.
- 
 .. index:: Helpul Tips
 
 .. _helpful_tips:
 
-Helpful Tips
-============
+Getting Started
+===============
 
-Sage has two common ways to enter commands, the *command line* and a web-based *notebook* which is similar in design and purpose to the interfaces of other computer algebra systems like *Maple*, *Mathematica* and *Matlab*.
+.. index:: command line, notebook
+
+This tutorial assumes that the reader has access to Sage through one of these two methods. For more information on installing Sage see the `Instalation Guide <http://www.sagemath.org/doc/installation>`_. 
+
+Once Sage has been installed and the program started it has two ways to enter commands, the *command line* and a web-based *notebook* which is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple*. 
+
+The reader is meant to follow along with the discussion, by entering the commands that follow the text. For example, if we are discussing how to *factor* the integer :math:`1438880` we would give the following example using Sage's :func:`.factor` command. ::
+
+  sage: factor(1438880)
+  2^5 * 5 * 17 * 23^2
+
+When the above box appears throught the tutorial, the reader should enter in the command that appears after the `sage:` prompt. On the command line thiswould look like:
+
+.. image:: pics/cmd_example.png
+        :alt: Using Sage at the command line. 
+	:width: 800px
+	:height: 525px
+
+or if the user is using the notebook (most likely) the interaction will look like: 
+
+.. image:: pics/notebook_example.png
+        :alt: Using Sage at the command line. 
+	:width: 800px
+	:height: 525px
+
+ 
 
 .. _help_tabcompletion:
 
