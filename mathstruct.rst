@@ -270,14 +270,31 @@ As with  the :func:`solve` command, computations can be slow when working with s
 equations. For these systems the linear algebra capabilities are
 recommended. 
 
-Finally, we can also compute the solutions for non-linear congruences
+We can also compute the solutions for non-linear congruences
 using Sage. ::
 
   sage: solve_mod(x^2 + y^2 == 1, 7)
   [(0, 1), (0, 6), (1, 0), (2, 2), (2, 5), (5, 2), (5, 5), (6, 0)]
   sage: solve_mod([x^2 + y^2 == 1, x^2 - y == 2], 7)
   [(2, 2), (5, 2)]
-       
+
+.. index:: Chinese Remainder Theorem, crt
+
+Finally, Sage can compute the simulatenous solution of linear congruences with different modulii under certain circumstances. This is done using the *Chineses Remainder Theorem*, and is implemented in the :func:`.crt` command. For example, the following computes the unique, modulo a constant, integer :math:`x` that is congruent to :math:`3 \bmod 8`, :math:`4 \bmod 9`, and :math:`5 \bmod 25`:  ::
+
+  sage: crt([3,4,5],[8,9,25])
+  355
+
+We can check the validity of this solution using the :func:`.mod` command. ::
+
+  sage: mod(355,8)
+  3
+  sage: mod(355,9)
+  4
+  sage: mod(355,25)
+  5
+
+
 **Exercises:**
 
   #. Find all solutions to the following congruences over :math:`\mathbb{Z}_{42}`.
