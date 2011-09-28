@@ -993,11 +993,11 @@ And again we load our session ``ramanujan`` with :func:`.load_session`. ::
 	sage: T
 	1729
 
-.. _intermediate_programming:
+.. _programming_tools:
 
-=========================
-Intermediate Programming
-=========================
+=================
+Programming Tools
+=================
 
 .. _conditionals: 
 
@@ -1231,11 +1231,164 @@ Since list comprehensions allow for us to put any valid expression, we can add a
 
 .. _functions:
 
-Functions
-----------------------
+Defining your own commands
+--------------------------
 
 .. index:: functions, functions; definition, functions; arguments, functions; return values,  def, return
 
+Once your computations get complicated enough we may want to hide some of this by *encapsulating* it by creating your own command. These commands are usually called *functions*. (the are related to, but not equivalent to mathematical functions).  
+
+For example, suppose that we wanted to compute the greatest common divisor of :math:`75` and :math:`21`. We can use the *euclidean algorithm* and Sage to do this. Here is how that would look: :
+
+  sage: a = 75; b = 21
+  sage: r = a%b
+  sage: r
+  12
+  sage: a = b ; b = r
+  sage: r = a%b
+  sage: r
+  9
+  sage: a=b;b=r
+  sage: r = a%b
+  sage: r
+  3
+  sage: a=b;b=r
+  sage: r = a%b
+  sage: r
+  0
+  sage: a,b,r
+  (9, 3, 0)
+  sage: b
+  3
+
+From what you have learned about loops and conditionals, you know that this can be greatly shortened: ::
+
+  sage: a = 75; b = 21
+  sage: r=a%b
+  sage: print (a,b,r)
+  (75, 21, 12)
+  sage: while r != 0:
+  ....:             a=b; b=r
+  ....:         r=a%b
+  ....:         print (a,b,r)
+  ....: 
+  (21, 12, 9)
+  (12, 9, 3)
+  (9, 3, 0)
+
+
+but suppose that you need to preform this computation repeatedly, say as a portion of a more complicated computation. It would be a pain, and potentially error prone, to enter the code above again and again for different pairs of numbers. We can make our own command that executes the above code for any two integers by creating a *function*. We can give our command a name by using the :obj:`.def` keyword.::
+
+  sage: def euclid(a,b):
+  ....:     r = a%b
+  ....:     while r != 0:
+  ....:         a=b; b=r
+  ....:         r = a%b
+  ....:     return b
+
+``a`` and ``b`` are what are called the *arguments* for your command. You can think of these as the *input* of your function. The *output* is what appears after the :obj:`.return` keyword.
+
+Once your command ``euclid`` has been defined, the code can be easily used withe different arguments, just like a built-in command. ::
+
+  sage: euclid(75,21)
+  3
+  sage: euclid(75,2) 
+  1
+  sage: euclid(75,13)
+  1
+  sage: euclid(455,67)
+  1
+  sage: euclid(754,99)
+  1
+  sage: euclid(756,9)
+  9
+
+The *arguments* and *return value* of a command are optional. You can create a command
+
+
+A function in Sage an object containing a block of code which processes a set of arguments and returns some value. Well, that's a bit abstract. Essentially a function in Sage is much like a function in mathematics, but certainly not the exact same. A function might better be called a process or a subroutine.
+
+Anyway, consider the following common mathematical function :math:`f(x)=x^2`. This function :math:`f` takes a number :math:`x` and returns its square. Here's how we might define this function in Sage.  ::
+
+	sage: def f(x):
+	....:     return x^2
+				
+
+``def`` tells Sage we are going to define a function. Following ``def`` we supply the name of the function and the arguments it takes in parentheses. Here we named our function ``f`` and it takes a single argument ``x`` and the :obj:`return` statement tells Sage what value you would like the function to output.
+
+The evaluations of functions in Sage mimics the regular mathematical notation. To evaluate the function ``f`` from above: ::
+
+	sage: f(2)
+	4
+	sage: f(pi)
+	pi^2
+				
+Certainly these are the results we'd expect.
+
+.. index:: functions; multiple arguments
+
+Functions may have any number of arguments including none at all. ::
+
+	sage: def g(x,y):
+	....:     return x*y
+	....: 
+	sage: g(2,3)
+	6
+	sage: g(sqrt(2),sqrt(2))
+	2
+	sage: def h():                
+	....:     return 1/2
+	....: 
+	sage: h()
+	1/2
+				
+Here our function ``g`` is essentially a multiplication operator. The function ``h`` takes no arguments and simply returns the value ``1/2``.
+
+All functions in Sage return an object. If we do not specify something to return in our function, then Sage returns the empty object :obj:`None`. ::
+
+	sage: def lazy(x):
+	....:     print x^2
+	....:     
+	sage: lazy(sqrt(3))
+	3
+	sage: print lazy(sqrt(3))
+	3
+	None
+				
+
+Notice that the function prints ``3`` no matter what, and returns :obj:`None`.
+
+A function may return multiple values separated by commas ::
+
+	sage: def s(x):
+	....:     return x^2,x^3
+	....: 
+	sage: s(1)
+	(1, 1)
+	sage: s(2)
+	(4, 8)
+	sage: a,b=s(3)
+	sage: a
+	9
+	sage: b
+	27
+				
+
+Functions may reference themselves (very metaphysical). A function which does this is typically called recursive. The most common example of a function which had a natural recursive definition is the factorial. ::
+
+	sage: def fac(n):
+	....:     if n==1:
+	....:         return 1
+	....:     else:             
+	....:         return n*fac(n-1)
+	....:     
+	sage: fac(3)
+	6
+	sage: fac(4)
+	24
+				
+
+Let's examine exactly what is happening in this last example when we evaluate ``fac(3)``. For :math:`n=3`, since :math:`3 \neq 1`, ``fac()`` returns ``3*fac(2)``, hence we must evaluate ``fac(2)``. Since :math:`2 \neq 1`, ``fac()`` returns ``2*fac(1)``. Since :math:`1=1`, ``fac(1)`` will automatically return 1. Hence we go back into the ``fac(2)`` process and return ``2*1`` which is then returned to the ``fac(3)`` process to obtain ``3*2*1`` which is :math:`6`. In general, ``fac(n)`` will evaluate to be the product of the first :math:`n` positive numbers.
 A function in Sage an object containing a block of code which processes a set of arguments and returns some value. Well, that's a bit abstract. Essentially a function in Sage is much like a function in mathematics, but certainly not the exact same. A function might better be called a process or a subroutine.
 
 Anyway, consider the following common mathematical function :math:`f(x)=x^2`. This function :math:`f` takes a number :math:`x` and returns its square. Here's how we might define this function in Sage.  ::

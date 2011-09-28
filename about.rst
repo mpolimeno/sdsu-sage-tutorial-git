@@ -59,7 +59,7 @@ Getting Started
 
 .. index:: command line, notebook
 
-This tutorial assumes that the reader has access to Sage through one of these two methods. For more information on installing Sage see the `Instalation Guide <http://www.sagemath.org/doc/installation>`_. 
+This tutorial assumes that the reader has access to a running copy of Sage. Either through For more information on installing Sage see the `Instalation Guide <http://www.sagemath.org/doc/installation>`_. 
 
 Once Sage has been installed and the program started it has two ways to enter commands, the *command line* and a web-based *notebook* which is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple*. 
 
