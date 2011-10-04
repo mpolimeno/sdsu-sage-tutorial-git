@@ -2,7 +2,7 @@
 
 *************************
  Mathematical Structures
-*************************
+************************* 
 
 .. _integers_modular_arithmetic:
 

@@ -17,7 +17,7 @@ Introduction
 How to use this tutorial
 ------------------------
 
-This tutorial is divided into four parts. This part, :ref:`about_tutorial`,  is intended to introduce you   to  the basic structure of the tutorial and how to contribute to the project if you so desire.  
+This tutorial is divided into four parts. This part, :ref:`about_tutorial`,  is intended to introduce you to the basic structure of the tutorial and how to contribute to the project if you so desire.  
 
 The second part, :ref:`sage_as_a_calculator`, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
@@ -33,7 +33,7 @@ Some sections may contain numbered citations such as "[1]_." The list of these c
 
 **References:**
 
-.. [1] William A. Stein et al. Sage Mathematics Software (Version x.y.z),
+.. [1] William A. Stein et al. Sage Mathematics Software (Version 4.7.1),
    The Sage Development Team, 2011, http://www.sagemath.org. 
 
 .. index:: About Sage
@@ -43,14 +43,12 @@ Some sections may contain numbered citations such as "[1]_." The list of these c
 About Sage
 ----------
 
-Sage is a free open source mathematical software system based on the Python programming language. Originally created for research into mathematics, it has been evolving into a powerful tool for math education. Sage combines numerous other mathematical software packages using a single interface.
+Sage is a free open source mathematical software system based on the Python programming language. Originally created for research into mathematics, it has been evolving into a powerful tool for math education. It combines numerous other mathematical software packages using a single interface, using the _`Python <http://www.python.org>` programming language. By learning Sage, you are also learning a lot about Python. 
 
-As an open source project, Sage invites contributions from all of its users. This tutorial is one of many sources of information for learning about Sage. See the Sage webpage for more information.
+As an open source project, Sage invites contributions from all of its users. This tutorial is one of many sources of information for learning about how to use Sage. For more information see the Sage project's  `website <http://www.sagemath.org>`_.
 
-.. seealso::
-   `Sage on the Web <http://www.sagemath.org>`_
 
-.. index:: Helpul Tips
+.. index:: Getting Started
 
 .. _helpful_tips:
 
@@ -59,45 +57,47 @@ Getting Started
 
 .. index:: command line, notebook
 
-This tutorial assumes that the reader has access to a running copy of Sage. Either through For more information on installing Sage see the `Instalation Guide <http://www.sagemath.org/doc/installation>`_. 
+This tutorial assumes that the reader has access to a running copy of Sage. On most operating systems, installing Sage usually consists of just downloding the proper package from the project's main `website <http://www.sagemath.org>`_, unwrapping it, and executing `sage` from within. For more information on the process of installing sage see Sage's `Installation Guide <http://www.sagemath.org/doc/installation>`_. 
 
-Once Sage has been installed and the program started it has two ways to enter commands, the *command line* and a web-based *notebook* which is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple*. 
+Once it has been installed and started it has two ways to enter commands, either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice. 
 
-The reader is meant to follow along with the discussion, by entering the commands that follow the text. For example, if we are discussing how to *factor* the integer :math:`1438880` we would give the following example using Sage's :func:`.factor` command. ::
+Everything that follows the ``sage:`` prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to *factor* the integer :math:`1438880` we would give the following example using Sage's :func:`.factor` command. ::
 
   sage: factor(1438880)
   2^5 * 5 * 17 * 23^2
 
-When the above box appears throught the tutorial, the reader should enter in the command that appears after the `sage:` prompt. On the command line thiswould look like:
+From the command line the interaction would probably look a bit like this: 
 
 .. image:: pics/cmd_example.png
         :alt: Using Sage at the command line. 
 	:width: 800px
 	:height: 525px
 
-or if the user is using the notebook (most likely) the interaction will look like: 
+or if the user is using the notebook (most likely) the interaction will look a little like: 
 
 .. image:: pics/notebook_example.png
         :alt: Using Sage at the command line. 
 	:width: 800px
 	:height: 525px
 
- 
+The line after the ``sage:`` contains the output that the user should expect after properly entering the command.
+
+Next we will discuss how to use a couple of important features of both interfaces; tab-completion and the built-in help system. 
 
 .. _help_tabcompletion:
 
 `?` and Tab Completion
 -----------------------
 
-.. index:: tab completion, help, help; command line, ? 
+.. index:: tab completion, help, help; command line, ?
 
-An extremely useful feature both in the command-line interface and the notebook is *tab completion* of Sage commands. For long-time UNIX shell users this feature is often taken for granted, but for those of you whose only command line experience is with DOS this feature will seem like magic. To use tab completion, just start by typing the first couple of letters of the command that you would like to use, then hit the tab-key. Foe example, suppose that you wanted to compute :math:`56!` and don't remember the exact command name to do this. Well, you can just type the first three letters ``fac`` and then hit the tab-key. ::
+One of the handiest features built into Sage is *tab completion* of commands. To use tab completion, just type in the first couple of letters of the command that you would like to use, and then the tab-key. For example, suppose that you wanted to compute :math:`56!` and don't remember the exact command name to do this. A good guess is that the command will have *factorial* somewhere in it's name. To see if that guess is correct, just type the first three letters ``fac`` and hit the tab-key. ::
 
   sage: fac[TAB]
   factor     factorial  
   sage: factor
 
-This tells you that only two Sage commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command to factor an integer we will select this by typing the next letter, ``i``, and hitting the tab key again. ::
+The output tells you that only two Sage commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that Sage has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command we will select this by typing the next letter, ``i``, and hitting the tab key again. ::
 
   sage: factorial   
 
@@ -106,9 +106,7 @@ This time no list is returned because the only command that begins with ``factor
   sage: factorial(56)
   710998587804863451854045647463724949736497978881168458687447040000000000000
 
-Another good use of tab-completion is to discover what *methods* an *object* has. Don't worry if you have never heard of the term object or method before, their meaning will become clearer as you follow along. The commands presented now are assuming that you are using the command line interface,  the notebook behaves slightly differently, and we will address those differences in the next section.
-
-Say you have the integer :math:`a = 56` and you were wondering which commands Sage offers for working with integers like :math:`56`. In this case the :math:`a` is our object and we can find all of the *methods* associated with integers by typing ``a.`` then hitting the tab-key. ::
+Another good use of tab-completion is to discover what *methods* an *object* has. Say you have the integer :math:`a = 56` and you were wondering which commands Sage offers for working with integers like :math:`56`. In this case the :math:`a` is our object and we can find all of the methods associated with integers by typing ``a.`` then hitting the tab-key. ::
 
   sage: a = 56
   sage: a.[TAB]
@@ -120,14 +118,14 @@ Say you have the integer :math:`a = 56` and you were wondering which commands Sa
   a.exact_log                    a.powermodm_ui
   --More--
 
-Do not be intimidated by the length of this list. Sage is a very powerful program and all this means is that it knows how to do a lot with integers. You should note the ``--More--`` at the bottom of the screen. This little cue is telling us that the list of possible commands is longer than what can fit on a single screen. To scroll through this list a page at a time, just hit any key and Sage will display the next page.
+Do not be intimidated by the length of this list. Sage is a very powerful system and it can do a lot with integers. On the command line, the ``--More--`` at the bottom of the screen tells you that the list of possible commands is longer than what will fit on a single screen. To scroll through this list a page at a time, just hit any key and Sage will display the next page.
 
-On the second page you see that :meth:`.factor` is an option. To use this method, which *factors* :math:`56` into unique prime factors, you enter ``a.factor()`` and hit return. ::
- 
-  sage: a.factor()[RET]
+On the second page you see that :meth:`.factor` is an option. To use this method, which *factors* :math:`56` into unique prime factors, you enter ``a.factor()``. ::
+
+  sage: a.factor()
   2^3 * 7
 
-What this allows you to do is to *discover* new commands in Sage. 
+Tab-completion can not only reduce the amount of typing needed, but it can be used to *discover* new commands in Sage. 
 
 Once you have identified a command that interests you, the next step is to find out exactly *what* this command does and *how* to use it. Sage has a built-in help system to help you achieve this very goal. 
 
@@ -152,11 +150,11 @@ Let's suppose that you wish to compute the *lowest common multiple* of two integ
   list_plot                   lx
 
 
-Once again you have quite a long list of commands from which to select. Scanning down the list, you see the :func:`lcm` command listed which seems like what you are trying to compute. To make sure of this type ``lcm?`` and then hit enter. ::
+Once again you have quite a long list of commands from which to select. Scanning down the list, you see the :func:`lcm` command listed which seems like what you are trying to compute. To make sure of this enter ``lcm?``. ::
 
   sage: lcm?
 
-Which outputs: ::
+The output of this command is the a page which explains both the use and the purpose of the command. ::
 
   Base Class:     <type 'function'>
   String Form:    <function lcm at 0x32db6e0>
@@ -182,7 +180,7 @@ Which outputs: ::
 	    sage: LCM(97,100)
 
 
-Again, there will be a whole lot of information, usually more than will fit on one screen.  Navigation is easy; hitting the space bar will take you to the next page, and ``b``, or the up-arrow key, will move backward in the documentation. To exit the help system hit the ``q`` key. Remember, navigation through the help system is slightly different if you are using the notebook. 
+Again, there will be a whole lot of information, usually more than will fit on one screen.  On the command line, navigation is easy; the space bar will take you to the next page, and ``b``, or the up-arrow key, will move backward in the documentation. To exit the help system hit the ``q`` key. 
 
 .. index:: help; INPUT, help; EXAMPLES, help; DESCRIPTION
 
@@ -220,30 +218,8 @@ Here you see that ``lcm`` can either accept two arguments, for our purposes two 
 
 Having a comprehensive help system built into Sage is one of it's best features and the sooner you get comfortable with using it the faster you will be able to use the full power of this CAS.
 
-.. _notebook_help:
-
-``?`` and the notebook
---------------------------
-
-.. index:: help; notebook
-
-As noted before, there are small differences between the comand line and the notebook.  The notebook is generally more intuitive for those  who are used to point-and-click interfaces. 
-
-Suppose that instead of the least common multiple, you are looking to compute the *greatest common divisor* of two integers. In the notebook, you begin the search in much the same way as you did on the command line, by typing into an input box ``g`` and then hitting the tab key. 
-
-.. image:: pics/tabcompletion-ex1.png
-        :alt: Finding the gcd() command using tab completion. 
-	:width: 800px
-	:height: 525px
-
-What you see is an overlay of all the completions. You can scroll through this list by using the arrow keys or by using a mouse to highlight the desired options. Like previously, you see the :func:`gcd` function which looks like it is what you are looking for. To confirm this, you type ``gcd?`` and click on the ``evaluate`` link at the bottom of the cell.
-
-.. image:: pics/tabcompletion-ex2.png
-        :alt: Using ? to find a description of gcd() 
-	:width: 800px
-	:height: 525px
-
-To exit the help system overlay just click anywhere on the screen.
+.. seealso::
+   `Sage Screencasts  <http://www.sagemath.org/help-video.html>`_
 
 .. index:: Contributing to the tutorial
 
