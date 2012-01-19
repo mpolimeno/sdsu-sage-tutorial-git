@@ -337,31 +337,43 @@ First we will construct the symmetric group on :math:`\{ 1, 2, 3, 4 ,
         sage: G = SymmetricGroup(5) 
         sage: G Symmetric group of order 5! as a permutation group
 
-Once the group has been constructed we can list all of it's
-:math:`5!` members. ::
+Once the group has been constructed we can check the number of elements, which is :math:`5!` 
+and  list them all. ::
 
-        sage: G.list()
+       sage: G.cardinality()
+        120
+       sage: G.list()
     	[(), (4,5), (3,4), (3,4,5), (3,5,4), (3,5), (2,3), (2,3)(4,5), (2,3,4), (2,3,4,5), (2,3,5,4), (2,3,5), (2,4,3), (2,4,5,3), (2,4), (2,4,5), (2,4)(3,5), (2,4,3,5), (2,5,4,3), (2,5,3), (2,5,4), (2,5), (2,5,3,4), (2,5)(3,4), (1,2), (1,2)(4,5), (1,2)(3,4), (1,2)(3,4,5), (1,2)(3,5,4), (1,2)(3,5), (1,2,3), (1,2,3)(4,5), (1,2,3,4), (1,2,3,4,5), (1,2,3,5,4), (1,2,3,5), (1,2,4,3), (1,2,4,5,3), (1,2,4), (1,2,4,5), (1,2,4)(3,5), (1,2,4,3,5), (1,2,5,4,3), (1,2,5,3), (1,2,5,4), (1,2,5), (1,2,5,3,4), (1,2,5)(3,4), (1,3,2), (1,3,2)(4,5), (1,3,4,2), (1,3,4,5,2), (1,3,5,4,2), (1,3,5,2), (1,3), (1,3)(4,5), (1,3,4), (1,3,4,5), (1,3,5,4), (1,3,5), (1,3)(2,4), (1,3)(2,4,5), (1,3,2,4), (1,3,2,4,5), (1,3,5,2,4), (1,3,5)(2,4), (1,3)(2,5,4), (1,3)(2,5), (1,3,2,5,4), (1,3,2,5), (1,3,4)(2,5), (1,3,4,2,5), (1,4,3,2), (1,4,5,3,2), (1,4,2), (1,4,5,2), (1,4,2)(3,5), (1,4,3,5,2), (1,4,3), (1,4,5,3), (1,4), (1,4,5), (1,4)(3,5), (1,4,3,5), (1,4,2,3), (1,4,5,2,3), (1,4)(2,3), (1,4,5)(2,3), (1,4)(2,3,5), (1,4,2,3,5), (1,4,2,5,3), (1,4,3)(2,5), (1,4)(2,5,3), (1,4,3,2,5), (1,4)(2,5), (1,4,2,5), (1,5,4,3,2), (1,5,3,2), (1,5,4,2), (1,5,2), (1,5,3,4,2), (1,5,2)(3,4), (1,5,4,3), (1,5,3), (1,5,4), (1,5), (1,5,3,4), (1,5)(3,4), (1,5,4,2,3), (1,5,2,3), (1,5,4)(2,3), (1,5)(2,3), (1,5,2,3,4), (1,5)(2,3,4), (1,5,3)(2,4), (1,5,2,4,3), (1,5,3,2,4), (1,5)(2,4,3), (1,5,2,4), (1,5)(2,4)]
 
-As you can see from the list, in Sage a permutation is written in *cycle* notation. We can construct an element in :math:`S_5` by coercing a permutation, written in *cycle notation*, into :math:`G`. Since parentheses have another meaning to Python we must enclose our cycles in quotations before we use them. ::
+As you can see from the list, in Sage a permutation is written in *cycle* notation.  Note that the empty parenthesis `()` is used to represent the identity permutation. We create the identity permutation and  a randomly chosen element as follows. ::
+
+        sage: id = G.identity()
+	 ()
+	sage: G.random_element()
+	    (1,2)(3,4)
+ 	sage: G.random_element()
+	    (1,3,4)(2,5)
+
+As you can see subsequent calls for a random element gives a  new element each time.
+We can construct a specific element in :math:`S_5` by coercing a permutation, written in *cycle notation*, into :math:`G`. Since parentheses have another meaning to Python we must enclose our cycles in quotations before we use them. ::
 
         sage: r = G('(1,3)(2,4)')  
 	sage: s = G('(1,4,3,2)')
 	sage: t = G('(1,3,2)') 
 
-The product of cycles are taken from *left-to-right* and are, of
+The product of cycles is taken from *left-to-right* and is, of
 course, not commutative. ::
 
         sage: s*t    
 	(1,4,2,3)
 	sage: t*s
 	(1,2,4,3)
+	sage: id*s
 
 .. index:: groups; order, order
 
 We can compute the order of an element by using the object's
-:meth:`order` method and check this manually. Note that the empty
-parenthesis `()` is used to represent the identity permutation. ::
+:meth:`order` method and check this manually.  ::
 
         sage: r.order()
 	2
@@ -373,6 +385,11 @@ parenthesis `()` is used to represent the identity permutation. ::
 	(1,3)(2,4)
 	sage: s*s*s*s 
 	()
+
+The *exponent* of a group is the least common multiple of the orders of the elements. ::
+
+        sage: S5.exponent()
+          60
 
 .. index:: groups; subgroup, subgroups
 
@@ -431,7 +448,7 @@ but we  can  test that they are isomorphic. ::
 
 Often when we have two groups which are isomorphic we will want to
 compute a concrete isomorphism between the two groups. A useful tool
-for examining the structure is the *Cayley Table*. You can do this by invoking the group's :meth:`cayley_table()` method. ::
+for examining the structure is the *Cayley Table*. You can do this by invoking the group's :meth:`cayley_table()` method (also called :meth: `multiplication_table()`. ::
 
         sage: H.cayley_table()
 	*  a b c d e f g h i j
@@ -496,13 +513,13 @@ output of ``H.list()`` and ``D.list()``. The following table summarizes the enco
 
 .. _permutation_groups:
 
-Permutation Groups
+Other Permutation Groups
 ++++++++++++++++++++++++
 
 .. index:: PermutationGroup, Groups; permutation
 
 A permutation group is a subgroup of some symmetric group.  
-Constructing a permutation group is done by giving a list of permutations to the :class:`.PermutationGroup` command. ::
+We can construct a permutation group directly, without constructing the whole symmetric group, by giving a list of permutations to the :class:`.PermutationGroup` command. ::
 
   sage: r = '(1,3)(2,4)(5)'
   sage: s = '(1,3,2)'
@@ -574,8 +591,8 @@ construct the list of all elements or order 2. ::
 
 .. index:: groups; cyclic, groups; Klein 4,  CyclicPermutationGroup
 
-Sage also contains functions which allow for us to construct the
-*Cyclic Permutation* and *Klein Four Group*. Note that the order of
+Sage also contains functions which allow for us to construct 
+*Dihedral Groups*,  *Cyclic Permutation Groups* and the *Klein Four Group*. Note that the order of
 the Klein Four Group need not to be specified. ::
 
         sage: C = CyclicPermutationGroup(10)
@@ -585,6 +602,8 @@ the Klein Four Group need not to be specified. ::
 	sage: K
 	The Klein 4 group of order 4, as a permutation group
 		    
+With any permutation group we may compute its cardinality, list its elements, compute the order of elements, etc.
+
 .. seealso::
         `Group Theory and Sage: A Primer
         <http://buzzard.ups.edu/sage/sage-group-theory-primer.pdf>`_
