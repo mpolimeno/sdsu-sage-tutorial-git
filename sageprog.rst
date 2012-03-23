@@ -1366,6 +1366,7 @@ The example here only scratches the surface of what is possible with Sage intera
 .. _wiki: http://wiki.sagemath.org/interact/
 
 
+============================
 Packages within Sage
 ============================
 
@@ -1376,8 +1377,7 @@ This chapter briefly describes how to do so.
 
 
 GAP
-+++
-
+------
 .. index:: external programs; gap
 
 For this portion of the tutorial we are going to show how to use GAP from within a Sage session. The commands here follow closely with the `Groups and Homomorphisms`__  section of the GAP tutorial. A reader who is interested in learning more about the capabilities of this system shoud consult the `Gap Project's`__ main website. 
@@ -1482,7 +1482,7 @@ Now the Sage notebook acts as a web interface to the GAP system.
    http://www.gap-system.org/Manuals/doc/htm/index.htm
 
 Singular
-++++++++
+---------------
 
 .. index:: external programs; singular
 
@@ -1574,4 +1574,4 @@ Finally a task that Singular excels at is the factorization of multivariate poly
 
 
 Using Python packages in Sage
-+++++++++++++++++++++++++++++
+-----------------------------

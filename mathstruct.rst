@@ -359,8 +359,8 @@ and  list them all. ::
        sage: G.list()
     	[(), (4,5), (3,4), (3,4,5), (3,5,4), (3,5), (2,3), (2,3)(4,5), (2,3,4), (2,3,4,5), (2,3,5,4), (2,3,5), (2,4,3), (2,4,5,3), (2,4), (2,4,5), (2,4)(3,5), (2,4,3,5), (2,5,4,3), (2,5,3), (2,5,4), (2,5), (2,5,3,4), (2,5)(3,4), (1,2), (1,2)(4,5), (1,2)(3,4), (1,2)(3,4,5), (1,2)(3,5,4), (1,2)(3,5), (1,2,3), (1,2,3)(4,5), (1,2,3,4), (1,2,3,4,5), (1,2,3,5,4), (1,2,3,5), (1,2,4,3), (1,2,4,5,3), (1,2,4), (1,2,4,5), (1,2,4)(3,5), (1,2,4,3,5), (1,2,5,4,3), (1,2,5,3), (1,2,5,4), (1,2,5), (1,2,5,3,4), (1,2,5)(3,4), (1,3,2), (1,3,2)(4,5), (1,3,4,2), (1,3,4,5,2), (1,3,5,4,2), (1,3,5,2), (1,3), (1,3)(4,5), (1,3,4), (1,3,4,5), (1,3,5,4), (1,3,5), (1,3)(2,4), (1,3)(2,4,5), (1,3,2,4), (1,3,2,4,5), (1,3,5,2,4), (1,3,5)(2,4), (1,3)(2,5,4), (1,3)(2,5), (1,3,2,5,4), (1,3,2,5), (1,3,4)(2,5), (1,3,4,2,5), (1,4,3,2), (1,4,5,3,2), (1,4,2), (1,4,5,2), (1,4,2)(3,5), (1,4,3,5,2), (1,4,3), (1,4,5,3), (1,4), (1,4,5), (1,4)(3,5), (1,4,3,5), (1,4,2,3), (1,4,5,2,3), (1,4)(2,3), (1,4,5)(2,3), (1,4)(2,3,5), (1,4,2,3,5), (1,4,2,5,3), (1,4,3)(2,5), (1,4)(2,5,3), (1,4,3,2,5), (1,4)(2,5), (1,4,2,5), (1,5,4,3,2), (1,5,3,2), (1,5,4,2), (1,5,2), (1,5,3,4,2), (1,5,2)(3,4), (1,5,4,3), (1,5,3), (1,5,4), (1,5), (1,5,3,4), (1,5)(3,4), (1,5,4,2,3), (1,5,2,3), (1,5,4)(2,3), (1,5)(2,3), (1,5,2,3,4), (1,5)(2,3,4), (1,5,3)(2,4), (1,5,2,4,3), (1,5,3,2,4), (1,5)(2,4,3), (1,5,2,4), (1,5)(2,4)]
 
-As you can see from the list, in Sage a permutation is written in *cycle notation*.  Note that the empty parenthesis `()` is used to
- represent the identity permutation.  We create the identity permutation and  a randomly chosen element as follows. ::
+As you can see from the list, in Sage a permutation is written in *cycle notation*.  Note that the empty parenthesis `()` is used to  represent the identity permutation.  We create the identity permutation and  a randomly chosen element as follows. ::
+
         sage: id = G.identity()
         ()
 	sage: G.random_element()
@@ -379,7 +379,7 @@ We can construct a specific element in :math:`S_5` by coercing a
 permutation, written in *cycle notation*, into :math:`G`. Since
 parentheses have another meaning to Python we must enclose our cycles
 in quotations before we use them. 
-We can also construct an element using the list of images. ::
+We construct an element :math:`t` using the list of images that it has as a function. ::
 
              sage:  r = G('(1,3)(2,4)'); r
 	     (1,3)(2,4)
@@ -399,8 +399,7 @@ course, not commutative. ::
 
 .. index:: groups; order, order
 
-We can compute the order of an element by using the object's
-:meth:`order` method and check this manually.  ::
+Let's compute the order of an element by using the object's :meth:`order` method and check this directly.  ::
 
         sage: r.order()
 	2
@@ -446,7 +445,7 @@ using the :meth:`subgroup` method. ::
 
 We can test to see if the subgroup that we have just created has
 certain properties by using the appropriate methods. 
-yping :meth:`H.is <tab>` will give a list of several properties to test. ::
+typing :meth:`H.is` <tab> will give a list of several properties to test. ::
 
         sage: H.is_abelian()
 	True
@@ -471,8 +470,8 @@ Invoke the group's :meth:`cayley_table()` method
 letters to represent the group elements (in the order they appear
 using :meth:`list`).  We can also use the elements themselves, or
 give them names.  Here we assign name based on the symmetries of a
-triangle: :math:`u_i` for reflections through the axis containing
-vertex :math:`i` and :meth:`r^1, r^2` for the rotations. ::
+triangle: :meth:`u_i` for reflections through the axis containing
+vertex :meth:`i` and :meth:`r^1, r^2` for the rotations. ::
 
  sage: G.cayley_table()
  *  a b c d e f
@@ -563,8 +562,8 @@ sign---is a subgroup of :math:`S_5`  obtained by the command :class:`Alternating
       sage: A.cardinality()
       12
 
-Learn about the :class:`DiCyclicGroup` at   http://groupprops.subwiki.org/wiki/Dicyclic_group/.
-We also check that the :math:`A_4` is not  isomorphic to the dicyclic
+Another builtin group is  the :class:`DiCyclicGroup`  (see  `the  article <http://groupprops.subwiki.org/wiki/Dicyclic_group>`_).
+Let's  check that the :math:`A_4` is not  isomorphic to the dicyclic
 group with the same number of elements.  ::
 
       sage: B = DiCyclicGroup(3); B
@@ -610,6 +609,10 @@ but  is isomorphic to it.  ::
 
 .. index:: subgroup, center
 
+As with the symmetric group, pass a list of
+group elements to the method :meth:`subgroup` to create a subgroup of
+any permutation group. 
+
 The list of all subgroups of a permutation group is obtained by the
 :meth:`subgroups` method.  It returns a list whose 0th element is the
 trivial subgroup.  ::
@@ -619,8 +622,7 @@ trivial subgroup.  ::
  	[Permutation Group with generators [()], Permutation Group with generators [(1,3)(2,4)], Permutation Group with generators [(2,4)], Permutation Group with generators [(1,3)], Permutation Group with generators [(1,2)(3,4)], Permutation Group with generators [(1,4)(2,3)], Permutation Group with generators [(2,4), (1,3)(2,4)], Permutation Group with generators [(1,2,3,4), (1,3)(2,4)], Permutation Group with generators [(1,2)(3,4), (1,3)(2,4)], Permutation Group with generators [(2,4), (1,2,3,4), (1,3)(2,4)]]
 
 The join of two subgroups :math:`C` and :math:`K`, is the group generated by the elements of the two
-subgroups. We add the lists of elements in :math:`C` and :math:`K` and
-generate the permutation group, then test that ::
+subgroups. We get the union of :math:`C` and :math:`K` by "adding" the respective lists. It turns out this gives the whole symmetric group. ::
 
     sage: K = KleinFourGroup(); K.list()
     [(), (3,4), (1,2), (1,2)(3,4)]
@@ -633,9 +635,8 @@ generate the permutation group, then test that ::
     sage: CjK == SymmetricGroup(5)
     True
 
-As with the symmetric group, pass a list of
-group elements to the method :meth:`subgroup` to create a subgroup of
-any permutation group. The centralizer of an element :math:`a` (the
+
+The centralizer of an element :math:`a` (the
 subgroup of elements that commute with :math:`a`) and the center of a
 group are constructed in the way you'd expect.   ::
 
@@ -758,7 +759,9 @@ For some groups the list  of all subgroups may be large.  To better understand t
    sage: len(G.conjugacy_classes_subgroups())
    11
 
-Exercise:  Find two subgroups of :math:`A_4` that are conjugate in :math:`S_4` but are not conjugate in :math:`A_4`.  
+**Exercises:**  
+
+   #. Find two subgroups of :math:`A_4` that are conjugate in :math:`S_4` but are not conjugate in :math:`A_4`.  
 
 
 
@@ -812,6 +815,10 @@ We can apply this homomorphism as we would any function, by calling it. ::
 
 Note that we get an  :exc:`AttributeError` because the permutation
 :math:`(1,5)` is not in the domain of :meth:`phi`.
+
+**Exercises:**
+
+   #. There is a homomorphism from the dicyclic group of index :math:`n` to the dihedral group of index :math:`n` .  Construct it and find the kernel. 
 
 .. index:: kernel, groups; kernel of homomorphism
 
@@ -2295,12 +2302,160 @@ Fields
 Number Fields
 ----------------
 
+We  create a number field by specifying an irreducible polynomial and a name for the root of that polynomial.  We may use the indeterminate :math:`x`, which is already defined in sage.  We can also create a polynomial ring over the rationals and use the indeterminate for that polynomial ring. ::
+
+   sage: P.<t> = PolynomialRing(QQ)
+   sage: K.<a> = NumberField(t^3-2)
+   sage: K
+   Number Field in a with defining polynomial t^3 - 2
+   sage: K.polynomial()
+   t^3 - 2
+
+A "random element" may be constructed producing an element with degree at most 2 (one less than the degree of the defining polynomial).
+The options :meth:`num_bound` or :meth:`dem_bound` may be used to bound the numerator or denominator. ::
+
+   sage: K.random_element()
+   -5/14*a^2 + a - 3
+   sage: K.random_element()
+   -2*a
+    sage: K.random_element(num_bound= 2)
+   -a^2 + 1
+
+Every element will have a minimal polynomial of degree 3. ::
+ 
+  sage: a.minpoly()
+   x^3 - 2
+   sage: (a^2-3*a).minpoly()
+   x^3 + 18*x + 50
+
+
+We can test isomorphism of fields. ::
+
+   sage: K.<a>= NumberField(t^3-2)
+   sage: L.<b> = NumberField(t^3-6*t-6)
+   sage: K.is_isomorphic(L)
+   True
+
+The number of real embeddings and the number of pairs of complex embeddings are given by  the signature of the field.  The embeddings into the real field, :meth:`RR` , or complex field :meth:`CC`  may also be constructed. ::
+
+    sage: K.signature()
+    (1, 1)
+    sage: K.real_embeddings()
+    [
+    Ring morphism:
+      From: Number Field in a with defining polynomial t^3 - 2
+      To:   Real Field with 53 bits of precision
+      Defn: a |--> 1.25992104989487
+    ]
+    sage: K.complex_embeddings()
+    [
+    Ring morphism:
+      From: Number Field in a with defining polynomial t^3 - 2
+      To:   Complex Field with 53 bits of precision
+      Defn: a |--> -0.629960524947437 - 1.09112363597172*I,
+    Ring morphism:
+      From: Number Field in a with defining polynomial t^3 - 2
+      To:   Complex Field with 53 bits of precision
+      Defn: a |--> -0.629960524947437 + 1.09112363597172*I,
+    Ring morphism:
+      From: Number Field in a with defining polynomial t^3 - 2
+      To:   Complex Field with 53 bits of precision
+      Defn: a |--> 1.25992104989487
+    ]
+    sage: phi1, phi2, phi3 = K.complex_embeddings()
+    sage: phi1(a)
+    -0.629960524947437 - 1.09112363597172*I
+    sage: phi2(a)
+    -0.629960524947437 + 1.09112363597172*I
+    sage: phi3(a^2+3*a+5)
+    10.3671642016528
+
+The :meth:`Galois group` method computes the  Galois group of the Galois closure, not of the field itself.  When the Galois group is not cyclic, as in the second example, you need to name one of the generators.  The generators may also be accessed as shown below. ::
+
+    sage: G = L.galois_group()
+    sage: G.gens()
+    [(1,2,3)]
+    sage: H.<g>= K.galois_group()
+    sage: H.gens()
+    [(1,2)(3,4)(5,6), (1,4,6)(2,5,3)]
+    sage: H.0
+    (1,2)(3,4)(5,6)
+    sage: H.1
+    (1,4,6)(2,5,3)
+
+
+The Galois closure of K. ::
+
+    sage: L.<b> = K.galois_closure()
+    sage: L
+    Number Field in b with defining polynomial t^6 + 40*t^3 + 1372
+
+Field Extensions
++++++++++++++++++
+
+Now let's construct field extensions, which may be done in a few different ways.   The methods  :meth:`relative`  and  :meth:`absolute` distinguish between the field extension as constructed, and the extension relative to the prime field :math:`\mathbb{Q}`. ::
+
+    sage: P.<t> = PolynomialRing(QQ)
+    sage: K.<a> = NumberField(t^3-2)
+    sage: L.<b> = NumberField(t^3-a)
+    sage: L.relative_degree(); L.relative_polynomial()
+    3
+    t^3 - a
+    sage: L.base_field()
+    Number Field in a with defining polynomial t^3 - 2
+    sage: L.absolute_degree(); L.absolute_polynomial()
+    9
+    x^9 - 2
+    sage: L.gens()
+    (b, a)
+
+We may also create the compositum of several fields defined by a list of polynomials over the rationals.  We must specify a root for each polynomial.
+Sage creates a sequence of 3 fields in the following example, starting at the far right in the list. ::
+
+     sage: M.<a,b,c> = NumberField([t^3-2, t^2-3, t^3-5])
+     sage: M
+     Number Field in a with defining polynomial t^3 - 2 over its base field
+     sage: M.relative_degree()
+     3
+     sage: M.absolute_degree()
+     18
+     sage: d = M.absolute_generator(); d
+     a - b + c
+     sage: d.minpoly()
+     x^3 + (3*b - 3*c)*x^2 + (-6*c*b + 3*c^2 + 9)*x + (3*c^2 + 3)*b - 9*c - 7
+     sage: d.absolute_minpoly()
+     x^18 - 27*x^16 - 42*x^15 + 324*x^14 + 378*x^13 - 2073*x^12 + 1134*x^11 - 6588*x^10 - 23870*x^9 + 88695*x^8 + 79002*x^7 - 147369*x^6 - 1454922*x^5 + 431190*x^4 + 164892*x^3 + 2486700*x^2 - 1271592*x + 579268
+
+The next example computes the Galois closure of :meth:`K`  and asks for the roots of unity.   The generator for :meth:`L` is something that sage computes, so it may have a complicated minimum polynomial, as we see.  We know that :meth:`L`  contains cube roots of unity, so let's verify it.  ::
+
+    sage: K.<a> = NumberField(t^3-2)
+    sage: L.<b> = K.galois_closure()
+    sage: b.minpoly()
+    x^6 + 40*x^3 + 1372
+    sage: units= L.roots_of_unity(); units
+    [1/36*b^3 + 19/18, 1/36*b^3 + 1/18, -1, -1/36*b^3 - 19/18, -1/36*b^3 - 1/18, 1]
+    sage: len(units)
+    6
+    sage: [u^3 for u in units]
+    [-1, 1, -1, 1, -1, 1]   
+
 Special Number Fields
 ++++++++++++++++++++++++++++++++
+
+There are two classes of number fields with special properties that you can construct directly.  For a *quadratic field extension* simply specify a square free integer. ::
+
+    sage: F.<a> = QuadraticField(17)
+    sage: a^2
+    17
+    sage: (7*a-3).minpoly()
+    x^2 + 6*x - 824
+
+A *cyclotomic field* is created by indentifying its primitive root of unity.
 
 CyclotomicField()
 
 QuadraticField()
+
 
 
 .. _finite_fields:
@@ -2310,14 +2465,14 @@ Finite Fields
 
 .. index:: GF
 
-In a prior section we constructied rings of integers modulo :math:`n`. We know that when :math:`n` is a prime number the *ring* :math:`\mathbb{Z}_{n}` is actually a *field*. Sage will allow us to construct this same object a either a ring or a field. ::
+In a prior section we constructed rings of integers modulo :math:`n`. We know that when :math:`n` is a prime number the *ring* :math:`\mathbb{Z}_{n}` is actually a *field*. Sage will allow us to construct this same object as either a ring or a field. ::
 
   sage: R = Integers(7)
   sage: F7 = GF(7)
   sage: R, F7
   (Ring of integers modulo 7, Finite Field of size 7)
 
-To take advantage of the extra stucture it is best to use the :func:`GF` command to construct this object. Just like with modular rings we have to coerece integers into the field in order to do arithemetic in the field. ::
+To take advantage of the extra stucture it is best to use the :func:`GF` command to construct this object.  As with modular rings we have to coerece integers into the field in order to do arithemetic in the field. ::
 
   sage: F7(4 + 3)
   0
@@ -2330,7 +2485,7 @@ To take advantage of the extra stucture it is best to use the :func:`GF` command
 
 We can use Sage to construct any *finite field*, recall that a finite field is always of order :math:`n = p^k` where :math:`p` is a prime number. So to construct the field of order :math:`25 = 5^2` we input the following command. ::
 
-  sage: F25.<a> = GF(25, 'a')
+  sage: F25.<a> = GF(25)
 
 .. index:: polynomial, Field Extensions; generating polynomial
 
@@ -2340,7 +2495,7 @@ Recall that the finite field of order :math:`5^2` can be thought of a an *extens
   sage: p
   a^2 + 4*a + 2
 
-We can quickly verify that ``a`` satisfies this polynomial. ::
+We can verify that ``a`` satisfies this polynomial. ::
 
   sage: a^2 + 4*a + 2
   0
@@ -2369,19 +2524,19 @@ But if we are using only integers we must coerce the arithmetic into the field. 
 
 Sometimes we would like to specify the polynomial used to construct out extension. to do so we just need to add the *modulus* option to our field constructor. ::
 
-  sage: F25.<a> = GF(25, 'a', modulus=x^2 + x + 1)
+  sage: F25.<a> = GF(25, modulus=x^2 + x + 1)
   sage: a^2 + a + 1
   0
   sage: a^2
   4*a + 4
 
-Remember that the modulus must be a polynomial which is *irreducible* over :math:`\mathbb{F}_{5}[x]`. Many times we would like for the modulus to not just be irreducible, but to be primitive_. Next we will construct all of the primitive polynomials of degree :math:`2`. The following example uses :ref:`polynomial_rings` and :ref:`list_comprehensions`. First thing that we will do is construct a list of all polynomials over :math:`\mathrm{GF}(5)` ::
+Remember that the modulus must be a polynomial which is *irreducible* over :math:`\mathbb{F}_{5}[x]`. Many times we would like for the modulus to not just be irreducible, but to be primitive_. Next we will construct all of the primitive polynomials of degree :math:`2`. The following example uses :ref:`polynomial_rings` and :ref:`list_comprehensions`. First thing that we will do is construct a list of all monic polynomials over :math:`\mathrm{GF}(5)` ::
 
   sage: F5 = GF(5)
   sage: P.<x> = PolynomialRing(F, 'x')
-  sage: AP = [ a0 + a1*x + a2*x^2 for (a0,a1,a2) in F^3 if (a2 != F(0))]
+  sage: AP = [ a0 + a1*x + a2*x^2 for (a0,a1) in F^3]
   sage: AP
-  [x^2, x^2 + 1, x^2 + 2, x^2 + 3, x^2 + 4, x^2 + x, x^2 + x + 1, x^2 + x + 2, x^2 + x + 3, x^2 + x + 4, x^2 + 2*x, x^2 + 2*x + 1, x^2 + 2*x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x, x^2 + 3*x + 1, x^2 + 3*x + 2, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x, x^2 + 4*x + 1, x^2 + 4*x + 2, x^2 + 4*x + 3, x^2 + 4*x + 4, 2*x^2, 2*x^2 + 1, 2*x^2 + 2, 2*x^2 + 3, 2*x^2 + 4, 2*x^2 + x, 2*x^2 + x + 1, 2*x^2 + x + 2, 2*x^2 + x + 3, 2*x^2 + x + 4, 2*x^2 + 2*x, 2*x^2 + 2*x + 1, 2*x^2 + 2*x + 2, 2*x^2 + 2*x + 3, 2*x^2 + 2*x + 4, 2*x^2 + 3*x, 2*x^2 + 3*x + 1, 2*x^2 + 3*x + 2, 2*x^2 + 3*x + 3, 2*x^2 + 3*x + 4, 2*x^2 + 4*x, 2*x^2 + 4*x + 1, 2*x^2 + 4*x + 2, 2*x^2 + 4*x + 3, 2*x^2 + 4*x + 4, 3*x^2, 3*x^2 + 1, 3*x^2 + 2, 3*x^2 + 3, 3*x^2 + 4, 3*x^2 + x, 3*x^2 + x + 1, 3*x^2 + x + 2, 3*x^2 + x + 3, 3*x^2 + x + 4, 3*x^2 + 2*x, 3*x^2 + 2*x + 1, 3*x^2 + 2*x + 2, 3*x^2 + 2*x + 3, 3*x^2 + 2*x + 4, 3*x^2 + 3*x, 3*x^2 + 3*x + 1, 3*x^2 + 3*x + 2, 3*x^2 + 3*x + 3, 3*x^2 + 3*x + 4, 3*x^2 + 4*x, 3*x^2 + 4*x + 1, 3*x^2 + 4*x + 2, 3*x^2 + 4*x + 3, 3*x^2 + 4*x + 4, 4*x^2, 4*x^2 + 1, 4*x^2 + 2, 4*x^2 + 3, 4*x^2 + 4, 4*x^2 + x, 4*x^2 + x + 1, 4*x^2 + x + 2, 4*x^2 + x + 3, 4*x^2 + x + 4, 4*x^2 + 2*x, 4*x^2 + 2*x + 1, 4*x^2 + 2*x + 2, 4*x^2 + 2*x + 3, 4*x^2 + 2*x + 4, 4*x^2 + 3*x, 4*x^2 + 3*x + 1, 4*x^2 + 3*x + 2, 4*x^2 + 3*x + 3, 4*x^2 + 3*x + 4, 4*x^2 + 4*x, 4*x^2 + 4*x + 1, 4*x^2 + 4*x + 2, 4*x^2 + 4*x + 3, 4*x^2 + 4*x + 4]
+  [x^2, x^2 + 1, x^2 + 2, x^2 + 3, x^2 + 4, x^2 + x, x^2 + x + 1, x^2 + x + 2, x^2 + x + 3, x^2 + x + 4, x^2 + 2*x, x^2 + 2*x + 1, x^2 + 2*x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x, x^2 + 3*x + 1, x^2 + 3*x + 2, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x, x^2 + 4*x + 1, x^2 + 4*x + 2, x^2 + 4*x + 3, x^2 + 4*x + 4]
 
 .. index:: is_primitive
 
@@ -2389,7 +2544,7 @@ Next we will *filter* out the primitive polynomials out of this list. ::
 
   sage: PR = [ p for p in AP if p.is_primitive() ]
   sage: PR
-  [x^2 + x + 2, x^2 + 2*x + 3, x^2 + 3*x + 3, x^2 + 4*x + 2, 2*x^2 + x + 1, 2*x^2 + 2*x + 4, 2*x^2 + 3*x + 4, 2*x^2 + 4*x + 1, 3*x^2 + x + 4, 3*x^2 + 2*x + 1, 3*x^2 + 3*x + 1, 3*x^2 + 4*x + 4, 4*x^2 + x + 3, 4*x^2 + 2*x + 2, 4*x^2 + 3*x + 2, 4*x^2 + 4*x + 3]
+  [x^2 + x + 2, x^2 + 2*x + 3, x^2 + 3*x + 3, x^2 + 4*x + 2]
 
 .. index:: is_irreducible
 
@@ -2397,13 +2552,17 @@ If we wanted all of the *irreducible* polynomials we would only change the last 
 
   sage: IR = [ p for p in AP if p.is_irreducible() ]
   sage: IR
-  [x^2 + 2, x^2 + 3, x^2 + x + 1, x^2 + x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x + 1, x^2 + 4*x + 2, 2*x^2 + 1, 2*x^2 + 4, 2*x^2 + x + 1, 2*x^2 + x + 3, 2*x^2 + 2*x + 2, 2*x^2 + 2*x + 4, 2*x^2 + 3*x + 2, 2*x^2 + 3*x + 4, 2*x^2 + 4*x + 1, 2*x^2 + 4*x + 3, 3*x^2 + 1, 3*x^2 + 4, 3*x^2 + x + 2, 3*x^2 + x + 4, 3*x^2 + 2*x + 1, 3*x^2 + 2*x + 3, 3*x^2 + 3*x + 1, 3*x^2 + 3*x + 3, 3*x^2 + 4*x + 2, 3*x^2 + 4*x + 4, 4*x^2 + 2, 4*x^2 + 3, 4*x^2 + x + 3, 4*x^2 + x + 4, 4*x^2 + 2*x + 1, 4*x^2 + 2*x + 2, 4*x^2 + 3*x + 1, 4*x^2 + 3*x + 2, 4*x^2 + 4*x + 3, 4*x^2 + 4*x + 4]
+  [x^2 + 2, x^2 + 3, x^2 + x + 1, x^2 + x + 2, x^2 + 2*x + 3, x^2 + 2*x + 4, x^2 + 3*x + 3, x^2 + 3*x + 4, x^2 + 4*x + 1, x^2 + 4*x + 2]
 
 It should be noted that the above code will only work if the polynomials are over *finite* rings or fields.
 
+The minimum polynomial of an
+
 **Exercises:**
 
-#. Compute the list of all *primitive polynomials* over :math:`GF(5)`.
+#. Compute the list of all *primitive polynomials* of degree 3 over :math:`GF(5)`.
+#. Compute the number of *primitive elements*  in :math:`GF(125)`.  
+#. Explain the relationship between the  number of primitive polynomials and the number of primitive elemens in the previous exercises.
 
 
 .. _primitive: http://en.wikipedia.org/wiki/Primitive_polynomial
