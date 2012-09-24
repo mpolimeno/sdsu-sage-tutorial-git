@@ -19,7 +19,7 @@ How to use this tutorial
 
 This tutorial is divided into four parts. This part, :ref:`about_tutorial`,  is intended to introduce you to the basic structure of the tutorial and how to contribute to the project if you so desire.  
 
-The second part, :ref:`sage_as_a_calculator`, will get the reader up to speed with topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
+The second part, :ref:`sage_as_a_calculator`,  covers  topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
 :ref:`programming_in_sage` begins to introduce the reader to some more *advanced* topics such as:  how Sage handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
 
@@ -43,7 +43,11 @@ Some sections may contain numbered citations such as "[1]_." The list of these c
 About Sage
 ----------
 
-Sage is a free open source mathematical software system based on the Python programming language. Originally created for research into mathematics, it has been evolving into a powerful tool for math education. It combines numerous other mathematical software packages using a single interface, using the _`Python <http://www.python.org>` programming language. By learning Sage, you are also learning a lot about Python. 
+Sage is a free open source mathematical software system based on the
+Python programming language. Originally created for research into
+mathematics, it has been evolving into a powerful tool for math
+education. It combines numerous other mathematical software packages
+with a single interface, using the `Python <http://www.python.org>`_ programming language. By learning Sage, you are also learning a lot about Python. 
 
 As an open source project, Sage invites contributions from all of its users. This tutorial is one of many sources of information for learning about how to use Sage. For more information see the Sage project's  `website <http://www.sagemath.org>`_.
 
@@ -57,14 +61,17 @@ Getting Started
 
 .. index:: command line, notebook
 
-This tutorial assumes that the reader has access to a running copy of Sage. On most operating systems, installing Sage usually consists of just downloding the proper package from the project's main `website <http://www.sagemath.org>`_, unwrapping it, and executing `sage` from within. For more information on the process of installing sage see Sage's `Installation Guide <http://www.sagemath.org/doc/installation>`_. 
+This tutorial assumes that the reader has access to a running copy of Sage. On most operating systems, installing Sage usually consists of  downloding the proper package from the project's main `website <http://www.sagemath.org>`_, unwrapping it, and executing `sage` from within. For more information on the process of installing sage see Sage's `Installation Guide <http://www.sagemath.org/doc/installation>`_. 
 
-Once it has been installed and started it has two ways to enter commands, either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice. 
+Once it has been installed and started, Sage has two ways to enter commands, either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice. 
 
 Everything that follows the ``sage:`` prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to *factor* the integer :math:`1438880` we would give the following example using Sage's :func:`.factor` command. ::
 
   sage: factor(1438880)
   2^5 * 5 * 17 * 23^2
+
+The line after the ``sage:`` contains the output that the user should
+expect after properly entering the command.
 
 From the command line the interaction would probably look a bit like this: 
 
@@ -73,14 +80,12 @@ From the command line the interaction would probably look a bit like this:
 	:width: 800px
 	:height: 525px
 
-or if the user is using the notebook (most likely) the interaction will look a little like: 
+If the user is using the notebook (most likely) the interaction will look a little like: 
 
 .. image:: pics/notebook_example.png
         :alt: Using Sage at the command line. 
 	:width: 800px
 	:height: 525px
-
-The line after the ``sage:`` contains the output that the user should expect after properly entering the command.
 
 Next we will discuss how to use a couple of important features of both interfaces; tab-completion and the built-in help system. 
 
@@ -234,7 +239,7 @@ Additions to this tutorial are encouraged as are suggestions for additional topi
 
 All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_, which is written in the `Python Programming Language <http://www.python.org>`_.  We are excited to see any changes that you make so please let `us <monarres@rohan.sdsu.edu>`_ know of any new material that you  add. We want for this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
 
-The content of the this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
+The content of this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
 
 There are  four parts to the tutorial: :ref:`about_tutorial` has basic instructions about using and amending the tutorial, and the others have mathematical content. :ref:`sage_as_a_calculator` is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
 
@@ -250,4 +255,14 @@ There are  four parts to the tutorial: :ref:`about_tutorial` has basic instructi
 Credits and License
 -------------------
 
-The content and code for this tutorial were written by David Monarres and Ryan Rosenbaum under the supervision of Mike O'Sullivan. The work was supported by San Diego State University's Presidential Leadership Fund and is licensed under the `Creative Commons Attribution-ShareAlike 3.0 <http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are free to share and to remix, but attribution should be given to the original funder and creators.
+The content and code for this tutorial was  written by David Monarres
+under the supervision of Mike O'Sullivan and was supported by a
+generous grant from  San Diego State University's Presidential
+Leadership Fund.
+The tutorial  is licensed under the `Creative Commons Attribution-ShareAlike 3.0<http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are
+free to share and to remix, but attribution should be given to the
+original funder and creators. You may add your name to the list of contributors below.
+
+Other contributors include: 
+
+..Ryan Rosenbaum.

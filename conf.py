@@ -46,7 +46,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'SDSU Sage Tutorial'
-copyright = u'2011, Michael O\'Sullivan, Ryan Rosenblum, and David Monarres'
+copyright = u'2011, Michael O\'Sullivan,  David Monarres'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -181,7 +181,7 @@ latex_font_size = '10pt'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'SDSUSageTutorial.tex', u'SDSU Sage Tutorial Documentation',
-   u'Michael O\'Sullivan, Ryan Rosenblum, and David Monarres', 'manual'),
+   u'Michael O\'Sullivan, and David Monarres', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -214,7 +214,7 @@ latex_preamble = '\usepackage{amsmath,amssymb,amsthm}'
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'sdsusagetutorial', u'SDSU Sage Tutorial Documentation',
-     [u'Michael O\'Sullivan, Ryan Rosenblum, and David Monarres'], 1)
+     [u'Michael O\'Sullivan,  and David Monarres'], 1)
 ]
 
 
@@ -222,9 +222,9 @@ man_pages = [
 
 # Bibliographic Dublin Core info.
 epub_title = u'SDSU Sage Tutorial'
-epub_author = u'Michael O\'Sullivan, Ryan Rosenblum, and David Monarres'
-epub_publisher = u'Michael O\'Sullivan, Ryan Rosenblum, and David Monarres'
-epub_copyright = u'2011, Michael O\'Sullivan, Ryan Rosenblum, and David Monarres'
+epub_author = u'Michael O\'Sullivan, and David Monarres'
+epub_publisher = u'Michael O\'Sullivan,  and David Monarres'
+epub_copyright = u'2011, Michael O\'Sullivan, and David Monarres'
 
 # The language of the text. It defaults to the language option
 # or en if the language is not set.
