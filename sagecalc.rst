@@ -63,7 +63,7 @@ subtraction). ::
   sage: (-3)^2
   9
 				
-When dividing two integers, there is a subtlety; whether Sage will return a fraction or it's decimal approximation. Unlike most graphing calculators, Sage will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way that we can tell Sage that we *want* the decimal approximation is to include a decimal in the expression itself. ::
+When dividing two integers, there is a subtlety; whether Sage will return a fraction or it's decimal approximation. Unlike most graphing calculators, Sage will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell Sage that we *want* the decimal approximation is to include a decimal in the expression itself. ::
 
 	sage: 11/4.0 
 	2.75000000000000
@@ -76,8 +76,10 @@ When dividing two integers, there is a subtlety; whether Sage will return a frac
  
 **Exercises:**
 
-   #. Divide :math:`28` by :math:`3` raised to the 5th power.
+   #. Divide :math:`28` by :math:`2` raised to the 5th power as a  rational number, then get it's decimal approximation.   
+
    #. Compute a decimal approximation of :math:`\sqrt{2}`
+
    #. Use sage to compute ``(-9)^(1/2)``. Describe the output. 
 
 
@@ -119,7 +121,8 @@ Recall that :math:`b` *divides* :math:`a` if :math:`0` is the remainder when we 
 
 .. index:: divisors
 				
-A related command is the :meth:`.divisors` method. This method returns a list of all divisors of the integer specified. ::
+A related command is the :meth:`.divisors` method. This method returns
+a list of all positive divisors of the integer specified. ::
 
 	sage: 12.divisors()
 	[1, 2, 3, 4, 6, 12]
@@ -139,7 +142,7 @@ Notice the parentheses around ``2^19 -1`` in the first example. They are importa
 
 .. index:: factor, factoring
 
-Another concept that is related to divisors are the prime factorization of an integer. We use the :meth:`.factor` method to compute the *prime factorization* of an integer. ::
+We use the :meth:`.factor` method to compute the *prime factorization* of an integer. ::
 
 	sage: 62.factor()
 	2 * 31
@@ -157,7 +160,7 @@ If we are interested in simply knowing which prime numbers divide an integer, we
 
 .. index:: greatest common divisor, least common multiple, gcd, lcm
 
-The final functions that are related to integers and division that we will cover is the *greatest common divisor* and *least common multiple* of a pair of integers. A *common divisor* of two integers is any integer which is a divisor of each, whereas a *common multiple* is a number which both integers divide.
+Finally, we have the *greatest common divisor* and *least common multiple* of a pair of integers. A *common divisor* of two integers is any integer which is a divisor of each, whereas a *common multiple* is a number which both integers divide.
 
 The greatest common divisor (gcd), not too surprisingly, is the largest of all of these common divisors. The :func:`.gcd` command is used to calculate this divisor. ::
 
@@ -195,7 +198,11 @@ Standard Functions and Constants
 ..   
     You should be familiar with ":ref:`basic_arithmetic`"
 
-Sage includes nearly all of the standard functions that one runs into when studying mathematics. In this section, we shall cover some of the most commonly used functions and constants. Including the *maximum*, *minimum*, *floor*, *ceiling*, *trigonometric*, *exponential*, and *logarithm* functions and many of the standard mathematical constants; such as *Euler's constant* (:math:`e`), :math:`\pi`, and *the golden ratio* (:math:`\phi`). 
+Sage includes nearly all of the standard functions that one encounters
+when studying mathematics. In this section, we shall cover some of the
+most commonly used functions: the *maximum*, *minimum*, *floor*,
+*ceiling*, *trigonometric*, *exponential*, and *logarithm* functions.
+We will also see many of the standard mathematical constants; such as *Euler's constant* (:math:`e`), :math:`\pi`, and *the golden ratio* (:math:`\phi`). 
 
 .. index:: maximum, minimum, max, min
 
@@ -244,7 +251,7 @@ Since computers cannot store an infinite number of digits, this gets rounded off
   sage: floor(1/(21/10-2))
   10
 				
-Due to this, it is often a good idea to use rational numbers whenever possible instead of decimals. Especially if a high level of precision is required. 
+Due to this, it is often a good idea to use rational numbers whenever possible instead of decimals, particularly if a high level of precision is required. 
 
 .. index:: square root, nth root, sqrt, fractional powers
 
@@ -254,7 +261,6 @@ The :func:`.sqrt` command calculates the *square root* of a real number. As we h
   sqrt(3)
   sage: sqrt(3.0)
   1.73205080756888
-  sage: sqrt(8,3)
 
 To compute other roots, we use a rational exponent. Sage can compute any rational power. If either the exponent or the base is a decimal then the output will be a decimal. ::
 
@@ -280,7 +286,7 @@ Sage also has available all of the standard trigonometric functions: for sine an
   sage: cos(3/2.0)
   0.0707372016677029
 				
-Again we see the same behavior that we saw with :func:`sqrt`, Sage will give us an exact answer.  You might think that since there is no way to simplify ``sin(1)``,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = 3/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
+Again we see the same behavior that we saw with :func:`sqrt`, Sage will give us an exact answer.  You might think that since there is no way to simplify ``sin(1)``,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = \sqrt{3}/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
 
   sage: pi
   pi
@@ -491,7 +497,7 @@ Attempting to use a symbolic variable before it has been declared will result in
 
 .. index:: restore
 				
-We can un-declare a symbolic variable, like the variable ``phi`` defined above,  by using the :func:`.restore` command.
+We can un-declare a symbolic variable, like the variable ``phi`` defined above,  by using the :func:`.restore` 
 command. ::
 
 	sage: restore('phi')

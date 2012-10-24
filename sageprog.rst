@@ -6,9 +6,11 @@
 Programming in Sage
 *************************
 
+This part of the tutorial covers the essential programming tools that you need to do more advanced mathematics.   The first chapter, on Sage objects, is essential before moving on to study mathematical structures.   The second chapter is more specifically about programming: conditionals and interative loops, creating your own commands and saving your work. It is not necessary for basic computations with mathematical structures, but becomes invaluable for doing work of any depth.    The third chapter explains how to interact with some of the principle  mathematics software packages included in Sage.  Finally there is a brief chapter on interactive use of Sage.
+
 .. index:: Objects
 
-.. _sage objects:
+.. _sage_objects:
 
 ============
 Sage Objects
@@ -144,15 +146,16 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
 
 **Exercises:**
 
-  #. What *universe* does ``x`` live in by default?
+  #. What *universe* does ``x`` live in by default?  When you declare   a new variable ``y`` where does it live?
 
   #. Find the universe of the following expressions:
+
      a) ``1 + 1/2``
      b) ``1 + 1/2.0``
      c) ``1/2 + i`` 
-     e) ``e + pi``
-     f) ``e.n() + pi``
-     g) ``e.n() + pi.()``
+     d) ``e + pi``
+     e) ``e.n() + pi``
+     f) ``e.n() + pi.()``
 
   #. For which of the following does the *coercion* make sense?
 
@@ -163,6 +166,7 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
      e) ``CC(x)``
 
   #. If I enter ``x=1/2`` into Sage, what *universe* does ``x`` live in?
+
 
 .. index:: Booleans
 
@@ -363,7 +367,7 @@ Additionally, we can display a sequence of variables using commas. ::
 	(2, 3, 5)
 				
 
-If we are assigning multiple variable at a time, and for some reason we wish to skip a value on the right hand side, we may use an underscore on the left hand side. For example, ::
+If we are assigning several variables at a time, and for some reason we wish to skip a value on the right hand side, we may use an underscore on the left hand side. For example, ::
 
 	sage: a,_,c=1,2,3
 	sage: a
@@ -476,6 +480,90 @@ A *list* is an ordered collection of objects. The elements of a list are indexed
 					 
 Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:`0`.
 
+.. index:: list; length, len
+
+The :func:`.len` command returns the *length* of a list.  ::
+
+	 sage: len(L)
+	 8
+	 sage: len([2,3,5,7,11])
+	 5
+
+Note that a list of length :math:`5` is indexed from :math:`0` to :math:`4`.					 
+				 
+Lists can contain numbers from any universe, or even  ":ref:`strings`".  ::
+
+      sage: M = [ 'apple', 'pear']
+      sage: len(M)
+      2
+      parent(M[1])
+      <type 'str'>
+
+We can even have lists of lists! ::
+
+	 sage: M = [[1,2],[1,3],[1,4]]
+	 sage: M[2]
+	 [1, 4]
+	 sage: len(M)
+	 3
+					 
+To access a particular element within our list of lists we chain their indices. For example, to access the ``4`` within that list we issue the following command: ::
+
+  sage: M[2][1]
+  4 
+
+Where we read ``M[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``M``. 
+Note that ``M[2,1]`` does not work.
+
+
+.. index:: list; slice, slices
+
+Slicing and Indexing
++++++++++++++++++++++++
+
+Probably the nicest feature of lists in python is the *slice* notation. Let's suppose you have the following list: ::
+ 
+ sage: M = [1, 2, 0, 3, 4, 0, 4, 5]
+ sage: M
+ [1, 2, 0, 3, 4, 0, 4, 5]
+
+and you would like to access the sub-list ``[0,3,4]``. Using the slice notation I can do that in the following way: ::
+
+  sage: M[2:5]
+  [0, 3, 4]
+
+We use ``M[2:5]`` since the sub-list that we desire begins with the element with index :math:`2` and ends *before* the element with index :math:`5`.
+
+By leaving the last index blank, the slice will extend to the end of the list. Similarly, when the first index is left blank the slice will start at the beginning of the list. ::
+
+  sage: M[2:]
+  [0, 3, 4, 0, 4, 5]
+  sage: M[:5]
+  [1, 2, 0, 3, 4]
+
+By leaving both indices blank, we get a copy of the entire list. ::
+
+  sage: M[:]
+  [1, 2, 0, 3, 4, 0, 4, 5]
+
+Slices also can use negative indices. When a negative number is used the position is measured relative to the end (or beginning) of the list. For example: ::
+
+  sage: M[:-2]
+  [1, 2, 0, 3, 4, 0]
+  sage: M[-2:]
+  [4,5]
+
+The first *ends* the slice two elements before the end of the list while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list. ::
+
+  sage: M[-4:-2]
+  [4, 0]
+  sage: M[-2:-2]
+  []
+
+You should note that the last *slice* is empty since the beginning of the list is the same position as the end.
+
+
+
 .. index:: list; index, index
 
 If we wish to know the index of an element, we use the :func:`.index` function. It returns the index for the first occurrence of the value given. ::
@@ -497,8 +585,39 @@ We can also count the number of times that an element occurs in a list. ::
 	 sage: M.count(3)
 	 4
 
-.. index:: sort, list;sort
+Creating
+++++++++++++++++++
 					 
+Since they are used rather frequently, Sage offers a convenient way to create lists of consecutive integers. ::
+
+  sage: [1..7]
+  [1, 2, 3, 4, 5, 6, 7]
+  sage: [4..9]
+  [4, 5, 6, 7, 8, 9]
+  sage: [2,4..10]
+  [2, 4, 6, 8, 10]
+					 
+In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap the the following examples will clear things up. ::
+
+	 sage: [1,4..13]
+	 [1, 4, 7, 10, 13]
+	 sage: [1,11..31]
+	 [1, 11, 21, 31]
+	 sage: [1,11..35]
+	 [1, 11, 21, 31]
+					 
+Additionally, we can use this construction method with some of Sage's symbolic constants such as ``pi``. ::
+
+	 sage: [pi,4*pi..32]
+	 [pi, 4*pi, 7*pi, 10*pi]
+					 
+
+Modifying lists
+++++++++++++++++++++++
+
+
+.. index:: sort, list;sort
+
 Sorting the list ``M`` can be done using the :meth:`.sort` method. ::
 
          sage: M = [2,3,3,3,2,1,8,6,3]
@@ -506,7 +625,7 @@ Sorting the list ``M`` can be done using the :meth:`.sort` method. ::
 	 [1, 2, 2, 3, 3, 3, 3, 6, 8]
 	 sage: M.index(2)
 	 1
-					 
+
 The :meth:`.sort` method alters the list *in place*, actually changing the ordering of the elements. If we would like to keep the list the same we should sort a *copy* of the list and not the list itself. ::
 
   sage:  M = [2,3,3,3,2,1,8,6,3]
@@ -526,7 +645,9 @@ We may alter the elements of a list as follows: ::
 	 sage: L
 	 [-1, 2, 3, 4]
 
-In programming speak, data-types that can be changed in place are called *mutable*. I mention this only since some data types in Sage do not allow assignment like this.
+In programming speak, data-types that can be changed in place are
+called *mutable*. 
+Lists are mutable, but some   data types in Sage are not.
 
 .. index:: list; append, append
 					 
@@ -554,19 +675,6 @@ It is, perhaps, simpler to use the ``+`` operator to concatenate lists. Since th
 	 [1, 3, 5, 2, 4, 6, 100]
 	 sage: [2,4,6]+[1,3,5]+[100]
 	 [2, 4, 6, 1, 3, 5, 100]
-					 
-Lists need not contain only integers, or even numbers for that matter. We can even have lists of lists! ::
-
-	 sage: M = [[1,2],[1,3],[1,4]]
-	 sage: M[2]
-	 [1, 4]
-					 
-To access a particular element within our list of lists we chain their indices. For example, to access the ``4`` within that list we issue the following command: ::
-
-  sage: M[2][1]
-  4 
-
-Where we read ``M[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``M``. 
 
 .. index:: remove, list;remove
 
@@ -587,43 +695,13 @@ Note that a list may contain the same element more than once; :meth:`.remove` re
 	 sage: M
 	 [1, 2, 0, 3, 4, 0, 4, 5]
 
-Since they are used rather frequently, Sage offers a convenient way to create lists of consecutive integers. ::
 
-  sage: [1..7]
-  [1, 2, 3, 4, 5, 6, 7]
-  sage: [4..9]
-  [4, 5, 6, 7, 8, 9]
-  sage: [2,4..10]
-  [2, 4, 6, 8, 10]
-					 
-In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap the the following examples will clear things up. ::
-
-	 sage: [1,4..13]
-	 [1, 4, 7, 10, 13]
-	 sage: [1,11..31]
-	 [1, 11, 21, 31]
-	 sage: [1,11..35]
-	 [1, 11, 21, 31]
-					 
-Additionally, we can use this construction method with some of Sage's symbolic constants such as ``pi``. ::
-
-	 sage: [pi,4*pi..32]
-	 [pi, 4*pi, 7*pi, 10*pi]
-					 
-Having constructed lists, we may now introduce some important commands that take a list as its argument. 
-
-.. index:: list; length, len
-
-The :func:`.len` command returns the *length* of a list.  ::
-
-	 sage: len([1..1001])
-	 1001
-	 sage: len([2,3,5,7,11])
-	 5
+Operations on a List
+----------------------------------
 
 .. index:: sum, prod
 
-If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands accept a list as it's argument. 
+If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands accept a list as argument. 
 
 :func:`sum` returns the sum of it's argument:  ::
 
@@ -670,52 +748,10 @@ Another useful command when dealing with lists is :func:`.map`. This command acc
   sage: sum(map(exp,[1,2,3,4,5]))
   e + e^2 + e^3 + e^4 + e^5
 
-:func:`.map` is often used in *functional* programming. For more on this style of programming with python see the 'Python Documentation'_
+:func:`.map` is often used in *functional* programming. For more on
+this style of programming with python see the `Python Documentation`_.
 
-.. _'Python Documentation': http://docs.python.org/howto/functional.html
-
-.. index:: list; slice, slices
-
-Probably the nicest feature of lists in python is the *slice* notation. Let's suppose you have the following list: ::
- 
- sage: M = [1, 2, 0, 3, 4, 0, 4, 5]
- sage: M
- [1, 2, 0, 3, 4, 0, 4, 5]
-
-and you would like to access the sub-list ``[0,3,4]``. Using the slice notation I can do that in the following way: ::
-
-  sage: M[2:5]
-  [0, 3, 4]
-
-We use ``M[2:5]`` since the sub-list that we desire begins with the element with index :math:``2`` and ends *before* the element with index :math:`5`.
-
-By leaving the last index blank, the slice will extend to the end of the list. Similarly, when the first index is left blank the slice will start at the beginning of the list. ::
-
-  sage: M[2:]
-  [0, 3, 4, 0, 4, 5]
-  sage: M[:5]
-  [1, 2, 0, 3, 4]
-
-By leaving both indices blank, we get a copy of the entire list. ::
-
-  sage: M[:]
-  [1, 2, 0, 3, 4, 0, 4, 5]
-
-Slices also can use negative indices. When a negative number is used the position is measured relative to the end (or beginning) of the list. For example: ::
-
-  sage: M[:-2]
-  [1, 2, 0, 3, 4, 0]
-  sage: M[-2:]
-  [4,5]
-
-The first *ends* the slice two elements before the end of the list while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list. ::
-
-  sage: M[-4:-2]
-  [4, 0]
-  sage: M[-2:-2]
-  []
-
-You should note that the last *slice* is empty since the beginning of the list is the same position as the end.
+.. _Python Documentation: http://docs.python.org/howto/functional.html
 
 .. seealso::
 
@@ -728,20 +764,24 @@ You should note that the last *slice* is empty since the beginning of the list i
 
   #. Consider the list ``L = [1, 3, 4, [1,5,6], 8, -9]``. At what *index* is the element ``[1,5,6]``? Remove this element from ``L``.
 
-  #. Let ``L = [3,4,18,17,2,'a']`` and ``M = [ 14, 23, 'b', 'c']``. With Sage, do the following: 
+  #. Let ``L = [3,4,18,17,2,'a']`` and ``M = [ 14, 23, 'b',   'c']``. With Sage, do the following: 
+
      a) Append the elements of the list ``M`` to the end of ``L`` without changing ``L``.
      b) Do the same but this time altering ``L`` in place. 
-     c) Insert ``M`` as an element at the end of ``L``, alterting ``L`` in place. 
-     d) Remove the ``M`` that you had just inserted.  
-     d) Explain the differences between the :meth:`.extend` and the :meth:`.append` methods.  
+     c) Insert ``M`` as an element at the end of ``L``, altering ``L`` in place. 
+     d) Remove the ``M`` that you  just inserted.  
+     e) Explain the differences between the :meth:`.extend` and the :meth:`.append` methods.  
 
   #. Let ``L = [1,2,5, 14, 17, 20]``.  What are the sub-lists are accessed using the following *slices*. 
+
      a) ``L[:-1]``
      b) ``L[-1:]``
      c) ``L[3:]``
      d) ``L[0:3]``
      e) ``L[-4:-1]``
+
   #.  Using the same ``L`` as the previous problem. Find a slice that will extract the following sub-lists from ``L``: *(Do this in two different ways)* 
+
       a) ``[5,14,17]``. 
       b) ``[1,2,5]``.
       c) ``[1]``
@@ -804,7 +844,9 @@ All of the usual set operations: :meth:`.union`, :meth:`.intersection`, :meth:`.
 
 .. index:: Set; subsets, subsets
 
-Use the :meth:`.subsets` method to construct the set of all subsets of a set, or to construct the set of subsets with a specified number of elements. ::
+Use the :meth:`.subsets` method to construct the  subsets of a set,
+or to construct the subsets with a specified number of elements.
+Notice that the :meth:`subsets` method produces a *list* of subsets.  ::
 
   sage: A = Set([1,2,3]); A
   {1, 2, 3}
@@ -816,7 +858,7 @@ Use the :meth:`.subsets` method to construct the set of all subsets of a set, or
   [{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
   sage: pairsA.list()
   [{1, 2}, {1, 3}, {2, 3}]					
- 
+
 **Exercises:**
 
   #. Consider the sets :math:`A = \left\{1, -4, 2 \right\}` and :math:`B = \left\{ 3, 2, 1 \right\}`. Compute the following set operations using Sage:
@@ -831,6 +873,7 @@ Use the :meth:`.subsets` method to construct the set of all subsets of a set, or
 .. seealso::
    `Sage Tutorial: Sets <http://www.sagemath.org/doc/tutorial/programming.html#sets>`_
 
+.. _strings:
 
 Strings
 -------
@@ -923,81 +966,13 @@ Just like when I *split* a sting, I can join a list using a different separating
   #. We can use the :func:`.map` and :func:`.Integer` commands to take a string of integers and convert them into *Sage* integers.  
 
 .. _external_files_and_sessions:
-
-External Files and Sessions
-------------------------------
-
-.. index:: external files, sessions
-
-In practice, especially when using sage for research and projects, it is much more convenient to load external files into Sage. There are many situations in which it is convenient to use an external file. One such instance is when we have a block of code which we wish to run for several different cases. It would be quite tedious to retype all of our code, and thus we can write it to an external file.
-
-Let us move on to an example. Suppose we have a file in the same
-directory from which we started Sage called :download:`pythag.sage <pythag.sage>` with the following content.
-
-.. code-block:: python
-
-	# Begin pythag.sage
-	a=3
-	b=4
-	c=sqrt(a^2+b^2)
-	print c
-	# End
-				
-.. index:: loading a file, load
-
-Note that all characters after a # of a Sage file are ignored when
-loaded. We may now load the file in Sage using the :func:`.load` command. ::
-
-	sage: load pythag.sage
-	5
-				
-After having loaded the file, all of the variables initialized now
-exist in our Sage session. ::
-
-	sage: a,b,c
-	(3, 4, 5)
-
-.. index:: save_session, load_session
-				
-Sage allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit Sage, power off our computer, or what have you. At any later time, we may load the file by opening Sage from the directory containing the save file and using the load_session function.
-
-Here is an example: ::
-
-	sage: a=101
-	sage: b=103
-	sage: save_session()
-	sage: exit
-	Exiting SAGE (CPU time 0m0.06s, Wall time 0m31.27s).
-				
-
-Now start Sage from the same folder as the save file. ::
-
-	sage: load_session()
-	sage: a
-	101
-	sage: b
-	103
-				
-
-We may specify the name of a save session, if we so desire. ::
-
-	sage: T=1729
-	sage: save_session('ramanujan')
-	sage: exit
-	Exiting SAGE (CPU time 0m0.06s, Wall time 0m16.57s).
-				
-
-And again we load our session ``ramanujan`` with :func:`.load_session`. ::
-
-	sage: load_session('ramanujan')
-	sage: T
-	1729
-
 .. _programming_tools:
 
 =================
 Programming Tools
 =================
+
+Sage syntax is based on the widely used language Python, and thereby  inherits Python's  compact and very readable  style.   In this chapter we cover the syntax for the  essentials of programming.  For more complex issues we provide  links to other resources.
 
 .. _conditionals: 
 
@@ -1048,7 +1023,9 @@ Notice that we return to the same level of indentation for :obj:`.elif` as was u
 	....:     
 	11
 				
-Here both conditions are met, but only the code associated with the first condition is actually executed. Understanding how conditionals are executed fundamental to controlling the flow of your program.  
+Here both conditions are met, but only the code associated with the
+first condition is actually executed. Understanding how conditionals
+are executed is important  to controlling the flow of your program.  
 
 There is also a subtle shortcut that we used in the previous example. ``11.divides(r)`` already returns either ``True`` or ``False``, hence we did not need to use an equality here. We could have used the more verbose ``11.divides(r)==True`` but it is not necessary.
 
@@ -1175,7 +1152,7 @@ We can use list comprehension to apply a function to each number of a given list
   sage: [ cos(x) for x in [pi/4, pi/2..2*pi]]
   [1/2*sqrt(2), 0, -1/2*sqrt(2), -1, -1/2*sqrt(2), 0, 1/2*sqrt(2), 1]
 
-We can also use the list comprehension *filter* (or reduce) the results by adding a *conditional* to our list comprehension. For example, to construct the list of all natural numbers that are less than :math:`20` which are *relatively prime* to 20 we do the following: (Don't laugh, students have been asked to compute weirder things.) ::
+We can also use the list comprehension *filter* (or reduce) the results by adding a *conditional* to our list comprehension. For example, to construct the list of all natural numbers that are less than :math:`20` which are *relatively prime* to 20 we do the following:  ::
 
   sage: [ k for k in [1..19] if gcd(k,20) == 1 ] 
   [1, 3, 7, 9, 11, 13, 17, 19]
@@ -1206,7 +1183,7 @@ It should be noted that I didn't only have to form *tuples* of the pairs of elem
   sage: [ gcd(a,b) for a in U for b in U ]
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 1, 3, 1, 1, 1, 1, 1, 1, 7, 1, 1, 1, 1, 1, 1, 3, 1, 9, 1, 1, 1, 1, 1, 1, 1, 1, 11, 1, 1, 1, 1, 1, 1, 1, 1, 13, 1, 1, 1, 1, 1, 1, 1, 1, 17, 1, 1, 1, 1, 1, 1, 1, 1, 19]
 
-and there is no reason that we have to stop with combining elements of *two* sets, the more *for* we include the more lists we can draw from.
+Similar constructions work for more than 2 sets; just add more *for* statements.
 
 Since list comprehensions allow for us to put any valid expression, we can add another conditional which effects the output of our list. For example, let take the list of integers which were *relatively prime* to 20 and test if they are prime numbers or not. ::
 
@@ -1222,6 +1199,7 @@ Since list comprehensions allow for us to put any valid expression, we can add a
 **Exercises:**
 
   #. Use a list comprehension to generate lists which have the same members as the following sets:
+
      a) The set of all odd integers greater than :math:`-10` and less than :math:`30`.  
      b) The set of all integers which are divisible by :math:`3`, less than or equal to :math:`100` and greater than :math:`-20`. 
      c) The set of all *prime* numbers less than :math:`100`.
@@ -1236,7 +1214,7 @@ Defining your own commands
 
 .. index:: functions, functions; definition, functions; arguments, functions; return values,  def, return
 
-Once your computations get complicated enough we may want to hide some of this complexity by creating your own command that can be easily re-used like Sage's built-in commands. These user-defined commands are commonly called *functions*, though they differ from mathematical functions in subtly   
+Once your computations get complicated enough we may want to hide some of this complexity by creating your own command that can be easily re-used like Sage's built-in commands. These user-defined commands are commonly called *functions*, though they differ from mathematical functions.
 
 For example, suppose that we wanted to compute the greatest common divisor of :math:`75` and :math:`21`. We can use the *euclidean algorithm* and Sage to do this. Here is how that would look: ::
 
@@ -1249,16 +1227,12 @@ For example, suppose that we wanted to compute the greatest common divisor of :m
 
 ``a`` and ``b`` are called the *arguments* of the command and the expression following the :obj:`.return` keyword is called the *return value*. The arguments are in the input of the command whereas the return value is the output. 
 
-For those of you who have programmed before, you may see that there are no end of block *delimiters*, such as **;**, or **end**. Sage, like python, uses indentation to denote where a block of code begins and ends. This syntax rule forces the programmer to write more readable code, by visually separating blocks of code.
+For those of you who have programmed before, you may see that there are no end or block *delimiters*, such as **;**, or **end**. Sage, like python, uses indentation to denote where a block of code begins and ends. This syntax rule forces the programmer to write more readable code, by visually separating blocks of code.
  
 Once the command ``euclid`` has been defined, the code can be easily re-used withe different arguments, just like a built-in command. ::
 
   sage: euclid(75,21)
   3
-  sage: euclid(75,2) 
-  1
-  sage: euclid(75,13)
-  1
   sage: euclid(455,67)
   1
   sage: euclid(754,99)
@@ -1312,58 +1286,87 @@ By separating the values with commas, your command can have multiple return valu
 	sage: b
 	27
 
-Defining your own commands in SAGE is easy. However, elegantly encapsulating your code is an art which requires a lot of practice and thought. For a more thorough introduction to functions (commands), the following  chapter on `functions`_ is a good place to start.
+Defining your own commands in SAGE is easy. However, elegantly
+encapsulating your code is an art which requires a lot of practice and
+thought. For a more thorough introduction to functions (commands), the
+following  chapter on `Python functions`_ is a good place to start.
 
-.. _this:  _`http://greenteapress.com/thinkpython/html/book004.html` 
+.. _Python functions: http://greenteapress.com/thinkpython/html/book004.html 
 
-Interactive Demonstrations in the Notebook
-------------------------------------------
 
-.. index:: interact, @interact, interactive applets
 
-In this section we will discuss the creation of interactive "applets" in the Sage notebook. These are done using the :obj:`@interact` decorator and are often called *interacts*.  A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise fashion. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
+External Files and Sessions
+------------------------------
 
-.. _blog post:  http://www.artima.com/weblogs/viewpost.jsp?thread=240808
-.. _Thinking in Python: http://www.mindview.net/Books/TIPython
+.. index:: external files, sessions
 
-We will begin with the most simple applet. One that creates a single input box and then displays the results. 
+In practice, especially when using sage for research and projects, it
+is convenient to load external files into Sage.  One such instance is
+when we have a block of code which we wish to run for several
+different cases. It would be quite tedious to retype all of the code;
+instead we read it from an external file.
 
-.. image:: pics/interact_step1.png
-	:alt: Simple "Hello World" Interact Applet
-	:height: 525px
-	:width: 800px
+Suppose we have a file in the same
+directory from which we started Sage called :download:`pythag.sage <pythag.sage>` with the following content.
 
-Notice how changing the text in the input box changes the output. Every time something within the interact changes the "applet" is refreshed and will display those changes. This is the heart of the interactivity.
+.. code-block:: python
 
-.. image:: pics/interact_step2.png
-	:alt: Simple "Hello World" Interact Applet
-	:height: 525px
-	:width: 800px
+	# Begin pythag.sage
+	a=3
+	b=4
+	c=sqrt(a^2+b^2)
+	print c
+	# End
+				
+.. index:: loading a file, load
 
-Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as it's smallest number and :math:`10` as it's largest and moves in increments of :math:`1` unit. 
+Note that all characters after a # of a Sage file are ignored when
+loaded. We may now load the file in Sage using the :func:`.load` command. ::
 
-.. image:: pics/interact_step3.png
-	:alt: Simple "Hello World" Interact Applet
-	:height: 525px
-	:width: 800px
+	sage: load pythag.sage
+	5
+				
+After having loaded the file, all of the variables initialized now
+exist in our Sage session. ::
 
-Next we will add a selection control. This control allows the user to select one of a finite number of different options. In this case, the user can select any color, as long as that color is red, blue, green, or black. 
+	sage: a,b,c
+	(3, 4, 5)
 
-.. image:: pics/interact_step4.png
-	:alt: Simple "Hello World" Interact Applet
-	:height: 525px
-	:width: 800px
+.. index:: save_session, load_session
+				
+Sage allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit Sage, power off our computer, or what have you. At any later time, we may load the file by opening Sage from the directory containing the save file and using the load_session function.
 
-While this initial example shows the use of a couple of common interactive controls, it still does not do anything very interesting.  The next example will combine both the use of sliding and selection controls toward creating an applet which plots the trigonometric functions and there standard transformations. 
+Here is an example: ::
 
-.. image:: pics/interact_step5.png
-	:alt: Example of Trigonometric Plotter Interact.
-	:height: 525px
-	:width: 800px
+	sage: a=101
+	sage: b=103
+	sage: save_session()
+	sage: exit
+	Exiting SAGE (CPU time 0m0.06s, Wall time 0m31.27s).
+				
 
-The example here only scratches the surface of what is possible with Sage interacts. For a, growing, list of examples of interacts see this page on the sage wiki_.
+Now start Sage from the same folder as the save file. ::
 
-.. _wiki: http://wiki.sagemath.org/interact/
+	sage: load_session()
+	sage: a
+	101
+	sage: b
+	103
+				
+
+We may specify the name of a save session, if we so desire. ::
+
+	sage: T=1729
+	sage: save_session('ramanujan')
+	sage: exit
+	Exiting SAGE (CPU time 0m0.06s, Wall time 0m16.57s).
+				
+
+And again we load our session ``ramanujan`` with :func:`.load_session`. ::
+
+	sage: load_session('ramanujan')
+	sage: T
+	1729
 
 
 ============================
@@ -1575,3 +1578,56 @@ Finally a task that Singular excels at is the factorization of multivariate poly
 
 Using Python packages in Sage
 -----------------------------
+
+
+===============================================
+Interactive Demonstrations in the Notebook
+===============================================
+
+
+.. index:: interact, @interact, interactive applets
+
+In this section we will discuss the creation of interactive "applets" in the Sage notebook. These are done using the :obj:`@interact` decorator and are often called *interacts*.  A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise fashion. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
+
+.. _blog post:  http://www.artima.com/weblogs/viewpost.jsp?thread=240808
+.. _Thinking in Python: http://www.mindview.net/Books/TIPython
+
+We will begin with the most simple applet. One that creates a single input box and then displays the results. 
+
+.. image:: pics/interact_step1.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 525px
+	:width: 800px
+
+Notice how changing the text in the input box changes the output. Every time something within the interact changes the "applet" is refreshed and will display those changes. This is the heart of the interactivity.
+
+.. image:: pics/interact_step2.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 525px
+	:width: 800px
+
+Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as it's smallest number and :math:`10` as it's largest and moves in increments of :math:`1` unit. 
+
+.. image:: pics/interact_step3.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 525px
+	:width: 800px
+
+Next we will add a selection control. This control allows the user to select one of a finite number of different options. In this case, the user can select any color, as long as that color is red, blue, green, or black. 
+
+.. image:: pics/interact_step4.png
+	:alt: Simple "Hello World" Interact Applet
+	:height: 525px
+	:width: 800px
+
+While this initial example shows the use of a couple of common interactive controls, it still does not do anything very interesting.  The next example will combine both the use of sliding and selection controls toward creating an applet which plots the trigonometric functions and there standard transformations. 
+
+.. image:: pics/interact_step5.png
+	:alt: Example of Trigonometric Plotter Interact.
+	:height: 525px
+	:width: 800px
+
+The example here only scratches the surface of what is possible with Sage interacts. For a, growing, list of examples of interacts see this page on the sage wiki_.
+
+.. _wiki: http://wiki.sagemath.org/interact/
+

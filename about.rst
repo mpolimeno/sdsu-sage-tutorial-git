@@ -17,13 +17,15 @@ Introduction
 How to use this tutorial
 ------------------------
 
-This tutorial is divided into four parts. This part, :ref:`about_tutorial`,  is intended to introduce you to the basic structure of the tutorial and how to contribute to the project if you so desire.  
+This tutorial is divided into four parts. This part,
+:ref:`about_tutorial`,  discusses some basic properties of Sage, introduces you to the 
+structure of the tutorial,  and explains how to contribute to the project if you so desire.  
 
 The second part, :ref:`sage_as_a_calculator`,  covers  topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.   
 
-:ref:`programming_in_sage` begins to introduce the reader to some more *advanced* topics such as:  how Sage handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
+:ref:`programming_in_sage`  introduces the reader to some more *advanced* topics such as  how Sage handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and Sage *universes* and *coercion*.
 
-The final part, :ref:`mathematical_structures`,  introduces the reader to topics that one finds in college level curriculum: linear algebra, number theory, groups, rings, fields, etc.
+The final part, :ref:`mathematical_structures`,  introduces the reader to topics that one finds in  a college level curriculum: linear algebra, number theory, groups, rings, fields, etc.
  
 Since this is a tutorial introduction to Sage, we will be using examples to demonstrate ideas and the reader is encouraged to follow along as we progress by entering the commands into their own copy of Sage. We have tried to include exercises for practice and problems for more extensive exploration of a given topic. The reader is also encouraged to do many of these.
 
@@ -36,12 +38,20 @@ Some sections may contain numbered citations such as "[1]_." The list of these c
 .. [1] William A. Stein et al. Sage Mathematics Software (Version 4.7.1),
    The Sage Development Team, 2011, http://www.sagemath.org. 
 
+.. index:: Getting Started
+
+.. _helpful_tips:
+
+Getting Started
+===============
+
+
 .. index:: About Sage
 
 .. _about_sage:
 
 About Sage
-----------
+--------------
 
 Sage is a free open source mathematical software system based on the
 Python programming language. Originally created for research into
@@ -51,13 +61,6 @@ with a single interface, using the `Python <http://www.python.org>`_ programming
 
 As an open source project, Sage invites contributions from all of its users. This tutorial is one of many sources of information for learning about how to use Sage. For more information see the Sage project's  `website <http://www.sagemath.org>`_.
 
-
-.. index:: Getting Started
-
-.. _helpful_tips:
-
-Getting Started
-===============
 
 .. index:: command line, notebook
 
@@ -87,14 +90,14 @@ If the user is using the notebook (most likely) the interaction will look a litt
 	:width: 800px
 	:height: 525px
 
-Next we will discuss how to use a couple of important features of both interfaces; tab-completion and the built-in help system. 
-
 .. _help_tabcompletion:
 
-`?` and Tab Completion
+Tab Completion
 -----------------------
+Next we will discuss how to use a couple of important features of both interfaces; tab-completion and the built-in help system. 
 
-.. index:: tab completion, help, help; command line, ?
+
+.. index:: tab completion
 
 One of the handiest features built into Sage is *tab completion* of commands. To use tab completion, just type in the first couple of letters of the command that you would like to use, and then the tab-key. For example, suppose that you wanted to compute :math:`56!` and don't remember the exact command name to do this. A good guess is that the command will have *factorial* somewhere in it's name. To see if that guess is correct, just type the first three letters ``fac`` and hit the tab-key. ::
 
@@ -123,7 +126,7 @@ Another good use of tab-completion is to discover what *methods* an *object* has
   a.exact_log                    a.powermodm_ui
   --More--
 
-Do not be intimidated by the length of this list. Sage is a very powerful system and it can do a lot with integers. On the command line, the ``--More--`` at the bottom of the screen tells you that the list of possible commands is longer than what will fit on a single screen. To scroll through this list a page at a time, just hit any key and Sage will display the next page.
+Do not be intimidated by the length of this list. Sage is a very powerful system and it can do a lot with integers. On the command line, the ``--More--`` at the bottom of the screen tells you that the list of possible commands is longer than what will fit on a single screen. To scroll through this list a page at a time, jut hit any key and Sage will display the next page.
 
 On the second page you see that :meth:`.factor` is an option. To use this method, which *factors* :math:`56` into unique prime factors, you enter ``a.factor()``. ::
 
@@ -132,9 +135,17 @@ On the second page you see that :meth:`.factor` is an option. To use this method
 
 Tab-completion can not only reduce the amount of typing needed, but it can be used to *discover* new commands in Sage. 
 
+.. index::  help, help; command line, ?
+
+Help using ?
+---------------------
+
 Once you have identified a command that interests you, the next step is to find out exactly *what* this command does and *how* to use it. Sage has a built-in help system to help you achieve this very goal. 
 
-Let's suppose that you wish to compute the *lowest common multiple* of two integers and are not sure which command does this. A good place to begin the search is by typing ``l`` at the command prompt and then hitting the tab-key.  ::
+Let's suppose that you wish to compute the *lowest common multiple* of
+two integers and are not sure which command does this. A good place to
+begin the search is by typing ``l`` at the command prompt and then
+hitting the tab-key.  ::
 
   sage: l[TAB]
   laguerre                    list_plot3d
@@ -159,7 +170,7 @@ Once again you have quite a long list of commands from which to select. Scanning
 
   sage: lcm?
 
-The output of this command is the a page which explains both the use and the purpose of the command. ::
+The output of this command is  a page that explains both the use and the purpose of the command. ::
 
   Base Class:     <type 'function'>
   String Form:    <function lcm at 0x32db6e0>
@@ -223,6 +234,12 @@ Here you see that ``lcm`` can either accept two arguments, for our purposes two 
 
 Having a comprehensive help system built into Sage is one of it's best features and the sooner you get comfortable with using it the faster you will be able to use the full power of this CAS.
 
+.. index::  source code; ??
+
+Source  Code, ??
+--------------------------
+
+
 .. seealso::
    `Sage Screencasts  <http://www.sagemath.org/help-video.html>`_
 
@@ -237,15 +254,16 @@ Contributing to the tutorial
 
 Additions to this tutorial are encouraged as are suggestions for additional topics for inclusion.
 
-All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_, which is written in the `Python Programming Language <http://www.python.org>`_.  We are excited to see any changes that you make so please let `us <monarres@rohan.sdsu.edu>`_ know of any new material that you  add. We want for this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
+All of this website's source code can be downloaded from the project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_, which is written in the `Python Programming Language <http://www.python.org>`_.  We are excited to see any changes that you make so please let `us <mosullivan@mail.sdsu.edu>`_ know of any new material that you  add. We want this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
 
-The content of this tutorial has be written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contribuotrs to either of these projects. 
+The content of this tutorial is written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official Sage and Python documentation, so it is useful for contributors to either of these projects. 
 
 There are  four parts to the tutorial: :ref:`about_tutorial` has basic instructions about using and amending the tutorial, and the others have mathematical content. :ref:`sage_as_a_calculator` is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
 
-"Programming in Sage" eases the transition to higher level mathematics by treating topics that relate to the interface between mathematical concepts and computational issues. This chapter covers basic structures like: lists, sets and strings; the universe for a number or variable, rational numbers versus real numbers (of specificied precision); programming essentials like booleans, conditionals and iterative computation; file handling and data handling; etc.
+"Programming in Sage" eases the transition to higher level mathematics by treating topics that relate to the interface between mathematical concepts and computational issues. The first chapter covers universes and coercion   (rationals, reals, booleans etc.);  variables; and basic structures like lists, sets and strings.  The second chapter covers; programming essentials like  conditionals and iterative computation; file handling and data handling; etc.   The third chapter discusses mathematical software packages within Sage.
+Finally, there is a brief discussion of interactive demonstrations with the notebook.
 
-"Mathematical Structures" is written at a more sophisticated level than the earlier material, since the intended audience is college students taking upper division math courses.  The emphasis is on learning about specific mathematical structures that have a Sage class associated to them.
+"Mathematical Structures" is written at a more sophisticated level than the earlier material, since the intended audience is college students taking upper division math courses.  The emphasis is on learning about specific mathematical structures that have a Sage class associated to them.  We intend each chapter to ne independent of the others.
 
 .. seealso::
    `reStructured Text Primer <http://sphinx.pocoo.org/rest.html>`_
@@ -257,12 +275,13 @@ Credits and License
 
 The content and code for this tutorial was  written by David Monarres
 under the supervision of Mike O'Sullivan and was supported by a
-generous grant from  San Diego State University's Presidential
+generous grant from  San Diego State University's President's
 Leadership Fund.
-The tutorial  is licensed under the `Creative Commons Attribution-ShareAlike 3.0<http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are
+The tutorial  is licensed under the 
+`Creative Commons Attribution-ShareAlike 3.01 <http://creativecommons.org/licenses/by-sa/3.0/>`_ License. You are
 free to share and to remix, but attribution should be given to the
 original funder and creators. You may add your name to the list of contributors below.
 
 Other contributors include: 
 
-..Ryan Rosenbaum.
+*  Ryan Rosenbaum.

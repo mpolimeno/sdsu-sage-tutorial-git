@@ -4,49 +4,14 @@
  Mathematical Structures
 ************************* 
 
+The individual chapters in this part of the tutorial are relatively independent of one another.  You should be familiar with the chapter :ref:`sage_objects` before reading material here.  The section :ref:`list_comprehensions` is also useful.  Eventually, when you are ready for some real experimentation, you will want to read much of the chapter :ref:`programming_tools`.   Many sections in this part are incomplete, and we welcome contributions and additions!
+
+
+
 .. _integers_modular_arithmetic:
 
 Integers and Modular Arithmetic
 ===============================
-
-.. _euclidean_algorithm:
-
-Mini-Topic: Euclidean Algorithm
--------------------------------
-
-    You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`external_files_and_sessions`, and :ref:`while_loops`
-
-..  index:: euclidean algorithm, integers, gcd  
-
-Recall that for :math:`a,b \in \mathbb{Z}` with :math:`b \neq 0`, there always exists unique :math:`q,r \in \mathbb{Z}` such that :math:`a=bq+r` with :math:`0 \leq r< b`. With that in mind, we will use Sage to calculate the *gcd* of two integers using the *Euclidean Algorithm*. The following code is an implementation of the Euclidean Algorithm in Sage.  
-
-.. code-block:: python
-
-	# Begin euclid.sage
-	r=a%b
-	print (a,b,r)
-	while r != 0:
-	        a=b; b=r
-	        r=a%b
-	        print (a,b,r)
-	# End euclid.sage
-				
-If you create a file ``euclid.sage`` containing the text above, then the output after loading the file is: ::
-
-  sage: a=15; b=4 
-  sage: load euclid.sage 
-  (15, 4, 3) (4, 3, 1) (3, 1, 0) 
-  sage: a=15; b=5 
-  sage: load euclid.sage 
-  (15, 5, 0)
-				
-In the first case, we see that the ``gcd`` was :math:`1`, while in the second the ``gcd`` was :math:`5`.
-
-**Exercises:**
-
-    #. Revise the loop in the ``euclid.sage`` so that only the gcd and the total number of divisions (i.e. the number of steps through the algorithm) are printed. Compare the speed of this version of the algorithm with the built-in Sage function :func:`.gcd` by using both functions on large integers.
-
-    #. Write your own *Extended Euclidean Algorithm* by revising the loop in ``euclid.sage``. 
 
 
 .. _integers_modulo_n:
@@ -58,11 +23,12 @@ Integers Modulo :math:`n`
 
 .. index:: modular arithmetic, rings, rings; integers modulo n
 
-In this section we cover how to construct :math:`\mathbb{Z}_{n}` and do some basic computations. 
+In this section we cover how to construct :math:`\mathbb{Z}_{n}`, the ring of integers modulo
+:math:`n`,  and do some basic computations. 
 
 .. index:: Integers
 
-To construct this ring, you use the :class:`.Integers` command. ::
+To construct :math:`\mathbb{Z}_{n}` you use the :class:`.Integers` command. ::
 
   sage: Integers(7)
   Ring of integers modulo 7
@@ -133,7 +99,7 @@ We have to be a little bit careful when we are doing this since we are asking Sa
   sage: R(16/20)
   20
 				
-:math:`20` is not a unit, yet at first glance it would seem we divided by it in :math:`\mathbb{Z}_{24}`. However, note the order of operations. First sage reduces :math:`16/20` to  :math:`4/5`, and then coerces :math:`4/5` into :math:`\mathbb{Z}_{24}`. Since :math:`5` is a unit in :math:`\mathbb{Z}_{24}`, everything works out ok; however, that may have not been what we intended by the coercion.  
+In  :math:`\mathbb{Z}_{24}`,  :math:`20` is not a unit, yet at first glance it would seem we divided by it. However, note the order of operations. First sage reduces :math:`16/20` to  :math:`4/5`, and then coerces :math:`4/5` into :math:`\mathbb{Z}_{24}`. Since :math:`5` is a unit in :math:`\mathbb{Z}_{24}`, everything works out ok.
 
 .. index:: rings; size, order, is_ring, is_integral_domain, is_field
 
@@ -152,7 +118,7 @@ We can also compute some properties of the ring itself. ::
 
 .. index:: list, rings; list
 
-and if the ring is finite then we can have Sage list all of it's elements. ::
+Since this  ring is finite then we can have Sage list all of it's elements. ::
 
   sage: R = Integers(13)
   sage: R.list()
@@ -189,10 +155,11 @@ Unfortunately, Sage doesn't seem to have a function which directly returns the u
 
 .. index:: is_unit
 
-We can also compute this  by using a list comprehension. ::
+We can also compute the list of units  by using a list comprehension. ::
 
   sage: [ x for x in R if x.is_unit()]
   [1, 5, 7, 11]
+
 
 **Exercises:**
 
@@ -222,8 +189,8 @@ We can also compute this  by using a list comprehension. ::
 
 .. index:: linear congruences
 
-Linear Congruences
-------------------
+Solving Congruences
+--------------------------------
 
     You should be familiar with :ref:`integers_modulo_n` and :ref:`list_comprehensions`
 
@@ -239,7 +206,7 @@ Notice that the above tells us only that there exists at least one solution to t
   sage: [ x for x in R if R(9)*x == R(6)]
   [3, 10, 17]
 
-We can also determine when a solution does not exist in a similar fashion. ::
+We can  determine when a solution does not exist in a similar fashion. ::
 
   sage: [ x for x in R if R(9)*x == R(2) ]
   []
@@ -261,7 +228,7 @@ We can also use the :func:`solve_mod` function to compute the same results. ::
 The solutions are in the form :math:`\left(x,y\right)`, where the
 variables are listed in the order in which they appear in the equations. 
 
-:func:`solve_mod` can even solve systems of linear congruences. ::
+:func:`solve_mod` can  solve systems of linear congruences. ::
 
   sage: solve_mod( [9*x + 2*y == 2, 3*x + 2*y == 11   ], 21)
   [(9, 13), (16, 13), (2, 13)]
@@ -271,7 +238,7 @@ equations. For these systems the linear algebra capabilities are
 recommended. 
 
 We can also compute the solutions for non-linear congruences
-using Sage. ::
+using :func:`solve_mod`. ::
 
   sage: solve_mod(x^2 + y^2 == 1, 7)
   [(0, 1), (0, 6), (1, 0), (2, 2), (2, 5), (5, 2), (5, 5), (6, 0)]
@@ -280,7 +247,12 @@ using Sage. ::
 
 .. index:: Chinese Remainder Theorem, crt
 
-Finally, Sage can compute the simulatenous solution of linear congruences with different modulii under certain circumstances. This is done using the *Chineses Remainder Theorem*, and is implemented in the :func:`.crt` command. For example, the following computes the unique, modulo a constant, integer :math:`x` that is congruent to :math:`3 \bmod 8`, :math:`4 \bmod 9`, and :math:`5 \bmod 25`:  ::
+Finally, Sage can compute the simulatenous solution of linear
+congruences with different modulii under certain circumstances. This
+is done using the *Chineses Remainder Theorem*, and is implemented in
+the :func:`.crt` command. For example, the following computes the
+smallest nonnegative integer, :math:`x` that is congruent to :math:`3 \bmod 8`, :math:`4 \bmod 9`, 
+and :math:`5 \bmod 25`.   ::
 
   sage: crt([3,4,5],[8,9,25])
   355
@@ -294,6 +266,8 @@ We can check the validity of this solution using the :func:`.mod` command. ::
   sage: mod(355,25)
   5
 
+The set of all integer solutions is those
+integers congruent to :math:`355`  modulo :math:`8*9*25=1800`.
 
 **Exercises:**
 
@@ -306,7 +280,7 @@ We can check the validity of this solution using the :func:`.mod` command. ::
      e) :math:`6x = 18`
      f) :math:`37x = 21`
 
-  #. Above you computed the solution sets for the congruences :math:`6x =0`, :math:`6x = 12` and :math:`6x = 18`. What are the similarities? What are the differences? Can you use these results to say something in general about the structure of the set :math:`\left\{ 6x \ \vert\ x \in \mathbb{Z}_{42} \right\}`?
+  #. Above you computed the solution sets for the congruences  :math:`6x =0`, :math:`6x = 12` and :math:`6x = 18`. What are the    similarities?  What are the differences? Can you use these results  to say something in general about the structure of the set    :math:`{\left\{ 6x \mid x \in \mathbb{Z}_{42} \right\} }` ?
 
   #. Use the :func:`solve_mod` command find all of the solutions to the following congruences modulo :math:`36`.
 
@@ -315,6 +289,48 @@ We can check the validity of this solution using the :func:`.mod` command. ::
      c) :math:`23x = 32`
      d) :math:`8x = 14`
 
+
+
+.. _euclidean_algorithm:
+
+Mini-Topic: Euclidean Algorithm
+-------------------------------
+
+    You should be familiar with :ref:`division_and_factoring`, :ref:`variables`, :ref:`external_files_and_sessions`, and :ref:`while_loops`
+
+..  index:: euclidean algorithm, integers, gcd  
+
+Recall that for :math:`a,b \in \mathbb{Z}` with :math:`b \neq 0`, there always exists unique :math:`q,r \in \mathbb{Z}` such that :math:`a=bq+r` with :math:`0 \leq r< b`. With that in mind, we will use Sage to calculate the *gcd* of two integers using the *Euclidean Algorithm*. The following code is an implementation of the Euclidean Algorithm in Sage.  
+
+.. code-block:: python
+
+	# Begin euclid.sage
+	r=a%b
+	print (a,b,r)
+	while r != 0:
+	        a=b; b=r
+	        r=a%b
+	        print (a,b,r)
+	# End euclid.sage
+				
+If you create a file ``euclid.sage`` containing the text above, then the output after loading the file is: ::
+
+  sage: a=15; b=4 
+  sage: load euclid.sage 
+  (15, 4, 3) (4, 3, 1) (3, 1, 0) 
+  sage: a=15; b=5 
+  sage: load euclid.sage 
+  (15, 5, 0)
+				
+In the first case, we see that the ``gcd`` was :math:`1`, while in the second the ``gcd`` was :math:`5`.
+
+**Exercises:**
+
+    #. Revise the loop in the ``euclid.sage`` so that only the gcd and the total number of divisions (i.e. the number of steps through the algorithm) are printed. Compare the speed of this version of the algorithm with the built-in Sage function :func:`.gcd` by using both functions on large integers.
+
+    #. Write your own *Extended Euclidean Algorithm* by revising the loop in ``euclid.sage``. 
+
+ 
 .. _groups:
 
 Groups
@@ -324,7 +340,7 @@ Groups
 
 
 There are three major types of groups implemented in sage, 
-PermutationGroups, MatrixGroups and AbelianGroups.  
+:func:`PermutationGroup`, :func:`MatrixGroup` and :func:`AbelianGroup`.  
 We will work with permutation groups first and cover most of the methods that
 are applied to them.  Many of these methods are applicable to
 arbitrary groups, so the other sections will  be somewhat briefer and will
@@ -343,49 +359,44 @@ Symmetric  Groups
 
 .. index:: SymmetricGroup
 
-The Symmetric Group :math:`S_n` is the group of all permutations on
-:math:`n` elements.  
-First we will construct the symmetric group on :math:`\{ 1, 2, 3, 4 ,
-5 \}` which is done by using the :class:`.SymmetricGroup` command.  ::
+The Symmetric Group :math:`S_n` is the group of all permutations on :math:`n` elements.  First we will construct the symmetric group on :math:`\{ 1, 2, 3, 4 ,5 \}` which is done by using the :class:`.SymmetricGroup` command.  ::
  
-        sage: G = SymmetricGroup(5) 
-        sage: G Symmetric group of order 5! as a permutation group
+        sage: S5 = SymmetricGroup(5) 
+        S5 Symmetric group of order 5! as a permutation group
 
-Once the group has been constructed we can check the number of elements, which is :math:`5!`, 
-and  list them all. ::
+Once the group has been constructed we can check the number of elements, which is :math:`5!`, and  list them all. ::
 
-       sage: G.cardinality()
+       sage: S5.cardinality()
         120
-       sage: G.list()
+       sage: S5.list()
     	[(), (4,5), (3,4), (3,4,5), (3,5,4), (3,5), (2,3), (2,3)(4,5), (2,3,4), (2,3,4,5), (2,3,5,4), (2,3,5), (2,4,3), (2,4,5,3), (2,4), (2,4,5), (2,4)(3,5), (2,4,3,5), (2,5,4,3), (2,5,3), (2,5,4), (2,5), (2,5,3,4), (2,5)(3,4), (1,2), (1,2)(4,5), (1,2)(3,4), (1,2)(3,4,5), (1,2)(3,5,4), (1,2)(3,5), (1,2,3), (1,2,3)(4,5), (1,2,3,4), (1,2,3,4,5), (1,2,3,5,4), (1,2,3,5), (1,2,4,3), (1,2,4,5,3), (1,2,4), (1,2,4,5), (1,2,4)(3,5), (1,2,4,3,5), (1,2,5,4,3), (1,2,5,3), (1,2,5,4), (1,2,5), (1,2,5,3,4), (1,2,5)(3,4), (1,3,2), (1,3,2)(4,5), (1,3,4,2), (1,3,4,5,2), (1,3,5,4,2), (1,3,5,2), (1,3), (1,3)(4,5), (1,3,4), (1,3,4,5), (1,3,5,4), (1,3,5), (1,3)(2,4), (1,3)(2,4,5), (1,3,2,4), (1,3,2,4,5), (1,3,5,2,4), (1,3,5)(2,4), (1,3)(2,5,4), (1,3)(2,5), (1,3,2,5,4), (1,3,2,5), (1,3,4)(2,5), (1,3,4,2,5), (1,4,3,2), (1,4,5,3,2), (1,4,2), (1,4,5,2), (1,4,2)(3,5), (1,4,3,5,2), (1,4,3), (1,4,5,3), (1,4), (1,4,5), (1,4)(3,5), (1,4,3,5), (1,4,2,3), (1,4,5,2,3), (1,4)(2,3), (1,4,5)(2,3), (1,4)(2,3,5), (1,4,2,3,5), (1,4,2,5,3), (1,4,3)(2,5), (1,4)(2,5,3), (1,4,3,2,5), (1,4)(2,5), (1,4,2,5), (1,5,4,3,2), (1,5,3,2), (1,5,4,2), (1,5,2), (1,5,3,4,2), (1,5,2)(3,4), (1,5,4,3), (1,5,3), (1,5,4), (1,5), (1,5,3,4), (1,5)(3,4), (1,5,4,2,3), (1,5,2,3), (1,5,4)(2,3), (1,5)(2,3), (1,5,2,3,4), (1,5)(2,3,4), (1,5,3)(2,4), (1,5,2,4,3), (1,5,3,2,4), (1,5)(2,4,3), (1,5,2,4), (1,5)(2,4)]
 
 As you can see from the list, in Sage a permutation is written in *cycle notation*.  Note that the empty parenthesis `()` is used to  represent the identity permutation.  We create the identity permutation and  a randomly chosen element as follows. ::
 
-        sage: id = G.identity()
+        sage: id = S5.identity()
         ()
-	sage: G.random_element()
+	sage: S5.random_element()
 	(1,2)(3,4)
- 	sage: r=  G.random_element(), r
+ 	sage: r=  S5.random_element(), r
 	(1,3,4)(2,5)
 
-As you can see, subsequent calls for a random element give a  new element each time.
-We can also express the element :math:`r` as a function by listing
-the images of :math:`1,2,3,4,5` in order. ::
+As you can see, subsequent calls for a random element give a  new element each time.  We can also express the element :math:`r` as a
+function by listing the images of :math:`1,2,3,4,5` in order. ::
 
-      sage:= r.list()
+      sage: r.list()
       [3,5,4,1,2]
 
-We can construct a specific element in :math:`S_5` by coercing a
-permutation, written in *cycle notation*, into :math:`G`. Since
-parentheses have another meaning to Python we must enclose our cycles
-in quotations before we use them. 
-We construct an element :math:`t` using the list of images that it has as a function. ::
+We can construct a specific element in :math:`S_5` by coercing a permutation, written in *cycle notation*, into :math:`S5`. We must
+enclose the  product of cycles in quotations for Sage to parse the input correctly. ::
 
-             sage:  r = G('(1,3)(2,4)'); r
+             sage:  r = S5('(1,3)(2,4)'); r
 	     (1,3)(2,4)
-             sage:  s = G('(1,4,3,2)'); s
+             sage:  s = S5('(1,4,3,2)'); s
              (1,4,3,2)
-	     sage:  t = G([1,5,4,3,2]); t
+
+We may also construct an element :math:`t` using the list of images that it has as a function. ::
+
+	     sage:  t = S5([1,5,4,3,2]); t
 	     (2,5)(3,4)
 
 The product of cycles is taken from *left-to-right* and is, of
@@ -418,24 +429,30 @@ The *exponent* of a group is the least common multiple of the orders of the elem
           60
 
 
+.. index:: groups; alternating, AlternatingGroup, sign
+
 The :meth:`sign` method  is used to compute the sign of a permutation,
 indicating whether it can be written as the product of an even or an odd number
 of permutations. ::
 
-        sage: G('(2,3,4)').sign() 
+        sage: S5('(2,3,4)').sign() 
 	1
-	sage: G('(4,5)').sign()   
+	sage: S5('(4,5)').sign()   
 	-1
 
-.. index:: sign
-.. index:: groups; alternating, AlternatingGroup
+.. index:: groups; subgroup, subgroups,  is_subgroup
 
-.. index:: groups; subgroup, subgroups
+
+Each symmetric group :math:`S_n` is a subgroup of :math:`S_{n+1}`. ::
+
+        sage: S4 = SymmetricGroup(4)
+        sage: S4.is_subgroup(S5)
+        True
 
 You can construct the subgroup generated by a list of elements by
 using the :meth:`subgroup` method. ::
 
-        sage: H = G.subgroup([r,s])
+        sage: H = S5.subgroup([r,s])
 	sage: H
 	Subgroup of SymmetricGroup(5) generated by [(1,3)(2,4), (1,4,3,2)]
 	sage: H.list()
@@ -468,33 +485,38 @@ multiplication table, often called the *Cayley Table*.
 Invoke the group's :meth:`cayley_table()` method
 (also called :meth:`multiplication_table()`). The default uses
 letters to represent the group elements (in the order they appear
-using :meth:`list`).  We can also use the elements themselves, or
+using :meth:`list`).  ::
+
+    sage: S3 = SymmetricGroup(3)
+    sage: S3.cayley_table()
+    *  a b c d e f
+    +-----------
+    a| a b c d e f
+    b| b a d c f e
+    c| c e a f b d
+    d| d f b e a c
+    e| e c f a d b
+    f| f d e b c a
+    sage: S3.list()
+    [(), (2,3), (1,2), (1,2,3), (1,3,2), (1,3)]
+
+We can also use the elements themselves, or
 give them names.  Here we assign name based on the symmetries of a
 triangle: :meth:`u_i` for reflections through the axis containing
 vertex :meth:`i` and :meth:`r^1, r^2` for the rotations. ::
 
- sage: G.cayley_table()
- *  a b c d e f
- +-----------
- a| a b c d e f
- b| b a d c f e
- c| c e a f b d
- d| d f b e a c
- e| e c f a d b
- f| f d e b c a
-	
- sage: G.cayley_table(names='elements')
- *       ()   (2,3)   (1,2) (1,2,3) (1,3,2)   (1,3)
- +------------------------------------------------
- ()|      ()   (2,3)   (1,2) (1,2,3) (1,3,2)   (1,3)
- (2,3)|   (2,3)      () (1,2,3)   (1,2)   (1,3) (1,3,2)
- (1,2)|   (1,2) (1,3,2)      ()   (1,3)   (2,3) (1,2,3)
- (1,2,3)| (1,2,3)   (1,3)   (2,3) (1,3,2)      ()   (1,2)
- (1,3,2)| (1,3,2)   (1,2)   (1,3)      () (1,2,3)   (2,3)
- (1,3)|   (1,3) (1,2,3) (1,3,2)   (2,3)   (1,2)      ()
+ sage: S3.cayley_table(names='elements')
+ *       |      ()   (2,3)   (1,2) (1,2,3) (1,3,2)   (1,3)
+ -------------------------------------------------
+ ()      |      ()   (2,3)   (1,2) (1,2,3) (1,3,2)   (1,3)
+ (2,3)   |   (2,3)      () (1,2,3)   (1,2)   (1,3) (1,3,2)
+ (1,2)   |   (1,2) (1,3,2)      ()   (1,3)   (2,3) (1,2,3)
+ (1,2,3) | (1,2,3)   (1,3)   (2,3) (1,3,2)      ()   (1,2)
+ (1,3,2) | (1,3,2)   (1,2)   (1,3)      () (1,2,3)   (2,3)
+ (1,3)   |   (1,3) (1,2,3) (1,3,2)   (2,3)   (1,2)      ()
 
 
- sage: G.cayley_table(names=['id','u1','u3','r1','r2','u2'])
+ sage: S3.cayley_table(names=['id','u1','u3','r1','r2','u2'])
  *  id u1 u3 r1 r2 u2
  +------------------
  id| id u1 u3 r1 r2 u2
@@ -531,9 +553,12 @@ Here are the simplest. ::
      The Klein 4 group of order 4, as a permutation group
      sage: K.list()
      [(), (3,4), (1,2), (1,2)(3,4)]
-     sage: Q= QuaternionGroup()
      sage: Q= QuaternionGroup(); Q.list()
-     [(), (1,2,3,4)(5,6,7,8), (1,3)(2,4)(5,7)(6,8), (1,4,3,2)(5,8,7,6), (1,5,3,7)(2,8,4,6), (1,6,3,8)(2,5,4,7), (1,7,3,5)(2,6,4,8), (1,8,3,6)(2,7,4,5)]
+     [(), (1,2,3,4)(5,6,7,8), (1,3)(2,4)(5,7)(6,8),
+     (1,4,3,2)(5,8,7,6), (1,5,3,7)(2,8,4,6), (1,6,3,8)(2,5,4,7),
+     (1,7,3,5)(2,6,4,8), (1,8,3,6)(2,7,4,5)]
+     sage: [x.order() for x in Q]
+     [1, 4, 2, 4, 4, 4, 4, 4]
 
 .. index:: CyclicPermutationGroup, groups;  cyclic; DihedralGroup, groups; dihedral, AlternatingGroup, DiCyclicGroup
 
@@ -562,7 +587,8 @@ sign---is a subgroup of :math:`S_5`  obtained by the command :class:`Alternating
       sage: A.cardinality()
       12
 
-Another builtin group is  the :class:`DiCyclicGroup`  (see  `the  article <http://groupprops.subwiki.org/wiki/Dicyclic_group>`_).
+Another builtin group is  the :class:`DiCyclicGroup`  (see  
+`the Group Properties article <http://groupprops.subwiki.org/wiki/Dicyclic_group>`_).
 Let's  check that the :math:`A_4` is not  isomorphic to the dicyclic
 group with the same number of elements.  ::
 
@@ -580,8 +606,8 @@ construct the list of all elements or order 2. ::
 
 
 
-       sage: G = SymmetricGroup(5) 
-       sage: T = [s for s in G  if s.order() == 2 ];  T
+       sage: S5 = SymmetricGroup(5) 
+       sage: T = [s for s in S5  if s.order() == 2 ];  T
 	[(4,5), (3,4), (3,5), (2,3), (2,3)(4,5), (2,4), (2,4)(3,5), (2,5), (2,5)(3,4), (1,2), (1,2)(4,5), (1,2)(3,4), (1,2)(3,5), (1,3), (1,3)(4,5), (1,3)(2,4), (1,3)(2,5), (1,4), (1,4)(3,5), (1,4)(2,3), (1,4)(2,5), (1,5), (1,5)(3,4), (1,5)(2,3), (1,5)(2,4)]
 
 .. index:: groups; cyclic, groups; Klein 4,  CyclicPermutationGroup
@@ -609,7 +635,7 @@ but  is isomorphic to it.  ::
 
 .. index:: subgroup, center
 
-As with the symmetric group, pass a list of
+As with the symmetric group, we can pass a list of
 group elements to the method :meth:`subgroup` to create a subgroup of
 any permutation group. 
 
@@ -621,8 +647,13 @@ trivial subgroup.  ::
         sage: L = D.subgroups(); L
  	[Permutation Group with generators [()], Permutation Group with generators [(1,3)(2,4)], Permutation Group with generators [(2,4)], Permutation Group with generators [(1,3)], Permutation Group with generators [(1,2)(3,4)], Permutation Group with generators [(1,4)(2,3)], Permutation Group with generators [(2,4), (1,3)(2,4)], Permutation Group with generators [(1,2,3,4), (1,3)(2,4)], Permutation Group with generators [(1,2)(3,4), (1,3)(2,4)], Permutation Group with generators [(2,4), (1,2,3,4), (1,3)(2,4)]]
 
-The join of two subgroups :math:`C` and :math:`K`, is the group generated by the elements of the two
-subgroups. We get the union of :math:`C` and :math:`K` by "adding" the respective lists. It turns out this gives the whole symmetric group. ::
+The join of two subgroups :math:`C` and :math:`K`, is the group
+generated by the union of the two subgroups. We get the union of :math:`C` and :math:`K` by "adding" the
+respective lists. 
+In the example below, we see that the cyclic permutation group
+generated by :math:`(1,2,3,4,5)` and the Klein four group generate the
+whole symmetric group :math:`S_5`. Notice that the Klein four group is
+a subgroup of :math:`S_4`, which itself is a subgroup of :math:`S_5`. ::
 
     sage: K = KleinFourGroup(); K.list()
     [(), (3,4), (1,2), (1,2)(3,4)]
@@ -656,17 +687,17 @@ group by a normal subgroup.  First we consider cosets and conjugation.
 The alternating group :math:`A_4` has a subgroup isomorphic to the
 Klein four group that is normal. ::
 
-    sage: G = AlternatingGroup(4)
+    sage: A4 = AlternatingGroup(4)
     sage: g1 = A4('(1,4)(3,2)') ; g2 = A4('(2,4)(1,3)')
-    sage: H = G.subgroup([g1,g2]); 
-    sage: H.is_normal(G); H.is_isomorphic(KleinFourGroup())
+    sage: H = A4.subgroup([g1,g2]); 
+    sage: H.is_normal(A4); H.is_isomorphic(KleinFourGroup())
     True
     True
 
-Let's compare the right and left cosets of :math:`H` in :math:`G`. ::
+Let's compare the right and left cosets of :math:`H` in :math:`A_4`. ::
 
-    sage: Hr = G.cosets(H, side = 'right')
-    sage: Hl = G.cosets(H, side = 'left')
+    sage: Hr = A4.cosets(H, side = 'right')
+    sage: Hl = A4.cosets(H, side = 'left')
     sage: Hr; Hl
     [[(), (1,2)(3,4), (1,3)(2,4), (1,4)(2,3)], [(2,3,4), (1,3,2), (1,4,3), (1,2,4)], [(2,4,3), (1,4,2), (1,2,3), (1,3,4)]]
     [[(), (1,2)(3,4), (1,3)(2,4), (1,4)(2,3)], [(2,3,4), (1,2,4), (1,3,2), (1,4,3)], [(2,4,3), (1,2,3), (1,3,4), (1,4,2)]]
@@ -687,20 +718,20 @@ The conjugate by :math:`a`  of an element :math:`g` is the element :math:`a^{-1}
 The set of all conjugates of :math:`g` as  :math:`a` varies is the conjugacy class of :math:`g`.
 Below, we create a 3-cycle and compute its conjugacy class  in :math:`S_4` and then in :math:`A_4`.  This shows that two elements may be conjugate in :math:`S_4` but not in :math:`A_4`. ::
 
-    sage: G = SymmetricGroup(4)
-    sage: A = AlternatingGroup(4)
-    sage: g = G('(1,3,4)')
-    sage: Set([a^(-1)*g*a for a in A])
+    sage: S4 = SymmetricGroup(4)
+    sage: A4 = AlternatingGroup(4)
+    sage: g = S4('(1,3,4)')
+    sage: Set([a^(-1)*g*a for a in A4])
     {(1,3,4), (1,4,2), (1,2,3), (2,4,3)}
-    sage: Set([a^(-1)*g*a for a in G])
+    sage: Set([a^(-1)*g*a for a in S4])
     {(1,2,3), (1,3,4), (2,3,4), (2,4,3), (1,4,3), (1,2,4), (1,3,2), (1,4,2)}
 
 The method :meth:`conjugacy_class_representatives` chooses one element from each conjugacy class.
 Notice that there are two classes for 3-cycles in :math:`A_4`, but only one in :math:`S_4`. ::
 
-   sage: G.conjugacy_classes_representatives()
+   sage: S4.conjugacy_classes_representatives()
    [(), (1,2), (1,2)(3,4), (1,2,3), (1,2,3,4)]
-   sage: A.conjugacy_classes_representatives()
+   sage: A4.conjugacy_classes_representatives()
    [(), (1,2)(3,4), (1,2,3), (1,2,4)]
 
 The conjugate by :math:`a` of a subgroup :math:`H` is the group :math:`a^{-1}Ha`
@@ -713,19 +744,29 @@ appear. ::
      sage: K = H.conjugate(PermutationGroupElement('(3,5)'));  K
      Permutation Group with generators [(1,2,5,4)]
 
+The normalizer of :math:`H` in :math:`S_4` is the subgroup of elements
+of :math:`a \in S_4` such that :math:`a^{-1}Ha = H`. ::
+
+     sage: S4.normalizer(H)
+     Permutation Group with generators [(2,4), (1,2,3,4), (1,3)(2,4)]
+     sage: H1 = H.conjugate(PermutationGroupElement('(2,4)'));  H1
+     Permutation Group with generators [(1,4,3,2)]
+     sage: H1 ==H
+     True
+
 Sage can compute all normal subgroups of a group :math:`G`.  Let's
 verify that :math:`S_4` has 2 non-trivial normal subgroups, the
 alternating group, and a group isomorphic to the Klein four group (but
 not equal to sage's standard Klein four group).  ::
 
-   sage: G = SymmetricGroup(4)
-   sage: Gnorms = G.normal_subgroups(); Gnorms
+   sage: S4 = SymmetricGroup(4)
+   sage: S4norms = S4.normal_subgroups(); S4norms
    [Permutation Group with generators [()], Permutation Group with generators [(1,3)(2,4), (1,4)(2,3)], Permutation Group with generators [(2,4,3), (1,3)(2,4), (1,4)(2,3)], Permutation Group with generators [(1,2), (1,2,3,4)]]
-   sage: G.normalizer(H)
-   Permutation Group with generators [(2,4), (1,2,3,4), (1,3)(2,4)]
-   sage: K = Gnorms[1];  K.is_isomorphic(KleinFourGroup())
+   sage: K = S4norms[1];  K==KleiFourGroup() 
+   False
+   sage: K.is_isomorphic(KleinFourGroup())
    True
-   sage: A = Gnorms[2]; A == AlternatingGroup(4)
+   sage: A = S4norms[2]; A == AlternatingGroup(4)
    True
 
 We may now compute the quotient of :math:`G` by the normal subgroups :math:`K` and :math:`A` in the previous example.  As expected :math:`G/A`  is isomorphic to :math:`S_2`. Since :math:`G` has 24 elements and :math:`K` has 4 elements, the quotient has 6 elements.  We can check that it is isomorphic to :math:`S_3`.  ::
@@ -774,8 +815,6 @@ For some groups the list  of all subgroups may be large.  To better understand t
 Permutation Group Homomorphisms
 ++++++++++++++++++++++++++++++++
 
-
-
 To construct a homomorphism between two permutation groups we use the :func:`.PermutationGroupMorphism` command. For an example let us use the two isomorphic groups that we constructed earlier.  ::
 
         sage: G = SymmetricGroup(5)
@@ -788,7 +827,7 @@ To construct a homomorphism between two permutation groups we use the :func:`.Pe
 	sage: D
 	Dihedral group of order 10 as a permutation group
 
-A homomorphism between these is constructed by listing an association between the **generators** of one group to the generators of the other. To see these we will use the :meth:`.gens()` method provided by our groups ::
+A homomorphism between these is constructed by listing an association between the *generators* of one group to the generators of the other. To see these we will use the :meth:`.gens()` method provided by our groups ::
 
 	sage: H.gens()
 	[(1,2,5,4,3), (1,5)(3,4)]
@@ -816,9 +855,6 @@ We can apply this homomorphism as we would any function, by calling it. ::
 Note that we get an  :exc:`AttributeError` because the permutation
 :math:`(1,5)` is not in the domain of :meth:`phi`.
 
-**Exercises:**
-
-   #. There is a homomorphism from the dicyclic group of index :math:`n` to the dihedral group of index :math:`n` .  Construct it and find the kernel. 
 
 .. index:: kernel, groups; kernel of homomorphism
 
@@ -859,25 +895,24 @@ If we just want the direct product group, we must select the 0th element of the 
   sage: C4xC3[0]
   Permutation Group with generators [(1,2,3,4), (5,6,7)]
 
+**Exercises:**
+
+   #. There is a homomorphism from the dicyclic group of index :math:`n` to the dihedral group of index :math:`n` .  Construct it and find the kernel. 
 
   
-
-
-.._matrix_groups
+.. _matrix_groups:
 
 Matrix Groups
 ------------------------
 
+Please contribute!
 
-.._abelian_groups
+.. _abelian_groups:
 
 Abelian Groups
 --------------------
 
-
-
-
-
+Please contribute!
 
 .. _linear_algebra:
 
@@ -972,7 +1007,7 @@ There are shortcuts in Sage to construct some of the more commonly used matrices
 .. index:: zero_matrix
 				
 To construct the zero matrix we may use :func:`zero_matrix` or the
-regular matrix function with no list inputted. ::
+regular matrix function with no list  input. ::
 
 	sage: zero_matrix(2,2)
 	[0 0]
@@ -1126,7 +1161,7 @@ If we ask Sage to compute the inverse of a matrix over the integers it will auto
 	4 & 8 \\
 	9 & 15 \end{array} \right)
 
-     Compute the following:
+      Compute the following:
 
        a) :math:`A + B`
        b) :math:`AB`
@@ -1159,7 +1194,7 @@ Matrix Manipulation
 
     You should be familiar with :ref:`vectors_and_matrices` and :ref:`matrix_arithmetic`. 
 
-In this section we will cover some of the commands that we can use to *manipulate* matrices. Let's begin by defining the a matrix over the rational numbers. ::
+In this section we will cover some of the commands that we can use to *manipulate* matrices. Let's begin by defining a matrix over the rational numbers. ::
 
   sage: M = matrix(QQ, [[1,2,3],[4,5,6],[7,8,9]]); M
   [1 2 3]
@@ -1177,7 +1212,8 @@ To get a list of row and column vectors, we use the :meth:`rows` and :meth:`colu
 
 .. index:: row, column, matrix; row, matrix; column
 
-If we want only one row or column vector then we use the singular with the number row and or column as its argument. You should recall that Sage follows Python's convention and all of the indicies begin with zero. ::
+The following examples show how to get a particular row or column
+vector. Remember tl that Sage follows Python's convention that all of the indicies begin with zero. ::
 
    sage: M.row(0)
    (1, 2, 3)
@@ -1231,7 +1267,9 @@ Next we will discuss some of the elementary row operations. To multiply a row or
 
 .. index:: add_multiple_of_row
 
-We can add a multiple of a row or column to another row or column by using the :meth:`add_multiple_of_row` method. The first command takes :math:`-4` times the first row and adds it to the second row. Once again it helps to remember that everything with a matrices in Sage are index starting with zero. So `0` below is referring to the first row and `1` to the second. We can all blame the C programming language for this confusion.  ::
+We can add a multiple of a row or column to another row or column by
+using the :meth:`add_multiple_of_row` method. The first command takes
+:math:`-4` times the row :math:`0`  and adds it to row :math:`1`.  ::
    
    sage: M.add_multiple_of_row(1,0,-4); M
    [ 1  2 -1]
@@ -1308,9 +1346,10 @@ Of course, if all we want is the *echelon form* of the matrix we can use either 
    [ 0  0  1]
 
 
-Next we would like to use the *augmented* matrix and the echelon form to solve a :math:`3\times 4` system of the form :math:`Mx = b`. First we define the matrix `M` and the vector `b` ::
+Next we  use the *augmented* matrix and the echelon form to solve a :math:`3\times 4` system of the form :math:`Mx = b`. First we define the matrix `M` and the vector `b` ::
 
-   sage: M = matrix(QQ, [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); M   [2 4 6 2 4]
+   sage: M = matrix(QQ,   [[2,4,6,2,4],[1,2,3,1,1],[2,4,8,0,0],[3,6,7,5,9]]); M   
+   [2 4 6 2 4]
    [1 2 3 1 1]
    [2 4 8 0 0]
    [3 6 7 5 9]
@@ -1320,7 +1359,7 @@ Next we would like to use the *augmented* matrix and the echelon form to solve a
 
 Then we construct the augmented matrix :math:`\left( M\ \vert b  \right)`, store it in the variable `M_aug` and compute it's echelon form. ::
 
-   sage: M_aug = m.augment(b); M_aug
+   sage: M_aug = M.augment(b); M_aug
    [  2   4   6   2   4  56]
    [  1   2   3   1   1  23]
    [  2   4   8   0   0  34]
@@ -1331,7 +1370,12 @@ Then we construct the augmented matrix :math:`\left( M\ \vert b  \right)`, store
    [ 0  0  0  0  1  5]
    [ 0  0  0  0  0  0]
 
-This tells us that we have a one dimensional solution space that consists of vectors of the form :math:`v = c \left(-2,1,0,0,0 \right) + \left(17,0,1,5\right)`
+This tells us that we have a one dimensional solution space that  consists of vectors of the form :math:`{v = c \left(-2,1,0,0,0 \right) + \left(21,0,1,0,5\right)}`. ::
+ 
+    sage: M*vector([21,0,-1,0,5])
+    (56, 23, 34, 101)
+    sage  M*vector([-2,1,0,0,0])
+    (0, 0, 0, 0)
 
 .. index:: solve_right
 
@@ -1420,8 +1464,9 @@ entries live. ::
 	Full MatrixSpace of 2 by 3 dense matrices over Rational Field
 				
 
-If we input a ring R and an integer n we get the matrix ring of n×n
-matrices of R. Coercion can be used to construct the zero matrix, the
+If we input a ring :math:`R` and an integer :math:`n` we get the
+matrix ring of :math:`n\times n` 
+matrices over :math:`R`. Coercion can be used to construct the zero matrix, the
 indentity matrix, or a matrix with specified entries as shown. ::
 
 	sage: Mat = MatrixSpace(ZZ,2); Mat
@@ -1509,7 +1554,7 @@ Now, let's use the standard ordered basis of :math:`\mathbb{R}^3` to find the ma
 
 Note that since Sage uses rows to construct a matrix we must use the  :func:`transpose` function to get the matrix we expect. ::
 
-  sage: M = transpose(matrix([[2,1,0,0],[0,2,1,0], [0,0,3,0],[0,1,-1,3]])); <
+  sage: M = transpose(matrix([[2,1,0,0],[0,2,1,0],  [0,0,3,0],[0,1,-1,3]]));  M
   [ 2  1  0  0]
   [ 0  2  1  0]
   [ 0  0  3  0]
@@ -1519,9 +1564,9 @@ Note that since Sage uses rows to construct a matrix we must use the  :func:`tra
 
 Once we have the matrix we will compute it's *characteristic polynomial* and then factor it. ::
 
-  sage: M.characteristic_polynomial()
+  sage: f = M.characteristic_polynomial(); f
   x^4 - 10*x^3 + 37*x^2 - 60*x + 36
-  sage: factor(x^4 - 10*x^3 + 37*x^2 - 60*x + 36)
+  sage: f.factor()
   (x - 3)^2 * (x - 2)^2
 
 .. index:: eigenvectors_right
@@ -1540,7 +1585,9 @@ Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` a
 
 .. index:: identity_matrix, augment
 
-What is returned is a :func:`list` of lists. Each list consisting of an eigenvalue and the associated linearly independent eigenvectors. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
+What is returned is a :func:`list` of ordered tripples. Each triple is 
+consists  of an eigenvalue followed by a list with a basis for the
+associated  eigenspace followed by the dimension of the associated eigenspace. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
  
       sage: (M - 2*identity_matrix(4)).augment(ev_M[1][1][0])
       [ 0  1  0  0  1]
@@ -1639,7 +1686,7 @@ Once the polynomial ring has been defined we can construct a polynomial without 
 
 .. index:: PolynomialRing
 
-Though x is the most common choice for a variable, we could have chosen
+Though :math:`x` is the most common choice for a variable, we could have chosen
 any letter for the indeterminate.  ::
 
 	sage: R.<Y>=PolynomialRing(QQ) 
@@ -1711,10 +1758,15 @@ Once constructed, the basic arithmetic with polynomials is straightforward. ::
   x^2 + 1/2*x - 7/4
   sage: f*g
   x^3 + 2*x^2 - 1
-  sage: f/g
-  (x + 1)/(x^2 + x - 1)
   sage: h^3
   1/8*x^3 + 9/16*x^2 + 27/32*x + 27/64
+
+We can also divide elements of the polynomial ring, but this changes  the parent. ::
+
+    sage: f/g
+    (x + 1)/(x^2 + x - 1)
+    sage: parent(f/g) 
+    Fraction Field of Univariate Polynomial Ring in x over Rational Field
 
 .. index:: PolynomialRing, degree
 				
@@ -1728,31 +1780,8 @@ A fundamental attribute of a polynomial is its degree. We use the :meth:`degree`
 				
 Notice that by convention Sage sets the degree of 0 to be -1.
 
-.. index:: is_irreducible
 
-To check whether a polynomial is irreducible, we use it's :meth:`is_irreducible` method. ::
-
-  sage: R.<x>=PolynomialRing(Integers(5))
-  sage: (x^3+x+1).is_irreducible()
-  True
-  sage: (x^3+1).is_irreducible()  
-  False
-				
-This method is only suitable for polynomial rings that are defined over a field, as polynomials defined more generally may not  posses a unique factorization. 
-
-.. index:: factor
-
-To compute the *factorization* of a polynomial, where defined, we use the :func:`.factor` command.  ::
-
-  sage: R.<x>=PolynomialRing(Integers(5))
-  sage: factor(x^3+x+1)        
-  x^3 + x + 1
-  sage: factor(x^3+1)        
-  (x + 1) * (x^2 + 4*x + 1)
-				
-In the example above, we see a confirmation that :math:`x^3+x+1` is irreducible in :math:`\mathbb{Z}_{5}[x]` whereas :math:`x^3+1` may be factored, hence is reducible.
-
-Similar to the integers, :math:`F[x]` has a division algorithm. As with the integers, we may use the ``//`` operator to determine the *quotient* and the ``%`` operator to determine the *remainder* of a division. ::
+The polynomial ring over a field has a division algorithm. As with the integers, we may use the ``//`` operator to determine the *quotient* and the ``%`` operator to determine the *remainder* of a division. ::
 
   sage: R.<x>=PolynomialRing(Integers(7))
   sage: f=x^6+x^2+1
@@ -1778,7 +1807,7 @@ Additionally, if the coefficients of the polynomial are in :math:`\mathbb{Z}` or
 
 .. index:: gcd, Polynomial Rings; gcd
 				
-Since :math:`F[x]` has unique factorization, we have a unique greatest common divisor (gcd) of polynomials. This can be computed using the :func:`gcd` command.  ::
+For a field  :math:`F`, the polynomial ring :math:`F[x]` has a division algorithm, so we have a unique greatest common divisor (gcd) of polynomials. This can be computed using the :func:`gcd` command.  ::
 
   sage: R.<x> = PolynomialRing(QQ)
   sage: p = x^4 + 2*x^3 + 2*x^2 + 2*x + 1
@@ -1788,7 +1817,7 @@ Since :math:`F[x]` has unique factorization, we have a unique greatest common di
 
 .. index:: xgcd, Polynomial Rings; xgcd
 
-As with integers, the greatest common divisor of two polynomials can be represented as a linear combination. The extended Euclidean algorithm is to determine polynomials which constitute that linear combination. For polynomials defined over the integers or rationals, we may use the :func:`xgcd` function to compute the extended Euclidean algorithm. ::
+The greatest common divisor of two integers can be represented as a linear combination of the two integers, and the extended Euclidean algorithm is used to determine one such linear combination. Similarly, the greatest common divisor of  polynomials :math:`a(x)` and :math:`b(x)` may be written in the form :math:`a(x)f(x) + b(x)g(x)` for some polynomials :math:`f(x)` and :math:`g(x)`.  We may use the :func:`xgcd` function to compute the  multipliers  :math:`f(x)` and :math:`g(x)`. ::
 
   sage: R.<x>=PolynomialRing(ZZ)
   sage: a=x^4-1
@@ -1799,6 +1828,32 @@ As with integers, the greatest common divisor of two polynomials can be represen
   sage: a*u+b*v
   x + 1
 				
+.. index:: is_irreducible
+
+To check whether a polynomial is irreducible, we use it's :meth:`is_irreducible` method. ::
+
+  sage: R.<x>=PolynomialRing(Integers(5))
+  sage: (x^3+x+1).is_irreducible()
+  True
+  sage: (x^3+1).is_irreducible()  
+  False
+				
+This method is only suitable for polynomial rings that are defined over a field, as polynomials defined more generally may not  posses a unique factorization. 
+
+.. index:: factor
+
+To compute the *factorization* of a polynomial, where defined, we use the :func:`.factor` command.  ::
+
+  sage: R.<x>=PolynomialRing(Integers(5))
+  sage: factor(x^3+x+1)        
+  x^3 + x + 1
+  sage: factor(x^3+1)        
+  (x + 1) * (x^2 + 4*x + 1)
+				
+In the example above, we see a confirmation that :math:`x^3+x+1` is
+irreducible in :math:`\mathbb{Z}_{5}[x]` whereas :math:`x^3+1` may be
+factored, hence is reducible.
+
 We can also consider polynomials in :math:`R[x]` as functions from :math:`R` to :math:`R` by *evaluation*, that is by substituting the indeterminate variable with a member of the coefficient ring. Evaluation of polynomials in Sage works as expected, by *calling* the polynomial like a function. ::
 
   sage: R.<x>=PolynomialRing(Integers(3))
@@ -1843,7 +1898,8 @@ Unlike with univariate polynomials, there is not a single way that we can order 
 
 .. index:: monomials, Multivariate Polynomials Rings; monomials
 
-To access a list of monomials, terms without coefficients, you use the :meth:`.monomials` method. ::
+To access a list of the monomials with nonzero coefficients in
+:math:`p`, you use the :meth:`.monomials` method. ::
 
   sage: p.monomials()
   [y*z, z^2, x, y]
@@ -1914,7 +1970,9 @@ Once the term order  changes, all of the methods discussed earlier, even how Sag
   sage: p.monomials()
   [x, y*z, y, z^2]
 
-Note that even with the same monomial ordering, in this case the lexicographic ordering, the order of the  indeterminates themselves is important. We can change the relative order of each indeterminate by changing the order in which we specify them when we construct the polynomial ring. The variables are considered to be in *descending* order. ::
+Note that the order in which the indeterminates are listed affects the
+monomial ordering. In the example above we have the  lexicographic
+ordering, with :math:`x>y>z`.   We may redefine the ring to use the lexicographic order :math:`z>y>x`. ::
 
   sage: R.<z,y,x> = PolynomialRing(QQ,3,order='lex')
   sage:  p = -1/2*x - y*z - y + 8*z^2
@@ -1982,7 +2040,7 @@ In this section we will construct and do common computations with ideals and quo
 Ideals
 ++++++
 
-Once a ring is constructed and a list of generating elemets have been selected, the ideal generated by this list is constructed by using the ``*`` operator. ::
+Once a ring is constructed and a list of generating elements have been selected, the ideal generated by this list is constructed by using the ``*`` operator. ::
 
   sage: R.<x> = PolynomialRing(QQ)
   sage: I = [2*x^2 + 8*x - 10, 10*x - 10]*R; I
@@ -2018,8 +2076,7 @@ Ideal membership can be determined by using the ``in`` conditional. ::
 
 .. index:: is_prime, is_idempotent, is_principal
 					
-You can determine some properties of the ideal by using the
-corresponding ``is_*`` method. For example, to determine weather the
+You can determine some properties of the ideal by using the corresponding ``is_`` methods. For example, to determine weather the
 ideals are *prime*, *principal*, or *idempotent* we enter the following: ::
 
 	sage: J.is_prime()
@@ -2031,13 +2088,6 @@ ideals are *prime*, *principal*, or *idempotent* we enter the following: ::
 	sage: K.is_principal()
 	True
 					
-Unfortunately, as of the time of this writing, many of these methods are not implemented for all rings. For example, if you wanted to know if :math:`J` was a *maximal ideal*, you would normally type: ::
-
-  sage: J.is_maximal()
-  --------------------------------------------------------------------------
-  NotImplementedError                       Traceback (most recent call last)
-
-But we get a :obj:`NotImplementedError`, since Sage is not yet able to determine this.
 
 
 Ideals in Multivarate Polynomial Rings
@@ -2214,15 +2264,15 @@ The *characteristic* of the ring can be computed using the ring's :meth:`.charac
 
 .. index:: Multivariate Polynomial Division Algorithm
 
-.. mv_division_algorithm
+.. _mv_division_algorithm:
 
 Mini-Topic: Multivariate Polynomial Division Algorithm
 -------------------------------------------------------
 
 In this section we will use Sage to construct a *division* algorithm for multivariate polynomials. Specifically, for a given polynomial :math:`f` (the dividend) and a sequence of polynomials :math:`f_1, f_2, \ldots, f_k` (the divisors) we want to compute a sequence of quotients :math:`a_1, a_2,\ldots, a_k` and a remainder polynomial :math:`r` so that
 
-.. math::
-   f = \sum_{i=1}^{i=k} a_i \cdot f_i + r
+.. math::  
+       f = \sum_{i=1}^{i=k} a_i \cdot f_i + r
 
 where no terms of :math:`r` are divisible by any of the leading terms of :math:`f_i`.
 
@@ -2290,14 +2340,16 @@ Now we are ready to define the main loop of our algorithm. ::
 
   print A, p, r
         
-.. index:: Finite Fields
 
-.._fields
+
+.. _fields:
 
 Fields
 =============
 
-.._number_fields
+.. _number_fields:
+
+.. index:: number fields
 
 Number Fields
 ----------------
@@ -2318,10 +2370,10 @@ The options :meth:`num_bound` or :meth:`dem_bound` may be used to bound the nume
    -5/14*a^2 + a - 3
    sage: K.random_element()
    -2*a
-    sage: K.random_element(num_bound= 2)
+   sage: K.random_element(num_bound= 2)
    -a^2 + 1
 
-Every element will have a minimal polynomial of degree 3. ::
+Every irrational element will have a minimal polynomial of degree 3. ::
  
   sage: a.minpoly()
    x^3 - 2
@@ -2393,7 +2445,7 @@ The Galois closure of K. ::
 Field Extensions
 +++++++++++++++++
 
-Now let's construct field extensions, which may be done in a few different ways.   The methods  :meth:`relative`  and  :meth:`absolute` distinguish between the field extension as constructed, and the extension relative to the prime field :math:`\mathbb{Q}`. ::
+Now let's construct field extensions, which may be done in a few different ways.   The methods   :meth:`absolute_` refer to the prime field :math:`\mathbb{Q}`, while the methods :meth:`relative_`   refer to a field extension as constructed, which may be relative to some intermediate field. ::
 
     sage: P.<t> = PolynomialRing(QQ)
     sage: K.<a> = NumberField(t^3-2)
@@ -2472,7 +2524,7 @@ In a prior section we constructed rings of integers modulo :math:`n`. We know th
   sage: R, F7
   (Ring of integers modulo 7, Finite Field of size 7)
 
-To take advantage of the extra stucture it is best to use the :func:`GF` command to construct this object.  As with modular rings we have to coerece integers into the field in order to do arithemetic in the field. ::
+To take advantage of the extra stucture it is best to use the command :func:`GF` (or equivalently, :func:`FiniteField`) to construct this object.  As with modular rings we have to coerece integers into the field in order to do arithemetic in the field. ::
 
   sage: F7(4 + 3)
   0
@@ -2483,7 +2535,7 @@ To take advantage of the extra stucture it is best to use the :func:`GF` command
   sage: F7(3/2)
   5
 
-We can use Sage to construct any *finite field*, recall that a finite field is always of order :math:`n = p^k` where :math:`p` is a prime number. So to construct the field of order :math:`25 = 5^2` we input the following command. ::
+We can use Sage to construct any *finite field*.  Recall that a finite field is always of order :math:`n = p^k` where :math:`p` is a prime number. To construct the field of order :math:`25 = 5^2` we input the following command. ::
 
   sage: F25.<a> = GF(25)
 
@@ -2513,11 +2565,11 @@ But if we are using only integers we must coerce the arithmetic into the field. 
 
   sage: 3+4 
   7
-  sage: parent(_)
+  sage: parent(3+4)
   Integer Ring
   sage: F25(3 + 4)
   2
-  sage: parent(_)
+  sage: parent(F25(3+4))
   Finite Field in a of size 5^2
 
 .. index:: Field Extensions; modulus
@@ -2556,7 +2608,6 @@ If we wanted all of the *irreducible* polynomials we would only change the last 
 
 It should be noted that the above code will only work if the polynomials are over *finite* rings or fields.
 
-The minimum polynomial of an
 
 **Exercises:**
 
@@ -2565,10 +2616,11 @@ The minimum polynomial of an
 #. Explain the relationship between the  number of primitive polynomials and the number of primitive elemens in the previous exercises.
 
 
-.. _primitive: http://en.wikipedia.org/wiki/Primitive_polynomial
+.. _primitive: http://en.wikipedia.org/wiki/Primitive_polynomial_(field_theory)
 
 
-.._function_fields
+
+.. _function_fields:
 
 Function Fields
 -----------------
@@ -3036,52 +3088,3 @@ We can also compute it's *dual* code. ::
 
 .. seealso::
    http://en.wikipedia.org/wiki/BCH_code
-
-..index:: Binary Golay Codes
-
-.. _binary_golay_codes:
-
-Binary Golay Codes
-++++++++++++++++++
-
-Etiam sodales condimentum tellus, eget condimentum nunc imperdiet at. Vivamus et consectetur mauris. Duis auctor mollis mi a hendrerit. Suspendisse eget lobortis felis. Nunc porttitor, turpis vel congue suscipit, velit est interdum dolor, volutpat luctus dui felis sed tellus. Nulla velit eros, porta ut mattis vel, tempor id ligula. Suspendisse eleifend orci vel elit tristique non ultricies orci euismod. Ut feugiat, nisi in accumsan vulputate, magna orci pellentesque nulla, eu sagittis dolor dolor sit amet neque. 
-
-.. seealso::
-   http://en.wikipedia.org/wiki/Binary_Golay_code
-
-.. index:: Reed Solomon Codes
-
-.. _reed_solomon_codes:
-
-Reed Solomon Codes
-++++++++++++++++++
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sem dui, rutrum a tincidunt in, tempus at nisl. Donec sit amet odio id enim ultricies condimentum. In sodales sem quis nibh bibendum vitae mattis quam cursus. Sed elementum odio eget nulla varius eget eleifend turpis blandit.
-
-.. seealso::
-   http://en.wikipedia.org/wiki/Reed%E2%80%93Solomon_error_correction
-
-.. index:: Toric Codes
-
-.. _toric_codes:
-
-Toric Codes
-++++++++++++
-
-Integer ac mi at tortor porta varius eget interdum turpis. Etiam ante nulla, posuere ac porttitor non, suscipit ac lorem. Cras a tortor sed risus blandit feugiat consequat ac mi. Morbi faucibus mi non erat dictum nec scelerisque magna interdum. Nulla ac nisl in lorem vulputate posuere sed vel nisi. Pellentesque arcu massa, porta eget tincidunt ac, fringilla et ante.
-
-.. seealso::
-   http://en.wikipedia.org/wiki/Toric_code
-
-
-.. index:: Walsh Codes
-
-.. _walsh_codes:
-
-Walsh Codes
-+++++++++++
-
-Pellentesque accumsan ornare convallis. Sed sapien erat, tincidunt vel bibendum a, feugiat vel nulla. Nam vel lectus nibh. Quisque facilisis, quam ut faucibus rutrum, nulla leo fermentum nibh, a varius turpis sapien non mauris. Mauris auctor malesuada viverra.
-
-.. seealso::
-   http://en.wikipedia.org/wiki/Walsh_code
