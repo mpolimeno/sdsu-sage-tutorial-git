@@ -965,7 +965,7 @@ Just like when I *split* a sting, I can join a list using a different separating
 
   #. We can use the :func:`.map` and :func:`.Integer` commands to take a string of integers and convert them into *Sage* integers.  
 
-.. _external_files_and_sessions:
+
 .. _programming_tools:
 
 =================
@@ -1293,7 +1293,7 @@ following  chapter on `Python functions`_ is a good place to start.
 
 .. _Python functions: http://greenteapress.com/thinkpython/html/book004.html 
 
-
+.. _external_files_and_sessions:
 
 External Files and Sessions
 ------------------------------

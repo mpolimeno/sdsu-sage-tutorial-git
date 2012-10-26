@@ -531,7 +531,7 @@ vertex :meth:`i` and :meth:`r^1, r^2` for the rotations. ::
 General Permutation Groups
 ++++++++++++++++++++++++++
 
-.. index:: PermutationGroup, Groups; permutation
+.. index:: PermutationGroup, groups; permutation
 
 A permutation group is a subgroup of some symmetric group.  
 We can construct a permutation group directly, without constructing
@@ -1896,7 +1896,7 @@ Unlike with univariate polynomials, there is not a single way that we can order 
 .. _page: http: http://en.wikipedia.org/wiki/Monomial_order   
 
 
-.. index:: monomials, Multivariate Polynomials Rings; monomials
+.. index:: monomials, Multivariate Polynomial Rings; monomials
 
 To access a list of the monomials with nonzero coefficients in
 :math:`p`, you use the :meth:`.monomials` method. ::
