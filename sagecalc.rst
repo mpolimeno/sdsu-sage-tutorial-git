@@ -787,14 +787,12 @@ In this section we will discuss the use of some of the basic descriptive statist
 .. index:: random
 
 To demonstrate their usage we will first generate a pseudo-random list
-of integers to describe. The :func:`.random` function generates a random
-number from :math:`[0,1)`, so we will use a trick. Note, by the nature
-of random number generation your list of numbers will be different. ::
+of integers from 0 to 100 to describe. The :func:`.random` function generates a random number from :math:`[0,1)`, so we will use a trick to generate integers in this specific range. Note, by the nature of random number generation your list of numbers will be different. ::
 
-	sage: data = [	floor(tan( pi* random() - pi/2.1 )) for i in [ 1 .. 20 ] ] 
-	sage: data																   
-	[1, -1, -7, 0, -4, -1, -2, 1, 3, 5, -1, 
-	25, -5, 1, 2, 0, 1, -1, -1, -1]
+	sage: data = [	int(random()*(100-0) + 0)  for i in [ 1 .. 20 ] ] 
+	sage: data								   
+	[78, 43, 6, 50, 47, 94, 37, 70, 66, 32, 1, 34, 93, 
+	30, 99, 82, 22, 74, 18, 40]
 
 .. index:: mean, median, mode, variance, standard deviation, std
 					
@@ -802,15 +800,16 @@ We can compute the mean, median, mode, variance, and standard
 deviation of this data. ::
 
 	sage: mean(data)
-	3/4
+	254/5
 	sage: median(data)
-	-1/2
+	45
 	sage: mode(data)  
-	[-1]
+	[32, 1, 66, 99, 82, 37, 6, 40, 74, 43, 
+	34, 78, 47, 50, 30, 22, 18, 70, 93, 94]
 	sage: variance(data)
-	3023/76
+	83326/95
 	sage: std(data)		
-	1/2*sqrt(3023/19)
+	sqrt(83326/95)
 					
 Note that both the standard deviation and variance are computed in their unbiased forms. It we want to bias these measures then you can use the ``bias=True`` option. 
 
@@ -819,12 +818,13 @@ Note that both the standard deviation and variance are computed in their unbiase
 We can also compute a rolling, or moving, average of the data with the :func:`.moving_average`. ::
 
 	sage: moving_average(data,4)
-	[-7/4, -3, -3, -7/4, -3/2, 1/4, 7/4, 2, 8, 6, 5, 23/4, 
-	-1/2, 1, 1/2, -1/4, -1/2]
+	[177/4,73/2,197/4,57,62,267/4,205/4,169/4,
+	133/4,40,79/2,64,76,233/4,277/4,49,77/2]
 	sage: moving_average(data,10)
-	[-1/2, -7/10, 19/10, 21/10, 11/5, 14/5, 29/10, 16/5, 3, 13/5, 2]
+	[523/10, 223/5,437/10,262/5,252/5, 278/5,
+	272/5,529/10,533/10,97/2,493/10]
 	sage: moving_average(data,20)
-	[3/4]
+	[254/5]
 
 **Exercises:**
 
