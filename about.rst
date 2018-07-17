@@ -68,7 +68,7 @@ This tutorial assumes that the reader has access to a running copy of SageMath. 
 
 Once it has been installed and started, SageMath has two ways to enter commands, either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice.
 
-A good alternative is to run SageMath in the cloud using 'Cocalc <https://cocalc.com>'_. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account.
+A good alternative is to run SageMath in the cloud using `Cocalc <https://cocalc.com>`_. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account.
 
 Everything that follows the ``sage:`` prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to *factor* the integer :math:`1438880` we would give the following example using SageMath's :func:`.factor` command. ::
 
@@ -98,7 +98,7 @@ Whereas in Cocalc it will look like:
        :alt: Using SageMath at the command line.
   :width: 800px
   :height: 525px
-  
+
 .. _help_tabcompletion:
 
 Tab Completion
@@ -108,13 +108,13 @@ Next we will discuss how to use a couple of important features of both interface
 
 .. index:: tab completion
 
-One of the handiest features built into SageMath is *tab completion* of commands. To use tab completion, just type in the first couple of letters of the command that you would like to use, and then the tab-key. For example, suppose that you wanted to compute :math:`56!` and don't remember the exact command name to do this. A good guess is that the command will have *factorial* somewhere in it's name. To see if that guess is correct, just type the first three letters ``fac`` and hit the tab-key. ::
+One of the handiest features built into SageMath is the *tab completion* of commands. To use tab completion, just type in the first couple of letters of the command that you would like to use, and then press the tab-key. For instance, suppose that you want to compute :math:`56!` but don't remember the exact command name to do this. A good guess is that the command will have *factorial* somewhere in its name. To see if that guess is correct, just type the first three letters ``fac`` and hit the tab-key. ::
 
   sage: fac[TAB]
   factor     factorial
   sage: factor
 
-The output tells you that only two SageMath commands begin with ``fac``,  :func:`.factor` and :func:`.factorial`. Note that SageMath has already changed the command from ``fac`` to ``factor`` because this is the common root of both commands. Since *factorial* looks like the correct command we will select this by typing the next letter, ``i``, and hitting the tab key again. ::
+The output tells you that only two SageMath commands begin with ``fac``,  :func:`.factor` and :func:`factorial`. Note that SageMath has already changed the command from ``fac`` to ``factor`` because this is the common root for both commands. Since *factorial* looks like the correct command, we will select this by typing the next letter, ``i``, and hitting the tab key again. ::
 
   sage: factorial
 
@@ -123,7 +123,7 @@ This time no list is returned because the only command that begins with ``factor
   sage: factorial(56)
   710998587804863451854045647463724949736497978881168458687447040000000000000
 
-Another good use of tab-completion is to discover what *methods* an *object* has. Say you have the integer :math:`a = 56` and you were wondering which commands SageMath offers for working with integers like :math:`56`. In this case the :math:`a` is our object and we can find all of the methods associated with integers by typing ``a.`` then hitting the tab-key. ::
+Another good use of tab-completion is to discover what *methods* an *object* has. Say you have the integer :math:`a = 56` and were wondering what commands SageMath offers to work with integers like :math:`56`. In this case the :math:`a` is our object and we can find all of the methods associated with integers by typing ``a.`` then hitting the tab-key. ::
 
   sage: a = 56
   sage: a.[TAB]
