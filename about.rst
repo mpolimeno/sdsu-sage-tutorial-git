@@ -94,7 +94,7 @@ If the user is using the notebook (most likely) the interaction will look a litt
 
 Whereas in Cocalc it will look like:
 
-.. image:: pics/notebook_example.png
+.. image:: pics/Cocalc_factor.png
         :alt: Using SageMath at the command line.
 	:width: 800px
 	:height: 525px
