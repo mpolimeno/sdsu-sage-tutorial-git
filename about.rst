@@ -96,8 +96,8 @@ Whereas in Cocalc it will look like:
 
 .. image:: pics/notebook_example.png
         :alt: Using SageMath at the command line.
-  :width: 600px
-  :height: 300px
+	:width: 800px
+	:height: 525px
 
 .. _help_tabcompletion:
 
