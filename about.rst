@@ -18,7 +18,7 @@ How to use this tutorial
 ------------------------
 
 This tutorial is divided into four parts. This part,
-:ref:`about_tutorial`,  discusses some basic properties of SageMathMath, introduces you to the
+:ref:`about_tutorial`,  discusses some basic properties of SageMath, introduces you to the
 structure of the tutorial,  and explains how to contribute to the project if you so desire.
 
 The second part, :ref:`sage_as_a_calculator`,  covers  topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.
@@ -68,7 +68,7 @@ This tutorial assumes that the reader has access to a running copy of SageMath. 
 
 Once it has been installed and started, SageMath has two ways to enter commands, either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice.
 
-A good alternative is to run SageMath in the cloud using `Cocalc <https://cocalc.com>`_. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account.
+A good alternative is to run SageMath in the cloud using `Cocalc <https://cocalc.com>`_. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account. Once you are signed up, you can start a project using SageMath, and you can also share it with other users. For more information about Cocalc and its features, visit `Cocalc Tutorial <https://tutorial.cocalc.com/>`_.
 
 Everything that follows the ``sage:`` prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to *factor* the integer :math:`1438880` we would give the following example using SageMath's :func:`.factor` command. ::
 
