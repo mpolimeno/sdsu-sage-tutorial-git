@@ -754,8 +754,8 @@ In each case above, Sage returns a *function* as its result. Each of these funct
 
 .. _taylor:
 
-Taylor
-------
+Taylor Series Expansion
+-----------------------
 
 Another interesting feature of SageMath is the possibility to compute `Taylor Series <https://en.wikipedia.org/wiki/Taylor_series>`_ expansions around a point. At first we show how to expand around 0, also called Mclaurin series. Let us give an example with the function :math:`g(x) = \cos(x)`. ::
 
