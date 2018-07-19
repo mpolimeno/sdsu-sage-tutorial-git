@@ -1,6 +1,6 @@
 .. index:: Sage as a Calculator
 
-.. _sage_as_a_calculator: 
+.. _sage_as_a_calculator:
 
 ====================
 Sage as a Calculator
@@ -15,7 +15,7 @@ This part of the tutorial examines commands that  allow you to use Sage much lik
 Arithmetic and Functions
 ========================
 
-.. index:: Basic Arithmetic 
+.. index:: Basic Arithmetic
 
 .. _basic_arithmetic:
 
@@ -38,7 +38,7 @@ The basic arithmetic operators are ``+``, ``-``, ``*``, and ``/`` for addition, 
   11/4
   sage: 2^5
   32
-				
+
 The ``-`` symbol in front of a number indicates that it is negative. ::
 
   sage: -6
@@ -47,12 +47,12 @@ The ``-`` symbol in front of a number indicates that it is negative. ::
   -2
 
 .. index:: Order of operations
-				
+
 As we would expect, Sage adheres to the standard order of operations,
 PEMDAS (parenthesis, exponents, multiplication, division, addition,
 subtraction). ::
 
-  sage: 2*4^2+1  
+  sage: 2*4^2+1
   33
   sage: (2*4)^2+1
   65
@@ -62,10 +62,10 @@ subtraction). ::
   -9
   sage: (-3)^2
   9
-				
+
 When dividing two integers, there is a subtlety; whether Sage will return a fraction or it's decimal approximation. Unlike most graphing calculators, Sage will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell Sage that we *want* the decimal approximation is to include a decimal in the expression itself. ::
 
-	sage: 11/4.0 
+	sage: 11/4.0
 	2.75000000000000
 	sage: 11/4.
 	2.75000000000000
@@ -73,14 +73,14 @@ When dividing two integers, there is a subtlety; whether Sage will return a frac
 	2.75000000000000
 	sage: 11/4*1.
 	2.75000000000000
- 
+
 **Exercises:**
 
-   #. Divide :math:`28` by :math:`2` raised to the 5th power as a  rational number, then get it's decimal approximation.   
+   #. Divide :math:`28` by :math:`2` raised to the 5th power as a  rational number, then get it's decimal approximation.
 
    #. Compute a decimal approximation of :math:`\sqrt{2}`
 
-   #. Use sage to compute ``(-9)^(1/2)``. Describe the output. 
+   #. Use sage to compute ``(-9)^(1/2)``. Describe the output.
 
 
 .. index:: Division and factoring
@@ -92,7 +92,7 @@ Integer Division and Factoring
 
     You should be familiar with ":ref:`basic_arithmetic`"
 
-Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even it's decimal approximation, but rather the unique *quotient* and the *remainder* that are the consequence of the division. 
+Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even it's decimal approximation, but rather the unique *quotient* and the *remainder* that are the consequence of the division.
 
 .. index:: division, qutient, remainder, modulus
 
@@ -103,7 +103,7 @@ To calculate the quotient we use the ``//`` operator and the ``%`` operator is u
 	sage: 14 % 4
 	2
 
-.. index:: divmod				
+.. index:: divmod
 
 If we want both the quotient and the remainder all at once, we use the :func:`.divmod` command ::
 
@@ -111,7 +111,7 @@ If we want both the quotient and the remainder all at once, we use the :func:`.d
 	(3, 2)
 
 .. index:: divides
-				
+
 Recall that :math:`b` *divides* :math:`a` if :math:`0` is the remainder when we divide the two integers. The integers in Sage have a built-in command ( or 'method' ) which allows us to check whether one integer divides another. ::
 
 	sage: 3.divides(15)
@@ -120,7 +120,7 @@ Recall that :math:`b` *divides* :math:`a` if :math:`0` is the remainder when we 
 	False
 
 .. index:: divisors
-				
+
 A related command is the :meth:`.divisors` method. This method returns
 a list of all positive divisors of the integer specified. ::
 
@@ -130,15 +130,15 @@ a list of all positive divisors of the integer specified. ::
 	[1,101]
 
 .. index:: prime, is_prime
-				
+
 When the divisors of an integer are only :math:`1` and itself then we say that the number is *prime*. To check if a number is prime in sage, we use it's :meth:`.is_prime` method. ::
 
 	sage: (2^19-1).is_prime()
 	True
 	sage: 153.is_prime()
 	False
-				
-Notice the parentheses around ``2^19 -1`` in the first example. They are important to the order of operations in Sage, and if they are not included then Sage will compute something very different than we intended. Try evaluating ``2^19-1.is_prime()`` and notice the result.  When in doubt, the judicious use of *parenthesis* is encouraged. 
+
+Notice the parentheses around ``2^19 -1`` in the first example. They are important to the order of operations in Sage, and if they are not included then Sage will compute something very different than we intended. Try evaluating ``2^19-1.is_prime()`` and notice the result.  When in doubt, the judicious use of *parenthesis* is encouraged.
 
 .. index:: factor, factoring
 
@@ -150,10 +150,10 @@ We use the :meth:`.factor` method to compute the *prime factorization* of an int
 	3^2 * 7
 
 .. index:: divisors, prime_divisors
-				
+
 If we are interested in simply knowing which prime numbers divide an integer, we may use it's :meth:`.prime_divisors` (or :meth:`.prime_factors`) method. ::
 
-	sage: 24.prime_divisors() 
+	sage: 24.prime_divisors()
 	[2, 3]
 	sage: 63.prime_factors()
 	[3, 7]
@@ -164,11 +164,11 @@ Finally, we have the *greatest common divisor* and *least common multiple* of a 
 
 The greatest common divisor (gcd), not too surprisingly, is the largest of all of these common divisors. The :func:`.gcd` command is used to calculate this divisor. ::
 
-  sage: gcd(14,63)		
+  sage: gcd(14,63)
   7
-  sage: gcd(15,19)  
+  sage: gcd(15,19)
   1
-				
+
 Notice that if two integers share no common divisors, then their gcd will be :math:`1`.
 
 The least common multiple is the smallest integer which both integers divide. The :func:`.lcm` command is used to calculate the least common multiple. ::
@@ -181,10 +181,10 @@ The least common multiple is the smallest integer which both integers divide. Th
 **Exercises:**
 
   #. Find the quotient and remainder when diving :math:`98` into :math:`956`.
-  #. Use Sage to verify that the quotient and remainder computed above are correct.  
+  #. Use Sage to verify that the quotient and remainder computed above are correct.
   #. Use Sage to determine if :math:`3` divides :math:`234878`.
-  #. Compute the list of divisors for each of the integers :math:`134,\ 491,\ 422` and :math:`1002`. 
-  #. Which of the integers above are *prime*? 
+  #. Compute the list of divisors for each of the integers :math:`134,\ 491,\ 422` and :math:`1002`.
+  #. Which of the integers above are *prime*?
   #. Calculate :math:`\mathrm{gcd}(a,b)`,  :math:`\mathrm{lcm}(a,b)` and :math:`a \cdot b` for the pairs of integers :math:`\left(2,5\right),\ \left(4,10\right)` and :math:`\left(18,51\right)`. How do the gcd, lcm and the product of the numbers relate?
 
 
@@ -195,14 +195,14 @@ The least common multiple is the smallest integer which both integers divide. Th
 Standard Functions and Constants
 -------------------------------------------------
 
-..   
+..
     You should be familiar with ":ref:`basic_arithmetic`"
 
 Sage includes nearly all of the standard functions that one encounters
 when studying mathematics. In this section, we shall cover some of the
 most commonly used functions: the *maximum*, *minimum*, *floor*,
 *ceiling*, *trigonometric*, *exponential*, and *logarithm* functions.
-We will also see many of the standard mathematical constants; such as *Euler's constant* (:math:`e`), :math:`\pi`, and *the golden ratio* (:math:`\phi`). 
+We will also see many of the standard mathematical constants; such as *Euler's constant* (:math:`e`), :math:`\pi`, and *the golden ratio* (:math:`\phi`).
 
 .. index:: maximum, minimum, max, min
 
@@ -212,8 +212,8 @@ The :func:`.max` and :func:`.min` commands return the largest and smallest of a 
 	8
 	sage: min(1/2,1/3)
 	1/3
-				
-We may input any number of arguments into the max and min functions. 
+
+We may input any number of arguments into the max and min functions.
 
 .. index:: absolute value, abs
 
@@ -226,32 +226,32 @@ a real number. ::
 	4
 
 .. index:: floor, ceiling, ceil
-				
+
 The :func:`.floor` command rounds a number down to the nearest integer, while :func:`.ceil` rounds up. ::
 
 	sage: floor(2.1)
 	2
 	sage: ceil(2.1)
 	3
-				
+
 We need to be very careful while using :func:`.floor` and :func:`.ceil`. ::
 
 	sage: floor(1/(2.1-2))
 	9
-				
+
 This is clearly not correct: :math:`\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfloor = \lfloor 10 \rfloor = 10`. So what happened? ::
 
 	sage: 1/(2.1-2)
 	9.99999999999999
-				
+
 Computers store real numbers in *binary*, while we are accustomed to using the decimal representation. The :math:`2.1` in decimal notation is quite simple and short, but when converted to binary it is :math:`10.0001\overline{1}=10.0001100110011\ldots`
 
 Since computers cannot store an infinite number of digits, this gets rounded off somewhere, resulting in the slight error we saw. In Sage, however, *rational numbers* (fractions) are exact, so we will never see this rounding error. ::
 
   sage: floor(1/(21/10-2))
   10
-				
-Due to this, it is often a good idea to use rational numbers whenever possible instead of decimals, particularly if a high level of precision is required. 
+
+Due to this, it is often a good idea to use rational numbers whenever possible instead of decimals, particularly if a high level of precision is required.
 
 .. index:: square root, nth root, sqrt, fractional powers
 
@@ -274,7 +274,7 @@ To compute other roots, we use a rational exponent. Sage can compute any rationa
   2
 
 .. index:: trigonometric functions, sin, cos, tan
-				
+
 Sage also has available all of the standard trigonometric functions: for sine and cosine we use :func:`.sin` and :func:`.cos`. ::
 
   sage: sin(1)
@@ -285,7 +285,7 @@ Sage also has available all of the standard trigonometric functions: for sine an
   cos(3/2)
   sage: cos(3/2.0)
   0.0707372016677029
-				
+
 Again we see the same behavior that we saw with :func:`sqrt`, Sage will give us an exact answer.  You might think that since there is no way to simplify ``sin(1)``,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = \sqrt{3}/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
 
   sage: pi
@@ -294,7 +294,7 @@ Again we see the same behavior that we saw with :func:`sqrt`, Sage will give us 
   1/2*sqrt(3)
 
 .. index:: decimal approximation, n
-				
+
 When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not some numerical approximation. However, we can call for a numerical approximation using the :meth:`.n` method::
 
   sage: pi.n()
@@ -303,7 +303,7 @@ When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not som
   0
   sage: sin(pi.n())
   1.22464679914735e-16
-				
+
 We see that when using the symbolic :obj:`.pi`, Sage returns the exact result. However,  when we use the approximation we get an approximation back. ``e-15`` is a shorthand for :math:`10^{-15}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation: ::
 
   sage: sin(pi/6)
@@ -314,10 +314,10 @@ We see that when using the symbolic :obj:`.pi`, Sage returns the exact result. H
   1/2*sqrt(2)
   sage: sin(pi.n()/4)
   0.707106781186547
-				
+
 Continuing on with the theme, there are some lesser known special angles for which the value of sine or cosine can be cleverly simplified. ::
 
-  sage: sin(pi/10)					
+  sage: sin(pi/10)
   1/4*sqrt(5) - 1/4
   sage: cos(pi/5)
   1/4*sqrt(5) + 1/4
@@ -325,7 +325,7 @@ Continuing on with the theme, there are some lesser known special angles for whi
   1/12*(sqrt(3) + 3)*sqrt(6)
 
 .. index:: inverse trigonometric functions, hyperbolic trigonometric functions, arctan, sinh
-				
+
 Other trigonometric functions, the inverse trigonometric functions and hyperbolic functions are also available. ::
 
   sage: arctan(1.0)
@@ -343,7 +343,7 @@ Similar to :obj:`pi` Sage has a built-in symbolic constant for the number :math:
   2.71828182845905
 
 .. index:: logarithms, log, ln
-				
+
 While some might be familiar with using ``ln(x)`` for natural log and ``log(x)`` to represent logarithm base :math:`10`, in Sage both represent logarithm
 base :math:`e`.  We may specify a different base as a second argument to the command: to compute :math:`\log_{b}(x)` in Sage we use the command ``log(x,b)``. ::
 
@@ -361,7 +361,7 @@ base :math:`e`.  We may specify a different base as a second argument to the com
   2
 
 .. index:: exponential function, exp
-				
+
 Exponentiation base :math:`e` can done using both the :func:`.exp` function and by raising the symbolic constant ``e`` to a specified power. ::
 
   sage: exp(2)
@@ -373,13 +373,13 @@ Exponentiation base :math:`e` can done using both the :func:`.exp` function and 
   sage: e^(log(2))
   2
 
-				
+
 **Exercises:**
 
   #. Compute the floor and ceiling of :math:`2.75`.
   #. Compute the logarithm base :math:`e` of  :math:`1/1000000`, compute the logarithm base 10 of  :math:`1/1000000`, then compute the ratio.  What should the answer be?
   #. Compute the logarithm base 2 of :math:`64`.
-  #. Compare :math:`e^{i \pi}` with a numerical approximation of it using ``pi.n()``. 
+  #. Compare :math:`e^{i \pi}` with a numerical approximation of it using ``pi.n()``.
   #. Compute :math:`\sin(\pi/2)`, :math:`\cot(0)` and :math:`\csc(\pi/16)`.
 
 .. index:: Solving equations and inequalities
@@ -399,7 +399,7 @@ Solving for x
   You should be familiar with ":ref:`basic_arithmetic`" and ":ref:`basic_functions_and_constants`"
 
 .. index:: equations, inequalities, ==, <=, >=, True, False
-				
+
 In Sage, equations and inequalities are defined using the *operators* ``==``, ``<=``, and ``>=`` and will return either ``True``, ``False``, or, if there is a variable, just the equation/inequality. ::
 
   sage: 9 == 9
@@ -410,7 +410,7 @@ In Sage, equations and inequalities are defined using the *operators* ``==``, ``
   3*x - 10 == 5
 
 .. index:: solving equations, solve
-				
+
 To solve an equation or an inequality we use using the, aptly named, :func:`.solve` command. For the moment, we will only solve for :math:`x`.  The section on variables below explains how to use other variables. ::
 
 	sage: solve(3*x - 2 == 5,x)
@@ -419,9 +419,9 @@ To solve an equation or an inequality we use using the, aptly named, :func:`.sol
 	[x == 3]
 	sage: solve( 2*x - 5 >= 17,x)
 	[[x >= 11]]
-	sage: solve( 3*x -2 > 5, x) 
+	sage: solve( 3*x -2 > 5, x)
 	[[x > (7/3)]]
-				
+
 Equations can have multiple solutions, Sage returns all solutions found as a list. ::
 
 	sage: solve( x^2 + x  == 6, x)
@@ -430,7 +430,7 @@ Equations can have multiple solutions, Sage returns all solutions found as a lis
 	[x == -1/4*I*sqrt(7) + 1/4, x == 1/4*I*sqrt(7) + 1/4]
 	sage: solve( exp(x) == -1, x)
 	[x == I*pi]
-				
+
 
 The solution set of certain inequalities consists of the union and intersection of open intervals. ::
 
@@ -438,11 +438,11 @@ The solution set of certain inequalities consists of the union and intersection 
 	[[x <= -3], [x >= 3]]
 	sage: solve( x^2 - 6 <= 3, x )
 	[[x >= -3, x <= 3]]
-			
+
 The :func:`.solve` command will attempt to express the solution of an
 equation without the use of floating point numbers. If this cannot be
 done, it will return the solution in a symbolic form. ::
- 
+
 	sage: solve( sin(x) == x, x)
 	[x == sin(x)]
 	sage: solve( exp(x) - x == 0 , x)
@@ -460,11 +460,11 @@ interval on which to search for a solution. ::
 
 	sage: find_root(sin(x) == x, -pi/2 , pi/2)
 	0.0
-	sage: find_root(sin(x) == cos(x), pi, 3*pi/2) 
+	sage: find_root(sin(x) == cos(x), pi, 3*pi/2)
 	3.9269908169872414
 
-This command will only return one solution on the specified interval, if one exists. It will not find the complete solution set over the entire real numbers. 
-To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10. 
+This command will only return one solution on the specified interval, if one exists. It will not find the complete solution set over the entire real numbers.
+To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10.
 
 
 .. index:: Declaring Variables
@@ -479,13 +479,13 @@ Declaring Variables
 In the previous section we only solved equations in one variable, and we always used :math:`x`. When a session is started, Sage creates one symbolic variable, :math:`x`, and it can be used to solve equations.  If you want to use  an additional symbolic variable, you have to *declare it*  using the :func:`.var` command. The name of a symbolic variable can be a letter, or a combination of letters and numbers::
 
 	sage: y,z,t = var("y z t")
-	sage: phi, theta, rho = var("phi theta rho") 
+	sage: phi, theta, rho = var("phi theta rho")
 	sage: x1, x2 = var("x1 x2")
 
 .. note::
 	Variable names cannot contain spaces, for example "square root"
-	is not a valid variable name, whereas "square_root" is. 
-				
+	is not a valid variable name, whereas "square_root" is.
+
 Attempting to use a symbolic variable before it has been declared will result in a :exc:`.NameError`. ::
 
 	sage: u
@@ -496,8 +496,8 @@ Attempting to use a symbolic variable before it has been declared will result in
 	NameError: name 'u' is not defined
 
 .. index:: restore
-				
-We can un-declare a symbolic variable, like the variable ``phi`` defined above,  by using the :func:`.restore` 
+
+We can un-declare a symbolic variable, like the variable ``phi`` defined above,  by using the :func:`.restore`
 command. ::
 
 	sage: restore('phi')
@@ -511,17 +511,17 @@ command. ::
 
 Solving Equations with Several Variables
 -------------------------------------------------
-	
-Small systems of linear equations can be also solved using  :func:`.solve`, provided that all the symbolic variables have been declared. 
+
+Small systems of linear equations can be also solved using  :func:`.solve`, provided that all the symbolic variables have been declared.
 The equations must be input as a list, followed by the symbolic variables.  The result may be  either a unique solution, infinitely many solutions, or no solutions at all. ::
 
 	sage: solve( [3*x - y == 2, -2*x -y == 1 ], x,y)
 	[[x == (1/5), y == (-7/5)]]
 	sage: solve( [	2*x + y == -1 , -4*x - 2*y == 2],x,y)
 	[[x == -1/2*r1 - 1/2, y == r1]]
-	sage: solve( [	2*x - y == -1 , 2*x - y == 2],x,y)	 
+	sage: solve( [	2*x - y == -1 , 2*x - y == 2],x,y)
 	[]
-				
+
 In the second equation above, ``r1`` signifies that there is a free
 variable which parametrizes the solution set. When there is more than
 one free variable, Sage enumerates them ``r1,r2,..., rk``. ::
@@ -529,8 +529,8 @@ one free variable, Sage enumerates them ``r1,r2,..., rk``. ::
 	sage: solve([ 2*x + 3*y + 5*z == 1, 4*x + 6*y + 10*z == 2, 6*x + 9*y + 15*z == 3], x,y,z)
 	[[x == -5/2*r1 - 3/2*r2 + 1/2, y == r2, z == r1]]
 
-				
-:func:`.solve` can be very slow for large systems of equations. For these systems, it is best to use the linear algebra functions as they are quite efficient. 
+
+:func:`.solve` can be very slow for large systems of equations. For these systems, it is best to use the linear algebra functions as they are quite efficient.
 
 Solving inequalities in several variables can lead to complicated expressions, since the regions they define are complicated. In the example below, Sage's solution is a list containing the point of interesection of the lines, then  two rays, then the region between the two rays. ::
 
@@ -545,9 +545,9 @@ Solving inequalities in several variables can lead to complicated expressions, s
   #. Find all of the solutions to the equation :math:`x^3 - x = 7x^2 - 7`.
   #. Find the complete solution set for the inequality :math:`\left\vert t - 7 \right\vert \geq 3`.
   #. Find all :math:`x` and :math:`y` that satisfy both :math:`2x + y = 17` and :math:`x - 3y = -16`.
-  #. Use :func:`find_root` to find a solution of the equation :math:`e^{x} = \cos(x)` on the interval :math:`\left[-\pi/2, 0\right]`. 
+  #. Use :func:`find_root` to find a solution of the equation :math:`e^{x} = \cos(x)` on the interval :math:`\left[-\pi/2, 0\right]`.
   #. Change the command above so that :func:`find_root` finds the other solution in the same interval.
-  
+
 .. index:: Calculus Commands
 
 .. _calculus:
@@ -564,7 +564,7 @@ Sage has many commands that are useful for the study of differential and integra
   sage: f(x) = x*exp(x)
   sage: f
   x |--> x*e^x
-  sage: g(x) = (x^2)*cos(2*x) 
+  sage: g(x) = (x^2)*cos(2*x)
   sage: g
   x |--> x^2*cos(2*x)
   sage: h(x) = (x^2 + x - 2)/(x-4)
@@ -580,8 +580,8 @@ Sage uses ``x |-->`` to tell you that the expression returned is actually a func
   sage: h(-1)
   2/5
 
-With these functions defined, we will look at how we can use Sage to compute the *limit* of these functions. 
- 
+With these functions defined, we will look at how we can use Sage to compute the *limit* of these functions.
+
 .. index:: Limits
 
 .. _limits:
@@ -614,7 +614,7 @@ Now this is an example of why we have to be a little careful when using computer
    :alt: "Rational Function with vertical asymptote x=4"
 
 .. index:: Limits; directional
- 
+
 What we have when :math:`x=4` is a *vertical asymptote* with the function tending toward *positive* infinity if :math:`x` is larger than :math:`4` and *negative* infinity from when :math:`x` less than :math:`4`. We can takes these *directional* limits using Sage to confirm this by supplying the extra *dir* argument. ::
 
   sage: limit(h, x=4, dir="right")
@@ -638,7 +638,7 @@ The next thing we are going to do is use Sage to compute the *derivatives* of th
   x |--> x*e^x + e^x
   sage: gp =  derivative(g, x)
   sage: gp
-  x |--> -2*x^2*sin(2*x) + 2*x*cos(2*x)  
+  x |--> -2*x^2*sin(2*x) + 2*x*cos(2*x)
   sage: hp  = derivative(h,x)
   sage: hp
   x |--> (2*x + 1)/(x - 4) - (x^2 + x - 2)/(x - 4)^2
@@ -655,7 +655,7 @@ The first argument is the function which you would like to differentiate and the
   sage: derivative(h,y)
   x |--> 0
 
- 
+
 The :func:`.derivative` command returns another function that can be evaluated like any other function. ::
 
   sage: fp(10)
@@ -681,7 +681,7 @@ With the *derivative function* computed, we can then find the *critical points* 
 
 Constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is an important computation which is easily done in Sage. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
 
-  sage: T_f = fp(0)*( x - 0 ) + f(0) 
+  sage: T_f = fp(0)*( x - 0 ) + f(0)
   sage: T_f
   x
 
@@ -715,13 +715,13 @@ Sage has the facility to compute both *definite* and *indefinite* integral for m
 The function that is returned is only *one* of the many anti-derivatives that exist for each of these functions.
 The others differ by a constant. We can verify that we have indeed computed the *anti-derivative* by taking the derivative of our indefinite integrals. ::
 
-  sage: derivative(integral(f,x), x ) 
+  sage: derivative(integral(f,x), x )
   x |--> (x - 1)*e^x + e^x
   sage: f
   x |--> x*e^x
-  sage: derivative(integral(g,x), x ) 
+  sage: derivative(integral(g,x), x )
   x |--> 1/2*(2*x^2 - 1)*cos(2*x) + 1/2*cos(2*x)
-  sage: derivative(integral(h,x), x ) 
+  sage: derivative(integral(h,x), x )
   x |--> x + 18/(x - 4) + 5
 
 Wait, none of these look right. But a little algebra, and the use of a trig-identity or two in the case of ``1/2*(2*x^2 - 1)*cos(2*x) + 1/2*cos(2*x)``, you will see that they are indeed the same.
@@ -750,13 +750,25 @@ In each case above, Sage returns a *function* as its result. Each of these funct
   sage: n(integral(h, x,0,1))
   0.321722695867944
 
+  .. index:: taylor
+
+  .. _Taylor:
+
+  Taylor Series
+  ------
+
+  Another interesting feature of SageMath is the possibility to compute `Taylor Series <https://en.wikipedia.org/wiki/Taylor_series>`_ expansions around a point. At first we show how to expand around 0, also called Mclaurin series. Let us give an example with the function g = cos(x). :
+
+  sage:   g = cos(x)
+  g_taylor = g.taylor(x,0,3)
+  -1/2*x^2 + 1
 
 **Exercises:**
 
   #. Use Sage to compute the following limits:
 
      a) :math:`\lim_{x \rightarrow 2} \frac{x^{2} + 2 \, x - 8}{x-2}`
-     b) :math:`\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)` 
+     b) :math:`\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)`
      c) :math:`\lim_{x \rightarrow (\pi/2)^{-}} \sec(x)`
 
 
@@ -764,14 +776,14 @@ In each case above, Sage returns a *function* as its result. Each of these funct
 
      a) :math:`\frac{d}{dx}\left[ x^{2}e^{3x}\cos(2x) \right]`
      b) :math:`\frac{d}{dt}\left[\frac{t^2 + 1}{t-2}\right]` *(remember to define ``t``)*
-     c) :math:`\frac{d}{dy}\left[ x\cos(x)\right]`  
+     c) :math:`\frac{d}{dy}\left[ x\cos(x)\right]`
 
 
   #. Use Sage to compute the following integrals:
 
      a) :math:`\int \frac{x+1}{x^2 + 2x + 1}dx`
-     b) :math:`\int_{-\pi/4}^{\pi/4} \sec(x) dx` 
-     c) :math:`\int x e^{-x^{2}} dx` 
+     b) :math:`\int_{-\pi/4}^{\pi/4} \sec(x) dx`
+     c) :math:`\int x e^{-x^{2}} dx`
 
 .. index:: Statistics
 
@@ -782,20 +794,20 @@ Statistics
 
 You should be familiar with :ref:`basic_arithmetic`
 
-In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in Sage. 
+In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in Sage.
 
 .. index:: random
 
 To demonstrate their usage we will first generate a pseudo-random list
 of integers from 0 to 100 to describe. The :func:`.random` function generates a random number from :math:`[0,1)`, so we will use a trick to generate integers in this specific range. Note, by the nature of random number generation your list of numbers will be different. ::
 
-	sage: data = [	int(random()*(100-0) + 0)  for i in [ 1 .. 20 ] ] 
-	sage: data								   
-	[78, 43, 6, 50, 47, 94, 37, 70, 66, 32, 1, 34, 93, 
+	sage: data = [	int(random()*(100-0) + 0)  for i in [ 1 .. 20 ] ]
+	sage: data
+	[78, 43, 6, 50, 47, 94, 37, 70, 66, 32, 1, 34, 93,
 	30, 99, 82, 22, 74, 18, 40]
 
 .. index:: mean, median, mode, variance, standard deviation, std
-					
+
 We can compute the mean, median, mode, variance, and standard
 deviation of this data. ::
 
@@ -803,15 +815,15 @@ deviation of this data. ::
 	254/5
 	sage: median(data)
 	45
-	sage: mode(data)  
-	[32, 1, 66, 99, 82, 37, 6, 40, 74, 43, 
+	sage: mode(data)
+	[32, 1, 66, 99, 82, 37, 6, 40, 74, 43,
 	34, 78, 47, 50, 30, 22, 18, 70, 93, 94]
 	sage: variance(data)
 	83326/95
-	sage: std(data)		
+	sage: std(data)
 	sqrt(83326/95)
-					
-Note that both the standard deviation and variance are computed in their unbiased forms. It we want to bias these measures then you can use the ``bias=True`` option. 
+
+Note that both the standard deviation and variance are computed in their unbiased forms. It we want to bias these measures then you can use the ``bias=True`` option.
 
 .. index:: moving_average
 
@@ -828,11 +840,11 @@ We can also compute a rolling, or moving, average of the data with the :func:`.m
 
 **Exercises:**
 
-  #. Use Sage to generate a list of 20 random integers. 
-  #. The heights of eight students, measured in inches, are :math:`71,\ 73,\  59,\ 62,\ 65,\ 61,\ 73,\ 61`. Find the *average*, *median* and *mode* of the heights of these students. 
+  #. Use Sage to generate a list of 20 random integers.
+  #. The heights of eight students, measured in inches, are :math:`71,\ 73,\  59,\ 62,\ 65,\ 61,\ 73,\ 61`. Find the *average*, *median* and *mode* of the heights of these students.
   #. Using the same data, compute the *standard deviation* and *variance* of the sampled heights.
-  #. Find the *range* of the heights. (*Hint: use the* :func:`.max` *and* :func:`.min` *commands*) 
-  
+  #. Find the *range* of the heights. (*Hint: use the* :func:`.max` *and* :func:`.min` *commands*)
+
 
 .. index:: Plotting
 
@@ -850,26 +862,26 @@ Plotting
 
 Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly you up to speed with some of the basic commands used when plotting functions and working with graphics.
 
-.. index:: plot, Plotting; 2D,  show, Graphics 
+.. index:: plot, Plotting; 2D,  show, Graphics
 
 To produce a basic plot of :math:`\sin(x)` from :math:`x=-\frac{\pi}{2}` to :math:`x=\frac{\pi}{2}` we will use the :func:`.plot()` command. ::
 
 	sage: f(x) = sin(x)
 	sage: p = plot(f(x), (x, -pi/2, pi/2))
 	sage: p.show()
-				
+
 .. image:: pics/sin_plot.png
-        :alt: Plot of sin(x) from x = -pi/2 to pi/2 
+        :alt: Plot of sin(x) from x = -pi/2 to pi/2
 	:width: 400px
 	:height: 300px
 
-.. index:: axes_labels, Graphics; color 
+.. index:: axes_labels, Graphics; color
 
 By default, the plot created will be quite plain. To add axis labels
 and make our plotted line purple, we can alter the plot attribute by
 adding the ``axes_labels`` and ``color`` options. ::
 
-	sage: p = plot(f(x), (x,-pi/2, pi/2), axes_labels=['x','sin(x)'], color='purple') 
+	sage: p = plot(f(x), (x,-pi/2, pi/2), axes_labels=['x','sin(x)'], color='purple')
 	sage: p.show()
 
 .. image:: pics/sin_plot_purple_labels.png
@@ -883,10 +895,10 @@ The ``color`` option accepts string color designations ( 'purple', 'green', 'red
 
 We can change the style of line, whether it is solid, dashed, and it's thickness by using the ``linestyle`` and the ``thickness`` options. ::
 
-	sage: p = plot(f(x), (x,-pi/2, pi/2), linestyle='--', thickness=3) 
+	sage: p = plot(f(x), (x,-pi/2, pi/2), linestyle='--', thickness=3)
 	sage: p.show()
-				
-.. image:: pics/sin_plot_dashed_thick.png 
+
+.. image:: pics/sin_plot_dashed_thick.png
 	:alt: Plot of sin(x) using a thick dashed blue line
 	:width: 400px
 	:height: 300px
@@ -899,9 +911,9 @@ We can display the graphs of two functions on the same axes by adding the plots 
 	sage: g(x) = cos(x)
 	sage: p = plot(f(x),(x,-pi/2,pi/2), color='black')
 	sage: q = plot(g(x), (x,-pi/2, pi/2), color='red')
-	sage: r = p + q 
+	sage: r = p + q
 	sage: r.show()
-				
+
 .. image:: pics/sin_cos_plot.png
 	:alt: Plot of sin(x) and cos(x) on the same axes
 	:height: 300px
@@ -915,9 +927,9 @@ point where :math:`\sin(x)` and :math:`\cos(x)` intersect. We will then add this
 	0.78539816339744839
 	sage: P = point( [(0.78539816339744839, sin(0.78539816339744839))] )
 	sage: T = text("(0.79,0.71)", (0.78539816339744839, sin(0.78539816339744839) + .10))
-	sage: s = P + r + T						
+	sage: s = P + r + T
 	sage: s.show()
-				
+
 .. image:: pics/sin_cos_point_plot.png
 	:alt: sin(x) and cos(x) on same axes with point of intersection labeled
 	:height: 300px
@@ -931,7 +943,7 @@ expecting. ::
 	sage: f(x) = (x^3 + x^2 + x)/(x^2 - x -2 )
 	sage: p = plot(f(x), (x, -5,5))
 	sage: p.show()
-				
+
 .. image:: pics/rat_func_with_asymptotes.png
 	:alt: Plot of rational function with asymptotes
 	:width: 400px
@@ -955,7 +967,7 @@ Sage can handle parametric plots with the :func:`.parametric_plot` command. The 
 	sage: t = var('t')
 	sage: p = parametric_plot( [3*cos(t), 3*sin(t)], (t, 0, 2*pi) )
 	sage: p.show()
-				
+
 .. image:: pics/parametric_circle.png
 	:alt: Circle of radius 3 centered at the origin
 	:width: 400px
@@ -968,7 +980,7 @@ The default choice of aspect ratio makes the plot above decidedly
 option. ::
 
 	sage: p.show(aspect_ratio=1)
-				
+
 .. image:: pics/parametric_circle_fixed.png
 	:alt: Circle of radius 3 with 1/1 aspect ratio
 	:width: 400px
@@ -978,9 +990,9 @@ The different plotting commands accept many of the same options as
 plot. The following generates the Lissajous Curve :math:`L(3,2)` with
 a thick red dashed line. ::
 
-	sage: p = parametric_plot( [sin(3*t), sin(2*t)], (t, 0, 3*pi), thickness=2, color='red', linestyle="--") 
+	sage: p = parametric_plot( [sin(3*t), sin(2*t)], (t, 0, 3*pi), thickness=2, color='red', linestyle="--")
 	sage: p.show()
-				
+
 .. image:: pics/L3,2-red.png
 	:alt: Lissajous Curve L(3,2)
 	:width: 400px
@@ -990,11 +1002,11 @@ a thick red dashed line. ::
 
 Polar plots can be done using the :func:`.polar_plot` command. ::
 
-	sage: theta = var("theta")						 
-	sage: r(theta) = sin(4*theta)					 
+	sage: theta = var("theta")
+	sage: r(theta) = sin(4*theta)
 	sage: p = polar_plot((r(theta)), (theta, 0, 2*pi) )
 	sage: p.show()
-				
+
 .. image:: pics/8petal-polar.png
 	:alt: Eight Petal 'folium' curve
 	:width: 400px
@@ -1014,13 +1026,13 @@ And finally, Sage can do the plots for functions that are implicitly defined. Fo
 **Exercises:**
 
   #. Plot the graph of :math:`y = \sin\left(\pi x - \pi  \right)` for :math:`-1 \leq x \leq 1` using a thick red line.
-  #. Plot the graph of :math:`\cos\left(\pi x - \pi \right)` on the same interval using a thick blue line. 
-  #. Plot the two graphs above on the same set of axes. 
-  #. Plot the graph of :math:`y = 1/x` for :math:`-1 \leq x \leq 1` adjusting the range so that only :math:`-10 \leq y \leq 10`. 
+  #. Plot the graph of :math:`\cos\left(\pi x - \pi \right)` on the same interval using a thick blue line.
+  #. Plot the two graphs above on the same set of axes.
+  #. Plot the graph of :math:`y = 1/x` for :math:`-1 \leq x \leq 1` adjusting the range so that only :math:`-10 \leq y \leq 10`.
   #. Use the commands in this section to produce the following image:
 
-  .. image:: pics/circles.png 
-     :alt: Two circles of radius 3. 
+  .. image:: pics/circles.png
+     :alt: Two circles of radius 3.
      :width: 400px
      :height: 300px
 
@@ -1035,9 +1047,9 @@ Producing 3D plots can be done using the :func:`.plot3d` command ::
 
 	sage: x,y = var("x y")
 	sage: f(x,y) = x^2 - y^2
-	sage: p = plot3d(f(x,y), (x,-10,10), (y,-10,10))				 
+	sage: p = plot3d(f(x,y), (x,-10,10), (y,-10,10))
 	sage: p.show()
-				
+
 .. image:: pics/3d-plot-1.png
 	:alt: Snapshot of 3D plot
 	:width: 500px
