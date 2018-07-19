@@ -764,7 +764,7 @@ Another interesting feature of SageMath is the possibility to compute `Taylor Se
   sage: g_taylor = g.taylor(x,0,3)
   -1/2*x^2 + 1
 
-The first argument in taylor() is the independent variable of your function, the second argument is the point around with we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function :math:`f(x) = \exp(x^{2})\sin(x-5)` around the point :math:`\x=2` up to order 3. ::
+The first argument in g.taylor() is the independent variable of your function, the second argument is the point around with we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function :math:`f(x) = \exp(x^{2})\sin(x-5)` around the point :math:`\x=2` up to order 3. ::
 
   sage: f = exp(^x^3)*sin(x-5); f
   e^(x^3)*sin(x - 5)
