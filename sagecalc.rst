@@ -701,7 +701,7 @@ The same can be done for :math:`g(x)` and :math:`h(x)`. ::
 Integrals
 ---------
 
-.. index:: integral, Integrals; definate, Integrals; indefinite, Anti-derivative
+.. index:: integral, Integrals; definite, Integrals; indefinite, Anti-derivative
 
 Sage has the facility to compute both *definite* and *indefinite* integral for many common functions. We will begin by computing the *indefinite* integral, otherwise known as the *anti-derivative*,  for each of the functions that we defined earlier. This will be done by using the :func:`.integral` command which has arguments that are similar to :func:`.derivative`. ::
 
@@ -755,7 +755,7 @@ In each case above, Sage returns a *function* as its result. Each of these funct
   .. _Taylor:
 
   Taylor Series
-  ------
+  -------------
 
   Another interesting feature of SageMath is the possibility to compute `Taylor Series <https://en.wikipedia.org/wiki/Taylor_series>`_ expansions around a point. At first we show how to expand around 0, also called Mclaurin series. Let us give an example with the function g = cos(x). :
 
