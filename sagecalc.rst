@@ -760,11 +760,16 @@ Taylor
 Another interesting feature of SageMath is the possibility to compute `Taylor Series <https://en.wikipedia.org/wiki/Taylor_series>`_ expansions around a point. At first we show how to expand around 0, also called Mclaurin series. Let us give an example with the function :math:`g(x) = \cos(x)`. ::
 
   sage: g = cos(x); g
-  g = cos(x)
+  cos(x)
   sage: g_taylor = g.taylor(x,0,3)
   -1/2*x^2 + 1
 
-The first argument in taylor() is the independent variable of your function, the second argument is the point around with we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it.
+The first argument in taylor() is the independent variable of your function, the second argument is the point around with we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function :math:`f(x) = \exp(x^{2})\sin(x-5)` around the point :math:`\x=2` up to order 3. ::
+
+  sage: f = exp(^x^3)*sin(x-5); g
+  e^(x^3)*sin(x - 5)
+  sage: f_taylor = g.taylor(x,2,3); f_taylor
+  1/6*(x - 2)^3*(467*cos(3) - 2130*sin(3))*e^8 + 1/2*(x - 2)^2*(24*cos(3) - 155*sin(3))*e^8 + (x - 2)*(cos(3) - 12*sin(3))*e^8 - e^8*sin(3)
 
 **Exercises:**
 
