@@ -766,10 +766,20 @@ Another interesting feature of SageMath is the possibility to compute `Taylor Se
 
 The first argument in taylor() is the independent variable of your function, the second argument is the point around with we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function :math:`f(x) = \exp(x^{2})\sin(x-5)` around the point :math:`\x=2` up to order 3. ::
 
-  sage: f = exp(^x^3)*sin(x-5); g
+  sage: f = exp(^x^3)*sin(x-5); f
   e^(x^3)*sin(x - 5)
   sage: f_taylor = g.taylor(x,2,3); f_taylor
   1/6*(x - 2)^3*(467*cos(3) - 2130*sin(3))*e^8 + 1/2*(x - 2)^2*(24*cos(3) - 155*sin(3))*e^8 + (x - 2)*(cos(3) - 12*sin(3))*e^8 - e^8*sin(3)
+
+Now the outcome of this computation might be a bit convoluted to visualize, therefore, another interesting feature of SageMath is the possibility of print the outcome in Latex format, which is much nicer to the eye. ::
+
+  sage: print; show(f_taylor)
+
+.. image:: pics/Taylor_tex.png
+        :alt: Using SageMath at the command line.
+	:width: 800px
+	:height: 525px
+
 
 **Exercises:**
 
