@@ -768,7 +768,7 @@ The first argument in g.taylor() is the independent variable of our function, th
 
   sage: f = exp(^x^3)*sin(x-5); f
   e^(x^3)*sin(x - 5)
-  sage: f_taylor = g.taylor(x,2,3); f_taylor
+  sage: f_taylor = f.taylor(x,2,3); f_taylor
   1/6*(x - 2)^3*(467*cos(3) - 2130*sin(3))*e^8 + 1/2*(x - 2)^2*(24*cos(3) - 155*sin(3))*e^8 + (x - 2)*(cos(3) - 12*sin(3))*e^8 - e^8*sin(3)
 
 Now the outcome of this computation might be a bit convoluted to visualize, therefore, another interesting feature of SageMath is the possibility of print the outcome in Latex format, which is much nicer to the eye. ::
