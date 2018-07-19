@@ -783,25 +783,34 @@ Now the outcome of this computation might be a bit convoluted to visualize, ther
 
 **Exercises:**
 
-  #. Use Sage to compute the following limits:
+  #. Use SageMath to compute the following limits:
 
      a) :math:`\lim_{x \rightarrow 2} \frac{x^{2} + 2 \, x - 8}{x-2}`
      b) :math:`\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)`
      c) :math:`\lim_{x \rightarrow (\pi/2)^{-}} \sec(x)`
 
 
-  #. Use Sage to compute the following *derivatives* with respect to the specified variables:
+  #. Use SageMath to compute the following *derivatives* with respect to the specified variables:
 
      a) :math:`\frac{d}{dx}\left[ x^{2}e^{3x}\cos(2x) \right]`
      b) :math:`\frac{d}{dt}\left[\frac{t^2 + 1}{t-2}\right]` *(remember to define ``t``)*
      c) :math:`\frac{d}{dy}\left[ x\cos(x)\right]`
 
 
-  #. Use Sage to compute the following integrals:
+  #. Use SageMath to compute the following integrals:
 
      a) :math:`\int \frac{x+1}{x^2 + 2x + 1}dx`
      b) :math:`\int_{-\pi/4}^{\pi/4} \sec(x) dx`
      c) :math:`\int x e^{-x^{2}} dx`
+
+
+  #. Use SageMath to compute the Taylor series expansion of the following functions:
+
+     a) :math:`\sin(x)*\cos(x)` around :math:`x=0`, order 3
+     b) :math:`\(x-2)*\ln(x/2)` around :math:`x=1`, order 4
+     c) :math:`\tan(x+5) - \exp(x^2)`, around :math:`x=\pi`, order 5
+
+
 
 .. index:: Statistics
 
