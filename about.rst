@@ -101,7 +101,7 @@ For Cocalc users, it will look like:
 
 .. _help_tabcompletion:
 
-If you are in fact using Cocalc, you have probably already noticed the red banner that pops up at the very top of the page that says *Update this project*, every time you create a new project. Just ignore it. It is a bit annoying to the eye, but will do no harm.
+If you are in fact using Cocalc, you have probably already noticed the red banner that pops up at the very top of the page that says *Upgrade this project*, every time you create a new project. Just ignore it. It is a bit annoying to the eye, but will do no harm.
 
 Tab Completion
 -----------------------

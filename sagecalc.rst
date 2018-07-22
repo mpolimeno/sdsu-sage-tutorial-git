@@ -887,7 +887,7 @@ Plotting
 
     You should be familiar with :ref:`basic_functions_and_constants` and :ref:`solving_equations_inequalities`
 
-SageMath has many ways for us to visualize the mathematics with which we are working. In this section we will quickly you up to speed with some of the basic commands used when plotting functions and working with graphics.
+SageMath has many ways for us to visualize the mathematics that we are working with. In this section we will quickly get you up to speed with some of the basic commands used when plotting functions and working with graphics.
 
 .. index:: plot, Plotting; 2D,  show, Graphics
 
