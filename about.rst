@@ -53,7 +53,7 @@ Getting Started
 About SageMath
 --------------
 
-SageMath (previously Sage or SAGE) is a free open source mathematical software system based on the
+`SageMath<https://en.wikipedia.org/wiki/SageMath>`_ (previously Sage or SAGE) is a free open source mathematical software system based on the
 Python programming language. Originally created for research into
 mathematics, it has been evolving into a powerful tool for math
 education. It combines numerous other mathematical software packages
@@ -66,9 +66,9 @@ As an open source project, SageMath invites contributions from all of its users.
 
 This tutorial assumes that the reader has access to a running copy of SageMath. On most operating systems, installing SageMath usually consists of  downloading the proper package from the project's main `website <http://www.sagemath.org>`_, unwrapping it, and executing `sage` from within. For more information on the process of installing sage see SageMath's `Installation Guide <http://www.sagemath.org/doc/installation>`_.
 
-Once it has been installed and started, SageMath has two ways to enter commands, either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice.
+A good alternative is to run SageMath in the cloud using `Cocalc <https://cocalc.com>`_. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account. Once you are signed up, you can start a project using SageMath, and also share it with other users. For more information about Cocalc and its features, visit `Cocalc Tutorial <https://tutorial.cocalc.com/>`_.
 
-A good alternative is to run SageMath in the cloud using `Cocalc <https://cocalc.com>`_. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account. Once you are signed up, you can start a project using SageMath, and you can also share it with other users. For more information about Cocalc and its features, visit `Cocalc Tutorial <https://tutorial.cocalc.com/>`_.
+If you opted for the physical installation, once it is started, SageMath has two ways to enter commands: either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice.
 
 Everything that follows the ``sage:`` prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to *factor* the integer :math:`1438880` we would give the following example using SageMath's :func:`.factor` command. ::
 
@@ -92,7 +92,7 @@ If the user is using the notebook (most likely) the interaction will look a litt
 	:width: 800px
 	:height: 525px
 
-Whereas in Cocalc it will look like:
+For Cocalc users, it will look like:
 
 .. image:: pics/Cocalc_factor.png
         :alt: Using SageMath at the command line.
@@ -100,6 +100,8 @@ Whereas in Cocalc it will look like:
 	:height: 525px
 
 .. _help_tabcompletion:
+
+If you are in fact using Cocalc, you have probably already noticed the red banner that pops up at the very top of the page once you create a new project. Just ignore it. It will do no harm.
 
 Tab Completion
 -----------------------
