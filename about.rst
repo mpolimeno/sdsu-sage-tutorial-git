@@ -68,7 +68,7 @@ This tutorial assumes that the reader has access to a running copy of SageMath. 
 
 A good alternative is to run SageMath in the cloud using `Cocalc <https://cocalc.com>`_. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account. Once you are signed up, you can start a project using SageMath, and also share it with other users. For more information about Cocalc and its features, visit `Cocalc Tutorial <https://tutorial.cocalc.com/>`_.
 
-If you opted for the physical installation, once it is started, SageMath has two ways to enter commands: either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice.
+If you opted for the physical installation and started SageMath, you should know that there are two ways to enter commands: either from the *command line* or by using the  web-based *notebook*. The notebook interface is similar in design to the interface of *Matlab*, *Mathematica*, or *Maple* and is a popular choice.
 
 Everything that follows the ``sage:`` prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to *factor* the integer :math:`1438880` we would give the following example using SageMath's :func:`.factor` command. ::
 
@@ -101,7 +101,7 @@ For Cocalc users, it will look like:
 
 .. _help_tabcompletion:
 
-If you are in fact using Cocalc, you have probably already noticed the red banner that pops up at the very top of the page once you create a new project. Just ignore it. It will do no harm.
+If you are in fact using Cocalc, you have probably already noticed the red banner that pops up at the very top of the page that says *Update this project*, every time you create a new project. Just ignore it. It is a bit annoying to the eye, but will do no harm.
 
 Tab Completion
 -----------------------
@@ -296,3 +296,5 @@ original funder and creators. You may add your name to the list of contributors 
 Other contributors include:
 
 *  Ryan Rosenbaum.
+
+*  Matteo Polimeno.

@@ -1,12 +1,12 @@
-.. index:: Sage as a Calculator
+.. index:: SageMath as a Calculator
 
 .. _sage_as_a_calculator:
 
 ====================
-Sage as a Calculator
+SageMath as a Calculator
 ====================
 
-This part of the tutorial examines commands that  allow you to use Sage much like a graphing calculator.  The chapter on  arithmetic and functions and the chapter on solving equations and inequalities serve as a foundation for the rest of the material.   The chapters on plotting, statistics and  calculus are independent of each other, although plotting may be useful to read next since plotting graphs is so is useful in calculus and in statistics.
+This part of the tutorial examines commands that  allow you to use SageMath much like a graphing calculator.  The chapter on  arithmetic and functions and the chapter on solving equations and inequalities serve as a foundation for the rest of the material.   The chapters on plotting, statistics and  calculus are independent of each other, although plotting may be useful to read next since plotting graphs is so is useful in calculus and in statistics.
 
 .. index:: Basic Arithmetic and Functions
 
@@ -48,7 +48,7 @@ The ``-`` symbol in front of a number indicates that it is negative. ::
 
 .. index:: Order of operations
 
-As we would expect, Sage adheres to the standard order of operations,
+As we would expect, SageMath adheres to the standard order of operations,
 PEMDAS (parenthesis, exponents, multiplication, division, addition,
 subtraction). ::
 
@@ -63,7 +63,7 @@ subtraction). ::
   sage: (-3)^2
   9
 
-When dividing two integers, there is a subtlety; whether Sage will return a fraction or it's decimal approximation. Unlike most graphing calculators, Sage will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell Sage that we *want* the decimal approximation is to include a decimal in the expression itself. ::
+When dividing two integers, there is a subtlety; whether SageMath will return a fraction or it's decimal approximation. Unlike most graphing calculators, SageMath will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell SageMath that we *want* the decimal approximation is to include a decimal in the expression itself. ::
 
 	sage: 11/4.0
 	2.75000000000000
@@ -112,7 +112,7 @@ If we want both the quotient and the remainder all at once, we use the :func:`.d
 
 .. index:: divides
 
-Recall that :math:`b` *divides* :math:`a` if :math:`0` is the remainder when we divide the two integers. The integers in Sage have a built-in command ( or 'method' ) which allows us to check whether one integer divides another. ::
+Recall that :math:`b` *divides* :math:`a` if :math:`0` is the remainder when we divide the two integers. The integers in SageMath have a built-in command ( or 'method' ) which allows us to check whether one integer divides another. ::
 
 	sage: 3.divides(15)
 	True
@@ -138,7 +138,7 @@ When the divisors of an integer are only :math:`1` and itself then we say that t
 	sage: 153.is_prime()
 	False
 
-Notice the parentheses around ``2^19 -1`` in the first example. They are important to the order of operations in Sage, and if they are not included then Sage will compute something very different than we intended. Try evaluating ``2^19-1.is_prime()`` and notice the result.  When in doubt, the judicious use of *parenthesis* is encouraged.
+Notice the parentheses around ``2^19 -1`` in the first example. They are important to the order of operations in SageMath, and if they are not included then SageMath will compute something very different than we intended. Try evaluating ``2^19-1.is_prime()`` and notice the result.  When in doubt, the judicious use of *parenthesis* is encouraged.
 
 .. index:: factor, factoring
 
@@ -181,8 +181,8 @@ The least common multiple is the smallest integer which both integers divide. Th
 **Exercises:**
 
   #. Find the quotient and remainder when diving :math:`98` into :math:`956`.
-  #. Use Sage to verify that the quotient and remainder computed above are correct.
-  #. Use Sage to determine if :math:`3` divides :math:`234878`.
+  #. Use SageMath to verify that the quotient and remainder computed above are correct.
+  #. Use SageMath to determine if :math:`3` divides :math:`234878`.
   #. Compute the list of divisors for each of the integers :math:`134,\ 491,\ 422` and :math:`1002`.
   #. Which of the integers above are *prime*?
   #. Calculate :math:`\mathrm{gcd}(a,b)`,  :math:`\mathrm{lcm}(a,b)` and :math:`a \cdot b` for the pairs of integers :math:`\left(2,5\right),\ \left(4,10\right)` and :math:`\left(18,51\right)`. How do the gcd, lcm and the product of the numbers relate?
@@ -198,7 +198,7 @@ Standard Functions and Constants
 ..
     You should be familiar with ":ref:`basic_arithmetic`"
 
-Sage includes nearly all of the standard functions that one encounters
+SageMath includes nearly all of the standard functions that one encounters
 when studying mathematics. In this section, we shall cover some of the
 most commonly used functions: the *maximum*, *minimum*, *floor*,
 *ceiling*, *trigonometric*, *exponential*, and *logarithm* functions.
@@ -217,7 +217,7 @@ We may input any number of arguments into the max and min functions.
 
 .. index:: absolute value, abs
 
-In Sage we use the :func:`abs` command to compute the *absolute value* of
+In SageMath we use the :func:`abs` command to compute the *absolute value* of
 a real number. ::
 
 	sage: abs(-10)
@@ -246,7 +246,7 @@ This is clearly not correct: :math:`\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfl
 
 Computers store real numbers in *binary*, while we are accustomed to using the decimal representation. The :math:`2.1` in decimal notation is quite simple and short, but when converted to binary it is :math:`10.0001\overline{1}=10.0001100110011\ldots`
 
-Since computers cannot store an infinite number of digits, this gets rounded off somewhere, resulting in the slight error we saw. In Sage, however, *rational numbers* (fractions) are exact, so we will never see this rounding error. ::
+Since computers cannot store an infinite number of digits, this gets rounded off somewhere, resulting in the slight error we saw. In SageMath, however, *rational numbers* (fractions) are exact, so we will never see this rounding error. ::
 
   sage: floor(1/(21/10-2))
   10
@@ -262,7 +262,7 @@ The :func:`.sqrt` command calculates the *square root* of a real number. As we h
   sage: sqrt(3.0)
   1.73205080756888
 
-To compute other roots, we use a rational exponent. Sage can compute any rational power. If either the exponent or the base is a decimal then the output will be a decimal. ::
+To compute other roots, we use a rational exponent. SageMath can compute any rational power. If either the exponent or the base is a decimal then the output will be a decimal. ::
 
   sage: 3^(1/2)
   sqrt(3)
@@ -275,7 +275,7 @@ To compute other roots, we use a rational exponent. Sage can compute any rationa
 
 .. index:: trigonometric functions, sin, cos, tan
 
-Sage also has available all of the standard trigonometric functions: for sine and cosine we use :func:`.sin` and :func:`.cos`. ::
+SageMath also has available all of the standard trigonometric functions: for sine and cosine we use :func:`.sin` and :func:`.cos`. ::
 
   sage: sin(1)
   sin(1)
@@ -286,7 +286,7 @@ Sage also has available all of the standard trigonometric functions: for sine an
   sage: cos(3/2.0)
   0.0707372016677029
 
-Again we see the same behavior that we saw with :func:`sqrt`, Sage will give us an exact answer.  You might think that since there is no way to simplify ``sin(1)``,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = \sqrt{3}/2`. Sage has a built-in symbolic :math:`\pi`, and understands this identity::
+Again we see the same behavior that we saw with :func:`sqrt`, SageMath will give us an exact answer.  You might think that since there is no way to simplify ``sin(1)``,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is :math:`\sin(\pi/3 ) = \sqrt{3}/2`. SageMath has a built-in symbolic :math:`\pi`, and understands this identity::
 
   sage: pi
   pi
@@ -295,7 +295,7 @@ Again we see the same behavior that we saw with :func:`sqrt`, Sage will give us 
 
 .. index:: decimal approximation, n
 
-When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not some numerical approximation. However, we can call for a numerical approximation using the :meth:`.n` method::
+When we type :obj:`.pi` in SageMath we are dealing exactly with :math:`\pi`, not some numerical approximation. However, we can call for a numerical approximation using the :meth:`.n` method::
 
   sage: pi.n()
   3.14159265358979
@@ -304,7 +304,7 @@ When we type :obj:`.pi` in Sage we are dealing exactly with :math:`\pi`, not som
   sage: sin(pi.n())
   1.22464679914735e-16
 
-We see that when using the symbolic :obj:`.pi`, Sage returns the exact result. However,  when we use the approximation we get an approximation back. ``e-15`` is a shorthand for :math:`10^{-15}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation: ::
+We see that when using the symbolic :obj:`.pi`, SageMath returns the exact result. However,  when we use the approximation we get an approximation back. ``e-15`` is a shorthand for :math:`10^{-15}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation: ::
 
   sage: sin(pi/6)
   1/2
@@ -335,7 +335,7 @@ Other trigonometric functions, the inverse trigonometric functions and hyperboli
 
 .. index:: natural base, e
 
-Similar to :obj:`pi` Sage has a built-in symbolic constant for the number :math:`e`, the base of the natural logarithm. ::
+Similar to :obj:`pi` SageMath has a built-in symbolic constant for the number :math:`e`, the base of the natural logarithm. ::
 
   sage: e
   e
@@ -344,8 +344,8 @@ Similar to :obj:`pi` Sage has a built-in symbolic constant for the number :math:
 
 .. index:: logarithms, log, ln
 
-While some might be familiar with using ``ln(x)`` for natural log and ``log(x)`` to represent logarithm base :math:`10`, in Sage both represent logarithm
-base :math:`e`.  We may specify a different base as a second argument to the command: to compute :math:`\log_{b}(x)` in Sage we use the command ``log(x,b)``. ::
+While some might be familiar with using ``ln(x)`` for natural log and ``log(x)`` to represent logarithm base :math:`10`, in SageMath both represent logarithm
+base :math:`e`.  We may specify a different base as a second argument to the command: to compute :math:`\log_{b}(x)` in SageMath we use the command ``log(x,b)``. ::
 
   sage: ln(e)
   1
@@ -400,7 +400,7 @@ Solving for x
 
 .. index:: equations, inequalities, ==, <=, >=, True, False
 
-In Sage, equations and inequalities are defined using the *operators* ``==``, ``<=``, and ``>=`` and will return either ``True``, ``False``, or, if there is a variable, just the equation/inequality. ::
+In SageMath, equations and inequalities are defined using the *operators* ``==``, ``<=``, and ``>=`` and will return either ``True``, ``False``, or, if there is a variable, just the equation/inequality. ::
 
   sage: 9 == 9
   True
@@ -422,7 +422,7 @@ To solve an equation or an inequality we use using the, aptly named, :func:`.sol
 	sage: solve( 3*x -2 > 5, x)
 	[[x > (7/3)]]
 
-Equations can have multiple solutions, Sage returns all solutions found as a list. ::
+Equations can have multiple solutions, SageMath returns all solutions found as a list. ::
 
 	sage: solve( x^2 + x  == 6, x)
 	[x == -3, x == 2]
@@ -464,7 +464,7 @@ interval on which to search for a solution. ::
 	3.9269908169872414
 
 This command will only return one solution on the specified interval, if one exists. It will not find the complete solution set over the entire real numbers.
-To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, Sage cannot do all of the thinking for us. This feature is not planned until Sage 10.
+To find a complete set of solutions, the reader must use :func:`.find_root` repeatedly over cleverly selected intervals. Sadly, at this point, SageMath cannot do all of the thinking for us. This feature is not planned until SageMath 10.
 
 
 .. index:: Declaring Variables
@@ -476,7 +476,7 @@ Declaring Variables
 
 .. index:: symbolic variables, var
 
-In the previous section we only solved equations in one variable, and we always used :math:`x`. When a session is started, Sage creates one symbolic variable, :math:`x`, and it can be used to solve equations.  If you want to use  an additional symbolic variable, you have to *declare it*  using the :func:`.var` command. The name of a symbolic variable can be a letter, or a combination of letters and numbers::
+In the previous section we only solved equations in one variable, and we always used :math:`x`. When a session is started, SageMath creates one symbolic variable, :math:`x`, and it can be used to solve equations.  If you want to use  an additional symbolic variable, you have to *declare it*  using the :func:`.var` command. The name of a symbolic variable can be a letter, or a combination of letters and numbers::
 
 	sage: y,z,t = var("y z t")
 	sage: phi, theta, rho = var("phi theta rho")
@@ -524,7 +524,7 @@ The equations must be input as a list, followed by the symbolic variables.  The 
 
 In the second equation above, ``r1`` signifies that there is a free
 variable which parametrizes the solution set. When there is more than
-one free variable, Sage enumerates them ``r1,r2,..., rk``. ::
+one free variable, SageMath enumerates them ``r1,r2,..., rk``. ::
 
 	sage: solve([ 2*x + 3*y + 5*z == 1, 4*x + 6*y + 10*z == 2, 6*x + 9*y + 15*z == 3], x,y,z)
 	[[x == -5/2*r1 - 3/2*r2 + 1/2, y == r2, z == r1]]
@@ -532,7 +532,7 @@ one free variable, Sage enumerates them ``r1,r2,..., rk``. ::
 
 :func:`.solve` can be very slow for large systems of equations. For these systems, it is best to use the linear algebra functions as they are quite efficient.
 
-Solving inequalities in several variables can lead to complicated expressions, since the regions they define are complicated. In the example below, Sage's solution is a list containing the point of interesection of the lines, then  two rays, then the region between the two rays. ::
+Solving inequalities in several variables can lead to complicated expressions, since the regions they define are complicated. In the example below, SageMath's solution is a list containing the point of interesection of the lines, then  two rays, then the region between the two rays. ::
 
         sage: solve([ x-y >=2, x+y <=3], x,y)
 	[[x == (5/2), y == (1/2)], [x == -y + 3, y < (1/2)], [x == y + 2, y < (1/2)], [y + 2 < x, x < -y + 3, y < (1/2)]]
@@ -559,7 +559,7 @@ Calculus
 
 .. index:: defining mathematical functions
 
-Sage has many commands that are useful for the study of differential and integral calculus. We will begin our investigation of these command by defining a few functions that we will use throughout the chapter. ::
+SageMath has many commands that are useful for the study of differential and integral calculus. We will begin our investigation of these command by defining a few functions that we will use throughout the chapter. ::
 
   sage: f(x) = x*exp(x)
   sage: f
@@ -571,7 +571,7 @@ Sage has many commands that are useful for the study of differential and integra
   sage: h
   x |--> (x^2 + x - 2)/(x-4)
 
-Sage uses ``x |-->`` to tell you that the expression returned is actually a function and not just a number or string. This means that we can *evaluate* these expressions just like you would expect of any function. ::
+SageMath uses ``x |-->`` to tell you that the expression returned is actually a function and not just a number or string. This means that we can *evaluate* these expressions just like you would expect of any function. ::
 
   sage: f(1)
   e
@@ -580,7 +580,7 @@ Sage uses ``x |-->`` to tell you that the expression returned is actually a func
   sage: h(-1)
   2/5
 
-With these functions defined, we will look at how we can use Sage to compute the *limit* of these functions.
+With these functions defined, we will look at how we can use SageMath to compute the *limit* of these functions.
 
 .. index:: Limits
 
@@ -591,7 +591,7 @@ Limits
 
 .. index:: limit
 
-The limit of :math:`f(x) = xe^{x}` as :math:`x \rightarrow 1` is computed in Sage by entering the following command into Sage: ::
+The limit of :math:`f(x) = xe^{x}` as :math:`x \rightarrow 1` is computed in SageMath by entering the following command into SageMath: ::
 
   sage: limit(f, x=1)
   e
@@ -615,7 +615,7 @@ Now this is an example of why we have to be a little careful when using computer
 
 .. index:: Limits; directional
 
-What we have when :math:`x=4` is a *vertical asymptote* with the function tending toward *positive* infinity if :math:`x` is larger than :math:`4` and *negative* infinity from when :math:`x` less than :math:`4`. We can takes these *directional* limits using Sage to confirm this by supplying the extra *dir* argument. ::
+What we have when :math:`x=4` is a *vertical asymptote* with the function tending toward *positive* infinity if :math:`x` is larger than :math:`4` and *negative* infinity from when :math:`x` less than :math:`4`. We can takes these *directional* limits using SageMath to confirm this by supplying the extra *dir* argument. ::
 
   sage: limit(h, x=4, dir="right")
   +Infinity
@@ -631,7 +631,7 @@ Derivatives
 
 .. index:: derivative
 
-The next thing we are going to do is use Sage to compute the *derivatives* of the functions that we defined earlier. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :func:`.derivative` command. ::
+The next thing we are going to do is use SageMath to compute the *derivatives* of the functions that we defined earlier. For example, to compute :math:`f^{\prime}(x)`, :math:`g^{\prime}(x)`, and :math:`h^{\prime}(x)` we will use the :func:`.derivative` command. ::
 
   sage: fp  =  derivative(f,x)
   sage: fp
@@ -645,7 +645,7 @@ The next thing we are going to do is use Sage to compute the *derivatives* of th
 
 .. index:: Derivatives; partial
 
-The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, Sage will hold :math:`x` constant and take the derivative with respect to that variable. ::
+The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, SageMath will hold :math:`x` constant and take the derivative with respect to that variable. ::
 
   sage: y = var('y')
   sage: derivative(f,y)
@@ -679,7 +679,7 @@ With the *derivative function* computed, we can then find the *critical points* 
 
 .. index:: Line tangent to a curve
 
-Constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is an important computation which is easily done in Sage. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
+Constructing the line *tangent* to our functions at the point :math:`\left(x, f\left(x\right)\right)` is an important computation which is easily done in SageMath. For example, the following command will compute the line tangent to :math:`f(x)` at the point :math:`\left(0,f(0)\right)`. ::
 
   sage: T_f = fp(0)*( x - 0 ) + f(0)
   sage: T_f
@@ -703,7 +703,7 @@ Integrals
 
 .. index:: integral, Integrals; definite, Integrals; indefinite, Anti-derivative
 
-Sage has the facility to compute both *definite* and *indefinite* integral for many common functions. We will begin by computing the *indefinite* integral, otherwise known as the *anti-derivative*,  for each of the functions that we defined earlier. This will be done by using the :func:`.integral` command which has arguments that are similar to :func:`.derivative`. ::
+SageMath has the facility to compute both *definite* and *indefinite* integral for many common functions. We will begin by computing the *indefinite* integral, otherwise known as the *anti-derivative*,  for each of the functions that we defined earlier. This will be done by using the :func:`.integral` command which has arguments that are similar to :func:`.derivative`. ::
 
   sage: integral(f,x)
   x |--> (x - 1)*e^x
@@ -741,7 +741,7 @@ We can also compute the *definite* integral for the functions that we defined ea
   sage: integral(h, x,0,1)
   x |--> 18*log(3) - 18*log(4) + 11/2
 
-In each case above, Sage returns a *function* as its result. Each of these functions is a constant function, which is what we would expect. As it was pointed out earlier, Sage will return the expression that retains the most precision and will not use decimals unless told to. A quick way to tell Sage that an approximation is desired is wrap the :func:`.integrate` command with :func:`.n`, the numerical approximation command.  ::
+In each case above, SageMath returns a *function* as its result. Each of these functions is a constant function, which is what we would expect. As it was pointed out earlier, SageMath will return the expression that retains the most precision and will not use decimals unless told to. A quick way to tell SageMath that an approximation is desired is wrap the :func:`.integrate` command with :func:`.n`, the numerical approximation command.  ::
 
   sage: n(integral(f, x,0,1))
   1.00000000000000
@@ -821,7 +821,7 @@ Statistics
 
 You should be familiar with :ref:`basic_arithmetic`
 
-In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in Sage.
+In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in SageMath.
 
 .. index:: random
 
@@ -867,7 +867,7 @@ We can also compute a rolling, or moving, average of the data with the :func:`.m
 
 **Exercises:**
 
-  #. Use Sage to generate a list of 20 random integers.
+  #. Use SageMath to generate a list of 20 random integers.
   #. The heights of eight students, measured in inches, are :math:`71,\ 73,\  59,\ 62,\ 65,\ 61,\ 73,\ 61`. Find the *average*, *median* and *mode* of the heights of these students.
   #. Using the same data, compute the *standard deviation* and *variance* of the sampled heights.
   #. Find the *range* of the heights. (*Hint: use the* :func:`.max` *and* :func:`.min` *commands*)
@@ -887,7 +887,7 @@ Plotting
 
     You should be familiar with :ref:`basic_functions_and_constants` and :ref:`solving_equations_inequalities`
 
-Sage has many ways for us to visualize the mathematics with which we are working. In this section we will quickly you up to speed with some of the basic commands used when plotting functions and working with graphics.
+SageMath has many ways for us to visualize the mathematics with which we are working. In this section we will quickly you up to speed with some of the basic commands used when plotting functions and working with graphics.
 
 .. index:: plot, Plotting; 2D,  show, Graphics
 
@@ -962,9 +962,9 @@ point where :math:`\sin(x)` and :math:`\cos(x)` intersect. We will then add this
 	:height: 300px
 	:width: 400px
 
-Sage handles many of the details of producing "nice" looking plots in
+SageMath handles many of the details of producing "nice" looking plots in
 a way that is transparent to the user. However there are times in
-which Sage will produce a plot which isn't quite what we were
+which SageMath will produce a plot which isn't quite what we were
 expecting. ::
 
 	sage: f(x) = (x^3 + x^2 + x)/(x^2 - x -2 )
@@ -976,7 +976,7 @@ expecting. ::
 	:width: 400px
 	:height: 300px
 
-The vertical asymptotes of this rational function cause Sage to adjust the aspect ratio of the plot to display the rather large :math:`y` values near :math:`x=-1` and :math:`x=2`. This obfuscates most of the features of this function in a way that we may have not intended. To remedy this we can explicitly adjust the vertical and horizontal limits of our plot ::
+The vertical asymptotes of this rational function cause SageMath to adjust the aspect ratio of the plot to display the rather large :math:`y` values near :math:`x=-1` and :math:`x=2`. This obfuscates most of the features of this function in a way that we may have not intended. To remedy this we can explicitly adjust the vertical and horizontal limits of our plot ::
 
 	sage: p.show(xmin=-2, xmax=4, ymin=-20, ymax=20)
 
@@ -989,7 +989,7 @@ This, in the author's opinion, displays the features of this particular function
 
 .. index:: plot; parametric, parametric_plot
 
-Sage can handle parametric plots with the :func:`.parametric_plot` command. The following is a simple circle of radius 3. ::
+SageMath can handle parametric plots with the :func:`.parametric_plot` command. The following is a simple circle of radius 3. ::
 
 	sage: t = var('t')
 	sage: p = parametric_plot( [3*cos(t), 3*sin(t)], (t, 0, 2*pi) )
@@ -1039,7 +1039,7 @@ Polar plots can be done using the :func:`.polar_plot` command. ::
 	:width: 400px
 	:height: 300px
 
-And finally, Sage can do the plots for functions that are implicitly defined. For example, to display all points :math:`(x,y)` that satisfy the equation :math:`4x^2y - 3y = x^3 -1`, we enter the following: ::
+And finally, SageMath can do the plots for functions that are implicitly defined. For example, to display all points :math:`(x,y)` that satisfy the equation :math:`4x^2y - 3y = x^3 -1`, we enter the following: ::
 
   sage: implicit_plot(4*x^2*y - 3*y == x^3 - 1, (x,-10,10),(y,-10,10))
 
@@ -1082,9 +1082,9 @@ Producing 3D plots can be done using the :func:`.plot3d` command ::
 	:width: 500px
 	:height: 500px
 
-Sage handles 3d plotting a bit differently than what we have seen thus far. It uses a program named jmol to generate interactive plots. So instead of just a static picture we will see either a window like pictured above or, if you are using Sage's notebook interface, a java applet in your browser's window.
+SageMath handles 3d plotting a bit differently than what we have seen thus far. It uses a program named jmol to generate interactive plots. So instead of just a static picture we will see either a window like pictured above or, if you are using SageMath's notebook interface, a java applet in your browser's window.
 
-One nice thing about the way that Sage does this is that you can rotate your plot by just clicking on the surface and dragging it in the direction in which you would like for it to rotate. Zooming in/out can also be done by using your mouse's wheel button (or two-finger vertical swipe on a mac). Once you have rotated and zoomed the plot to your liking, you can save the plot as a file. Do this by right-clicking anywhere in the window/applet and selecting save, then png-image as pictured below
+One nice thing about the way that SageMath does this is that you can rotate your plot by just clicking on the surface and dragging it in the direction in which you would like for it to rotate. Zooming in/out can also be done by using your mouse's wheel button (or two-finger vertical swipe on a mac). Once you have rotated and zoomed the plot to your liking, you can save the plot as a file. Do this by right-clicking anywhere in the window/applet and selecting save, then png-image as pictured below
 
 .. image:: pics/3d-plot-2.png
 	:alt: Saving a 3d plot to a file in Jmol
@@ -1092,4 +1092,4 @@ One nice thing about the way that Sage does this is that you can rotate your plo
 	:height: 500px
 
 .. note::
-   If you are running Sage on windows or on sagenb.org that your file will be saved either in your VMware virtual machine or on sagenb.org.
+   If you are running SageMath on windows or on sagenb.org that your file will be saved either in your VMware virtual machine or on sagenb.org.
