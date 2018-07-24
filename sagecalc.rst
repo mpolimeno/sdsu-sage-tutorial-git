@@ -771,7 +771,7 @@ The first argument in g.taylor() is the independent variable of our function, th
   sage: f_taylor = f.taylor(x,2,3); f_taylor
   1/6*(x - 2)^3*(467*cos(3) - 2130*sin(3))*e^8 + 1/2*(x - 2)^2*(24*cos(3) - 155*sin(3))*e^8 + (x - 2)*(cos(3) - 12*sin(3))*e^8 - e^8*sin(3)
 
-Now the outcome of this computation might be a bit convoluted to visualize, therefore, another interesting feature of SageMath is the possibility of print the outcome in Latex format, which is much nicer to the eye. ::
+Now the outcome of this computation might be a bit convoluted to visualize, therefore, another interesting feature of SageMath is the possibility of print the outcome in `Latex <https://www.latex-project.org/>`_ format, which is much nicer to the eye. ::
 
   sage: print; show(f_taylor)
 
@@ -1048,7 +1048,19 @@ And finally, SageMath can do the plots for functions that are implicitly defined
    :width: 400px
    :height: 300px
 
+.. index:: Plotting; contour, countour_plot
 
+As we transition from 2D-plotting to 3D-plotting, it is worthwhile is briefly mention `countour lines <https://en.wikipedia.org/wiki/Contour_line>`_. If you are familiar with some basic notion of Multivariable Calculus, you know that a contour line is a curve where a function of two variables holds constant value. Their plots is often useful to gather many information about the function itself and they are used in a variety of fields, from `cartography <https://gisgeography.com/contour-lines-topographic-map/>`_ to `meteorology <https://en.wikipedia.org/wiki/Contour_line#Meteorology>`_. Here we pick a trivial example: an hyperbola. 
+
+  sage: x,y = var("x,y")
+  sage: f(x,y) = x^2-y^2
+  sage: contour = contour_plot(f, (x, -10,10), (y,-10,10),cmap='cool', labels=True, fill=False)
+  sage: contour.show()
+
+.. image:: pics/contour_fill_false.png
+   :alt: Example of plotting contour lines
+   :width: 400px
+   :height: 300px
 
 **Exercises:**
 
