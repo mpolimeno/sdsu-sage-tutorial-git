@@ -1050,11 +1050,11 @@ And finally, SageMath can do the plots for functions that are implicitly defined
 
 .. index:: Plotting; contour, countour_plot
 
-As we transition from 2D-plotting to 3D-plotting, it is worthwhile is briefly mention `countour lines <https://en.wikipedia.org/wiki/Contour_line>`_. If you are familiar with some basic notion of Multivariable Calculus, you know that a contour line is a curve where a function of two variables holds constant value. Their plots is often useful to gather many information about the function itself and they are used in a variety of fields, from `cartography <https://gisgeography.com/contour-lines-topographic-map/>`_ to `meteorology <https://en.wikipedia.org/wiki/Contour_line#Meteorology>`_. Here we pick a trivial example: an hyperbola. 
+As we transition from 2D-plotting to 3D-plotting, it is worthwhile is briefly mention `countour lines <https://en.wikipedia.org/wiki/Contour_line>`_. If you are familiar with some basic notion of Multivariable Calculus, you know that a contour line is a curve where a function of two variables holds constant value. Their plots is often useful to gather many information about the function itself and they are used in a variety of fields, from `cartography <https://gisgeography.com/contour-lines-topographic-map/>`_ to `meteorology <https://en.wikipedia.org/wiki/Contour_line#Meteorology>`_. Here we pick a trivial example: an hyperbola. :
 
   sage: x,y = var("x,y")
   sage: f(x,y) = x^2-y^2
-  sage: contour = contour_plot(f, (x, -10,10), (y,-10,10),cmap='cool', labels=True, fill=False)
+  sage: contour = contour_plot(f, (x, -10,10), (y,-10,10), cmap='cool', labels=True, fill=False)
   sage: contour.show()
 
 .. image:: pics/contour_fill_false.png
