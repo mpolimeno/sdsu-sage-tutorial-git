@@ -1062,7 +1062,7 @@ As we transition from 2D-plotting to 3D-plotting, it is worthwhile to briefly me
    :width: 400px
    :height: 300px
 
-Now, the above picture is not really pleasant to the eye and not very informative either. Thankfully we can customize our contour plot to make it look nicer and clearer.
+Now, the above picture is not really pleasant to the eye and not very informative either. Thankfully we can customize our contour plot to make it look nicer and clearer. ::
 
   sage: x,y = var("x,y")
   sage: f(x,y) = x^2-y^2
@@ -1074,7 +1074,7 @@ Now, the above picture is not really pleasant to the eye and not very informativ
    :width: 400px
    :height: 300px
 
-Now, we have printed the values of the function at each contour line and the plot is much clearer. You are free to check for other custom colors `here <https://matplotlib.org/examples/color/colormaps_reference.html>`_. :: 
+Now, we have printed the values of the function at each contour line and the plot is much clearer. You are free to check for other custom colors `here <https://matplotlib.org/examples/color/colormaps_reference.html>`_. ::
 
 **Exercises:**
 
