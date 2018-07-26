@@ -1,19 +1,19 @@
-.. index:: Programming in Sage
+.. index:: Programming in SageMath
 
 .. _programming_in_sage:
 
 *************************
-Programming in Sage
+Programming in SageMath
 *************************
 
-This part of the tutorial covers the essential programming tools that you need to do more advanced mathematics.   The first chapter, on Sage objects, is essential before moving on to study mathematical structures.   The second chapter is more specifically about programming: conditionals and interative loops, creating your own commands and saving your work. It is not necessary for basic computations with mathematical structures, but becomes invaluable for doing work of any depth.    The third chapter explains how to interact with some of the principle  mathematics software packages included in Sage.  Finally there is a brief chapter on interactive use of Sage.
+This part of the tutorial covers the essential programming tools that you need to do more advanced mathematics.   The first chapter, on SageMath objects, is essential before moving on to study mathematical structures.   The second chapter is more specifically about programming: conditionals and iterative loops, creating your own commands and saving your work. It is not necessary for basic computations with mathematical structures, but becomes invaluable for doing in-depth work.    The third chapter explains how to interact with some of the main  mathematical software packages included in SageMath.  Finally there is a brief chapter on interactive use of SageMath.
 
 .. index:: Objects
 
 .. _sage_objects:
 
 ============
-Sage Objects
+SageMath Objects
 ============
 
 .. index:: Universes and coercion
@@ -25,13 +25,13 @@ Universes and Coercion
 
 .. index:: Universes
 
-A key concept in Sage is the *universe* of an object. The most effective way to gain a familiarity with *universes* and the related concept, *coercion*, is to see a few examples. We begin with the most common universes: the integers,  and the rational, real and complex numbers.
+A key concept in SageMath is the *universe* of an object. The most effective way to gain a familiarity with *universes* and the related concept, *coercion*, is to see a few examples. We begin with the most common universes: the integers,  and the rational, real and complex numbers.
 
 .. index:: ZZ, QQ, RR, CC
- 
-In Sage, the integers are given the name ``ZZ``, the rationals ``QQ``,   the real numbers ``RR`` and the complex numbers ``CC``. ::
 
-	sage: ZZ 
+In SageMath, ``ZZ`` indicates the universe where the Integers live, while``QQ``, ``RR`` and ``CC`` indicate the universes of the Rationals, Real and Complex numbers, respectively. ::
+
+	sage: ZZ
 	Integer Ring
 	sage: QQ
 	Rational Field
@@ -40,11 +40,11 @@ In Sage, the integers are given the name ``ZZ``, the rationals ``QQ``,   the rea
 	sage: CC
 	Complex Field with 53 bits of precision
 
-.. index:: in				
+.. index:: in
 
 We can check if certain objects *live* in a universe using the :obj:`.in` operator. ::
 
-	sage: 1 in ZZ  
+	sage: 1 in ZZ
 	True
 	sage: 1/2 in ZZ
 	False
@@ -55,7 +55,7 @@ We can check if certain objects *live* in a universe using the :obj:`.in` operat
 	sage: sqrt(2) in RR
 	True
 
-The letter ``I`` in Sage is the square root of -1 (`i` also works). ::
+The letter ``I`` in SageMath is the square root of -1 (`i` also works). ::
 
         sage: i^2
         -1
@@ -67,9 +67,9 @@ The letter ``I`` in Sage is the square root of -1 (`i` also works). ::
 	True
 
 .. index:: parent
-				
+
 To directly check which universe a number is in, we use the :func:`.parent` function.
-Sage will choose the simplest universe for each number. ::
+SageMath will choose the simplest universe for each number. ::
 
 	sage: parent(1)
 	Integer Ring
@@ -82,7 +82,7 @@ Sage will choose the simplest universe for each number. ::
 
 Another important universe is the Symbolic Ring.  You might think that :math:`\sqrt{2}`
 or :math:`\pi` would have parent RR, the real numbers, while :math:`I` would be in  CC.
-But RR and CC have finite precision, and these numbers satisfy  formulas that make them special, for example :math:`\sqrt{2}^2=2` and :math:`\sin(\pi)= 0`.  The Symbolic Ring is where Sage stores these numbers with special properties.  The Symbolic Ring also contains symbolic variables, see  ":ref:`variables`". ::
+But RR and CC have finite precision, and these numbers satisfy  formulas that make them special, for example :math:`\sqrt{2}^2=2` and :math:`\sin(\pi)= 0`.  SageMath stores these numbers with special properties in the so-called *Symbolic Ring*, whose variables are aptly-named *symbolic variables*, see  ":ref:`variables`". ::
 
 	sage: parent(sqrt(2))
 	Symbolic Ring
@@ -93,7 +93,7 @@ But RR and CC have finite precision, and these numbers satisfy  formulas that ma
 
 .. index:: Coercion, Coercion; implicit
 
-We often perform operations with elements from *different* universes as long as there is some sort of natural *conversion* that can be done to both elements so that they live in the *same* universe. For example when we do the computation  :math:`1 + 1/2 = 3/2` we implicitly preform a conversion of :math:`1` to the universe of rational numbers before we preform the operation. This conversion is often so natural that we don't even think of it and, luckily for you, Sage does many of these conversions without you having to think about them either. ::
+We often perform operations with elements from *different* universes as long as there is some sort of natural *conversion* that can be done to both elements so that they live in the *same* universe. For instance, when we compute  :math:`1 + 1/2 = 3/2`, we implicitly convert :math:`1` from the Integer universe to the universe of rational numbers, before performing the operation. This conversion is often so natural that we don't even think about it and, luckily for you, SageMath does many of these conversions without you having to worry about them either. ::
 
   sage: parent(1 + 2)
   Integer Ring
@@ -101,15 +101,15 @@ We often perform operations with elements from *different* universes as long as 
   Rational Field
   sage: parent(1/2 + 2.0)
   Real Field with 53 bits of precision
- 
-Sage does something interesting with symbolic constants like ``pi``. For example, here is what happens when we mix ``pi`` with a decimal. ::
+
+SageMath's treatment of symbolic constants like ``pi`` is worth-mentioning in its own right. For example, here's what happens when we mix ``pi`` with a decimal. ::
 
   sage: exp(1.)*pi
   2.71828182845905*pi
   sage: parent(exp(1.)*pi)
   Symbolic Ring
 
-Sage will always choose the universe which offers the most precision.  Sage does the same for other symbolic constants like ``e`` and ``i`` and the polynomial indeterminate ``x``. ::
+SageMath will always choose the universe which offers the most precision, and the same will be true for other symbolic constants like ``e`` and ``i``, as well for the polynomial indeterminate ``x``. ::
 
   sage: parent(2 + i)
   Symbolic Ring
@@ -122,9 +122,9 @@ Sage will always choose the universe which offers the most precision.  Sage does
 
 .. index:: Coercion; explicit
 
-We can explicitly perform conversion through a process called *coercion*. We coerce a number into another universe, if it makes sense, by *applying* the parent structure to the object like it was a function. For example: ::
+What if we want to convert a number from a universe to another? Luckily, we can easily accomplish that through a process called *coercion*. We coerce a number into another universe, if it makes sense, by *applying* the parent structure to the object like it was a function. For example: ::
 
-	sage: QQ(.5)              
+	sage: QQ(.5)
 	1/2
 	sage: parent(QQ(.5))
 	Rational Field
@@ -132,8 +132,8 @@ We can explicitly perform conversion through a process called *coercion*. We coe
 	1.41421356237310
 	sage: parent(RR(sqrt(2)))
 	Real Field with 53 bits of precision
-				
-Fortunately, Sage protects us from making *some* nonsensical conversions by raising a :exc:`.TypeError`. ::
+
+And in case we try to make *some* nonsensical conversions, SageMath will raise a :exc:`.TypeError`. ::
 
   sage: QQ(i)
   ERROR: An unexpected error occurred while tokenizing input
@@ -141,7 +141,7 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
   The error message is: ('EOF in multi-line statement', (1170, 0))
   ---------------------------------------------------------------------------
   TypeError                                 Traceback (most recent call last)
-  ... * a lot of noise * 
+  ... * a lot of noise *
   TypeError: Unable to coerce I to a rational
 
 **Exercises:**
@@ -152,7 +152,7 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
 
      a) ``1 + 1/2``
      b) ``1 + 1/2.0``
-     c) ``1/2 + i`` 
+     c) ``1/2 + i``
      d) ``e + pi``
      e) ``e.n() + pi``
      f) ``e.n() + pi.()``
@@ -165,7 +165,7 @@ Fortunately, Sage protects us from making *some* nonsensical conversions by rais
      d) ``SR(1/2)`` (SR is the *Symbolic Ring*)
      e) ``CC(x)``
 
-  #. If I enter ``x=1/2`` into Sage, what *universe* does ``x`` live in?
+  #. If I enter ``x=1/2`` into SageMath, what *universe* does ``x`` live in?
 
 
 .. index:: Booleans
@@ -177,7 +177,7 @@ Booleans
 
 .. index:: bool, True, False
 
-Another important universe is the Booleans. The Boolean universe is just known as `bool` in Sage, and it contains just two elements  ``True`` and ``False``. ::
+Another important universe is the Booleans. The Boolean universe is just known as `bool` in SageMath, and it contains just two elements  ``True`` and ``False``. ::
 
        sage: parent(True)
        <type 'bool'>
@@ -197,7 +197,7 @@ We combine two Booleans with  :obj:`and` and :obj:`or`. Suppose X and Y are Bool
 
       * (X and Y) is True if both X and Y are True.
         If at least one of them is False, then it is False.
-      * (X or Y) is True if at least one of X or Y is True. 
+      * (X or Y) is True if at least one of X or Y is True.
 
 As demonstrated by the following example ::
 
@@ -216,11 +216,11 @@ We may use parentheses to control the order of evaluation of these truth stateme
 	False
 	sage: True or (False and False)
 	True
-				
+
 
 In the first example (True or False) is evaluated to be True first, then True and False evaluates to be False. In the second example, (False and False) evaluates to be False, but True or False is True.
 
-Another important operator on Booleans is the exclusive or operator, represented by ``^^`` in Sage. (``X ^^ Y``) is ``True`` if exactly one of X or Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
+Another important operator on Booleans is the exclusive or operator, represented by ``^^`` in SageMath. (``X ^^ Y``) is ``True`` if exactly one of X or Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
 
 	sage: True ^^ True         # xor (exclusive or) operator
 	False
@@ -229,9 +229,9 @@ Another important operator on Booleans is the exclusive or operator, represented
 	sage: False ^^ False
 	False
 
-.. index:: ==				
+.. index:: ==
 
-We check whether two whether two objects are equal using the ``==`` operator. 
+We check whether two whether two objects are equal using the ``==`` operator.
 The result is a Boolean::
 
 	sage: 1 == 1
@@ -251,8 +251,8 @@ Please take note that we use two equals signs, not one! To check if two things a
 	True
 	sage: 1 <> 0
 	True
-				
-.. index:: <, <=, >= 
+
+.. index:: <, <=, >=
 
 If two objects belong to a universe that has an ordering, ``<`` then we may ccomparing two elements of the universe  gives a Boolean output.
 Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. ::
@@ -281,8 +281,8 @@ Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for
      e) ``((3/2) > 1) ^^ (2/3 < 1)``
      f) ``x > 1/2``
 
-  #. What is the parent of ``x > 1/2``? Why do you think that Sage treats this expression differently from the rest?
-  #. Use Sage to find out if :math:`e` is greater than :math:`\pi`? (*Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default.*)
+  #. What is the parent of ``x > 1/2``? Why do you think that SageMath treats this expression differently from the rest?
+  #. Use SageMath to find out if :math:`e` is greater than :math:`\pi`? (*Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default.*)
 
 .. index:: Variables
 
@@ -295,11 +295,11 @@ You should be familiar with ":ref:`declare_variables`"
 
 The term 'variable',  can have several different meanings.In computer programming, a 'variable' is a space in memory used to store and retrieve a certain piece of information. In mathematics, a variable such as :math:`x` is a quantity with indeterminate value; a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
 
-In Sage, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
+In SageMath, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
 
 .. index:: Variables; symbolic
 
-Sage initializes the Symbolic Ring to have one symbolic variable, ``x``. It obeys  the arithmetical rules that we expect. ::
+SageMath initializes the Symbolic Ring to have one symbolic variable, ``x``. It obeys  the arithmetical rules that we expect. ::
 
      sage: 3*x - x
      2*x
@@ -313,15 +313,15 @@ If we need another symbolic variable, we have to declare it, using the :func:`.v
      sage: e^x*e^y
      ---------------------------------------------------------------------------
      NameError                                 Traceback (most recent call last)
-     
+
      /Users/mosullivan/<ipython console> in <module>()
-     
+
      NameError: name 'y' is not defined
      sage: var("y")
      y
      sage: e^x*e^y
      e^(x + y)
-     sage: 
+     sage:
 
 .. index:: Variables; assignment
 
@@ -335,8 +335,8 @@ Now, let's look at variables, which are used to store a particular number. ::
 
 We use an ``=`` to assign the value on the right to the variable on the left. Having declared a variable, we can reference by using its name, as seen above.
 
- 
-Sage allows us to re-assign a different value to a variable. ::
+
+SageMath allows us to re-assign a different value to a variable. ::
 
 	sage: s=12
 	sage: s
@@ -345,27 +345,27 @@ Sage allows us to re-assign a different value to a variable. ::
 	sage: s
 	34
 
-The order of operations in Sage allow for us to reference a variable while assigning it a new value. For example, we can *increment* the variable ``t`` by doing the following: ::
+The order of operations in SageMath allow for us to reference a variable while assigning it a new value. For example, we can *increment* the variable ``t`` by doing the following: ::
 
 	sage: t=7
 	sage: t=t+1
 	sage: t
 	8
-				
-Sage also offers us a convenient way to assign multiple variables at once. ::
+
+SageMath also offers us a convenient way to assign multiple variables at once. ::
 
 	sage: a,b=1,2
 	sage: a
 	1
 	sage: b
 	2
-				
+
 Additionally, we can display a sequence of variables using commas. ::
 
 	sage: c,d,e=2,3,5
 	sage: c,d,e
 	(2, 3, 5)
-				
+
 
 If we are assigning several variables at a time, and for some reason we wish to skip a value on the right hand side, we may use an underscore on the left hand side. For example, ::
 
@@ -406,7 +406,7 @@ When you define either a variable or a symbolic variable it stays in memory unti
 
 You can *reset* the entire environment to it's defaults by running the :func:`.reset` command. ::
 
-  sage: a = 1 
+  sage: a = 1
   sage: b = 2
   sage: c = 5
   sage: x = 56
@@ -424,7 +424,7 @@ You can *reset* the entire environment to it's defaults by running the :func:`.r
 
 And finally if I *really* want the variable obliterated, I can use the sledgehammer of memory management, the :func:`.del` command. ::
 
-  sage: a = [2, 3,4 ,5 ] 
+  sage: a = [2, 3,4 ,5 ]
   sage: del a
   sage: a
   ---------------------------------------------------------------------------
@@ -435,7 +435,7 @@ And finally if I *really* want the variable obliterated, I can use the sledgeham
 
 **Exercises:**
 
-  #. If you enter the following into Sage:
+  #. If you enter the following into SageMath:
 
      ::
 
@@ -445,7 +445,7 @@ And finally if I *really* want the variable obliterated, I can use the sledgeham
 
      What should we expect the value of ``a`` to be?
 
-  #. If you enter the following into Sage:
+  #. If you enter the following into SageMath:
 
      ::
 
@@ -477,7 +477,7 @@ A *list* is an ordered collection of objects. The elements of a list are indexed
 	 13
 	 sage: L[6]
 	 17
-					 
+
 Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:`0`.
 
 .. index:: list; length, len
@@ -489,8 +489,8 @@ The :func:`.len` command returns the *length* of a list.  ::
 	 sage: len([2,3,5,7,11])
 	 5
 
-Note that a list of length :math:`5` is indexed from :math:`0` to :math:`4`.					 
-				 
+Note that a list of length :math:`5` is indexed from :math:`0` to :math:`4`.
+
 Lists can contain numbers from any universe, or even  ":ref:`strings`".  ::
 
       sage: M = [ 'apple', 'pear']
@@ -506,13 +506,13 @@ We can even have lists of lists! ::
 	 [1, 4]
 	 sage: len(M)
 	 3
-					 
+
 To access a particular element within our list of lists we chain their indices. For example, to access the ``4`` within that list we issue the following command: ::
 
   sage: M[2][1]
-  4 
+  4
 
-Where we read ``M[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``M``. 
+Where we read ``M[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``M``.
 Note that ``M[2,1]`` does not work.
 
 
@@ -522,7 +522,7 @@ Slicing and Indexing
 +++++++++++++++++++++++
 
 Probably the nicest feature of lists in python is the *slice* notation. Let's suppose you have the following list: ::
- 
+
  sage: M = [1, 2, 0, 3, 4, 0, 4, 5]
  sage: M
  [1, 2, 0, 3, 4, 0, 4, 5]
@@ -570,7 +570,7 @@ If we wish to know the index of an element, we use the :func:`.index` function. 
 
 
          sage: M = [2,3,3,3,2,1,8,6,3]
-	 sage: M.index(2) 
+	 sage: M.index(2)
 	 0
 	 sage: M.index(3)
 	 1
@@ -587,8 +587,8 @@ We can also count the number of times that an element occurs in a list. ::
 
 Creating
 ++++++++++++++++++
-					 
-Since they are used rather frequently, Sage offers a convenient way to create lists of consecutive integers. ::
+
+Since they are used rather frequently, SageMath offers a convenient way to create lists of consecutive integers. ::
 
   sage: [1..7]
   [1, 2, 3, 4, 5, 6, 7]
@@ -596,7 +596,7 @@ Since they are used rather frequently, Sage offers a convenient way to create li
   [4, 5, 6, 7, 8, 9]
   sage: [2,4..10]
   [2, 4, 6, 8, 10]
-					 
+
 In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap the the following examples will clear things up. ::
 
 	 sage: [1,4..13]
@@ -605,12 +605,12 @@ In the first two examples it is quite clear what is happening; In the last examp
 	 [1, 11, 21, 31]
 	 sage: [1,11..35]
 	 [1, 11, 21, 31]
-					 
-Additionally, we can use this construction method with some of Sage's symbolic constants such as ``pi``. ::
+
+Additionally, we can use this construction method with some of SageMath's symbolic constants such as ``pi``. ::
 
 	 sage: [pi,4*pi..32]
 	 [pi, 4*pi, 7*pi, 10*pi]
-					 
+
 
 Modifying lists
 ++++++++++++++++++++++
@@ -646,18 +646,18 @@ We may alter the elements of a list as follows: ::
 	 [-1, 2, 3, 4]
 
 In programming speak, data-types that can be changed in place are
-called *mutable*. 
-Lists are mutable, but some   data types in Sage are not.
+called *mutable*.
+Lists are mutable, but some   data types in SageMath are not.
 
 .. index:: list; append, append
-					 
+
 To add an element to the end of a list, we use the :meth:`.append` method. ::
 
 	 sage: L = [1,2,3]
 	 sage: L.append(4)
 	 sage: L
 	 [1, 2, 3, 4]
-					 
+
 .. index:: list; extend, extend
 
 Similarly, we may use the :meth:`.extend` method to concatenate lists, that is, to *append* a list to the end of another list. ::
@@ -684,7 +684,7 @@ If we wish to remove an element from a list, we use the meth:`.remove` method. :
 	 sage: L.remove(11)
 	 sage: L
 	 [3, 5, 13, 17, 19, 29, 31]
-					 
+
 Note that a list may contain the same element more than once; :meth:`.remove` removes only the first instance of the given element. ::
 
 	 sage: M = [1,2,3,0,3,4,4,0,4,5]
@@ -701,7 +701,7 @@ Operations on a List
 
 .. index:: sum, prod
 
-If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands accept a list as argument. 
+If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands accept a list as argument.
 
 :func:`sum` returns the sum of it's argument:  ::
 
@@ -709,7 +709,7 @@ If your lists contain elements where it makes sense, the :func:`.sum` and :func:
 	 6
 	 sage: sum([1..100])
 	 5050
-					 
+
 where :func:`.prod` returns the product. ::
 
 	 sage: prod([1..4])
@@ -764,15 +764,15 @@ this style of programming with python see the `Python Documentation`_.
 
   #. Consider the list ``L = [1, 3, 4, [1,5,6], 8, -9]``. At what *index* is the element ``[1,5,6]``? Remove this element from ``L``.
 
-  #. Let ``L = [3,4,18,17,2,'a']`` and ``M = [ 14, 23, 'b',   'c']``. With Sage, do the following: 
+  #. Let ``L = [3,4,18,17,2,'a']`` and ``M = [ 14, 23, 'b',   'c']``. With SageMath, do the following:
 
      a) Append the elements of the list ``M`` to the end of ``L`` without changing ``L``.
-     b) Do the same but this time altering ``L`` in place. 
-     c) Insert ``M`` as an element at the end of ``L``, altering ``L`` in place. 
-     d) Remove the ``M`` that you  just inserted.  
-     e) Explain the differences between the :meth:`.extend` and the :meth:`.append` methods.  
+     b) Do the same but this time altering ``L`` in place.
+     c) Insert ``M`` as an element at the end of ``L``, altering ``L`` in place.
+     d) Remove the ``M`` that you  just inserted.
+     e) Explain the differences between the :meth:`.extend` and the :meth:`.append` methods.
 
-  #. Let ``L = [1,2,5, 14, 17, 20]``.  What are the sub-lists are accessed using the following *slices*. 
+  #. Let ``L = [1,2,5, 14, 17, 20]``.  What are the sub-lists are accessed using the following *slices*.
 
      a) ``L[:-1]``
      b) ``L[-1:]``
@@ -780,9 +780,9 @@ this style of programming with python see the `Python Documentation`_.
      d) ``L[0:3]``
      e) ``L[-4:-1]``
 
-  #.  Using the same ``L`` as the previous problem. Find a slice that will extract the following sub-lists from ``L``: *(Do this in two different ways)* 
+  #.  Using the same ``L`` as the previous problem. Find a slice that will extract the following sub-lists from ``L``: *(Do this in two different ways)*
 
-      a) ``[5,14,17]``. 
+      a) ``[5,14,17]``.
       b) ``[1,2,5]``.
       c) ``[1]``
       d) ``[20]``
@@ -790,16 +790,16 @@ this style of programming with python see the `Python Documentation`_.
   #. Consider ``L = ['a', 9, 10, 17, 'a', 'b', 10]``. Remove all letters from ``L``.
 
 .. _sets:
-					 
+
 Sets
 ----
 
 .. index:: Set
 
-A *Set* in Sage is a data type which behaves a lot like a mathematical set and it differs from a list in a few key ways:
+A *Set* in SageMath is a data type which behaves a lot like a mathematical set and it differs from a list in a few key ways:
 
   * Elements of a Set have no order. So you cannot access elements by an index.
-  * An element in a Set only appears once. 
+  * An element in a Set only appears once.
 
 To see an example of that last point, we will construct a Set by converting a list into a set. ::
 
@@ -809,7 +809,7 @@ To see an example of that last point, we will construct a Set by converting a li
 	 {8, 1, 2, 3, 6}
 
 .. index:: Set; cardinality,cardinality
- 
+
 To find the size of a Set we will use the :meth:`.cardinality` method. ::
 
 	 sage: A.cardinality()
@@ -825,7 +825,7 @@ Testing for membership can be done easily by using the :obj:`.in` operator. ::
   False
 
 .. index:: Set; union, Set; intersection, Set; difference, Set; symmetric difference, union, intersection, set difference, symmetric difference
-  
+
 All of the usual set operations: :meth:`.union`, :meth:`.intersection`, :meth:`.difference` and :meth:`.symmetric_difference` are implemented. For example: ::
 
   sage: B = Set([8,6,17,-4,20, -2 ])
@@ -857,21 +857,21 @@ Notice that the :meth:`subsets` method produces a *list* of subsets.  ::
   sage: powA.list()
   [{}, {1}, {2}, {3}, {1, 2}, {1, 3}, {2, 3}, {1, 2, 3}]
   sage: pairsA.list()
-  [{1, 2}, {1, 3}, {2, 3}]					
+  [{1, 2}, {1, 3}, {2, 3}]
 
 **Exercises:**
 
-  #. Consider the sets :math:`A = \left\{1, -4, 2 \right\}` and :math:`B = \left\{ 3, 2, 1 \right\}`. Compute the following set operations using Sage:
+  #. Consider the sets :math:`A = \left\{1, -4, 2 \right\}` and :math:`B = \left\{ 3, 2, 1 \right\}`. Compute the following set operations using SageMath:
 
      a) :math:`A \cup B`
      b) :math:`A \cap B`
      c) :math:`A \setminus B`
-     d) :math:`B \setminus A` 
+     d) :math:`B \setminus A`
      e) :math:`\left(A \setminus B \right) \cup \left(B \setminus A \right)`
- 
+
 
 .. seealso::
-   `Sage Tutorial: Sets <http://www.sagemath.org/doc/tutorial/programming.html#sets>`_
+   `SageMath Tutorial: Sets <http://www.sagemath.org/doc/tutorial/programming.html#sets>`_
 
 .. _strings:
 
@@ -880,15 +880,15 @@ Strings
 
 .. index:: string
 
-To construct a string in Sage we may use single or double quotes.  ::
+To construct a string in SageMath we may use single or double quotes.  ::
 
 	 sage: s='I am a string'
 	 sage: s
 	 'I am a string'
 	 sage: print s
 	 I am a string
-					 
-Note the difference between asking for the value of ``a`` and asking Sage to ``print a``. Like lists, we can access the elements of a string through their indices. ::
+
+Note the difference between asking for the value of ``a`` and asking SageMath to ``print a``. Like lists, we can access the elements of a string through their indices. ::
 
 	 sage: a='mathematics'
 	 sage: a[0]
@@ -917,7 +917,7 @@ and we can separate a list by using the :meth:`.split` method. ::
 
   sage: s.split()
   ['I', 'am', 'a', 'string']
- 
+
 Which divided the string into a list of words. We can divide a list using different characters as *separators*. For example we can get a list from the following *comma separated values*. ::
 
   sage: vals = "18,spam,eggs,28,70,287,cats"
@@ -929,7 +929,7 @@ Which divided the string into a list of words. We can divide a list using differ
 
 We can use the :func:`.map` and :meth:`.split` commands to *convert* a string of integers into something that we can use in sage. This is particularly useful when you must read data from a file. ::
 
-  sage: map(Integer, data.split(',')) 
+  sage: map(Integer, data.split(','))
   [17, 18, 20, 19, 18, 20]
 
 You should note how the output above differs from what we get when we use only the :meth:`.split` method. ::
@@ -937,20 +937,20 @@ You should note how the output above differs from what we get when we use only t
   sage: data.split(',')
   ['17', '18', '20', '19', '18', '20']
 
-The list directly above contains *strings* which represent numbers. We must convert those strings into what we need in order to actually use them. 
+The list directly above contains *strings* which represent numbers. We must convert those strings into what we need in order to actually use them.
 
 .. index:: strings; join, joining strings
- 
+
 The opposite of *splitting* up a string into a list is the *joining* of elements of a list. We do this with the :func:`.join` command. ::
 
-  sage: L = ['Learning', 'Sage', 'is', 'easy.'] 
+  sage: L = ['Learning', 'SageMath', 'is', 'easy.']
   sage: join(L)
-  'Learning Sage is easy.'
+  'Learning SageMath is easy.'
 
 Just like when I *split* a sting, I can join a list using a different separating value than just a space. I do so by supplying an optional second argument to the :func:`.join` command. ::
 
   sage: join(L,',')
-  'Learning,Sage,is,easy.'
+  'Learning,SageMath,is,easy.'
 
 **Exercises:**
 
@@ -961,9 +961,9 @@ Just like when I *split* a sting, I can join a list using a different separating
 
   #. Consider the string ``s = 'This is a sentence. This is another sentence.'``. Split ``s`` into a list of two sentences.
 
-  #.  Consider the list of strings ``L = ['This is', 'a', 'string']``. Join the elements of the list to form the string ``'This is a string'``. 
+  #.  Consider the list of strings ``L = ['This is', 'a', 'string']``. Join the elements of the list to form the string ``'This is a string'``.
 
-  #. We can use the :func:`.map` and :func:`.Integer` commands to take a string of integers and convert them into *Sage* integers.  
+  #. We can use the :func:`.map` and :func:`.Integer` commands to take a string of integers and convert them into *SageMath* integers.
 
 
 .. _programming_tools:
@@ -972,33 +972,33 @@ Just like when I *split* a sting, I can join a list using a different separating
 Programming Tools
 =================
 
-Sage syntax is based on the widely used language Python, and thereby  inherits Python's  compact and very readable  style.   In this chapter we cover the syntax for the  essentials of programming.  For more complex issues we provide  links to other resources.
+SageMath syntax is based on the widely used language Python, and thereby  inherits Python's  compact and very readable  style.   In this chapter we cover the syntax for the  essentials of programming.  For more complex issues we provide  links to other resources.
 
-.. _conditionals: 
+.. _conditionals:
 
 Conditionals
 ----------------
 
-    You should be familiar with :ref:`solving_equations_inequalities`, :ref:`booleans`, and :ref:`variables` 
+    You should be familiar with :ref:`solving_equations_inequalities`, :ref:`booleans`, and :ref:`variables`
 
 .. index:: conditionals, if statement
 
-A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we wanted to divide a number by 2 only *if* it is even. We can do this in Sage by using an :obj:`.if` statement. ::
+A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we wanted to divide a number by 2 only *if* it is even. We can do this in SageMath by using an :obj:`.if` statement. ::
 
 	sage: n=44
-	sage: if n%2 == 0:                             
+	sage: if n%2 == 0:
 	....:     print n/2
 	....:
 	22
 	sage: n=37
-	sage: if n%2 == 0:                             
+	sage: if n%2 == 0:
 	....:     print n/2
 	....:
 	sage:
-				
+
 Since ``n=44`` is even, the *condition* is met and the :func:`.print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this.
 
-Unlike some other languages, Sage is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, Sage uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read. 
+Unlike some other languages, SageMath is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, SageMath uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read.
 
 .. index:: elif, if-else statement
 
@@ -1009,23 +1009,23 @@ At times, we may wish to check whether our expression satisfies more than one co
 	....:     print m/3
 	....: elif m%3==1:
 	....:     print (m-1)/3
-	....:     
+	....:
 	10
-				
 
-Notice that we return to the same level of indentation for :obj:`.elif` as was used for :obj:`.if`.  We may use as many elifs as we desire. The tests are evaluated in order and once the first one is met, the associated code is executed and Sage will leave the entire conditional. For a simple example, consider the following: ::
+
+Notice that we return to the same level of indentation for :obj:`.elif` as was used for :obj:`.if`.  We may use as many elifs as we desire. The tests are evaluated in order and once the first one is met, the associated code is executed and SageMath will leave the entire conditional. For a simple example, consider the following: ::
 
 	sage: r=55
 	sage: if 11.divides(r):
-	....:     print 11            
+	....:     print 11
 	....: elif r==55:
 	....:     print 55
-	....:     
+	....:
 	11
-				
+
 Here both conditions are met, but only the code associated with the
 first condition is actually executed. Understanding how conditionals
-are executed is important  to controlling the flow of your program.  
+are executed is important  to controlling the flow of your program.
 
 There is also a subtle shortcut that we used in the previous example. ``11.divides(r)`` already returns either ``True`` or ``False``, hence we did not need to use an equality here. We could have used the more verbose ``11.divides(r)==True`` but it is not necessary.
 
@@ -1041,10 +1041,10 @@ Often we wish to execute some code if none of our conditions above are met. For 
 	....:     print 3
 	....: else:
 	....:     print n
-	....:     
+	....:
 	31
-				
-Since none of the conditions were met, our code *defaulted* to printing the number :math:`31`. 
+
+Since none of the conditions were met, our code *defaulted* to printing the number :math:`31`.
 
 .. _while_loops:
 
@@ -1061,15 +1061,15 @@ While loops are one of the most useful techniques in programming. Essentially, a
 	sage: while i < 5:
 	....:     print i^2
 	....:     i=i+1
-	....:     
+	....:
 	0
 	1
 	4
 	9
 	16
-				
 
-Once the condition ``i<5`` is False, Sage exits the loop structure; the variable ``i`` still exists, though.
+
+Once the condition ``i<5`` is False, SageMath exits the loop structure; the variable ``i`` still exists, though.
 
 
 .. _for_loops:
@@ -1083,31 +1083,31 @@ For Loops
 .. index:: for, for statement, loops; for
 
 A for loop repeatedly runs a block of code a fixed number of times. In
-Sage, for loops iterate over a fixed list. ::
+SageMath, for loops iterate over a fixed list. ::
 
 	sage: for i in [0..4]:
 	....:     print i^2
-	....:     
+	....:
 	0
 	1
 	4
 	9
 	16
-				
+
 
 We may iterate over any list, it need not be consecutive
 integers. Here are a few more (especially silly) examples. ::
 
-	sage: for str in ["apple","banana","coconut","dates"]:                            
+	sage: for str in ["apple","banana","coconut","dates"]:
 	....:     print str.capitalize()
-	....:     
+	....:
 	Apple
 	Banana
 	Coconut
 	Dates
-	sage: for char in "Leonhard Euler":   
+	sage: for char in "Leonhard Euler":
 	....:     print char.swapcase()
-	....:     
+	....:
 	l
 	E
 	O
@@ -1116,7 +1116,7 @@ integers. Here are a few more (especially silly) examples. ::
 	A
 	R
 	D
-	
+
 	e
 	U
 	L
@@ -1132,17 +1132,17 @@ List Comprehensions (Loops in Lists)
 
 .. index:: list; comprehensions
 
-A particularly useful technique in python (and Sage by extension) is the
-construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as: 
+A particularly useful technique in python (and SageMath by extension) is the
+construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as:
 
 .. math::
-   \left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\} 
+   \left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\}
 
 Where we do not explicitly list the elements of the set but rather give a *rule* which can used to construct the set. We can do something very similar in python by placing a ``for`` inside of a list, like in the following example. Here is how we would construct the list of even integers from :math:`0` to :math:`20`. ::
 
 	sage: [ 2*k for k in [0..10] ]
 	[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
-			
+
 This concept may seem a bit intimidating at first, but it is extremely concise way to write some powerful code.
 
 We can use list comprehension to apply a function to each number of a given list, much like we did before with the :func:`.map` command. ::
@@ -1154,7 +1154,7 @@ We can use list comprehension to apply a function to each number of a given list
 
 We can also use the list comprehension *filter* (or reduce) the results by adding a *conditional* to our list comprehension. For example, to construct the list of all natural numbers that are less than :math:`20` which are *relatively prime* to 20 we do the following:  ::
 
-  sage: [ k for k in [1..19] if gcd(k,20) == 1 ] 
+  sage: [ k for k in [1..19] if gcd(k,20) == 1 ]
   [1, 3, 7, 9, 11, 13, 17, 19]
 
 Notice that the syntax for the construction is nearly identical to the
@@ -1171,7 +1171,7 @@ In mathematics we often construct the *Cartesian Product* of two sets:
 We can do something similar by using multiple *for's* in the list comprehension. For example, to construct the list of all *pairs* of elements in the list constructed earlier we do the following: ::
 
   sage: U =  [ k for k in [1..19] if gcd(k,20) == 1]
-  sage: [ (a,b) for a in U for b in U ] 
+  sage: [ (a,b) for a in U for b in U ]
   [(1, 1), (1, 3), (1, 7), (1, 9), (1, 11), (1, 13), (1, 17), (1, 19), (3, 1), (3, 3), (3, 7), (3, 9), (3, 11), (3, 13), (3, 17), (3, 19), (7, 1), (7, 3), (7, 7), (7, 9), (7, 11), (7, 13), (7, 17), (7, 19), (9, 1), (9, 3), (9, 7), (9, 9), (9, 11), (9, 13), (9, 17), (9, 19), (11, 1), (11, 3), (11, 7), (11, 9), (11, 11), (11, 13), (11, 17), (11, 19), (13, 1), (13, 3), (13, 7), (13, 9), (13, 11), (13, 13), (13, 17), (13, 19), (17, 1), (17, 3), (17, 7), (17, 9), (17, 11), (17, 13), (17, 17), (17, 19), (19, 1), (19, 3), (19, 7), (19, 9), (19, 11), (19, 13), (19, 17), (19, 19)]
 
 It should be noted that I didn't only have to form *tuples* of the pairs of elements. I can also find the product or the sum of them. Any valid expression involving ``a`` and ``b`` will be fine.  ::
@@ -1189,7 +1189,7 @@ Since list comprehensions allow for us to put any valid expression, we can add a
 
   sage: U
   [1, 3, 7, 9, 11, 13, 17, 19]
-  sage: [ 'prime' if x.is_prime() else 'not prime' for x in U] 
+  sage: [ 'prime' if x.is_prime() else 'not prime' for x in U]
   ['not prime', 'prime', 'prime', 'not prime', 'prime', 'prime', 'prime', 'prime']
 
 .. seealso::
@@ -1200,8 +1200,8 @@ Since list comprehensions allow for us to put any valid expression, we can add a
 
   #. Use a list comprehension to generate lists which have the same members as the following sets:
 
-     a) The set of all odd integers greater than :math:`-10` and less than :math:`30`.  
-     b) The set of all integers which are divisible by :math:`3`, less than or equal to :math:`100` and greater than :math:`-20`. 
+     a) The set of all odd integers greater than :math:`-10` and less than :math:`30`.
+     b) The set of all integers which are divisible by :math:`3`, less than or equal to :math:`100` and greater than :math:`-20`.
      c) The set of all *prime* numbers less than :math:`100`.
 
   #. Use a list comprehension to compute the :math:`\tan(x)` for all :math:`x \in \left\{ 0, \pi/4, \pi/2, 3\pi/4, \pi \right\}`
@@ -1214,9 +1214,9 @@ Defining your own commands
 
 .. index:: functions, functions; definition, functions; arguments, functions; return values,  def, return
 
-Once your computations get complicated enough we may want to hide some of this complexity by creating your own command that can be easily re-used like Sage's built-in commands. These user-defined commands are commonly called *functions*, though they differ from mathematical functions.
+Once your computations get complicated enough we may want to hide some of this complexity by creating your own command that can be easily re-used like SageMath's built-in commands. These user-defined commands are commonly called *functions*, though they differ from mathematical functions.
 
-For example, suppose that we wanted to compute the greatest common divisor of :math:`75` and :math:`21`. We can use the *euclidean algorithm* and Sage to do this. Here is how that would look: ::
+For example, suppose that we wanted to compute the greatest common divisor of :math:`75` and :math:`21`. We can use the *euclidean algorithm* and SageMath to do this. Here is how that would look: ::
 
   sage: def euclid(a,b):
   ....:     r = a%b
@@ -1225,10 +1225,10 @@ For example, suppose that we wanted to compute the greatest common divisor of :m
   ....:         r = a%b
   ....:     return b
 
-``a`` and ``b`` are called the *arguments* of the command and the expression following the :obj:`.return` keyword is called the *return value*. The arguments are in the input of the command whereas the return value is the output. 
+``a`` and ``b`` are called the *arguments* of the command and the expression following the :obj:`.return` keyword is called the *return value*. The arguments are in the input of the command whereas the return value is the output.
 
-For those of you who have programmed before, you may see that there are no end or block *delimiters*, such as **;**, or **end**. Sage, like python, uses indentation to denote where a block of code begins and ends. This syntax rule forces the programmer to write more readable code, by visually separating blocks of code.
- 
+For those of you who have programmed before, you may see that there are no end or block *delimiters*, such as **;**, or **end**. SageMath, like python, uses indentation to denote where a block of code begins and ends. This syntax rule forces the programmer to write more readable code, by visually separating blocks of code.
+
 Once the command ``euclid`` has been defined, the code can be easily re-used withe different arguments, just like a built-in command. ::
 
   sage: euclid(75,21)
@@ -1246,36 +1246,36 @@ User defined commands may have any number of arguments, including none at all. :
 
 	sage: def g(x,y):
 	....:     return x*y
-	....: 
+	....:
 	sage: g(2,3)
 	6
 	sage: g(sqrt(2),sqrt(2))
 	2
-	sage: def h():                
+	sage: def h():
 	....:     return 1/2
-	....: 
+	....:
 	sage: h()
 	1/2
-				
-Defining a return value is also optional, but all commands in Sage return something. If we do not specify a return value, then Sage returns the empty object :obj:`None`. ::
+
+Defining a return value is also optional, but all commands in SageMath return something. If we do not specify a return value, then SageMath returns the empty object :obj:`None`. ::
 
 	sage: def lazy(x):
 	....:     print x^2
-	....:     
+	....:
 	sage: lazy(sqrt(3))
 	3
 	sage: a =  lazy(sqrt(3))
 	3
 	sage: a
 	None
-				
-What the above is showing is that while the command displays the number *3*, the return value is actually **None**. While this is valid code, it is good practice to have your commands actually return the value that you are interested in computing.  
+
+What the above is showing is that while the command displays the number *3*, the return value is actually **None**. While this is valid code, it is good practice to have your commands actually return the value that you are interested in computing.
 
 By separating the values with commas, your command can have multiple return values. ::
 
 	sage: def s(x):
 	....:     return x^2,x^3
-	....: 
+	....:
 	sage: s(1)
 	(1, 1)
 	sage: s(2)
@@ -1291,7 +1291,7 @@ encapsulating your code is an art which requires a lot of practice and
 thought. For a more thorough introduction to functions (commands), the
 following  chapter on `Python functions`_ is a good place to start.
 
-.. _Python functions: http://greenteapress.com/thinkpython/html/book004.html 
+.. _Python functions: http://greenteapress.com/thinkpython/html/book004.html
 
 .. _external_files_and_sessions:
 
@@ -1301,13 +1301,13 @@ External Files and Sessions
 .. index:: external files, sessions
 
 In practice, especially when using sage for research and projects, it
-is convenient to load external files into Sage.  One such instance is
+is convenient to load external files into SageMath.  One such instance is
 when we have a block of code which we wish to run for several
 different cases. It would be quite tedious to retype all of the code;
 instead we read it from an external file.
 
 Suppose we have a file in the same
-directory from which we started Sage called :download:`pythag.sage <pythag.sage>` with the following content.
+directory from which we started SageMath called :download:`pythag.sage <pythag.sage>` with the following content.
 
 .. code-block:: python
 
@@ -1317,24 +1317,24 @@ directory from which we started Sage called :download:`pythag.sage <pythag.sage>
 	c=sqrt(a^2+b^2)
 	print c
 	# End
-				
+
 .. index:: loading a file, load
 
-Note that all characters after a # of a Sage file are ignored when
-loaded. We may now load the file in Sage using the :func:`.load` command. ::
+Note that all characters after a # of a SageMath file are ignored when
+loaded. We may now load the file in SageMath using the :func:`.load` command. ::
 
 	sage: load pythag.sage
 	5
-				
+
 After having loaded the file, all of the variables initialized now
-exist in our Sage session. ::
+exist in our SageMath session. ::
 
 	sage: a,b,c
 	(3, 4, 5)
 
 .. index:: save_session, load_session
-				
-Sage allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit Sage, power off our computer, or what have you. At any later time, we may load the file by opening Sage from the directory containing the save file and using the load_session function.
+
+SageMath allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit SageMath, power off our computer, or what have you. At any later time, we may load the file by opening SageMath from the directory containing the save file and using the load_session function.
 
 Here is an example: ::
 
@@ -1343,16 +1343,16 @@ Here is an example: ::
 	sage: save_session()
 	sage: exit
 	Exiting SAGE (CPU time 0m0.06s, Wall time 0m31.27s).
-				
 
-Now start Sage from the same folder as the save file. ::
+
+Now start SageMath from the same folder as the save file. ::
 
 	sage: load_session()
 	sage: a
 	101
 	sage: b
 	103
-				
+
 
 We may specify the name of a save session, if we so desire. ::
 
@@ -1360,7 +1360,7 @@ We may specify the name of a save session, if we so desire. ::
 	sage: save_session('ramanujan')
 	sage: exit
 	Exiting SAGE (CPU time 0m0.06s, Wall time 0m16.57s).
-				
+
 
 And again we load our session ``ramanujan`` with :func:`.load_session`. ::
 
@@ -1370,12 +1370,12 @@ And again we load our session ``ramanujan`` with :func:`.load_session`. ::
 
 
 ============================
-Packages within Sage
+Packages within SageMath
 ============================
 
 .. index:: external programs
 
-There are many open-source software packages available for doing specialized mathematics. One of the objectives of  Sage developers is to create a single clean interface from which  these packages may all be accessed.  For many computations in  advanced mathematics Sage uses the functionality in one of these packages.  A Sage use user can also explicitly call a function from one of the packages.
+There are many open-source software packages available for doing specialized mathematics. One of the objectives of  SageMath developers is to create a single clean interface from which  these packages may all be accessed.  For many computations in  advanced mathematics SageMath uses the functionality in one of these packages.  A SageMath use user can also explicitly call a function from one of the packages.
 This chapter briefly describes how to do so.
 
 
@@ -1383,9 +1383,9 @@ GAP
 ------
 .. index:: external programs; gap
 
-For this portion of the tutorial we are going to show how to use GAP from within a Sage session. The commands here follow closely with the `Groups and Homomorphisms`__  section of the GAP tutorial. A reader who is interested in learning more about the capabilities of this system shoud consult the `Gap Project's`__ main website. 
+For this portion of the tutorial we are going to show how to use GAP from within a SageMath session. The commands here follow closely with the `Groups and Homomorphisms`__  section of the GAP tutorial. A reader who is interested in learning more about the capabilities of this system shoud consult the `Gap Project's`__ main website.
 
-.. __: http://www.gap-system.org/Manuals/doc/htm/tut/CHAP005.htm 
+.. __: http://www.gap-system.org/Manuals/doc/htm/tut/CHAP005.htm
 .. __: http://www.gap-system.org
 
 You can pass a command to GAP by using :func:`.gap` with the command as a *string*. The following example constructs the *symmetric group* on eight points using GAP.  ::
@@ -1399,7 +1399,7 @@ You can pass a command to GAP by using :func:`.gap` with the command as a *strin
   sage: parent(s8)
   Gap
 
-The  *interface* to the GAP system translates the commands in GAP to *methods* in Sage. For example, to compute the *Derived Subgroup* of :math:`S_8` you use the :meth:`.DerivedSubgroup` method. ::
+The  *interface* to the GAP system translates the commands in GAP to *methods* in SageMath. For example, to compute the *Derived Subgroup* of :math:`S_8` you use the :meth:`.DerivedSubgroup` method. ::
 
   sage: a8 = s8.DerivedSubgroup(); a8
   Group( [ (1,2,3), (2,3,4), (2,4)(3,5), (2,6,4), (2,4)(5,7), (2,8,6,4)(3,5) ] )
@@ -1408,7 +1408,7 @@ The  *interface* to the GAP system translates the commands in GAP to *methods* i
   false
   true
 
-The output of `s8.DerivedSubgroup()` is identical to the output of the GAP command `DerivedSubgroup(s8)` and this is the common convention when the command has one argument. When it requires two, say the group and an additional parameter, the additional parameter is given as an argument to the method. For example, the GAP command `SylowSubgroup(a8,2)` computes the maximal 2-subgroup of :math:`A_8`. The following Sage code does the same, then uses GAP to compute it's size.  ::
+The output of `s8.DerivedSubgroup()` is identical to the output of the GAP command `DerivedSubgroup(s8)` and this is the common convention when the command has one argument. When it requires two, say the group and an additional parameter, the additional parameter is given as an argument to the method. For example, the GAP command `SylowSubgroup(a8,2)` computes the maximal 2-subgroup of :math:`A_8`. The following SageMath code does the same, then uses GAP to compute it's size.  ::
 
   sage: sy12 = a8.SylowSubgroup(2); sy12.Size()
   64
@@ -1420,9 +1420,9 @@ In the same vein, we can use GAP to compute the *normalizer's* and *centralizers
     (1,8)(2,7)(3,4)(5,6) ] )
   sage: a8.Normalizer(sy12) == sy12
   True
-  sage: cent = a8.Centralizer(sy12.Centre()); 
+  sage: cent = a8.Centralizer(sy12.Centre());
   sage: cent
-  Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), (3,5)(7,8), (3,7)(5,8), (2,3)(4,7), 
+  Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), (3,5)(7,8), (3,7)(5,8), (2,3)(4,7),
     (1,2)(4,6) ] )
   sage: cent.Size()
   192
@@ -1430,21 +1430,21 @@ In the same vein, we can use GAP to compute the *normalizer's* and *centralizers
 Gap itself has commands which can maniputale lists of objects. In this example we first compute the *derived series* of ``cent`` and then compute the size of each of these subgroups using GAP's :func:`.List` command. ::
 
   sage: cent.DerivedSeries(); cent.DerivedSeries().List('Size')
-  [ Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), (3,5)(7,8), (3,7)(5,8), (2,3)(4,7), 
-	(1,2)(4,6) ] ), 
+  [ Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), (3,5)(7,8), (3,7)(5,8), (2,3)(4,7),
+	(1,2)(4,6) ] ),
     Group( [ (2,4)(3,7), ( 1, 3)( 2, 8)( 4, 5)( 6, 7), ( 1, 7, 4)( 2, 6, 3) ] ),
-    Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), ( 1, 6)( 3, 7), 
-	( 1, 4)( 2, 6)( 3, 5)( 7, 8), ( 1, 7)( 2, 5)( 3, 6)( 4, 8), 
-	( 1, 4, 6, 2)( 3, 8, 7, 5) ] ), 
+    Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8), ( 1, 6)( 3, 7),
+	( 1, 4)( 2, 6)( 3, 5)( 7, 8), ( 1, 7)( 2, 5)( 3, 6)( 4, 8),
+	( 1, 4, 6, 2)( 3, 8, 7, 5) ] ),
     Group( [ ( 1, 6)( 2, 4)( 3, 7)( 5, 8) ] ), Group( () ) ]
   [ 192, 96, 32, 2, 1 ]
 
-Since the GAP command constructs a full-fledged Sage object we can so the same in a more Sage-y manner by using a list comprehension. ::
+Since the GAP command constructs a full-fledged SageMath object we can so the same in a more SageMath-y manner by using a list comprehension. ::
 
-  sage: [ g.Size() for g in cent.DerivedSeries() ] 
+  sage: [ g.Size() for g in cent.DerivedSeries() ]
   [192, 96, 32, 2, 1]
 
-To convert a GAP group to a native Sage one we first extract a list of generators. Then feed that list to the usual group constructor. ::
+To convert a GAP group to a native SageMath one we first extract a list of generators. Then feed that list to the usual group constructor. ::
 
   sage: gens = s8.GeneratorsOfGroup(); gens
   [ (1,2), (1,2,3,4,5,6,7,8) ]
@@ -1453,9 +1453,9 @@ To convert a GAP group to a native Sage one we first extract a list of generator
   sage: parent(SG)
   <class 'sage.groups.perm_gps.permgroup.PermutationGroup_generic_with_category'>
 
-Going from a Sage group to a GAP one is even easier. ::
+Going from a SageMath group to a GAP one is even easier. ::
 
-  sage: gap(SG)             
+  sage: gap(SG)
   Group( [ (1,2), (1,2,3,4,5,6,7,8) ] )
   sage: parent(gap(SG))
   Gap
@@ -1464,24 +1464,24 @@ From time to time you will want to just use GAP directly without using the inter
 
   sage: gap_console()
   GAP4, Version: 4.4.12 of 17-Dec-2008, x86_64-unknown-linux-gnu-gcc
-  gap> 
+  gap>
 
 From which we can exit by typing ``quit;`` at the gap prompt. ::
- 
-  gap> quit;
-  sage: 
 
-If the reader is using the notebook then using GAP directly is even easier. It is done by just selecting GAP from a drop down menu.  
+  gap> quit;
+  sage:
+
+If the reader is using the notebook then using GAP directly is even easier. It is done by just selecting GAP from a drop down menu.
 
 .. image:: pics/gap_example.png
-   :alt: Using GAP directly from the Sage Notebook
+   :alt: Using GAP directly from the SageMath Notebook
    :height: 525px
    :width: 800px
 
-Now the Sage notebook acts as a web interface to the GAP system. 
+Now the SageMath notebook acts as a web interface to the GAP system.
 
 
-.. seealso:: 
+.. seealso::
    http://www.gap-system.org/Manuals/doc/htm/index.htm
 
 Singular
@@ -1489,9 +1489,9 @@ Singular
 
 .. index:: external programs; singular
 
-As with the GAP interface, the Sage interface to Singular substitutes the language commands with *methods* in Sage. For example, the following code in Singular: ::
+As with the GAP interface, the SageMath interface to Singular substitutes the language commands with *methods* in SageMath. For example, the following code in Singular: ::
 
-  > ring R = 0,(x,y,z),lp; 
+  > ring R = 0,(x,y,z),lp;
   > R;
   //   characteristic : 0
   //   number of vars : 3
@@ -1499,7 +1499,7 @@ As with the GAP interface, the Sage interface to Singular substitutes the langua
   //                  : names    x y z
   //        block   2 : ordering C
 
-Constructs a polynomial ring in three variables; x,y and z over the field of characteristic 0 using the *lexicographic* term ordering. To do the same within Sage we use the :meth:`.ring` method of the :obj:`.singular` object. ::
+Constructs a polynomial ring in three variables; x,y and z over the field of characteristic 0 using the *lexicographic* term ordering. To do the same within SageMath we use the :meth:`.ring` method of the :obj:`.singular` object. ::
 
   sage: R = singular.ring('0','(x,y,z)','lp')
   sage: R
@@ -1509,7 +1509,7 @@ Constructs a polynomial ring in three variables; x,y and z over the field of cha
   //                  : names    x y z
   //        block   2 : ordering C
 
-Since much of the language that Singular uses is not valid in Sage the quotations around the arguments are important.
+Since much of the language that Singular uses is not valid in SageMath the quotations around the arguments are important.
 
 Polynomials are constructed in this ring by using the :meth:`.poly` method. ::
 
@@ -1548,7 +1548,7 @@ and if you would like this reduction done using a Groebner basis, we just combin
   x^3-x^2+x-1
 
 
-The quotations are not necessary when passing a Singular object as in the last few examples as there is no ambiguity. 
+The quotations are not necessary when passing a Singular object as in the last few examples as there is no ambiguity.
 
 Finally a task that Singular excels at is the factorization of multivariate polynomials. This is done using the :meth:`.factorize` method. ::
 
@@ -1576,7 +1576,7 @@ Finally a task that Singular excels at is the factorization of multivariate poly
 .. seealso:: http://www.singular.uni-kl.de
 
 
-Using Python packages in Sage
+Using Python packages in SageMath
 -----------------------------
 
 
@@ -1587,12 +1587,12 @@ Interactive Demonstrations in the Notebook
 
 .. index:: interact, @interact, interactive applets
 
-In this section we will discuss the creation of interactive "applets" in the Sage notebook. These are done using the :obj:`@interact` decorator and are often called *interacts*.  A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise fashion. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
+In this section we will discuss the creation of interactive "applets" in the SageMath notebook. These are done using the :obj:`@interact` decorator and are often called *interacts*.  A decorator is a just a fancy piece of python which allows for you to create new functions out of old in a quick and concise fashion. You don't have to fully understand decorators to be able to follow this material but If you are interested you can read a very nice `blog post`_ about decorators by Bruce Eckel of `Thinking in Python`_ Fame.
 
 .. _blog post:  http://www.artima.com/weblogs/viewpost.jsp?thread=240808
 .. _Thinking in Python: http://www.mindview.net/Books/TIPython
 
-We will begin with the most simple applet. One that creates a single input box and then displays the results. 
+We will begin with the most simple applet. One that creates a single input box and then displays the results.
 
 .. image:: pics/interact_step1.png
 	:alt: Simple "Hello World" Interact Applet
@@ -1606,28 +1606,27 @@ Notice how changing the text in the input box changes the output. Every time som
 	:height: 525px
 	:width: 800px
 
-Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as it's smallest number and :math:`10` as it's largest and moves in increments of :math:`1` unit. 
+Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as it's smallest number and :math:`10` as it's largest and moves in increments of :math:`1` unit.
 
 .. image:: pics/interact_step3.png
 	:alt: Simple "Hello World" Interact Applet
 	:height: 525px
 	:width: 800px
 
-Next we will add a selection control. This control allows the user to select one of a finite number of different options. In this case, the user can select any color, as long as that color is red, blue, green, or black. 
+Next we will add a selection control. This control allows the user to select one of a finite number of different options. In this case, the user can select any color, as long as that color is red, blue, green, or black.
 
 .. image:: pics/interact_step4.png
 	:alt: Simple "Hello World" Interact Applet
 	:height: 525px
 	:width: 800px
 
-While this initial example shows the use of a couple of common interactive controls, it still does not do anything very interesting.  The next example will combine both the use of sliding and selection controls toward creating an applet which plots the trigonometric functions and there standard transformations. 
+While this initial example shows the use of a couple of common interactive controls, it still does not do anything very interesting.  The next example will combine both the use of sliding and selection controls toward creating an applet which plots the trigonometric functions and there standard transformations.
 
 .. image:: pics/interact_step5.png
 	:alt: Example of Trigonometric Plotter Interact.
 	:height: 525px
 	:width: 800px
 
-The example here only scratches the surface of what is possible with Sage interacts. For a, growing, list of examples of interacts see this page on the sage wiki_.
+The example here only scratches the surface of what is possible with SageMath interacts. For a, growing, list of examples of interacts see this page on the sage wiki_.
 
 .. _wiki: http://wiki.sagemath.org/interact/
-
