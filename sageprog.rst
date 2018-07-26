@@ -1,6 +1,6 @@
 .. index:: Programming in SageMath
 
-.. _programming_in_sage:
+.. _programming_in_SageMath:
 
 *************************
 Programming in SageMath
@@ -10,7 +10,7 @@ This part of the tutorial covers the essential programming tools that you need t
 
 .. index:: Objects
 
-.. _sage_objects:
+.. _SageMath_objects:
 
 ============
 SageMath Objects
