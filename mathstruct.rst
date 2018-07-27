@@ -251,7 +251,7 @@ using :func:`solve_mod`. ::
 
 Finally, SageMath can compute the simultaneous solution of linear
 congruences with different moduli under certain circumstances. This
-is done using the  , and is implemented in
+is done using the `Chinese Remainder Theorem <https://en.wikipedia.org/wiki/Chinese_remainder_theorem>`_, and is implemented in
 the :func:`.crt` command. For example, the following computes the
 smallest nonnegative integer, :math:`x` that is congruent to :math:`3 \bmod 8`, :math:`4 \bmod 9`,
 and :math:`5 \bmod 25`.   ::
