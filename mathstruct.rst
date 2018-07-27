@@ -251,7 +251,7 @@ using :func:`solve_mod`. ::
 
 Finally, SageMath can compute the simultaneous solution of linear
 congruences with different moduli under certain circumstances. This
-is done using the  and is implemented in
+is done using the `Chinese Remainder Theorem <https://en.wikipedia.org/wiki/Chinese_remainder_theorem>`_, and is implemented in
 the :func:`.crt` command. For example, the following computes the
 smallest nonnegative integer, :math:`x` that is congruent to :math:`3 \bmod 8`, :math:`4 \bmod 9`,
 and :math:`5 \bmod 25`.   ::
@@ -1564,32 +1564,37 @@ Note that since SageMath uses rows to construct a matrix we must use the  :func:
 
 .. index:: characteristic_polynomial, factor
 
-Once we have the matrix we will compute its *characteristic polynomial* and then factor it to find the matrix's eigenvalues. ::
+Once we have the matrix we will compute its *characteristic polynomial* and then factor it to find its eigenvalues. ::
 
   sage: f = M.characteristic_polynomial(); f
   x^4 - 10*x^3 + 37*x^2 - 60*x + 36
   sage: f.factor()
   (x - 3)^2 * (x - 2)^2
 
+.. index:: eigenvalues
 
+Or, alternatively, we can compute the eigenvalues directly by doing the following ::
+
+  sage: eval_M = M.eigenvalues(); eval_M
+  [3, 3, 2, 2]
 
 .. index:: eigenvectors_right
 
 Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` and both are of algebraic multiplicity :math:`2`. Now we need to look at the associated  *eigenvectors*. To do so we will use the :meth:`eigenvectors_right` method. ::
 
-  sage: evec_M = M.eigenvectors_right(); evec_M
+  sage: ev_M = M.eigenvectors_right(); ev_M
   [(3, [
   (1, 1, 1, 0),
   (0, 0, 0, 1)
   ], 2), (2, [
   (1, 0, 0, 0)
   ], 2)]
-  sage: evec_M[1][1][0]
+  sage: ev_M[1][1][0]
   (1, 0, 0, 0)
 
 .. index:: identity_matrix, augment
 
-What is returned is a :func:`list` of ordered triples. Each triple is
+What is returned is a :func:`list` of ordered tripples. Each triple is
 consists  of an eigenvalue followed by a list with a basis for the
 associated  eigenspace followed by the dimension of the associated eigenspace. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
 
