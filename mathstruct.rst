@@ -10,7 +10,7 @@ The individual chapters in this part of the tutorial are relatively independent 
 
 
 
-.. _integers_modular_arithmetic:
+.. _integers_and_modular_arithmetic:
 
 Integers and Modular Arithmetic
 ===============================
