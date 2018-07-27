@@ -1,6 +1,6 @@
 .. index:: SageMath as a Calculator
 
-.. _sage_as_a_calculator:
+.. _sagemath_as_a_calculator:
 
 ====================
 SageMath as a Calculator

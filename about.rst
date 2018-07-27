@@ -21,9 +21,9 @@ This tutorial is divided into four parts. This part,
 :ref:`about_tutorial`,  discusses some basic properties of SageMath, introduces you to the
 structure of the tutorial,  and explains how to contribute to the project if you so desire.
 
-The second part, :ref:`sage_as_a_calculator`,  covers  topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.
+The second part, :ref:`sagemath_as_a_calculator`,  covers  topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.
 
-:ref:`programming_in_sage`  introduces the reader to some more *advanced* topics such as  how SageMath handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and SageMath *universes* and *coercion*.
+:ref:`programming_in_sagemath`  introduces the reader to some more *advanced* topics such as  how SageMath handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and SageMath *universes* and *coercion*.
 
 The final part, :ref:`mathematical_structures`,  introduces the reader to topics that one finds in  a college-level curriculum: linear algebra, number theory, groups, rings, fields, etc.
 
