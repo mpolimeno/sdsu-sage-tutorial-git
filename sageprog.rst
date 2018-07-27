@@ -6,7 +6,7 @@
 Programming in SageMath
 *************************
 
-This part of the tutorial covers the essential programming tools that you need to do more advanced mathematics.   The first chapter, on SageMath objects, is essential before moving on to study mathematical structures.   The second chapter is more specifically about programming: conditionals and iterative loops, creating your own commands and saving your work. It is not necessary for basic computations with mathematical structures, but becomes invaluable for doing in-depth work.    The third chapter explains how to interact with some of the main  mathematical software packages included in SageMath.  Finally there is a brief chapter on interactive use of SageMath.
+This part of the tutorial covers the essential programming tools that you need to use in order to do more advanced mathematics.   The first chapter, on SageMath objects, is essential before moving on to study mathematical structures.   The second chapter is more specifically about programming: conditionals and iterative loops, creating your own commands and saving your work. It is not necessary for basic computations with mathematical structures, but becomes invaluable for doing in-depth work.    The third chapter explains how to interact with some of the main  mathematical software packages included in SageMath.  Finally there is a brief chapter on interactive use of SageMath.
 
 .. index:: Objects
 
@@ -42,7 +42,7 @@ In SageMath, ``ZZ`` indicates the universe where the Integers live, while``QQ``,
 
 .. index:: in
 
-We can check if certain objects *live* in a universe using the :obj:`.in` operator. ::
+We can check if a given objects *live* in a universe using the :obj:`.in` operator. ::
 
 	sage: 1 in ZZ
 	True
@@ -293,7 +293,7 @@ Variables
 
 You should be familiar with ":ref:`declare_variables`"
 
-The term 'variable',  can have several different meanings.In computer programming, a 'variable' is a space in memory used to store and retrieve a certain piece of information. In mathematics, a variable such as :math:`x` is a quantity with indeterminate value; a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
+The term 'variable',  can hold different meanings. For instance, in computer programming, a 'variable' is a space in memory used to store and retrieve a certain piece of information. In mathematics, a variable such as :math:`x` is a quantity with indeterminate value: a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.
 
 In SageMath, both usages are present.  We will use the term *variable* for the computer programming variable and *symbolic variable* for the mathematical variable.
 
@@ -333,7 +333,7 @@ Now, let's look at variables, which are used to store a particular number. ::
 	sage: (m+1).factor()
 	2^19
 
-We use an ``=`` to assign the value on the right to the variable on the left. Having declared a variable, we can reference by using its name, as seen above.
+We use an ``=`` to assign the value on the right to the variable on the left. Having declared a variable, we can reference it by using its name, as seen above.
 
 
 SageMath allows us to re-assign a different value to a variable. ::
@@ -367,7 +367,7 @@ Additionally, we can display a sequence of variables using commas. ::
 	(2, 3, 5)
 
 
-If we are assigning several variables at a time, and for some reason we wish to skip a value on the right hand side, we may use an underscore on the left hand side. For example, ::
+If we are assigning several variables at a time, and for some reason we wish to skip a value on the right-hand side, we may use an underscore on the left hand side. For example, ::
 
 	sage: a,_,c=1,2,3
 	sage: a
@@ -388,7 +388,7 @@ There is also a quick way to initialize two variables with the same value. We do
 
 .. index:: restore, variables; restore
 
-When you define either a variable or a symbolic variable it stays in memory until you quit your session.  Sometimes we would like restore a variable back to it's default value. We do this with the :func:`.restore` command. ::
+When you define either a variable or a symbolic variable, it will stay in memory until you quit your session.  Sometimes we would like restore a variable back to its default value. We do this with the :func:`.restore` command. ::
 
   sage: x = 1
   sage: a = 2
@@ -404,7 +404,7 @@ When you define either a variable or a symbolic variable it stays in memory unti
 
 .. index:: reset, variables;reset
 
-You can *reset* the entire environment to it's defaults by running the :func:`.reset` command. ::
+You can *reset* the entire environment to its defaults by running the :func:`.reset` command. ::
 
   sage: a = 1
   sage: b = 2
@@ -422,7 +422,7 @@ You can *reset* the entire environment to it's defaults by running the :func:`.r
 
 .. index:: variables; deleting, del
 
-And finally if I *really* want the variable obliterated, I can use the sledgehammer of memory management, the :func:`.del` command. ::
+And finally if you *really* want the variable obliterated, you can use the sledgehammer of memory management, the :func:`.del` command. ::
 
   sage: a = [2, 3,4 ,5 ]
   sage: del a
