@@ -1571,12 +1571,7 @@ Once we have the matrix we will compute its *characteristic polynomial* and then
   sage: f.factor()
   (x - 3)^2 * (x - 2)^2
 
-.. index:: eigenvalues
 
-Or, alternatively, we can compute the eigenvalues directly. ::
-
-  sage: eval_M = M.eigenvalues(); eval_M
-  [3, 3, 2, 2]
 
 .. index:: eigenvectors_right
 
