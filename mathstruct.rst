@@ -1573,12 +1573,12 @@ Once we have the matrix we will compute its *characteristic polynomial* and then
 
 .. index:: eigenvalues
 
-Or, alternatively, we can compute the eigenvalues directly by doing the following ::
+Or, alternatively, we can compute the eigenvalues directly. ::
 
   sage: eval_M = M.eigenvalues(); eval_M
   [3, 3, 2, 2]
 
-.. index:: eigenvectors_right
+
 
 Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` and both are of algebraic multiplicity :math:`2`. Now we need to look at the associated  *eigenvectors*. To do so we will use the :meth:`eigenvectors_right` method. ::
 
