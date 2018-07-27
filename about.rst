@@ -21,7 +21,7 @@ This tutorial is divided into four parts. This part,
 :ref:`about_tutorial`,  discusses some basic properties of SageMath, introduces you to the
 structure of the tutorial,  and explains how to contribute to the project if you so desire.
 
-The second part, :ref:`sagemath_as_a_calculator`,  covers  topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sage_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.
+The second part, :ref:`sagemath_as_a_calculator`,  covers  topics such as how to do arithmetic, evaluate functions, create simple graphs, solve equations and do  basic calculus. We call this section :ref:`sagemath_as_a_calculator` because most of the topics covered are those that are commonly done with a standard graphing calculator. The target audience for this section is any motivated pre-calculus or calculus student.
 
 :ref:`programming_in_sagemath`  introduces the reader to some more *advanced* topics such as  how SageMath handles numbers; how to define and use variables and functions; how to manipulate lists, strings, and sets; and SageMath *universes* and *coercion*.
 
@@ -105,7 +105,7 @@ If you are in fact using Cocalc, you have probably already noticed the red banne
 
 Tab Completion
 -----------------------
-Next we will discuss how to use a couple of important features of both interfaces; tab-completion and the built-in help system.
+Next we will discuss how to use a couple of important features of the various SageMath interfaces; tab-completion and the built-in help system.
 
 
 .. index:: tab completion
@@ -269,7 +269,7 @@ All of this website's source code can be downloaded from the project's `bitbucke
 
 The content of this tutorial is written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official SageMath and Python documentation, so it is useful for contributors to either of these projects.
 
-There are  four parts to the tutorial: :ref:`about_tutorial` has basic instructions about using and amending the tutorial, and the others have mathematical content. :ref:`sage_as_a_calculator` is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
+There are  four parts to the tutorial: :ref:`about_tutorial` has basic instructions about using and amending the tutorial, and the others have mathematical content. :ref:`sagemath_as_a_calculator` is intended, as the title suggests, to cover straightforward computations, plotting graphs, and content that one might find in a high school algebra course, introductory statistics or calculus.  We intend it to be  accessible to an entering college student, or to a bright high school student.
 
 "Programming in SageMath" eases the transition to higher level mathematics by treating topics that relate to the interface between mathematical concepts and computational issues. The first chapter covers universes and coercion   (rationals, reals, booleans etc.);  variables; and basic structures like lists, sets and strings.  The second chapter covers; programming essentials like  conditionals and iterative computation; file handling and data handling; etc.   The third chapter discusses mathematical software packages within SageMath.
 Finally, there is a brief discussion of interactive demonstrations with the notebook.

@@ -1,3 +1,5 @@
+.. index:: mathematical structures
+
 .. _mathematical_structures:
 
 *************************
