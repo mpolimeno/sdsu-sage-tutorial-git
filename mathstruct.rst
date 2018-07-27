@@ -21,7 +21,7 @@ Integers Modulo :math:`n`
 
     You should be familiar with :ref:`universes_and_coercion` and :ref:`variables`
 
-.. index:: mathematical structures, modular arithmetic, rings, rings; integers modulo n
+.. index:: modular arithmetic, rings, rings; integers modulo n
 
 In this section we cover how to construct :math:`\mathbb{Z}_{n}`, the ring of integers modulo
 :math:`n`,  and do some basic computations.
