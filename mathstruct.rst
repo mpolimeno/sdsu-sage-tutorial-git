@@ -1106,14 +1106,23 @@ When multiplying vectors and matrices; vectors can be considered both as rows or
 
 We use the :meth:`det` method to calculate the *determinant* of a square matrix. ::
 
-  sage: A= matrix([[-1/2,0,-1],[0,-2,2],[1,0,-1/2]]); A
+  sage: A = matrix([[-1/2,0,-1],[0,-2,2],[1,0,-1/2]]); A
   [-1/2    0   -1]
   [   0   -2    2]
   [   1    0 -1/2]
   sage: A.det()
   -5/2
 
-.. index:: matrix; invertability, is_invertible
+.. index:: trace, matrix; trace
+
+We use the :meth:`trace` method to compute the *trace*of a square (or any) matrix. ::
+
+  sage: A = matrix([[-1/2,0,-1],[0,-2,2],[1,0,-1/2]]); A.trace()
+  -3
+
+This was a trivial case that could have been easily done by hand, but there will be circumstances when knowing the :meth:`trace` method will turn out to be useful.
+
+.. index:: matrix; invertibility, is_invertible
 
 To check if a matrix is invertible we use the :meth:`is_invertible` method. ::
 
@@ -1123,7 +1132,7 @@ To check if a matrix is invertible we use the :meth:`is_invertible` method. ::
   sage: A.det()
   1
 
-The invertablility of a matrix depends on the ring or field it is defined over. For example: ::
+The invertibility of a matrix depends on the ring or field it is defined over. For example: ::
 
   sage: B=matrix(2,[1,2,3,4])
   sage: B.is_invertible()
@@ -1213,7 +1222,7 @@ To get a list of row and column vectors, we use the :meth:`rows` and :meth:`colu
 .. index:: row, column, matrix; row, matrix; column
 
 The following examples show how to get a particular row or column
-vector. Remember tl that Sage follows Python's convention that all of the indicies begin with zero. ::
+vector. Remember that Sage follows Python's convention that all of the indexes begin with zero. ::
 
    sage: M.row(0)
    (1, 2, 3)
@@ -1233,7 +1242,7 @@ You can even get a list of the diagonal entries, by calling the :meth:`diagonal`
 
 .. index:: matrix_from_columns, matrix_from_rows, matrix_from_rows_and_columns
 
-Sage also allows us to contruct new matrices from the row and/or column vectors. ::
+Sage also allows us to construct new matrices from the row and/or column vectors. ::
 
    sage: M.matrix_from_columns([0,2])
    [1 3]
@@ -1295,7 +1304,7 @@ The same can be done with the column vectors, which are also zero indexed. ::
 
 .. index:: swap_rows, swap_columns
 
-If we don't like the ordering of our rows or colums we can swap them in place.  ::
+If we don't like the ordering of our rows or columns we can swap them in place.  ::
 
    sage: M.swap_rows(1,0); M
    [ 0 -3  2]
@@ -1562,34 +1571,41 @@ Note that since Sage uses rows to construct a matrix we must use the  :func:`tra
 
 .. index:: characteristic_polynomial, factor
 
-Once we have the matrix we will compute it's *characteristic polynomial* and then factor it. ::
+Once we have the matrix we will compute it's *characteristic polynomial* and then factor it in order to fine its eigenvalues. ::
 
   sage: f = M.characteristic_polynomial(); f
   x^4 - 10*x^3 + 37*x^2 - 60*x + 36
   sage: f.factor()
   (x - 3)^2 * (x - 2)^2
 
+.. index:: eigenvalues
+
+Alternatively, you can compute the eigenvalues directly. ::
+
+  sage: eval_M = M.eigenvalues(); eval_M;
+  [3, 3, 2, 2]
+
 .. index:: eigenvectors_right
 
 Above  we have two eigenvalues :math:`\lambda_1 = 3` and :math:`\lambda_2 = 2` and both are of algebraic multiplicity :math:`2`. Now we need to look at the associated  *eigenvectors*. To do so we will use the :meth:`eigenvectors_right` method. ::
 
-  sage: ev_M = M.eigenvectors_right(); ev_M
+  sage: evec_M = M.eigenvectors_right(); evec_M
   [(3, [
   (1, 1, 1, 0),
   (0, 0, 0, 1)
   ], 2), (2, [
   (1, 0, 0, 0)
   ], 2)]
-  sage: ev_M[1][1][0]
+  sage: evec_M[1][1][0]
   (1, 0, 0, 0)
 
 .. index:: identity_matrix, augment
 
-What is returned is a :func:`list` of ordered tripples. Each triple is
+What is returned is a :func:`list` of ordered triples. Each triple is
 consists  of an eigenvalue followed by a list with a basis for the
-associated  eigenspace followed by the dimension of the associated eigenspace. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. I will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
+associated  eigenspace followed by the dimension of the associated eigenspace. Note that the eigenvalue :math:`2` has algebraic multiplicity of :math:`2` but geometric multiplicity only :math:`1`. This means that we will have to compute a *generalized eigenvector* for this eigenvalue. We will do this by solving the system :math:`\left(M - 2\mathrm{I}\right) v = x`, where :math:`x` is the eigenvector :math:`\left(1,0,0,0\right)`. We will use the :meth:`echelon_form` of the augmented matrix to solve the system.  ::
 
-      sage: (M - 2*identity_matrix(4)).augment(ev_M[1][1][0])
+      sage: (M - 2*identity_matrix(4)).augment(evec_M[1][1][0])
       [ 0  1  0  0  1]
       [ 0  0  1  0  0]
       [ 0  0  1  0  0]
