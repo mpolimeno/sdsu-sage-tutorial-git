@@ -1571,7 +1571,7 @@ Note that since Sage uses rows to construct a matrix we must use the  :func:`tra
 
 .. index:: characteristic_polynomial, factor
 
-Once we have the matrix we will compute it's *characteristic polynomial* and then factor it in order to fine its eigenvalues. ::
+Once we have the matrix we will compute its *characteristic polynomial* and then factor it in order to fine its eigenvalues. ::
 
   sage: f = M.characteristic_polynomial(); f
   x^4 - 10*x^3 + 37*x^2 - 60*x + 36
