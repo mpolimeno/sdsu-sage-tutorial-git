@@ -1,25 +1,25 @@
 ===============
-SDSU Sage tutorial
+SDSU SageMath tutorial
 ===============
 
 
 --------------------------------------------------------------
 
-"SDSU Sage Tutorial":  A web tutorial that seeks to introduce
-undergraduates to the Sage computer algebra system
-	       
+"SDSU SageMath Tutorial":  A web tutorial that seeks to introduce
+undergraduates to the SageMath computer algebra system
+
 	       *http://www.sagemath.org
 
-Authors: Michael O'Sullivan, Ryan Rosenblum, and David M. Monarres 
+Authors: Michael O'Sullivan, Ryan Rosenblum, and David M. Monarres
 
 The content of the tutorial is distributed under the Creative Commons Share-Alike with Attribution
-License version 3.0. For details see 
-	
+License version 3.0. For details see
+
 	*http://www.creativecommons.org
 
 We also include a full text copy of this license in the COPYING file
-in this source directory. 
-	  
+in this source directory.
+
 --------------------------------------------------------------
 Building and Installation:
 
@@ -40,12 +40,12 @@ Adding Content
 ------------------
 
 Contributions are encouraged. The current source code is always
-available for checkout (using mercurial) from our bitbucket: 
+available for checkout (using mercurial) from our bitbucket:
 
 	  *http://bitbucket.org/ayeq123/sdsu-sage-tutorial
 
 The content is marked up using reStructured text. See the following
-for a good reference to this markup language: 
- 
+for a good reference to this markup language:
+
 	* http://sphinx.pocoo.org/rest.html
     	* http://docutils.sourceforge.net/rst.html
