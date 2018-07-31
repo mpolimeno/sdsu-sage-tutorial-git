@@ -62,7 +62,7 @@ with a single interface, using the `Python <http://www.python.org>`_ programming
 As an open source project, SageMath invites contributions from all of its users. This tutorial is one of many sources of information for learning about how to use SageMath. For more information see the SageMath project's  `website <http://www.sagemath.org>`_.
 
 
-.. index:: command line, notebook
+.. index:: command line, notebook, cocalc
 
 This tutorial assumes that the reader has access to a running copy of SageMath. On most operating systems, installing SageMath usually consists of  downloading the proper package from the project's main `website <http://www.sagemath.org>`_, unwrapping it, and executing `sage` from within. For more information on the process of installing sage see SageMath's `Installation Guide <http://www.sagemath.org/doc/installation>`_.
 
