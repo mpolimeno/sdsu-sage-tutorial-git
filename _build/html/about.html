@@ -88,7 +88,7 @@ with a single interface, using the <a class="reference external" href="http://ww
 <p>This tutorial assumes that the reader has access to a running copy of SageMath. On most operating systems, installing SageMath usually consists of  downloading the proper package from the project’s main <a class="reference external" href="http://www.sagemath.org">website</a>, unwrapping it, and executing <cite>sage</cite> from within. For more information on the process of installing sage see SageMath’s <a class="reference external" href="http://www.sagemath.org/doc/installation">Installation Guide</a>.</p>
 <p>A good alternative is to run SageMath in the cloud using <a class="reference external" href="https://cocalc.com">Cocalc</a>. All you need to do is either sign up for a free account or sign in through a Google/Github/Facebook/Twitter account. Once you are signed up, you can start a project using SageMath, and also share it with other users. For more information about Cocalc and its features, visit <a class="reference external" href="https://tutorial.cocalc.com/">Cocalc Tutorial</a>.</p>
 <p>If you opted for the physical installation and started SageMath, you should know that there are two ways to enter commands: either from the <em>command line</em> or by using the  web-based <em>notebook</em>. The notebook interface is similar in design to the interface of <em>Matlab</em>, <em>Mathematica</em>, or <em>Maple</em> and is a popular choice.</p>
-<p>Everything that follows the <code class="docutils literal"><span class="pre">sage:</span></code> prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to <em>factor</em> the integer <span class="math">1438880</span> we would give the following example using SageMath’s <code class="xref py py-func docutils literal"><span class="pre">factor()</span></code> command.</p>
+<p>Everything that follows the <code class="docutils literal"><span class="pre">sage:</span></code> prompt is a command that we encourage the reader to type in on their own. For example, if we wanted to <em>factor</em> the integer <img class="math" src="_images/math/c80d26cb752544eaa9ae36948fa6ea39ccb0017e.png" alt="1438880"/> we would give the following example using SageMath’s <code class="xref py py-func docutils literal"><span class="pre">factor()</span></code> command.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">factor</span><span class="p">(</span><span class="mi">1438880</span><span class="p">)</span>
 <span class="mi">2</span><span class="o">^</span><span class="mi">5</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">17</span> <span class="o">*</span> <span class="mi">23</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
@@ -96,7 +96,7 @@ with a single interface, using the <a class="reference external" href="http://ww
 <p>The line after the <code class="docutils literal"><span class="pre">sage:</span></code> contains the output that the user should
 expect after properly entering the command.</p>
 <p>From the command line the interaction would probably look a bit like this:</p>
-<a class="reference internal image-reference" href="_images/cmd_example.png"><img alt="Using SageMath at the command line." src="_images/cmd_example.png" style="width: 800px; height: 525px;" /></a>
+<a class="reference internal image-reference" href="_images/cmd_example.png"><img alt="Using SageMath at the command line." src="_images/cmd_example.png" style="width: 900px; height: 350px;" /></a>
 <p>If the user is using the notebook (most likely) the interaction will look a little like:</p>
 <a class="reference internal image-reference" href="_images/notebook_example.png"><img alt="Using SageMath at the command line." src="_images/notebook_example.png" style="width: 800px; height: 525px;" /></a>
 <p>For Cocalc users, it will look like:</p>
@@ -106,7 +106,7 @@ expect after properly entering the command.</p>
 <div class="section" id="tab-completion">
 <h3>Tab Completion<a class="headerlink" href="#tab-completion" title="Permalink to this headline">¶</a></h3>
 <p>Next we will discuss how to use a couple of important features of the various SageMath interfaces; tab-completion and the built-in help system.</p>
-<p id="index-5">One of the handiest features built into SageMath is the <em>tab completion</em> of commands. To use tab completion, just type in the first couple of letters of the command that you would like to use, and then press the tab-key. For instance, suppose that you want to compute <span class="math">56!</span> but don’t remember the exact command name to do this. A good guess is that the command will have <em>factorial</em> somewhere in its name. To see if that guess is correct, just type the first three letters <code class="docutils literal"><span class="pre">fac</span></code> and hit the tab-key.</p>
+<p id="index-5">One of the handiest features built into SageMath is the <em>tab completion</em> of commands. To use tab completion, just type in the first couple of letters of the command that you would like to use, and then press the tab-key. For instance, suppose that you want to compute <img class="math" src="_images/math/9d9a11e8ec04af67a3033d4ebc5f97609b71a44a.png" alt="56!"/> but don’t remember the exact command name to do this. A good guess is that the command will have <em>factorial</em> somewhere in its name. To see if that guess is correct, just type the first three letters <code class="docutils literal"><span class="pre">fac</span></code> and hit the tab-key.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">fac</span><span class="p">[</span><span class="n">TAB</span><span class="p">]</span>
 <span class="n">factor</span>     <span class="n">factorial</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">factor</span>
@@ -116,12 +116,12 @@ expect after properly entering the command.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">factorial</span>
 </pre></div>
 </div>
-<p>This time no list is returned because the only command that begins with <code class="docutils literal"><span class="pre">factori</span></code> is <code class="xref py py-func docutils literal"><span class="pre">factorial()</span></code>. So to compute <span class="math">56!</span> you just complete the command by adding the argument <code class="docutils literal"><span class="pre">(56)</span></code>.</p>
+<p>This time no list is returned because the only command that begins with <code class="docutils literal"><span class="pre">factori</span></code> is <code class="xref py py-func docutils literal"><span class="pre">factorial()</span></code>. So to compute <img class="math" src="_images/math/9d9a11e8ec04af67a3033d4ebc5f97609b71a44a.png" alt="56!"/> you just complete the command by adding the argument <code class="docutils literal"><span class="pre">(56)</span></code>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">factorial</span><span class="p">(</span><span class="mi">56</span><span class="p">)</span>
 <span class="mi">710998587804863451854045647463724949736497978881168458687447040000000000000</span>
 </pre></div>
 </div>
-<p>Another good use of tab-completion is to discover what <em>methods</em> an <em>object</em> has. Say you have the integer <span class="math">a = 56</span> and were wondering what commands SageMath offers to work with integers like <span class="math">56</span>. In this case the <span class="math">a</span> is our object and we can find all of the methods associated with integers by typing <code class="docutils literal"><span class="pre">a.</span></code> then hitting the tab-key.</p>
+<p>Another good use of tab-completion is to discover what <em>methods</em> an <em>object</em> has. Say you have the integer <img class="math" src="_images/math/e09f04ec4e696abc420fba835905a43ac1adc602.png" alt="a = 56"/> and were wondering what commands SageMath offers to work with integers like <img class="math" src="_images/math/fdcd4522aa6f422a31c83d907c0082c068b13d0d.png" alt="56"/>. In this case the <img class="math" src="_images/math/7dd2a5ea01fbd72ad2a58dd1f3d6ecbfde6208a1.png" alt="a"/> is our object and we can find all of the methods associated with integers by typing <code class="docutils literal"><span class="pre">a.</span></code> then hitting the tab-key.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">56</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="p">[</span><span class="n">TAB</span><span class="p">]</span>
 <span class="n">a</span><span class="o">.</span><span class="n">N</span>                            <span class="n">a</span><span class="o">.</span><span class="n">kronecker</span>
@@ -134,7 +134,7 @@ expect after properly entering the command.</p>
 </pre></div>
 </div>
 <p>Do not be intimidated by the length of this list. SageMath is a very powerful system and it can do a lot with integers. On the command line, the <code class="docutils literal"><span class="pre">--More--</span></code> at the bottom of the screen tells you that the list of possible commands is longer than what will fit on a single screen. To scroll through this list a page at a time, jut hit any key and SageMath will display the next page.</p>
-<p>On the second page you see that <code class="xref py py-meth docutils literal"><span class="pre">factor()</span></code> is an option. To use this method, which <em>factors</em> <span class="math">56</span> into unique prime factors, you enter <code class="docutils literal"><span class="pre">a.factor()</span></code>.</p>
+<p>On the second page you see that <code class="xref py py-meth docutils literal"><span class="pre">factor()</span></code> is an option. To use this method, which <em>factors</em> <img class="math" src="_images/math/fdcd4522aa6f422a31c83d907c0082c068b13d0d.png" alt="56"/> into unique prime factors, you enter <code class="docutils literal"><span class="pre">a.factor()</span></code>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">factor</span><span class="p">()</span>
 <span class="mi">2</span><span class="o">^</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">7</span>
 </pre></div>
@@ -326,7 +326,7 @@ original funder and creators. You may add your name to the list of contributors 
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2011, Michael O&#39;Sullivan,  David Monarres.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

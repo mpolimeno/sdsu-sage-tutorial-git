@@ -108,8 +108,8 @@ subtraction).</p>
 <p><strong>Exercises:</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Divide <span class="math">28</span> by <span class="math">2</span> raised to the 5th power as a  rational number, then get it’s decimal approximation.</li>
-<li>Compute a decimal approximation of <span class="math">\sqrt{2}</span></li>
+<li>Divide <img class="math" src="_images/math/84694b4fae450030683bbf8f625842d07b444fca.png" alt="28"/> by <img class="math" src="_images/math/15c663954a3e059d1f876bc8a4621de376038c96.png" alt="2"/> raised to the 5th power as a  rational number, then get it’s decimal approximation.</li>
+<li>Compute a decimal approximation of <img class="math" src="_images/math/f8117cd5193e9c43e4cac4a86cc0298690ef3f79.png" alt="\sqrt{2}"/></li>
 <li>Use sage to compute <code class="docutils literal"><span class="pre">(-9)^(1/2)</span></code>. Describe the output.</li>
 </ol>
 </div></blockquote>
@@ -131,7 +131,7 @@ subtraction).</p>
 <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
-<p id="index-8">Recall that <span class="math">b</span> <em>divides</em> <span class="math">a</span> if <span class="math">0</span> is the remainder when we divide the two integers. The integers in SageMath have a built-in command ( or ‘method’ ) which allows us to check whether one integer divides another.</p>
+<p id="index-8">Recall that <img class="math" src="_images/math/5e87bf41a96deddf6cb485ff530f153f2590e9cc.png" alt="b"/> <em>divides</em> <img class="math" src="_images/math/7dd2a5ea01fbd72ad2a58dd1f3d6ecbfde6208a1.png" alt="a"/> if <img class="math" src="_images/math/74c081db590f3d35421c1f6b9afd4cdda36ee210.png" alt="0"/> is the remainder when we divide the two integers. The integers in SageMath have a built-in command ( or ‘method’ ) which allows us to check whether one integer divides another.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mf">3.</span><span class="n">divides</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
 <span class="kc">True</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mf">5.</span><span class="n">divides</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
@@ -146,7 +146,7 @@ a list of all positive divisors of the integer specified.</p>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">]</span>
 </pre></div>
 </div>
-<p id="index-10">When the divisors of an integer are only <span class="math">1</span> and itself then we say that the number is <em>prime</em>. To check if a number is prime in sage, we use it’s <code class="xref py py-meth docutils literal"><span class="pre">is_prime()</span></code> method.</p>
+<p id="index-10">When the divisors of an integer are only <img class="math" src="_images/math/123e375e88da91240024aaf085abee194c4a2d06.png" alt="1"/> and itself then we say that the number is <em>prime</em>. To check if a number is prime in sage, we use it’s <code class="xref py py-meth docutils literal"><span class="pre">is_prime()</span></code> method.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">19</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">is_prime</span><span class="p">()</span>
 <span class="kc">True</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mf">153.</span><span class="n">is_prime</span><span class="p">()</span>
@@ -176,7 +176,7 @@ a list of all positive divisors of the integer specified.</p>
 <span class="mi">1</span>
 </pre></div>
 </div>
-<p>Notice that if two integers share no common divisors, then their gcd will be <span class="math">1</span>.</p>
+<p>Notice that if two integers share no common divisors, then their gcd will be <img class="math" src="_images/math/123e375e88da91240024aaf085abee194c4a2d06.png" alt="1"/>.</p>
 <p>The least common multiple is the smallest integer which both integers divide. The <code class="xref py py-func docutils literal"><span class="pre">lcm()</span></code> command is used to calculate the least common multiple.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">lcm</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
 <span class="mi">20</span>
@@ -187,12 +187,12 @@ a list of all positive divisors of the integer specified.</p>
 <p><strong>Exercises:</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Find the quotient and remainder when diving <span class="math">98</span> into <span class="math">956</span>.</li>
+<li>Find the quotient and remainder when diving <img class="math" src="_images/math/0860fe3a10da62a21a4619fd4939371d694a7723.png" alt="98"/> into <img class="math" src="_images/math/12a9873dc6527b68f77765a028d4aea9461ae70c.png" alt="956"/>.</li>
 <li>Use SageMath to verify that the quotient and remainder computed above are correct.</li>
-<li>Use SageMath to determine if <span class="math">3</span> divides <span class="math">234878</span>.</li>
-<li>Compute the list of divisors for each of the integers <span class="math">134,\ 491,\ 422</span> and <span class="math">1002</span>.</li>
+<li>Use SageMath to determine if <img class="math" src="_images/math/b9b358d9bbdf54c3d9aef7554638822d996c21ea.png" alt="3"/> divides <img class="math" src="_images/math/30076eabfe4b52fed5bc97cfbc38ce14cc6c054e.png" alt="234878"/>.</li>
+<li>Compute the list of divisors for each of the integers <img class="math" src="_images/math/f17b414af4c527203f6afcd0c6681919f189f383.png" alt="134,\ 491,\ 422"/> and <img class="math" src="_images/math/5da201b680f77726c5fef51d842712623db1988b.png" alt="1002"/>.</li>
 <li>Which of the integers above are <em>prime</em>?</li>
-<li>Calculate <span class="math">\mathrm{gcd}(a,b)</span>,  <span class="math">\mathrm{lcm}(a,b)</span> and <span class="math">a \cdot b</span> for the pairs of integers <span class="math">\left(2,5\right),\ \left(4,10\right)</span> and <span class="math">\left(18,51\right)</span>. How do the gcd, lcm and the product of the numbers relate?</li>
+<li>Calculate <img class="math" src="_images/math/73ccd585738fe1d03942f9402cb12c53ee3090fa.png" alt="\mathrm{gcd}(a,b)"/>,  <img class="math" src="_images/math/a0166081f3f0181301ab5ae6d0b9c86c70fd3c35.png" alt="\mathrm{lcm}(a,b)"/> and <img class="math" src="_images/math/4ae1c72d0725e36aeba0179fb9470fb960a00cee.png" alt="a \cdot b"/> for the pairs of integers <img class="math" src="_images/math/ad018b2681c8d6f59348d74fa686e37a29cdfff9.png" alt="\left(2,5\right),\ \left(4,10\right)"/> and <img class="math" src="_images/math/8adb1371a051c6df6e639dab7d2dd75b13bff27c.png" alt="\left(18,51\right)"/>. How do the gcd, lcm and the product of the numbers relate?</li>
 </ol>
 </div></blockquote>
 </div>
@@ -202,7 +202,7 @@ a list of all positive divisors of the integer specified.</p>
 when studying mathematics. In this section, we shall cover some of the
 most commonly used functions: the <em>maximum</em>, <em>minimum</em>, <em>floor</em>,
 <em>ceiling</em>, <em>trigonometric</em>, <em>exponential</em>, and <em>logarithm</em> functions.
-We will also see many of the standard mathematical constants; such as <em>Euler’s constant</em> (<span class="math">e</span>), <span class="math">\pi</span>, and <em>the golden ratio</em> (<span class="math">\phi</span>).</p>
+We will also see many of the standard mathematical constants; such as <em>Euler’s constant</em> (<img class="math" src="_images/math/630e3a780577ea7921e81ee2ac5237dd1802ec8d.png" alt="e"/>), <img class="math" src="_images/math/c1bd4cb4e3647c6b2356b7ccf2f52aeffedd1b61.png" alt="\pi"/>, and <em>the golden ratio</em> (<img class="math" src="_images/math/10e009bdb83f96c5f47c58b34d5d4b12ef268d5b.png" alt="\phi"/>).</p>
 <p id="index-15">The <a class="reference external" href="https://docs.python.org/3/library/functions.html#max" title="(in Python v3.7)"><code class="xref py py-func docutils literal"><span class="pre">max()</span></code></a> and <a class="reference external" href="https://docs.python.org/3/library/functions.html#min" title="(in Python v3.7)"><code class="xref py py-func docutils literal"><span class="pre">min()</span></code></a> commands return the largest and smallest of a set of numbers.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
 <span class="mi">8</span>
@@ -231,12 +231,12 @@ a real number.</p>
 <span class="mi">9</span>
 </pre></div>
 </div>
-<p>This is clearly not correct: <span class="math">\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfloor = \lfloor 10 \rfloor = 10</span>. So what happened?</p>
+<p>This is clearly not correct: <img class="math" src="_images/math/df2282a7aa4807e3dd05be5e209d1e740aa4d6c1.png" alt="\lfloor 1/(2.1-2)\rfloor = \lfloor 1/.1 \rfloor = \lfloor 10 \rfloor = 10"/>. So what happened?</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mf">2.1</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
 <span class="mf">9.99999999999999</span>
 </pre></div>
 </div>
-<p>Computers store real numbers in <em>binary</em>, while we are accustomed to using the decimal representation. The <span class="math">2.1</span> in decimal notation is quite simple and short, but when converted to binary it is <span class="math">10.0001\overline{1}=10.0001100110011\ldots</span></p>
+<p>Computers store real numbers in <em>binary</em>, while we are accustomed to using the decimal representation. The <img class="math" src="_images/math/d9d399703d979e72895752f9979047ad8aa0b590.png" alt="2.1"/> in decimal notation is quite simple and short, but when converted to binary it is <img class="math" src="_images/math/86f288c2ab5fb6c668cce98708c84359b516f96a.png" alt="10.0001\overline{1}=10.0001100110011\ldots"/></p>
 <p>Since computers cannot store an infinite number of digits, this gets rounded off somewhere, resulting in the slight error we saw. In SageMath, however, <em>rational numbers</em> (fractions) are exact, so we will never see this rounding error.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">floor</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">21</span><span class="o">/</span><span class="mi">10</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
 <span class="mi">10</span>
@@ -272,14 +272,14 @@ a real number.</p>
 <span class="mf">0.0707372016677029</span>
 </pre></div>
 </div>
-<p>Again we see the same behavior that we saw with <code class="xref py py-func docutils literal"><span class="pre">sqrt()</span></code>, SageMath will give us an exact answer.  You might think that since there is no way to simplify <code class="docutils literal"><span class="pre">sin(1)</span></code>,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is <span class="math">\sin(\pi/3 ) = \sqrt{3}/2</span>. SageMath has a built-in symbolic <span class="math">\pi</span>, and understands this identity:</p>
+<p>Again we see the same behavior that we saw with <code class="xref py py-func docutils literal"><span class="pre">sqrt()</span></code>, SageMath will give us an exact answer.  You might think that since there is no way to simplify <code class="docutils literal"><span class="pre">sin(1)</span></code>,  why bother?  Well, some expressions involving sine can indeed be simplified. For example, an important identity from geometry is <img class="math" src="_images/math/24eb2b357744924c6c6e54e9dc037c02d08a15ae.png" alt="\sin(\pi/3 ) = \sqrt{3}/2"/>. SageMath has a built-in symbolic <img class="math" src="_images/math/c1bd4cb4e3647c6b2356b7ccf2f52aeffedd1b61.png" alt="\pi"/>, and understands this identity:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">pi</span>
 <span class="n">pi</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
 <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 </pre></div>
 </div>
-<p id="index-20">When we type <code class="xref py py-obj docutils literal"><span class="pre">pi</span></code> in SageMath we are dealing exactly with <span class="math">\pi</span>, not some numerical approximation. However, we can call for a numerical approximation using the <code class="xref py py-meth docutils literal"><span class="pre">n()</span></code> method:</p>
+<p id="index-20">When we type <code class="xref py py-obj docutils literal"><span class="pre">pi</span></code> in SageMath we are dealing exactly with <img class="math" src="_images/math/c1bd4cb4e3647c6b2356b7ccf2f52aeffedd1b61.png" alt="\pi"/>, not some numerical approximation. However, we can call for a numerical approximation using the <code class="xref py py-meth docutils literal"><span class="pre">n()</span></code> method:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">pi</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>
 <span class="mf">3.14159265358979</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span>
@@ -288,7 +288,7 @@ a real number.</p>
 <span class="mf">1.22464679914735e-16</span>
 </pre></div>
 </div>
-<p>We see that when using the symbolic <code class="xref py py-obj docutils literal"><span class="pre">pi</span></code>, SageMath returns the exact result. However,  when we use the approximation we get an approximation back. <code class="docutils literal"><span class="pre">e-15</span></code> is a shorthand for <span class="math">10^{-15}</span> and the number <code class="docutils literal"><span class="pre">1.22464679914735e-16</span></code> should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise <span class="math">\pi</span> vs the numerical approximation:</p>
+<p>We see that when using the symbolic <code class="xref py py-obj docutils literal"><span class="pre">pi</span></code>, SageMath returns the exact result. However,  when we use the approximation we get an approximation back. <code class="docutils literal"><span class="pre">e-15</span></code> is a shorthand for <img class="math" src="_images/math/89170fb33b3fb595671340ccb2d31cbe1bec1a53.png" alt="10^{-15}"/> and the number <code class="docutils literal"><span class="pre">1.22464679914735e-16</span></code> should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise <img class="math" src="_images/math/c1bd4cb4e3647c6b2356b7ccf2f52aeffedd1b61.png" alt="\pi"/> vs the numerical approximation:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
 <span class="mi">1</span><span class="o">/</span><span class="mi">2</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">sin</span><span class="p">(</span><span class="n">pi</span><span class="o">.</span><span class="n">n</span><span class="p">()</span><span class="o">/</span><span class="mi">6</span><span class="p">)</span>
@@ -315,15 +315,15 @@ a real number.</p>
 <span class="mf">4051.54190208279</span>
 </pre></div>
 </div>
-<p id="index-22">Similar to <code class="xref py py-obj docutils literal"><span class="pre">pi</span></code> SageMath has a built-in symbolic constant for the number <span class="math">e</span>, the base of the natural logarithm.</p>
+<p id="index-22">Similar to <code class="xref py py-obj docutils literal"><span class="pre">pi</span></code> SageMath has a built-in symbolic constant for the number <img class="math" src="_images/math/630e3a780577ea7921e81ee2ac5237dd1802ec8d.png" alt="e"/>, the base of the natural logarithm.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">e</span>
 <span class="n">e</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">e</span><span class="o">.</span><span class="n">n</span><span class="p">()</span>
 <span class="mf">2.71828182845905</span>
 </pre></div>
 </div>
-<p id="index-23">While some might be familiar with using <code class="docutils literal"><span class="pre">ln(x)</span></code> for natural log and <code class="docutils literal"><span class="pre">log(x)</span></code> to represent logarithm base <span class="math">10</span>, in SageMath both represent logarithm
-base <span class="math">e</span>.  We may specify a different base as a second argument to the command: to compute <span class="math">\log_{b}(x)</span> in SageMath we use the command <code class="docutils literal"><span class="pre">log(x,b)</span></code>.</p>
+<p id="index-23">While some might be familiar with using <code class="docutils literal"><span class="pre">ln(x)</span></code> for natural log and <code class="docutils literal"><span class="pre">log(x)</span></code> to represent logarithm base <img class="math" src="_images/math/1984d1a61055b785e860b105bc14f1f2221f3476.png" alt="10"/>, in SageMath both represent logarithm
+base <img class="math" src="_images/math/630e3a780577ea7921e81ee2ac5237dd1802ec8d.png" alt="e"/>.  We may specify a different base as a second argument to the command: to compute <img class="math" src="_images/math/35cd65d41f7069822bf5221d2c75074968f6733b.png" alt="\log_{b}(x)"/> in SageMath we use the command <code class="docutils literal"><span class="pre">log(x,b)</span></code>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">ln</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
 <span class="mi">1</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">log</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -338,7 +338,7 @@ base <span class="math">e</span>.  We may specify a different base as a second a
 <span class="mi">2</span>
 </pre></div>
 </div>
-<p id="index-24">Exponentiation base <span class="math">e</span> can done using both the <code class="xref py py-func docutils literal"><span class="pre">exp()</span></code> function and by raising the symbolic constant <code class="docutils literal"><span class="pre">e</span></code> to a specified power.</p>
+<p id="index-24">Exponentiation base <img class="math" src="_images/math/630e3a780577ea7921e81ee2ac5237dd1802ec8d.png" alt="e"/> can done using both the <code class="xref py py-func docutils literal"><span class="pre">exp()</span></code> function and by raising the symbolic constant <code class="docutils literal"><span class="pre">e</span></code> to a specified power.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">e</span><span class="o">^</span><span class="mi">2</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">exp</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
@@ -352,11 +352,11 @@ base <span class="math">e</span>.  We may specify a different base as a second a
 <p><strong>Exercises:</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Compute the floor and ceiling of <span class="math">2.75</span>.</li>
-<li>Compute the logarithm base <span class="math">e</span> of  <span class="math">1/1000000</span>, compute the logarithm base 10 of  <span class="math">1/1000000</span>, then compute the ratio.  What should the answer be?</li>
-<li>Compute the logarithm base 2 of <span class="math">64</span>.</li>
-<li>Compare <span class="math">e^{i \pi}</span> with a numerical approximation of it using <code class="docutils literal"><span class="pre">pi.n()</span></code>.</li>
-<li>Compute <span class="math">\sin(\pi/2)</span>, <span class="math">\cot(0)</span> and <span class="math">\csc(\pi/16)</span>.</li>
+<li>Compute the floor and ceiling of <img class="math" src="_images/math/96625fdcfe2ee287350c1136abe09ca1d8636590.png" alt="2.75"/>.</li>
+<li>Compute the logarithm base <img class="math" src="_images/math/630e3a780577ea7921e81ee2ac5237dd1802ec8d.png" alt="e"/> of  <img class="math" src="_images/math/95280ca2c509f2e4fa3e78d2334b22ef1cba098a.png" alt="1/1000000"/>, compute the logarithm base 10 of  <img class="math" src="_images/math/95280ca2c509f2e4fa3e78d2334b22ef1cba098a.png" alt="1/1000000"/>, then compute the ratio.  What should the answer be?</li>
+<li>Compute the logarithm base 2 of <img class="math" src="_images/math/3a981d14c902442cc0087974a07c4c6d69ae006b.png" alt="64"/>.</li>
+<li>Compare <img class="math" src="_images/math/a0f12841b71904324162efce0d286bec92e3e7b3.png" alt="e^{i \pi}"/> with a numerical approximation of it using <code class="docutils literal"><span class="pre">pi.n()</span></code>.</li>
+<li>Compute <img class="math" src="_images/math/e472b87fbe9c7cb7f9fde060cefb47e83271d29d.png" alt="\sin(\pi/2)"/>, <img class="math" src="_images/math/06a948dafc10d396b21ede9f4583a4c325bfb0bf.png" alt="\cot(0)"/> and <img class="math" src="_images/math/4890f35cb94a7f20f757a54d8990077dc517b258.png" alt="\csc(\pi/16)"/>.</li>
 </ol>
 </div></blockquote>
 </div>
@@ -376,7 +376,7 @@ base <span class="math">e</span>.  We may specify a different base as a second a
 <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">5</span>
 </pre></div>
 </div>
-<p id="index-28">To solve an equation or an inequality we use using the, aptly named, <code class="xref py py-func docutils literal"><span class="pre">solve()</span></code> command. For the moment, we will only solve for <span class="math">x</span>.  The section on variables below explains how to use other variables.</p>
+<p id="index-28">To solve an equation or an inequality we use using the, aptly named, <code class="xref py py-func docutils literal"><span class="pre">solve()</span></code> command. For the moment, we will only solve for <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/>.  The section on variables below explains how to use other variables.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">solve</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">5</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 <span class="p">[</span><span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="mi">7</span><span class="o">/</span><span class="mi">3</span><span class="p">)]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">solve</span><span class="p">(</span> <span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
@@ -430,7 +430,7 @@ To find a complete set of solutions, the reader must use <code class="xref py py
 </div>
 <div class="section" id="declaring-variables">
 <span id="declare-variables"></span><span id="index-30"></span><h3>Declaring Variables<a class="headerlink" href="#declaring-variables" title="Permalink to this headline">¶</a></h3>
-<p id="index-31">In the previous section we only solved equations in one variable, and we always used <span class="math">x</span>. When a session is started, SageMath creates one symbolic variable, <span class="math">x</span>, and it can be used to solve equations.  If you want to use  an additional symbolic variable, you have to <em>declare it</em>  using the <code class="xref py py-func docutils literal"><span class="pre">var()</span></code> command. The name of a symbolic variable can be a letter, or a combination of letters and numbers:</p>
+<p id="index-31">In the previous section we only solved equations in one variable, and we always used <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/>. When a session is started, SageMath creates one symbolic variable, <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/>, and it can be used to solve equations.  If you want to use  an additional symbolic variable, you have to <em>declare it</em>  using the <code class="xref py py-func docutils literal"><span class="pre">var()</span></code> command. The name of a symbolic variable can be a letter, or a combination of letters and numbers:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">t</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s2">&quot;y z t&quot;</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">phi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">rho</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s2">&quot;phi theta rho&quot;</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s2">&quot;x1 x2&quot;</span><span class="p">)</span>
@@ -489,10 +489,10 @@ one free variable, SageMath enumerates them <code class="docutils literal"><span
 <p><strong>Exercises:</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Find all of the solutions to the equation <span class="math">x^3 - x = 7x^2 - 7</span>.</li>
-<li>Find the complete solution set for the inequality <span class="math">\left\vert t - 7 \right\vert \geq 3</span>.</li>
-<li>Find all <span class="math">x</span> and <span class="math">y</span> that satisfy both <span class="math">2x + y = 17</span> and <span class="math">x - 3y = -16</span>.</li>
-<li>Use <code class="xref py py-func docutils literal"><span class="pre">find_root()</span></code> to find a solution of the equation <span class="math">e^{x} = \cos(x)</span> on the interval <span class="math">\left[-\pi/2, 0\right]</span>.</li>
+<li>Find all of the solutions to the equation <img class="math" src="_images/math/08d0505358e89b0ee6878768a65eb29e727da8d4.png" alt="x^3 - x = 7x^2 - 7"/>.</li>
+<li>Find the complete solution set for the inequality <img class="math" src="_images/math/76c94c0bc91907c0f2e11cc4f340a9ba8efd6413.png" alt="\left\vert t - 7 \right\vert \geq 3"/>.</li>
+<li>Find all <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/> and <img class="math" src="_images/math/b124ff74afb0914bb434e8fb849eb56d734412f8.png" alt="y"/> that satisfy both <img class="math" src="_images/math/b88a4b6ea40c50f80aacd2d21961234d34a4c331.png" alt="2x + y = 17"/> and <img class="math" src="_images/math/33e481fbb22fb663406dc071ab066bf252e0b2be.png" alt="x - 3y = -16"/>.</li>
+<li>Use <code class="xref py py-func docutils literal"><span class="pre">find_root()</span></code> to find a solution of the equation <img class="math" src="_images/math/7816e2ac6d79eac79b3cf33d4ef5a7297a855083.png" alt="e^{x} = \cos(x)"/> on the interval <img class="math" src="_images/math/5ccd42d2959d7b66bb6386111d38a2b904e06e4d.png" alt="\left[-\pi/2, 0\right]"/>.</li>
 <li>Change the command above so that <code class="xref py py-func docutils literal"><span class="pre">find_root()</span></code> finds the other solution in the same interval.</li>
 </ol>
 </div></blockquote>
@@ -526,24 +526,24 @@ one free variable, SageMath enumerates them <code class="docutils literal"><span
 <p>With these functions defined, we will look at how we can use SageMath to compute the <em>limit</em> of these functions.</p>
 <div class="section" id="limits">
 <span id="index-36"></span><span id="id5"></span><h3>Limits<a class="headerlink" href="#limits" title="Permalink to this headline">¶</a></h3>
-<p id="index-37">The limit of <span class="math">f(x) = xe^{x}</span> as <span class="math">x \rightarrow 1</span> is computed in SageMath by entering the following command into SageMath:</p>
+<p id="index-37">The limit of <img class="math" src="_images/math/ae05bf85f37f16cc1a762b493ffff70707cd5a45.png" alt="f(x) = xe^{x}"/> as <img class="math" src="_images/math/8527209c98facb06036dea7cbba05d278c5409d3.png" alt="x \rightarrow 1"/> is computed in SageMath by entering the following command into SageMath:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">limit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">e</span>
 </pre></div>
 </div>
-<p>We can do the same with <span class="math">g(x)</span>. To evaluate the limit of <span class="math">g(x) = x^{2} \cos(2x)</span> as <span class="math">x \rightarrow 2</span> we enter:</p>
+<p>We can do the same with <img class="math" src="_images/math/3af1f844d2ef477235eb582f56085d4b53bf7568.png" alt="g(x)"/>. To evaluate the limit of <img class="math" src="_images/math/335396129d639cbedb602f82dece26c3c233be12.png" alt="g(x) = x^{2} \cos(2x)"/> as <img class="math" src="_images/math/de26e0ff41c76f27bd512383027ee88dc44a2bfa.png" alt="x \rightarrow 2"/> we enter:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">limit</span><span class="p">(</span><span class="n">g</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="mi">4</span><span class="o">*</span><span class="n">cos</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The functions <span class="math">f(x)</span> and <span class="math">g(x)</span> aren’t all that exciting as far as limits are concerned since they are both <em>continuous</em> for all real numbers. But <span class="math">h(x)</span> has a discontinuity at <span class="math">x=4</span>, so to investigate what is happening near this discontinuity we will look at the limit of <span class="math">h(x)</span> as <span class="math">x \rightarrow 4</span>:</p>
+<p>The functions <img class="math" src="_images/math/14546c27a7b929642f7840acca5f851c503ea109.png" alt="f(x)"/> and <img class="math" src="_images/math/3af1f844d2ef477235eb582f56085d4b53bf7568.png" alt="g(x)"/> aren’t all that exciting as far as limits are concerned since they are both <em>continuous</em> for all real numbers. But <img class="math" src="_images/math/76ba6643845546f6fa099122e567295f76df75e9.png" alt="h(x)"/> has a discontinuity at <img class="math" src="_images/math/0a7f6b0197accaea94a009277c66957ce07e6175.png" alt="x=4"/>, so to investigate what is happening near this discontinuity we will look at the limit of <img class="math" src="_images/math/76ba6643845546f6fa099122e567295f76df75e9.png" alt="h(x)"/> as <img class="math" src="_images/math/2e4cd7d5e9652f7373ea0d68e788c44e4389ef08.png" alt="x \rightarrow 4"/>:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">limit</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">Infinity</span>
 </pre></div>
 </div>
-<p>Now this is an example of why we have to be a little careful when using computer algebra systems. The limit above is not exactly correct. See the graph of <span class="math">h(x)</span> near this discontinuity below.</p>
+<p>Now this is an example of why we have to be a little careful when using computer algebra systems. The limit above is not exactly correct. See the graph of <img class="math" src="_images/math/76ba6643845546f6fa099122e567295f76df75e9.png" alt="h(x)"/> near this discontinuity below.</p>
 <a class="reference internal image-reference" href="_images/asymptote.png"><img alt="&quot;Rational Function with vertical asymptote x=4&quot;" src="_images/asymptote.png" style="width: 400px; height: 300px;" /></a>
-<p id="index-38">What we have when <span class="math">x=4</span> is a <em>vertical asymptote</em> with the function tending toward <em>positive</em> infinity if <span class="math">x</span> is larger than <span class="math">4</span> and <em>negative</em> infinity from when <span class="math">x</span> less than <span class="math">4</span>. We can takes these <em>directional</em> limits using SageMath to confirm this by supplying the extra <em>dir</em> argument.</p>
+<p id="index-38">What we have when <img class="math" src="_images/math/0a7f6b0197accaea94a009277c66957ce07e6175.png" alt="x=4"/> is a <em>vertical asymptote</em> with the function tending toward <em>positive</em> infinity if <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/> is larger than <img class="math" src="_images/math/51a8d7e791ab9e463af82a4075edb04ef8028dcf.png" alt="4"/> and <em>negative</em> infinity from when <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/> less than <img class="math" src="_images/math/51a8d7e791ab9e463af82a4075edb04ef8028dcf.png" alt="4"/>. We can takes these <em>directional</em> limits using SageMath to confirm this by supplying the extra <em>dir</em> argument.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">limit</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
 <span class="o">+</span><span class="n">Infinity</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">limit</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">dir</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
@@ -553,7 +553,7 @@ one free variable, SageMath enumerates them <code class="docutils literal"><span
 </div>
 <div class="section" id="derivatives">
 <span id="index-39"></span><span id="id6"></span><h3>Derivatives<a class="headerlink" href="#derivatives" title="Permalink to this headline">¶</a></h3>
-<p id="index-40">The next thing we are going to do is use SageMath to compute the <em>derivatives</em> of the functions that we defined earlier. For example, to compute <span class="math">f^{\prime}(x)</span>, <span class="math">g^{\prime}(x)</span>, and <span class="math">h^{\prime}(x)</span> we will use the <code class="xref py py-func docutils literal"><span class="pre">derivative()</span></code> command.</p>
+<p id="index-40">The next thing we are going to do is use SageMath to compute the <em>derivatives</em> of the functions that we defined earlier. For example, to compute <img class="math" src="_images/math/5bfb8bb45e68ad1a38367ce482d335beaffe9848.png" alt="f^{\prime}(x)"/>, <img class="math" src="_images/math/acf9916622b2b4d27e488db170cffd45b10c8b83.png" alt="g^{\prime}(x)"/>, and <img class="math" src="_images/math/2788ac6b6e04e06a9cde2cb155057efdfd8e3559.png" alt="h^{\prime}(x)"/> we will use the <code class="xref py py-func docutils literal"><span class="pre">derivative()</span></code> command.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">fp</span>  <span class="o">=</span>  <span class="n">derivative</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">fp</span>
 <span class="n">x</span> <span class="o">|--&gt;</span> <span class="n">x</span><span class="o">*</span><span class="n">e</span><span class="o">^</span><span class="n">x</span> <span class="o">+</span> <span class="n">e</span><span class="o">^</span><span class="n">x</span>
@@ -565,7 +565,7 @@ one free variable, SageMath enumerates them <code class="docutils literal"><span
 <span class="n">x</span> <span class="o">|--&gt;</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
 </div>
-<p id="index-41">The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, SageMath will hold <span class="math">x</span> constant and take the derivative with respect to that variable.</p>
+<p id="index-41">The first argument is the function which you would like to differentiate and the second argument is the variable with which you would like to differentiate with respect to. For example, if I were to supply a different variable, SageMath will hold <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/> constant and take the derivative with respect to that variable.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">y</span> <span class="o">=</span> <span class="n">var</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">derivative</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">|--&gt;</span> <span class="mi">0</span>
@@ -594,13 +594,13 @@ one free variable, SageMath enumerates them <code class="docutils literal"><span
 <span class="p">[</span><span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">x</span> <span class="o">==</span> <span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p id="index-43">Constructing the line <em>tangent</em> to our functions at the point <span class="math">\left(x, f\left(x\right)\right)</span> is an important computation which is easily done in SageMath. For example, the following command will compute the line tangent to <span class="math">f(x)</span> at the point <span class="math">\left(0,f(0)\right)</span>.</p>
+<p id="index-43">Constructing the line <em>tangent</em> to our functions at the point <img class="math" src="_images/math/9720777df6c2dd703d12038dcb62e4ac6934f7d0.png" alt="\left(x, f\left(x\right)\right)"/> is an important computation which is easily done in SageMath. For example, the following command will compute the line tangent to <img class="math" src="_images/math/14546c27a7b929642f7840acca5f851c503ea109.png" alt="f(x)"/> at the point <img class="math" src="_images/math/22ad6fabd70d57cd212c3ce3f69ca588b526b6f0.png" alt="\left(0,f(0)\right)"/>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">T_f</span> <span class="o">=</span> <span class="n">fp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">+</span> <span class="n">f</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">T_f</span>
 <span class="n">x</span>
 </pre></div>
 </div>
-<p>The same can be done for <span class="math">g(x)</span> and <span class="math">h(x)</span>.</p>
+<p>The same can be done for <img class="math" src="_images/math/3af1f844d2ef477235eb582f56085d4b53bf7568.png" alt="g(x)"/> and <img class="math" src="_images/math/76ba6643845546f6fa099122e567295f76df75e9.png" alt="h(x)"/>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">T_g</span> <span class="o">=</span> <span class="n">gp</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">+</span> <span class="n">g</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">T_g</span>
 <span class="mi">0</span>
@@ -634,7 +634,7 @@ The others differ by a constant. We can verify that we have indeed computed the 
 </pre></div>
 </div>
 <p>Wait, none of these look right. But a little algebra, and the use of a trig-identity or two in the case of <code class="docutils literal"><span class="pre">1/2*(2*x^2</span> <span class="pre">-</span> <span class="pre">1)*cos(2*x)</span> <span class="pre">+</span> <span class="pre">1/2*cos(2*x)</span></code>, you will see that they are indeed the same.</p>
-<p>It should also be noted that there are some functions which are continuous and yet there doesn’t exist a <em>closed form</em> integral. A common example is <span class="math">e^{-x^2}</span> which forms the basis for the <em>normal distribution</em> which is ubiquitous throughout statistics.  The antiderivative for <span class="math">er^{-x^2}</span> is commonly called  <span class="math">\mathrm{erf}</span>, otherwise known as the <em>error function</em>.</p>
+<p>It should also be noted that there are some functions which are continuous and yet there doesn’t exist a <em>closed form</em> integral. A common example is <img class="math" src="_images/math/d95240b7768ce400e2942152b351884c1d7ee139.png" alt="e^{-x^2}"/> which forms the basis for the <em>normal distribution</em> which is ubiquitous throughout statistics.  The antiderivative for <img class="math" src="_images/math/90d8816a85fbfbfe45ee31ba1728c6e560ecfbe5.png" alt="er^{-x^2}"/> is commonly called  <img class="math" src="_images/math/f12f89c530a8d00837a6d2d3c62e063d3e447599.png" alt="\mathrm{erf}"/>, otherwise known as the <em>error function</em>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">integral</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 <span class="n">x</span> <span class="o">|--&gt;</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">erf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
@@ -661,14 +661,54 @@ The others differ by a constant. We can verify that we have indeed computed the 
 </div>
 <div class="section" id="taylor-series-expansion">
 <span id="taylor"></span><span id="index-46"></span><h3>Taylor Series Expansion<a class="headerlink" href="#taylor-series-expansion" title="Permalink to this headline">¶</a></h3>
-<p>Another interesting feature of SageMath is the possibility of computing <a class="reference external" href="https://en.wikipedia.org/wiki/Taylor_series">Taylor Series</a> expansions around a point. At first we show how to expand around 0, also called Mclaurin series. Let us give an example with the function <span class="math">g(x) = \cos(x)</span>.</p>
+<p>Another interesting feature of SageMath is the possibility of computing <a class="reference external" href="https://en.wikipedia.org/wiki/Taylor_series">Taylor Series</a> expansions around a point. At first we show how to expand around 0, also called Mclaurin series. Let us give an example with the function <img class="math" src="_images/math/649d3d35a49e1f4d09ce476f36d0038b7a3e964b.png" alt="g(x) = \cos(x)"/>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">g</span> <span class="o">=</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="n">g</span>
 <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">g_taylor</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">taylor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
 <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>The first argument in g.taylor() is the independent variable of our function, the second argument is the point around which we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function <span class="math">f(x) = \exp(x^{2})\sin(x-5)</span> around the point <span class="math">\x=2</span> up to order 3.</p>
+<p>The first argument in g.taylor() is the independent variable of our function, the second argument is the point around which we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function <img class="math" src="_images/math/274fc3ed9f36bce1cfdc4893694832d927290e6a.png" alt="f(x) = \exp(x^{2})\sin(x-5)"/> around the point <div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">\x=2</tt>)</p>
+latex exited with error
+[stdout]
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2017-04-15&gt;
+Babel &lt;3.10&gt; and hyphenation patterns for 84 language(s) loaded.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/utf8x.def))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/ucs.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-global.def))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/bm.sty) (./math.aux)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/ucsencs.def)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd)
+! Undefined control sequence.
+&lt;recently read&gt; \x 
+                   
+l.12 $\x
+        =2$
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 208 bytes).
+Transcript written on math.log.
+</div>
+ up to order 3.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">f</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">^</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">5</span><span class="p">);</span> <span class="n">f</span>
 <span class="n">e</span><span class="o">^</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">f_taylor</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">taylor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">f_taylor</span>
@@ -684,27 +724,71 @@ The others differ by a constant. We can verify that we have indeed computed the 
 <blockquote>
 <div><ol class="arabic simple">
 <li>Use SageMath to compute the following limits:<ol class="loweralpha">
-<li><span class="math">\lim_{x \rightarrow 2} \frac{x^{2} + 2 \, x - 8}{x-2}</span></li>
-<li><span class="math">\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)</span></li>
-<li><span class="math">\lim_{x \rightarrow (\pi/2)^{-}} \sec(x)</span></li>
+<li><img class="math" src="_images/math/2e5c96df05483465f10f2355c83fe2c9b362f88c.png" alt="\lim_{x \rightarrow 2} \frac{x^{2} + 2 \, x - 8}{x-2}"/></li>
+<li><img class="math" src="_images/math/94c72d8a1d36dcecfcf4856198553e1f4dc8b1e6.png" alt="\lim_{x \rightarrow (\pi/2)^{+}} \sec(x)"/></li>
+<li><img class="math" src="_images/math/d8a7dcc2bde7044763f27ee7a82c1009851d3ec6.png" alt="\lim_{x \rightarrow (\pi/2)^{-}} \sec(x)"/></li>
 </ol>
 </li>
 <li>Use SageMath to compute the following <em>derivatives</em> with respect to the specified variables:<ol class="loweralpha">
-<li><span class="math">\frac{d}{dx}\left[ x^{2}e^{3x}\cos(2x) \right]</span></li>
-<li><span class="math">\frac{d}{dt}\left[\frac{t^2 + 1}{t-2}\right]</span> <em>(remember to define ``t``)</em></li>
-<li><span class="math">\frac{d}{dy}\left[ x\cos(x)\right]</span></li>
+<li><img class="math" src="_images/math/e203c23070c48bdd98b7734a8c00247428907d61.png" alt="\frac{d}{dx}\left[ x^{2}e^{3x}\cos(2x) \right]"/></li>
+<li><img class="math" src="_images/math/455085d5fadf2b0e144ef65a8feaff1749bd3589.png" alt="\frac{d}{dt}\left[\frac{t^2 + 1}{t-2}\right]"/> <em>(remember to define ``t``)</em></li>
+<li><img class="math" src="_images/math/4ef14ae3d98c17ed1326d40414d16cf2f5cabf54.png" alt="\frac{d}{dy}\left[ x\cos(x)\right]"/></li>
 </ol>
 </li>
 <li>Use SageMath to compute the following integrals:<ol class="loweralpha">
-<li><span class="math">\int \frac{x+1}{x^2 + 2x + 1}dx</span></li>
-<li><span class="math">\int_{-\pi/4}^{\pi/4} \sec(x) dx</span></li>
-<li><span class="math">\int x e^{-x^{2}} dx</span></li>
+<li><img class="math" src="_images/math/688c063d62e8a7989261765a87074c7539aeda3b.png" alt="\int \frac{x+1}{x^2 + 2x + 1}dx"/></li>
+<li><img class="math" src="_images/math/a45ef26d5633d9eaa0336efb0ea23b7fc5664978.png" alt="\int_{-\pi/4}^{\pi/4} \sec(x) dx"/></li>
+<li><img class="math" src="_images/math/7931bdf43e25716ca553bae844bbc6b4646fb090.png" alt="\int x e^{-x^{2}} dx"/></li>
 </ol>
 </li>
 <li>Use SageMath to compute the Taylor series expansion of the following functions:<ol class="loweralpha">
-<li><span class="math">\sin(x)*\cos(x)</span> around <span class="math">x=0</span>, order 3</li>
-<li><span class="math">\(x-2)*\ln(x/2)</span> around <span class="math">x=1</span>, order 4</li>
-<li><span class="math">\tan(x+5) - \exp(x^2)</span>, around <span class="math">x=\pi</span>, order 5</li>
+<li><img class="math" src="_images/math/2cee9df2aca71cd2ddb7f0cf189812e7ea163af3.png" alt="\sin(x)*\cos(x)"/> around <img class="math" src="_images/math/55ba271999995cac02cf578362df5be030594ed6.png" alt="x=0"/>, order 3</li>
+<li><div class="system-message">
+<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">\(x-2)*\ln(x/2)</tt>)</p>
+latex exited with error
+[stdout]
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=latex)
+ restricted \write18 enabled.
+entering extended mode
+(./math.tex
+LaTeX2e &lt;2017-04-15&gt;
+Babel &lt;3.10&gt; and hyphenation patterns for 84 language(s) loaded.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size12.clo))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/utf8x.def))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/ucs.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-global.def))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/bm.sty) (./math.aux)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/ucsencs.def)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd)
+
+! LaTeX Error: Bad math environment delimiter.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H &lt;return&gt;  for immediate help.
+ ...                                              
+                                                  
+l.12 $\(
+        x-2)*\ln(x/2)$
+[1] (./math.aux) )
+(see the transcript file for additional information)
+Output written on math.dvi (1 page, 320 bytes).
+Transcript written on math.log.
+</div>
+ around <img class="math" src="_images/math/092fcccf083cc591757e2d96990c3368bf2ce486.png" alt="x=1"/>, order 4</li>
+<li><img class="math" src="_images/math/4f6a71518e6ed3db5d4de13047363a8316a9780f.png" alt="\tan(x+5) - \exp(x^2)"/>, around <img class="math" src="_images/math/444406ca77ef81c3410e34379336307a9300448a.png" alt="x=\pi"/>, order 5</li>
 </ol>
 </li>
 </ol>
@@ -716,7 +800,7 @@ The others differ by a constant. We can verify that we have indeed computed the 
 <p>You should be familiar with <a class="reference internal" href="#basic-arithmetic"><span class="std std-ref">Basic Arithmetic</span></a></p>
 <p>In this section we will discuss the use of some of the basic descriptive statistic functions availble for use in SageMath.</p>
 <p id="index-48">To demonstrate their usage we will first generate a pseudo-random list
-of integers from 0 to 100 to describe. The <code class="xref py py-func docutils literal"><span class="pre">random()</span></code> function generates a random number from <span class="math">[0,1)</span>, so we will use a trick to generate integers in this specific range. Note, by the nature of random number generation your list of numbers will be different.</p>
+of integers from 0 to 100 to describe. The <code class="xref py py-func docutils literal"><span class="pre">random()</span></code> function generates a random number from <img class="math" src="_images/math/68adca6871086a90d32b8c23c1c5c3aa5c19d282.png" alt="[0,1)"/>, so we will use a trick to generate integers in this specific range. Note, by the nature of random number generation your list of numbers will be different.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[</span>  <span class="nb">int</span><span class="p">(</span><span class="n">random</span><span class="p">()</span><span class="o">*</span><span class="p">(</span><span class="mi">100</span><span class="o">-</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="p">)</span>  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span> <span class="mi">1</span> <span class="o">..</span> <span class="mi">20</span> <span class="p">]</span> <span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">data</span>
 <span class="p">[</span><span class="mi">78</span><span class="p">,</span> <span class="mi">43</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">94</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">66</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span>
@@ -754,7 +838,7 @@ deviation of this data.</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Use SageMath to generate a list of 20 random integers.</li>
-<li>The heights of eight students, measured in inches, are <span class="math">71,\ 73,\  59,\ 62,\ 65,\ 61,\ 73,\ 61</span>. Find the <em>average</em>, <em>median</em> and <em>mode</em> of the heights of these students.</li>
+<li>The heights of eight students, measured in inches, are <img class="math" src="_images/math/3c9d37807b4923652b3cb6ca692e984c7f04a5f1.png" alt="71,\ 73,\  59,\ 62,\ 65,\ 61,\ 73,\ 61"/>. Find the <em>average</em>, <em>median</em> and <em>mode</em> of the heights of these students.</li>
 <li>Using the same data, compute the <em>standard deviation</em> and <em>variance</em> of the sampled heights.</li>
 <li>Find the <em>range</em> of the heights. (<em>Hint: use the</em> <a class="reference external" href="https://docs.python.org/3/library/functions.html#max" title="(in Python v3.7)"><code class="xref py py-func docutils literal"><span class="pre">max()</span></code></a> <em>and</em> <a class="reference external" href="https://docs.python.org/3/library/functions.html#min" title="(in Python v3.7)"><code class="xref py py-func docutils literal"><span class="pre">min()</span></code></a> <em>commands</em>)</li>
 </ol>
@@ -767,7 +851,7 @@ deviation of this data.</p>
 <blockquote>
 <div>You should be familiar with <a class="reference internal" href="#basic-functions-and-constants"><span class="std std-ref">Standard Functions and Constants</span></a> and <a class="reference internal" href="#solving-equations-inequalities"><span class="std std-ref">Solving Equations and Inequalities</span></a></div></blockquote>
 <p>SageMath has many ways for us to visualize the mathematics that we are working with. In this section we will quickly get you up to speed with some of the basic commands used when plotting functions and working with graphics.</p>
-<p id="index-52">To produce a basic plot of <span class="math">\sin(x)</span> from <span class="math">x=-\frac{\pi}{2}</span> to <span class="math">x=\frac{\pi}{2}</span> we will use the <code class="xref py py-func docutils literal"><span class="pre">plot()</span></code> command.</p>
+<p id="index-52">To produce a basic plot of <img class="math" src="_images/math/2090b37c0e560a57927ee95ca8466d041e89b2d5.png" alt="\sin(x)"/> from <img class="math" src="_images/math/2153fbec91bfdd24c31cfea02902ec1bfde339c5.png" alt="x=-\frac{\pi}{2}"/> to <img class="math" src="_images/math/17efb8f2711755d173cf23dd6fd16a03ece077a9.png" alt="x=\frac{\pi}{2}"/> we will use the <code class="xref py py-func docutils literal"><span class="pre">plot()</span></code> command.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">p</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -801,7 +885,7 @@ adding the <code class="docutils literal"><span class="pre">axes_labels</span></
 <a class="reference internal image-reference" href="_images/sin_cos_plot.png"><img alt="Plot of sin(x) and cos(x) on the same axes" src="_images/sin_cos_plot.png" style="width: 400px; height: 300px;" /></a>
 <p>To tie together our plotting commands with some material we have
 learned earlier, let’s use the <code class="xref py py-func docutils literal"><span class="pre">find_root()</span></code> command to find the
-point where <span class="math">\sin(x)</span> and <span class="math">\cos(x)</span> intersect. We will then add this point to the graph and label it.</p>
+point where <img class="math" src="_images/math/2090b37c0e560a57927ee95ca8466d041e89b2d5.png" alt="\sin(x)"/> and <img class="math" src="_images/math/c17067ad98227b7cae5ec9ff03de21dfad599e22.png" alt="\cos(x)"/> intersect. We will then add this point to the graph and label it.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">find_root</span><span class="p">(</span> <span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">==</span> <span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="p">)</span>
 <span class="mf">0.78539816339744839</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">P</span> <span class="o">=</span> <span class="n">point</span><span class="p">(</span> <span class="p">[(</span><span class="mf">0.78539816339744839</span><span class="p">,</span> <span class="n">sin</span><span class="p">(</span><span class="mf">0.78539816339744839</span><span class="p">))]</span> <span class="p">)</span>
@@ -821,7 +905,7 @@ expecting.</p>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/rat_func_with_asymptotes.png"><img alt="Plot of rational function with asymptotes" src="_images/rat_func_with_asymptotes.png" style="width: 400px; height: 300px;" /></a>
-<p>The vertical asymptotes of this rational function cause SageMath to adjust the aspect ratio of the plot to display the rather large <span class="math">y</span> values near <span class="math">x=-1</span> and <span class="math">x=2</span>. This obfuscates most of the features of this function in a way that we may have not intended. To remedy this we can explicitly adjust the vertical and horizontal limits of our plot</p>
+<p>The vertical asymptotes of this rational function cause SageMath to adjust the aspect ratio of the plot to display the rather large <img class="math" src="_images/math/b124ff74afb0914bb434e8fb849eb56d734412f8.png" alt="y"/> values near <img class="math" src="_images/math/5e2bbf8db6a6ffda9f8d85b53d97cf0dd02790d6.png" alt="x=-1"/> and <img class="math" src="_images/math/744b37ad640210b6603308ec85a1ecbb8ba17a81.png" alt="x=2"/>. This obfuscates most of the features of this function in a way that we may have not intended. To remedy this we can explicitly adjust the vertical and horizontal limits of our plot</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">xmin</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">ymin</span><span class="o">=-</span><span class="mi">20</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -842,7 +926,7 @@ option.</p>
 </div>
 <a class="reference internal image-reference" href="_images/parametric_circle_fixed.png"><img alt="Circle of radius 3 with 1/1 aspect ratio" src="_images/parametric_circle_fixed.png" style="width: 400px; height: 300px;" /></a>
 <p>The different plotting commands accept many of the same options as
-plot. The following generates the Lissajous Curve <span class="math">L(3,2)</span> with
+plot. The following generates the Lissajous Curve <img class="math" src="_images/math/b30241b762d4d85984c5dc348a1aa87fa2643d9a.png" alt="L(3,2)"/> with
 a thick red dashed line.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">p</span> <span class="o">=</span> <span class="n">parametric_plot</span><span class="p">(</span> <span class="p">[</span><span class="n">sin</span><span class="p">(</span><span class="mi">3</span><span class="o">*</span><span class="n">t</span><span class="p">),</span> <span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">t</span><span class="p">)],</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="o">*</span><span class="n">pi</span><span class="p">),</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -857,7 +941,7 @@ a thick red dashed line.</p>
 </pre></div>
 </div>
 <a class="reference internal image-reference" href="_images/8petal-polar.png"><img alt="Eight Petal 'folium' curve" src="_images/8petal-polar.png" style="width: 400px; height: 300px;" /></a>
-<p>And finally, SageMath can do the plots for functions that are implicitly defined. For example, to display all points <span class="math">(x,y)</span> that satisfy the equation <span class="math">4x^2y - 3y = x^3 -1</span>, we enter the following:</p>
+<p>And finally, SageMath can do the plots for functions that are implicitly defined. For example, to display all points <img class="math" src="_images/math/5f81ea407dc24031569231ab2cd28222176f38ca.png" alt="(x,y)"/> that satisfy the equation <img class="math" src="_images/math/a91e665d10385c213ffadf5e147e7a810f073dfd.png" alt="4x^2y - 3y = x^3 -1"/>, we enter the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">implicit_plot</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">-</span> <span class="mi">3</span><span class="o">*</span><span class="n">y</span> <span class="o">==</span> <span class="n">x</span><span class="o">^</span><span class="mi">3</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">),(</span><span class="n">y</span><span class="p">,</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
@@ -884,10 +968,10 @@ a thick red dashed line.</p>
 </div>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Plot the graph of <span class="math">y = \sin\left(\pi x - \pi  \right)</span> for <span class="math">-1 \leq x \leq 1</span> using a thick red line.</li>
-<li>Plot the graph of <span class="math">\cos\left(\pi x - \pi \right)</span> on the same interval using a thick blue line.</li>
+<li>Plot the graph of <img class="math" src="_images/math/f60111893f87caed37f17016d46869981c35ca44.png" alt="y = \sin\left(\pi x - \pi  \right)"/> for <img class="math" src="_images/math/5e4f9d041b7fdfff218543cbf404c56ddc329f22.png" alt="-1 \leq x \leq 1"/> using a thick red line.</li>
+<li>Plot the graph of <img class="math" src="_images/math/93a90c2ce6c81acf7bcaa83c66d7379e74cfd0e1.png" alt="\cos\left(\pi x - \pi \right)"/> on the same interval using a thick blue line.</li>
 <li>Plot the two graphs above on the same set of axes.</li>
-<li>Plot the graph of <span class="math">y = 1/x</span> for <span class="math">-1 \leq x \leq 1</span> adjusting the range so that only <span class="math">-10 \leq y \leq 10</span>.</li>
+<li>Plot the graph of <img class="math" src="_images/math/3d65372c78460d443492c41a00094f27cc01d630.png" alt="y = 1/x"/> for <img class="math" src="_images/math/5e4f9d041b7fdfff218543cbf404c56ddc329f22.png" alt="-1 \leq x \leq 1"/> adjusting the range so that only <img class="math" src="_images/math/94275294f6d84b9eabb7523b8f2f315b1e16c8a3.png" alt="-10 \leq y \leq 10"/>.</li>
 <li>Use the commands in this section to produce the following image:</li>
 </ol>
 <a class="reference internal image-reference" href="_images/circles.png"><img alt="Two circles of radius 3." src="_images/circles.png" style="width: 400px; height: 300px;" /></a>
@@ -980,7 +1064,7 @@ a thick red dashed line.</p>
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2011, Michael O&#39;Sullivan,  David Monarres.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>

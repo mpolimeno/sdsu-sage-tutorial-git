@@ -105,9 +105,9 @@ SageMath will choose the simplest universe for each number.</p>
 <span class="n">Real</span> <span class="n">Field</span> <span class="k">with</span> <span class="mi">53</span> <span class="n">bits</span> <span class="n">of</span> <span class="n">precision</span>
 </pre></div>
 </div>
-<p>Another important universe is the Symbolic Ring.  You might think that <span class="math">\sqrt{2}</span>
-or <span class="math">\pi</span> would have parent RR, the real numbers, while <span class="math">I</span> would be in  CC.
-But RR and CC have finite precision, and these numbers satisfy  formulas that make them special, for example <span class="math">\sqrt{2}^2=2</span> and <span class="math">\sin(\pi)= 0</span>.  SageMath stores these numbers with special properties in the so-called <em>Symbolic Ring</em>, whose variables are aptly-named <em>symbolic variables</em>, see  “<a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a>”.</p>
+<p>Another important universe is the Symbolic Ring.  You might think that <img class="math" src="_images/math/f8117cd5193e9c43e4cac4a86cc0298690ef3f79.png" alt="\sqrt{2}"/>
+or <img class="math" src="_images/math/c1bd4cb4e3647c6b2356b7ccf2f52aeffedd1b61.png" alt="\pi"/> would have parent RR, the real numbers, while <img class="math" src="_images/math/5d9e7b2aec3287330051a115f2ea3cdc8c7a6587.png" alt="I"/> would be in  CC.
+But RR and CC have finite precision, and these numbers satisfy  formulas that make them special, for example <img class="math" src="_images/math/91969062d4d84e2ec00626d8818e249f7ce710a4.png" alt="\sqrt{2}^2=2"/> and <img class="math" src="_images/math/a95da24e04fed5ca0c615379809eef268cbc2443.png" alt="\sin(\pi)= 0"/>.  SageMath stores these numbers with special properties in the so-called <em>Symbolic Ring</em>, whose variables are aptly-named <em>symbolic variables</em>, see  “<a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a>”.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">parent</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
 <span class="n">Symbolic</span> <span class="n">Ring</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">parent</span><span class="p">(</span><span class="n">I</span><span class="p">)</span>
@@ -116,7 +116,7 @@ But RR and CC have finite precision, and these numbers satisfy  formulas that ma
 <span class="n">Symbolic</span> <span class="n">Ring</span>
 </pre></div>
 </div>
-<p id="index-7">We often perform operations with elements from <em>different</em> universes as long as there is some sort of natural <em>conversion</em> that can be done to both elements so that they live in the <em>same</em> universe. For instance, when we compute  <span class="math">1 + 1/2 = 3/2</span>, we implicitly convert <span class="math">1</span> from the Integer universe to the universe of rational numbers, before performing the operation. This conversion is often so natural that we don’t even think about it and, luckily for you, SageMath does many of these conversions without you having to worry about them either.</p>
+<p id="index-7">We often perform operations with elements from <em>different</em> universes as long as there is some sort of natural <em>conversion</em> that can be done to both elements so that they live in the <em>same</em> universe. For instance, when we compute  <img class="math" src="_images/math/1d7fc1e40c6d140297799021e8c49ac3048088ee.png" alt="1 + 1/2 = 3/2"/>, we implicitly convert <img class="math" src="_images/math/123e375e88da91240024aaf085abee194c4a2d06.png" alt="1"/> from the Integer universe to the universe of rational numbers, before performing the operation. This conversion is often so natural that we don’t even think about it and, luckily for you, SageMath does many of these conversions without you having to worry about them either.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">parent</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">Integer</span> <span class="n">Ring</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">parent</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
@@ -288,14 +288,14 @@ Additionally we use <code class="docutils literal"><span class="pre">&gt;=</span
 </ol>
 </li>
 <li>What is the parent of <code class="docutils literal"><span class="pre">x</span> <span class="pre">&gt;</span> <span class="pre">1/2</span></code>? Why do you think that SageMath treats this expression differently from the rest?</li>
-<li>Use SageMath to find out if <span class="math">e</span> is greater than <span class="math">\pi</span>? (<em>Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default.</em>)</li>
+<li>Use SageMath to find out if <img class="math" src="_images/math/630e3a780577ea7921e81ee2ac5237dd1802ec8d.png" alt="e"/> is greater than <img class="math" src="_images/math/c1bd4cb4e3647c6b2356b7ccf2f52aeffedd1b61.png" alt="\pi"/>? (<em>Hint: Remember that both ``e`` and ``pi`` are symbolic variables by default.</em>)</li>
 </ol>
 </div></blockquote>
 </div>
 <div class="section" id="variables">
 <span id="index-16"></span><span id="id5"></span><h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
 <p>You should be familiar with “<a class="reference internal" href="sagecalc.html#declare-variables"><span class="std std-ref">Declaring Variables</span></a>”</p>
-<p>The term ‘variable’,  can hold different meanings. For instance, in computer programming, a ‘variable’ is a space in memory used to store and retrieve a certain piece of information. In mathematics, a variable such as <span class="math">x</span> is a quantity with indeterminate value: a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.</p>
+<p>The term ‘variable’,  can hold different meanings. For instance, in computer programming, a ‘variable’ is a space in memory used to store and retrieve a certain piece of information. In mathematics, a variable such as <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/> is a quantity with indeterminate value: a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.</p>
 <p>In SageMath, both usages are present.  We will use the term <em>variable</em> for the computer programming variable and <em>symbolic variable</em> for the mathematical variable.</p>
 <p id="index-17">SageMath initializes the Symbolic Ring to have one symbolic variable, <code class="docutils literal"><span class="pre">x</span></code>. It obeys  the arithmetical rules that we expect.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span> <span class="o">-</span> <span class="n">x</span>
@@ -443,7 +443,7 @@ Additionally we use <code class="docutils literal"><span class="pre">&gt;=</span
 </div>
 <div class="section" id="lists">
 <span id="id6"></span><h3>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
-<p id="index-23">A <em>list</em> is an ordered collection of objects. The elements of a list are indexed by the integers, starting with <span class="math">0</span>. Here is a quick example of how to construct a list and access it’s elements.</p>
+<p id="index-23">A <em>list</em> is an ordered collection of objects. The elements of a list are indexed by the integers, starting with <img class="math" src="_images/math/74c081db590f3d35421c1f6b9afd4cdda36ee210.png" alt="0"/>. Here is a quick example of how to construct a list and access it’s elements.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">496</span><span class="p">,</span><span class="mi">8128</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">2</span><span class="p">]</span>
@@ -457,7 +457,7 @@ Additionally we use <code class="docutils literal"><span class="pre">&gt;=</span
 <span class="mi">17</span>
 </pre></div>
 </div>
-<p>Take careful note of how we access the elements: Though <span class="math">2</span> is the first element of the list <code class="docutils literal"><span class="pre">L</span></code>, it is accessed by the index <span class="math">0</span>.</p>
+<p>Take careful note of how we access the elements: Though <img class="math" src="_images/math/15c663954a3e059d1f876bc8a4621de376038c96.png" alt="2"/> is the first element of the list <code class="docutils literal"><span class="pre">L</span></code>, it is accessed by the index <img class="math" src="_images/math/74c081db590f3d35421c1f6b9afd4cdda36ee210.png" alt="0"/>.</p>
 <p id="index-24">The <a class="reference external" href="https://docs.python.org/3/library/functions.html#len" title="(in Python v3.7)"><code class="xref py py-func docutils literal"><span class="pre">len()</span></code></a> command returns the <em>length</em> of a list.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
 <span class="mi">8</span>
@@ -465,7 +465,7 @@ Additionally we use <code class="docutils literal"><span class="pre">&gt;=</span
 <span class="mi">5</span>
 </pre></div>
 </div>
-<p>Note that a list of length <span class="math">5</span> is indexed from <span class="math">0</span> to <span class="math">4</span>.</p>
+<p>Note that a list of length <img class="math" src="_images/math/516e8e69cb2e0cf19a092ecfaf763417e6f5fa3f.png" alt="5"/> is indexed from <img class="math" src="_images/math/74c081db590f3d35421c1f6b9afd4cdda36ee210.png" alt="0"/> to <img class="math" src="_images/math/51a8d7e791ab9e463af82a4075edb04ef8028dcf.png" alt="4"/>.</p>
 <p>Lists can contain numbers from any universe, or even  “<a class="reference internal" href="#strings"><span class="std std-ref">Strings</span></a>”.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">M</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;apple&#39;</span><span class="p">,</span> <span class="s1">&#39;pear&#39;</span><span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
@@ -502,7 +502,7 @@ Note that <code class="docutils literal"><span class="pre">M[2,1]</span></code> 
 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>We use <code class="docutils literal"><span class="pre">M[2:5]</span></code> since the sub-list that we desire begins with the element with index <span class="math">2</span> and ends <em>before</em> the element with index <span class="math">5</span>.</p>
+<p>We use <code class="docutils literal"><span class="pre">M[2:5]</span></code> since the sub-list that we desire begins with the element with index <img class="math" src="_images/math/15c663954a3e059d1f876bc8a4621de376038c96.png" alt="2"/> and ends <em>before</em> the element with index <img class="math" src="_images/math/516e8e69cb2e0cf19a092ecfaf763417e6f5fa3f.png" alt="5"/>.</p>
 <p>By leaving the last index blank, the slice will extend to the end of the list. Similarly, when the first index is left blank the slice will start at the beginning of the list.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">M</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
@@ -558,7 +558,7 @@ Note that <code class="docutils literal"><span class="pre">M[2,1]</span></code> 
 <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input <code class="docutils literal"><span class="pre">[a,b..c]</span></code> for integers a,b and c with <span class="math">a &lt; b \leq c</span>, we get back the list <code class="docutils literal"><span class="pre">[a,a+d,…,a+k*d]</span></code> where <span class="math">d=b-a</span> and <span class="math">k</span> is the largest integer such that <span class="math">a+kd \leq c</span>. If this is a bit overwhelming, perhap the the following examples will clear things up.</p>
+<p>In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input <code class="docutils literal"><span class="pre">[a,b..c]</span></code> for integers a,b and c with <img class="math" src="_images/math/91d5313c299a6c2d13278099ceaa3871abc8ad43.png" alt="a &lt; b \leq c"/>, we get back the list <code class="docutils literal"><span class="pre">[a,a+d,…,a+k*d]</span></code> where <img class="math" src="_images/math/e19daaf101f4b6703007adb04ca340b7e8bb3011.png" alt="d=b-a"/> and <img class="math" src="_images/math/e9203da50e1059455123460d4e716c9c7f440cc3.png" alt="k"/> is the largest integer such that <img class="math" src="_images/math/cb0859971058f8a33d2767d7b11865a7098c5df9.png" alt="a+kd \leq c"/>. If this is a bit overwhelming, perhap the the following examples will clear things up.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">4.</span><span class="o">.</span><span class="mi">13</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">13</span><span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">11.</span><span class="o">.</span><span class="mi">31</span><span class="p">]</span>
@@ -789,12 +789,12 @@ Notice that the <code class="xref py py-meth docutils literal"><span class="pre"
 <p><strong>Exercises:</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Consider the sets <span class="math">A = \left\{1, -4, 2 \right\}</span> and <span class="math">B = \left\{ 3, 2, 1 \right\}</span>. Compute the following set operations using SageMath:<ol class="loweralpha">
-<li><span class="math">A \cup B</span></li>
-<li><span class="math">A \cap B</span></li>
-<li><span class="math">A \setminus B</span></li>
-<li><span class="math">B \setminus A</span></li>
-<li><span class="math">\left(A \setminus B \right) \cup \left(B \setminus A \right)</span></li>
+<li>Consider the sets <img class="math" src="_images/math/410ba4b4006ac743b1190a581703bbbdbee22948.png" alt="A = \left\{1, -4, 2 \right\}"/> and <img class="math" src="_images/math/bce08a86c242be48c5f9f0e80f5ceaa78f08502f.png" alt="B = \left\{ 3, 2, 1 \right\}"/>. Compute the following set operations using SageMath:<ol class="loweralpha">
+<li><img class="math" src="_images/math/bf9a5d9121af3ab6f049a173e609dc82cd308668.png" alt="A \cup B"/></li>
+<li><img class="math" src="_images/math/81b4d25861f24e9208104e7fce703ea71d47d95c.png" alt="A \cap B"/></li>
+<li><img class="math" src="_images/math/6b8ff8a1ff4e570b68a544e5e0701a3abe9e47a4.png" alt="A \setminus B"/></li>
+<li><img class="math" src="_images/math/c58a24a806dfa0f53ba036329b1b8d92ea8fa08b.png" alt="B \setminus A"/></li>
+<li><img class="math" src="_images/math/f7da8c75eca6016c8780cdb0be542864ead2dbda.png" alt="\left(A \setminus B \right) \cup \left(B \setminus A \right)"/></li>
 </ol>
 </li>
 </ol>
@@ -940,7 +940,7 @@ are executed is important  to controlling the flow of your program.</p>
 <span class="mi">31</span>
 </pre></div>
 </div>
-<p>Since none of the conditions were met, our code <em>defaulted</em> to printing the number <span class="math">31</span>.</p>
+<p>Since none of the conditions were met, our code <em>defaulted</em> to printing the number <img class="math" src="_images/math/e43d639e740f1e4b1275aaee0a93d3feeb392ae2.png" alt="31"/>.</p>
 </div>
 <div class="section" id="while-loops">
 <span id="id11"></span><h3>While loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h3>
@@ -1013,8 +1013,8 @@ integers. Here are a few more (especially silly) examples.</p>
 <p id="index-52">A particularly useful technique in python (and SageMath by extension) is the
 construction of lists using <strong>list comprehensions</strong>. This feature is very similar to the <em>set builder</em> notation we often use in mathematics. For example, the set of <em>even</em> integers can be written as:</p>
 <div class="math">
-<p><span class="math">\left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\}</span></p>
-</div><p>Where we do not explicitly list the elements of the set but rather give a <em>rule</em> which can used to construct the set. We can do something very similar in python by placing a <code class="docutils literal"><span class="pre">for</span></code> inside of a list, like in the following example. Here is how we would construct the list of even integers from <span class="math">0</span> to <span class="math">20</span>.</p>
+<p><img src="_images/math/e6615225136c6233968ebeaeb780eb825d2f347c.png" alt="\left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\}"/></p>
+</div><p>Where we do not explicitly list the elements of the set but rather give a <em>rule</em> which can used to construct the set. We can do something very similar in python by placing a <code class="docutils literal"><span class="pre">for</span></code> inside of a list, like in the following example. Here is how we would construct the list of even integers from <img class="math" src="_images/math/74c081db590f3d35421c1f6b9afd4cdda36ee210.png" alt="0"/> to <img class="math" src="_images/math/120b3bfdfb71bdbdeb6831dbafd4bec1d8a0cee1.png" alt="20"/>.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">[</span> <span class="mi">2</span><span class="o">*</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.</span><span class="o">.</span><span class="mi">10</span><span class="p">]</span> <span class="p">]</span>
 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
 </pre></div>
@@ -1027,7 +1027,7 @@ construction of lists using <strong>list comprehensions</strong>. This feature i
 <span class="p">[</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>We can also use the list comprehension <em>filter</em> (or reduce) the results by adding a <em>conditional</em> to our list comprehension. For example, to construct the list of all natural numbers that are less than <span class="math">20</span> which are <em>relatively prime</em> to 20 we do the following:</p>
+<p>We can also use the list comprehension <em>filter</em> (or reduce) the results by adding a <em>conditional</em> to our list comprehension. For example, to construct the list of all natural numbers that are less than <img class="math" src="_images/math/120b3bfdfb71bdbdeb6831dbafd4bec1d8a0cee1.png" alt="20"/> which are <em>relatively prime</em> to 20 we do the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">[</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.</span><span class="o">.</span><span class="mi">19</span><span class="p">]</span> <span class="k">if</span> <span class="n">gcd</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">]</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">19</span><span class="p">]</span>
 </pre></div>
@@ -1035,10 +1035,10 @@ construction of lists using <strong>list comprehensions</strong>. This feature i
 <p>Notice that the syntax for the construction is nearly identical to the
 mathematical way that we would write the same set of numbers:</p>
 <div class="math">
-<p><span class="math">\left\{ k \in \mathbb{N}\ \vert\ k &lt; 20 \ \textrm{and}\ \gcd(k,20) = 1 \right\}</span></p>
+<p><img src="_images/math/9f66ac979d8624d1c69c615697f922713180ddfd.png" alt="\left\{ k \in \mathbb{N}\ \vert\ k &lt; 20 \ \textrm{and}\ \gcd(k,20) = 1 \right\}"/></p>
 </div><p>In mathematics we often construct the <em>Cartesian Product</em> of two sets:</p>
 <div class="math">
-<p><span class="math">A \times B = \left\{ \left(a, b \right)\ | \ a \in A, b \in B \right\}</span></p>
+<p><img src="_images/math/2bedc267d3cc6e3268da114cb8e4f8218609c54f.png" alt="A \times B = \left\{ \left(a, b \right)\ | \ a \in A, b \in B \right\}"/></p>
 </div><p>We can do something similar by using multiple <em>for’s</em> in the list comprehension. For example, to construct the list of all <em>pairs</em> of elements in the list constructed earlier we do the following:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">U</span> <span class="o">=</span>  <span class="p">[</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.</span><span class="o">.</span><span class="mi">19</span><span class="p">]</span> <span class="k">if</span> <span class="n">gcd</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="p">[</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">U</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">U</span> <span class="p">]</span>
@@ -1070,19 +1070,19 @@ mathematical way that we would write the same set of numbers:</p>
 <blockquote>
 <div><ol class="arabic simple">
 <li>Use a list comprehension to generate lists which have the same members as the following sets:<ol class="loweralpha">
-<li>The set of all odd integers greater than <span class="math">-10</span> and less than <span class="math">30</span>.</li>
-<li>The set of all integers which are divisible by <span class="math">3</span>, less than or equal to <span class="math">100</span> and greater than <span class="math">-20</span>.</li>
-<li>The set of all <em>prime</em> numbers less than <span class="math">100</span>.</li>
+<li>The set of all odd integers greater than <img class="math" src="_images/math/45400b55422e2546d92f9393ecba300bb8c2285b.png" alt="-10"/> and less than <img class="math" src="_images/math/53207abcf79457df88d1a4fdae0161f672e7e56f.png" alt="30"/>.</li>
+<li>The set of all integers which are divisible by <img class="math" src="_images/math/b9b358d9bbdf54c3d9aef7554638822d996c21ea.png" alt="3"/>, less than or equal to <img class="math" src="_images/math/63e297a7a3a6ea37ad6b6bbf3f8ec35f5b1a3dba.png" alt="100"/> and greater than <img class="math" src="_images/math/f9002458fef285d47ca04408c0e941b6450bf03a.png" alt="-20"/>.</li>
+<li>The set of all <em>prime</em> numbers less than <img class="math" src="_images/math/63e297a7a3a6ea37ad6b6bbf3f8ec35f5b1a3dba.png" alt="100"/>.</li>
 </ol>
 </li>
-<li>Use a list comprehension to compute the <span class="math">\tan(x)</span> for all <span class="math">x \in \left\{ 0, \pi/4, \pi/2, 3\pi/4, \pi \right\}</span></li>
+<li>Use a list comprehension to compute the <img class="math" src="_images/math/d51ca4693c0fb3a8aa30d9c33ac252168b8d209f.png" alt="\tan(x)"/> for all <img class="math" src="_images/math/5509bb8d7fdea318dc11f5c109b281e0604c3a1e.png" alt="x \in \left\{ 0, \pi/4, \pi/2, 3\pi/4, \pi \right\}"/></li>
 </ol>
 </div></blockquote>
 </div>
 <div class="section" id="defining-your-own-commands">
 <span id="functions"></span><h3>Defining your own commands<a class="headerlink" href="#defining-your-own-commands" title="Permalink to this headline">¶</a></h3>
 <p id="index-53">Once your computations get complicated enough we may want to hide some of this complexity by creating your own command that can be easily re-used like SageMath’s built-in commands. These user-defined commands are commonly called <em>functions</em>, though they differ from mathematical functions.</p>
-<p>For example, suppose that we wanted to compute the greatest common divisor of <span class="math">75</span> and <span class="math">21</span>. We can use the <em>euclidean algorithm</em> and SageMath to do this. Here is how that would look:</p>
+<p>For example, suppose that we wanted to compute the greatest common divisor of <img class="math" src="_images/math/560c03d15cd331635c24e8f37acae50abb0558e0.png" alt="75"/> and <img class="math" src="_images/math/dd4dd2fa4e02177de2d3b5241b1c5f90316bc4cb.png" alt="21"/>. We can use the <em>euclidean algorithm</em> and SageMath to do this. Here is how that would look:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="k">def</span> <span class="nf">euclid</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
 <span class="o">....</span><span class="p">:</span>     <span class="n">r</span> <span class="o">=</span> <span class="n">a</span><span class="o">%</span><span class="n">b</span>
 <span class="o">....</span><span class="p">:</span>     <span class="k">while</span> <span class="n">r</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
@@ -1231,7 +1231,7 @@ This chapter briefly describes how to do so.</p>
 <span class="n">Gap</span>
 </pre></div>
 </div>
-<p>The  <em>interface</em> to the GAP system translates the commands in GAP to <em>methods</em> in SageMath. For example, to compute the <em>Derived Subgroup</em> of <span class="math">S_8</span> you use the <code class="xref py py-meth docutils literal"><span class="pre">DerivedSubgroup()</span></code> method.</p>
+<p>The  <em>interface</em> to the GAP system translates the commands in GAP to <em>methods</em> in SageMath. For example, to compute the <em>Derived Subgroup</em> of <img class="math" src="_images/math/4455697db9949628f345512ef357ba64696edff8.png" alt="S_8"/> you use the <code class="xref py py-meth docutils literal"><span class="pre">DerivedSubgroup()</span></code> method.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">a8</span> <span class="o">=</span> <span class="n">s8</span><span class="o">.</span><span class="n">DerivedSubgroup</span><span class="p">();</span> <span class="n">a8</span>
 <span class="n">Group</span><span class="p">(</span> <span class="p">[</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">)(</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span> <span class="p">]</span> <span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">a8</span><span class="o">.</span><span class="n">Size</span><span class="p">();</span> <span class="n">a8</span><span class="o">.</span><span class="n">IsAbelian</span><span class="p">();</span> <span class="n">a8</span><span class="o">.</span><span class="n">IsPerfect</span><span class="p">()</span>
@@ -1240,7 +1240,7 @@ This chapter briefly describes how to do so.</p>
 <span class="n">true</span>
 </pre></div>
 </div>
-<p>The output of <cite>s8.DerivedSubgroup()</cite> is identical to the output of the GAP command <cite>DerivedSubgroup(s8)</cite> and this is the common convention when the command has one argument. When it requires two, say the group and an additional parameter, the additional parameter is given as an argument to the method. For example, the GAP command <cite>SylowSubgroup(a8,2)</cite> computes the maximal 2-subgroup of <span class="math">A_8</span>. The following SageMath code does the same, then uses GAP to compute it’s size.</p>
+<p>The output of <cite>s8.DerivedSubgroup()</cite> is identical to the output of the GAP command <cite>DerivedSubgroup(s8)</cite> and this is the common convention when the command has one argument. When it requires two, say the group and an additional parameter, the additional parameter is given as an argument to the method. For example, the GAP command <cite>SylowSubgroup(a8,2)</cite> computes the maximal 2-subgroup of <img class="math" src="_images/math/7e3312a242b2aea77ff9ae06eb8304f4836fea22.png" alt="A_8"/>. The following SageMath code does the same, then uses GAP to compute it’s size.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">sy12</span> <span class="o">=</span> <span class="n">a8</span><span class="o">.</span><span class="n">SylowSubgroup</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span> <span class="n">sy12</span><span class="o">.</span><span class="n">Size</span><span class="p">()</span>
 <span class="mi">64</span>
 </pre></div>
@@ -1408,7 +1408,7 @@ sage: parent(SG)
 <a class="reference internal image-reference" href="_images/interact_step1.png"><img alt="Simple &quot;Hello World&quot; Interact Applet" src="_images/interact_step1.png" style="width: 800px; height: 525px;" /></a>
 <p>Notice how changing the text in the input box changes the output. Every time something within the interact changes the “applet” is refreshed and will display those changes. This is the heart of the interactivity.</p>
 <a class="reference internal image-reference" href="_images/interact_step2.png"><img alt="Simple &quot;Hello World&quot; Interact Applet" src="_images/interact_step2.png" style="width: 800px; height: 525px;" /></a>
-<p>Next we will add another control to the applet. This time we will add a <em>slider</em>. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has <span class="math">0</span> as it’s smallest number and <span class="math">10</span> as it’s largest and moves in increments of <span class="math">1</span> unit.</p>
+<p>Next we will add another control to the applet. This time we will add a <em>slider</em>. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has <img class="math" src="_images/math/74c081db590f3d35421c1f6b9afd4cdda36ee210.png" alt="0"/> as it’s smallest number and <img class="math" src="_images/math/1984d1a61055b785e860b105bc14f1f2221f3476.png" alt="10"/> as it’s largest and moves in increments of <img class="math" src="_images/math/123e375e88da91240024aaf085abee194c4a2d06.png" alt="1"/> unit.</p>
 <a class="reference internal image-reference" href="_images/interact_step3.png"><img alt="Simple &quot;Hello World&quot; Interact Applet" src="_images/interact_step3.png" style="width: 800px; height: 525px;" /></a>
 <p>Next we will add a selection control. This control allows the user to select one of a finite number of different options. In this case, the user can select any color, as long as that color is red, blue, green, or black.</p>
 <a class="reference internal image-reference" href="_images/interact_step4.png"><img alt="Simple &quot;Hello World&quot; Interact Applet" src="_images/interact_step4.png" style="width: 800px; height: 525px;" /></a>
@@ -1490,7 +1490,7 @@ sage: parent(SG)
 
     <div class="footer" role="contentinfo">
         &#169; Copyright 2011, Michael O&#39;Sullivan,  David Monarres.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.6.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.6.3.
     </div>
   </body>
 </html>
