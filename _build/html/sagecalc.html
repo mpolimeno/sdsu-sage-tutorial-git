@@ -668,47 +668,7 @@ The others differ by a constant. We can verify that we have indeed computed the 
 <span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>The first argument in g.taylor() is the independent variable of our function, the second argument is the point around which we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function <img class="math" src="_images/math/274fc3ed9f36bce1cfdc4893694832d927290e6a.png" alt="f(x) = \exp(x^{2})\sin(x-5)"/> around the point <div class="system-message">
-<p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">\x=2</tt>)</p>
-latex exited with error
-[stdout]
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=latex)
- restricted \write18 enabled.
-entering extended mode
-(./math.tex
-LaTeX2e &lt;2017-04-15&gt;
-Babel &lt;3.10&gt; and hyphenation patterns for 84 language(s) loaded.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/size12.clo))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/base/inputenc.sty
-(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/utf8x.def))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/ucs.sty
-(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/data/uni-global.def))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty)
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/bm.sty) (./math.aux)
-(/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/ucsencs.def)
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd)
-! Undefined control sequence.
-&lt;recently read&gt; \x 
-                   
-l.12 $\x
-        =2$
-[1] (./math.aux) )
-(see the transcript file for additional information)
-Output written on math.dvi (1 page, 208 bytes).
-Transcript written on math.log.
-</div>
- up to order 3.</p>
+<p>The first argument in g.taylor() is the independent variable of our function, the second argument is the point around which we are expanding, and the third argument is the order of accuracy of the expansion, i.e. where we truncate it. The above case was a pretty simple one, but sometimes you might have to compute a much harder Taylor expansion. For instance, let us try to expand the function <img class="math" src="_images/math/274fc3ed9f36bce1cfdc4893694832d927290e6a.png" alt="f(x) = \exp(x^{2})\sin(x-5)"/> around the point <img class="math" src="_images/math/744b37ad640210b6603308ec85a1ecbb8ba17a81.png" alt="x=2"/> up to order 3.</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">f</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">^</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="mi">5</span><span class="p">);</span> <span class="n">f</span>
 <span class="n">e</span><span class="o">^</span><span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="p">)</span><span class="o">*</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">f_taylor</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">taylor</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="n">f_taylor</span>
@@ -769,7 +729,8 @@ For additional information on amsmath, use the `?' option.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amscls/amsthm.sty)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amssymb.sty
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/bm.sty) (./math.aux)
+(/usr/local/texlive/2017/texmf-dist/tex/latex/tools/bm.sty)
+No file math.aux.
 (/usr/local/texlive/2017/texmf-dist/tex/latex/ucs/ucsencs.def)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/local/texlive/2017/texmf-dist/tex/latex/amsfonts/umsb.fd)
