@@ -777,8 +777,8 @@ Now the outcome of this computation might be a bit convoluted to visualize, ther
 
 .. image:: pics/Taylor_tex.png
         :alt: Using SageMath at the command line.
-	:width: 400px
-	:height: 250px
+	:width: 800px
+	:height: 525px
 
 
 **Exercises:**
