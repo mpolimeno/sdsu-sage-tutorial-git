@@ -807,7 +807,7 @@ Now the outcome of this computation might be a bit convoluted to visualize, ther
   #. Use SageMath to compute the Taylor series expansion of the following functions:
 
      a) :math:`\sin(x)*\cos(x)` around :math:`x=0`, order 3
-     b) :math:`\(x-2)*\ln(x/2)` around :math:`x=1`, order 4
+     b) :math:`(x-2)*\ln(x/2)` around :math:`x=1`, order 4
      c) :math:`\tan(x+5) - \exp(x^2)`, around :math:`x=\pi`, order 5
 
 
