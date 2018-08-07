@@ -80,7 +80,7 @@ expect after properly entering the command.
 
 From the command line the interaction would probably look a bit like this:
 
-.. image:: pics/SageMath_shell.png
+.. image:: pics/SageMath_shell.PNG
         :alt: Using SageMath at the command line.
 	:width: 800px
 	:height: 525px
