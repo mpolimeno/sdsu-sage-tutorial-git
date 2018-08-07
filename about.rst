@@ -87,7 +87,7 @@ From the command line the interaction would probably look a bit like this:
 
 If the user is using the notebook (most likely) the interaction will look a little like:
 
-.. image:: pics/notebook_example.png
+.. image:: pics/SageMath_notebook.PNG
         :alt: Using SageMath at the command line.
 	:width: 800px
 	:height: 525px
