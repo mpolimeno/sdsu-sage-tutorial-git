@@ -63,7 +63,7 @@ subtraction). ::
   sage: (-3)^2
   9
 
-When dividing two integers, there is a subtlety; whether SageMath will return a fraction or it's decimal approximation. Unlike most graphing calculators, SageMath will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell SageMath that we *want* the decimal approximation is to include a decimal in the expression itself. ::
+When dividing two integers, there is a subtlety; whether SageMath will return a fraction or its decimal approximation. Unlike most graphing calculators, SageMath will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell SageMath that we *want* the decimal approximation is to include a decimal in the expression itself. ::
 
 	sage: 11/4.0
 	2.75000000000000
@@ -76,7 +76,7 @@ When dividing two integers, there is a subtlety; whether SageMath will return a 
 
 **Exercises:**
 
-   #. Divide :math:`28` by :math:`2` raised to the 5th power as a  rational number, then get it's decimal approximation.
+   #. Divide :math:`28` by :math:`2` raised to the 5th power as a  rational number, then get its decimal approximation.
 
    #. Compute a decimal approximation of :math:`\sqrt{2}`
 
@@ -92,7 +92,7 @@ Integer Division and Factoring
 
     You should be familiar with ":ref:`basic_arithmetic`"
 
-Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even it's decimal approximation, but rather the unique *quotient* and the *remainder* that are the consequence of the division.
+Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even its decimal approximation, but rather the unique *quotient* and the *remainder* that are the consequence of the division.
 
 .. index:: division, qutient, remainder, modulus
 
@@ -131,7 +131,7 @@ a list of all positive divisors of the integer specified. ::
 
 .. index:: prime, is_prime
 
-When the divisors of an integer are only :math:`1` and itself then we say that the number is *prime*. To check if a number is prime in sage, we use it's :meth:`.is_prime` method. ::
+When the divisors of an integer are only :math:`1` and itself then we say that the number is *prime*. To check if a number is prime in sage, we use its :meth:`.is_prime` method. ::
 
 	sage: (2^19-1).is_prime()
 	True
@@ -151,7 +151,7 @@ We use the :meth:`.factor` method to compute the *prime factorization* of an int
 
 .. index:: divisors, prime_divisors
 
-If we are interested in simply knowing which prime numbers divide an integer, we may use it's :meth:`.prime_divisors` (or :meth:`.prime_factors`) method. ::
+If we are interested in simply knowing which prime numbers divide an integer, we may use its :meth:`.prime_divisors` (or :meth:`.prime_factors`) method. ::
 
 	sage: 24.prime_divisors()
 	[2, 3]
@@ -920,7 +920,7 @@ The ``color`` option accepts string color designations ( 'purple', 'green', 'red
 
 .. index:: linestyle, thickness
 
-We can change the style of line, whether it is solid, dashed, and it's thickness by using the ``linestyle`` and the ``thickness`` options. ::
+We can change the style of line, whether it is solid, dashed, and its thickness by using the ``linestyle`` and the ``thickness`` options. ::
 
 	sage: p = plot(f(x), (x,-pi/2, pi/2), linestyle='--', thickness=3)
 	sage: p.show()

@@ -243,7 +243,7 @@ Here you see that ``lcm`` can either accept two arguments, for our purposes two 
           sage: len(str(v))
           4349
 
-Having a comprehensive help system built into SageMath is one of it's best features and the sooner you get comfortable with using it the faster you will be able to use the full power of this CAS.
+Having a comprehensive help system built into SageMath is one of its best features and the sooner you get comfortable with using it the faster you will be able to use the full power of this CAS.
 
 .. index::  source code; ??
 

@@ -464,7 +464,7 @@ Lists
 
 .. index:: list, list; definition
 
-A *list* is an ordered collection of objects. The elements of a list are indexed by the integers, starting with :math:`0`. Here is a quick example of how to construct a list and access it's elements. ::
+A *list* is an ordered collection of objects. The elements of a list are indexed by the integers, starting with :math:`0`. Here is a quick example of how to construct a list and access its elements. ::
 
 	 sage: [6,28,496,8128]
 	 [6, 28, 496, 8128]
@@ -703,7 +703,7 @@ Operations on a List
 
 If your lists contain elements where it makes sense, the :func:`.sum` and :func:`.prod` commands accept a list as argument.
 
-:func:`sum` returns the sum of it's argument:  ::
+:func:`sum` returns the sum of its argument:  ::
 
 	 sage: sum([1,2,3])
 	 6
@@ -1408,7 +1408,7 @@ The  *interface* to the GAP system translates the commands in GAP to *methods* i
   false
   true
 
-The output of `s8.DerivedSubgroup()` is identical to the output of the GAP command `DerivedSubgroup(s8)` and this is the common convention when the command has one argument. When it requires two, say the group and an additional parameter, the additional parameter is given as an argument to the method. For example, the GAP command `SylowSubgroup(a8,2)` computes the maximal 2-subgroup of :math:`A_8`. The following SageMath code does the same, then uses GAP to compute it's size.  ::
+The output of `s8.DerivedSubgroup()` is identical to the output of the GAP command `DerivedSubgroup(s8)` and this is the common convention when the command has one argument. When it requires two, say the group and an additional parameter, the additional parameter is given as an argument to the method. For example, the GAP command `SylowSubgroup(a8,2)` computes the maximal 2-subgroup of :math:`A_8`. The following SageMath code does the same, then uses GAP to compute its size.  ::
 
   sage: sy12 = a8.SylowSubgroup(2); sy12.Size()
   64
@@ -1606,7 +1606,7 @@ Notice how changing the text in the input box changes the output. Every time som
 	:height: 525px
 	:width: 800px
 
-Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as it's smallest number and :math:`10` as it's largest and moves in increments of :math:`1` unit.
+Next we will add another control to the applet. This time we will add a *slider*. This control has a handle which the user can slide horizontally, and by sliding change a number in pre-defined increments. For this example, the slider has :math:`0` as its smallest number and :math:`10` as its largest and moves in increments of :math:`1` unit.
 
 .. image:: pics/interact_step3.png
 	:alt: Simple "Hello World" Interact Applet

@@ -118,7 +118,7 @@ We can also compute some properties of the ring itself. ::
 
 .. index:: list, rings; list
 
-Since this  ring is finite then we can have SageMath list all of it's elements. ::
+Since this  ring is finite then we can have SageMath list all of its elements. ::
 
   sage: R = Integers(13)
   sage: R.list()
@@ -127,7 +127,7 @@ Since this  ring is finite then we can have SageMath list all of it's elements. 
 .. index:: unit group, rings; unit group, unit_gens
 
 ``R`` in this example is a field, since :math:`13` is a prime number.  If our ring is not a field then the *units*  in :math:`\mathbb{Z}_{n}`
-form a group under multiplication. SageMath can compute a list of generators of the *group of units* using it's :meth:`unit_gens` method. ::
+form a group under multiplication. SageMath can compute a list of generators of the *group of units* using its :meth:`unit_gens` method. ::
 
   sage: R = Integers(12)
   sage: R.uni
@@ -614,7 +614,7 @@ construct the list of all elements or order 2. ::
 
 
 Next we will construct  a permutation group  :math:`H` and list
-it's members. This group :math:`H` has different elements from :class:`DihedralGroup(5)`,
+its members. This group :math:`H` has different elements from :class:`DihedralGroup(5)`,
 but  is isomorphic to it.  ::
 
         sage: H= PermutationGroup(['(1,5),(3,4)', '(1,2,5,4,3)']); H
@@ -1366,7 +1366,7 @@ Next we  use the *augmented* matrix and the echelon form to solve a :math:`3\tim
 
 .. index:: augment
 
-Then we construct the augmented matrix :math:`\left( M\ \vert b  \right)`, store it in the variable `M_aug` and compute it's echelon form. ::
+Then we construct the augmented matrix :math:`\left( M\ \vert b  \right)`, store it in the variable `M_aug` and compute its echelon form. ::
 
    sage: M_aug = M.augment(b); M_aug
    [  2   4   6   2   4  56]
@@ -1846,7 +1846,7 @@ The greatest common divisor of two integers can be represented as a linear combi
 
 .. index:: is_irreducible
 
-To check whether a polynomial is irreducible, we use it's :meth:`is_irreducible` method. ::
+To check whether a polynomial is irreducible, we use its :meth:`is_irreducible` method. ::
 
   sage: R.<x>=PolynomialRing(Integers(5))
   sage: (x^3+x+1).is_irreducible()
@@ -1888,7 +1888,7 @@ Calculating the *roots*, or *zeros*, of a polynomial can be done by using the :m
   sage: ((x-1)^2*(x-2)*x^3).roots()
   [(2, 1), (1, 2), (0, 3)]
 
-SageMath returns a list of pairs :math:`(r,m)` where ``r`` is the root and ``m`` is it's multiplicity. Of course, a polynomial need not have any roots and in this case the *empty list* is returned.  ::
+SageMath returns a list of pairs :math:`(r,m)` where ``r`` is the root and ``m`` is its multiplicity. Of course, a polynomial need not have any roots and in this case the *empty list* is returned.  ::
 
   sage: (x^2+1).roots()
   []
@@ -2860,7 +2860,7 @@ Verifying that ``H`` is a *check matrix* for :math:`C` is straightforward. ::
   sage: H*vector(GF(2),[1,0,0])
   (1)
 
-You can also compute the *dual code* and it's generating and parity check matrices. ::
+You can also compute the *dual code* and its generating and parity check matrices. ::
 
   sage: Cp = C.dual_code()
   sage: Cp.gen_mat()
@@ -3024,7 +3024,7 @@ We will begin by constructing a binary Hamming code with 3 parity checks. ::
   sage: C = HammingCode(3,F); C
   Linear code of length 7, dimension 4 over Finite Field of size 2
 
-Hamming codes always have a length, :math:`\vert \mathbb{F} \vert^r - 1` where :math:`r` is the number of parity checks and :math:`\mathbb{F}` is the finite-field over which the code is defined. This is because the columns of it's *parity check* matrix consists of all non-zero elements of :math:`\mathbb{F}^r`. ::
+Hamming codes always have a length, :math:`\vert \mathbb{F} \vert^r - 1` where :math:`r` is the number of parity checks and :math:`\mathbb{F}` is the finite-field over which the code is defined. This is because the columns of its *parity check* matrix consists of all non-zero elements of :math:`\mathbb{F}^r`. ::
 
   sage: C.check_mat()
   [1 0 1 0 1 0 1]
@@ -3057,7 +3057,7 @@ If :math:`b` is not provided then a default value of zero is used. For example, 
   sage: C
   Linear code of length 13, dimension 6 over Finite Field in a of size 3^2
 
-We can compute the code's minimum distance using it's :meth:`.minimum_distance` method. ::
+We can compute the code's minimum distance using its :meth:`.minimum_distance` method. ::
 
   sage: C.minimum_distance()
   6
@@ -3080,7 +3080,7 @@ Since BCH codes are also linear, you can use SageMath to compute the code's gene
   [0 0 0 0 0 1 0 0 0 1 1 0 1]
   [0 0 0 0 0 0 1 2 1 2 2 2 1]
 
-We can also compute it's *dual* code. ::
+We can also compute its *dual* code. ::
 
   sage: Cp = C.dual_code(); Cp
   Linear code of length 13, dimension 7 over Finite Field in a of size 3^2

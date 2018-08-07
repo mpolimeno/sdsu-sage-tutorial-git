@@ -85,7 +85,7 @@ subtraction).</p>
 <span class="mi">9</span>
 </pre></div>
 </div>
-<p>When dividing two integers, there is a subtlety; whether SageMath will return a fraction or it’s decimal approximation. Unlike most graphing calculators, SageMath will attempt to be as <em>precise</em> as possible and will return the fraction unless told otherwise. One way to tell SageMath that we <em>want</em> the decimal approximation is to include a decimal in the expression itself.</p>
+<p>When dividing two integers, there is a subtlety; whether SageMath will return a fraction or its decimal approximation. Unlike most graphing calculators, SageMath will attempt to be as <em>precise</em> as possible and will return the fraction unless told otherwise. One way to tell SageMath that we <em>want</em> the decimal approximation is to include a decimal in the expression itself.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">11</span><span class="o">/</span><span class="mf">4.0</span>
 <span class="mf">2.75000000000000</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mi">11</span><span class="o">/</span><span class="mf">4.</span>
@@ -99,7 +99,7 @@ subtraction).</p>
 <p><strong>Exercises:</strong></p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>Divide <img class="math" src="_images/math/84694b4fae450030683bbf8f625842d07b444fca.png" alt="28"/> by <img class="math" src="_images/math/15c663954a3e059d1f876bc8a4621de376038c96.png" alt="2"/> raised to the 5th power as a  rational number, then get it’s decimal approximation.</li>
+<li>Divide <img class="math" src="_images/math/84694b4fae450030683bbf8f625842d07b444fca.png" alt="28"/> by <img class="math" src="_images/math/15c663954a3e059d1f876bc8a4621de376038c96.png" alt="2"/> raised to the 5th power as a  rational number, then get its decimal approximation.</li>
 <li>Compute a decimal approximation of <img class="math" src="_images/math/f8117cd5193e9c43e4cac4a86cc0298690ef3f79.png" alt="\sqrt{2}"/></li>
 <li>Use sage to compute <code class="docutils literal notranslate"><span class="pre">(-9)^(1/2)</span></code>. Describe the output.</li>
 </ol>
@@ -109,7 +109,7 @@ subtraction).</p>
 <span id="division-and-factoring"></span><span id="index-5"></span><h3>Integer Division and Factoring<a class="headerlink" href="#integer-division-and-factoring" title="Permalink to this headline">¶</a></h3>
 <blockquote>
 <div>You should be familiar with “<a class="reference internal" href="#basic-arithmetic"><span class="std std-ref">Basic Arithmetic</span></a>”</div></blockquote>
-<p>Sometimes when we divide, the division operator doesn’t give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even it’s decimal approximation, but rather the unique <em>quotient</em> and the <em>remainder</em> that are the consequence of the division.</p>
+<p>Sometimes when we divide, the division operator doesn’t give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even its decimal approximation, but rather the unique <em>quotient</em> and the <em>remainder</em> that are the consequence of the division.</p>
 <p id="index-6">To calculate the quotient we use the <code class="docutils literal notranslate"><span class="pre">//</span></code> operator and the <code class="docutils literal notranslate"><span class="pre">%</span></code> operator is used for the remainder.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">14</span> <span class="o">//</span> <span class="mi">4</span>
 <span class="mi">3</span>
@@ -137,7 +137,7 @@ a list of all positive divisors of the integer specified.</p>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">]</span>
 </pre></div>
 </div>
-<p id="index-10">When the divisors of an integer are only <img class="math" src="_images/math/123e375e88da91240024aaf085abee194c4a2d06.png" alt="1"/> and itself then we say that the number is <em>prime</em>. To check if a number is prime in sage, we use it’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_prime()</span></code> method.</p>
+<p id="index-10">When the divisors of an integer are only <img class="math" src="_images/math/123e375e88da91240024aaf085abee194c4a2d06.png" alt="1"/> and itself then we say that the number is <em>prime</em>. To check if a number is prime in sage, we use its <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_prime()</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="o">^</span><span class="mi">19</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">is_prime</span><span class="p">()</span>
 <span class="kc">True</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mf">153.</span><span class="n">is_prime</span><span class="p">()</span>
@@ -152,7 +152,7 @@ a list of all positive divisors of the integer specified.</p>
 <span class="mi">3</span><span class="o">^</span><span class="mi">2</span> <span class="o">*</span> <span class="mi">7</span>
 </pre></div>
 </div>
-<p id="index-12">If we are interested in simply knowing which prime numbers divide an integer, we may use it’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">prime_divisors()</span></code> (or <code class="xref py py-meth docutils literal notranslate"><span class="pre">prime_factors()</span></code>) method.</p>
+<p id="index-12">If we are interested in simply knowing which prime numbers divide an integer, we may use its <code class="xref py py-meth docutils literal notranslate"><span class="pre">prime_divisors()</span></code> (or <code class="xref py py-meth docutils literal notranslate"><span class="pre">prime_factors()</span></code>) method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mf">24.</span><span class="n">prime_divisors</span><span class="p">()</span>
 <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mf">63.</span><span class="n">prime_factors</span><span class="p">()</span>
@@ -774,7 +774,7 @@ adding the <code class="docutils literal notranslate"><span class="pre">axes_lab
 </div>
 <a class="reference internal image-reference" href="_images/sin_plot_purple_labels.png"><img alt="Plot of sin with purple line and basic axis labels" src="_images/sin_plot_purple_labels.png" style="width: 400px; height: 300px;" /></a>
 <p>The <code class="docutils literal notranslate"><span class="pre">color</span></code> option accepts string color designations ( ‘purple’, ‘green’, ‘red’, ‘black’, etc…), an RGB triple such as (.25,.10,1), or an HTML-style hex triple such as #ff00aa.</p>
-<p id="index-54">We can change the style of line, whether it is solid, dashed, and it’s thickness by using the <code class="docutils literal notranslate"><span class="pre">linestyle</span></code> and the <code class="docutils literal notranslate"><span class="pre">thickness</span></code> options.</p>
+<p id="index-54">We can change the style of line, whether it is solid, dashed, and its thickness by using the <code class="docutils literal notranslate"><span class="pre">linestyle</span></code> and the <code class="docutils literal notranslate"><span class="pre">thickness</span></code> options.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">p</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">thickness</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>

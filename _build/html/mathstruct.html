@@ -129,14 +129,14 @@ division, SageMath will complain</p>
 <span class="kc">False</span>
 </pre></div>
 </div>
-<p id="index-5">Since this  ring is finite then we can have SageMath list all of it’s elements.</p>
+<p id="index-5">Since this  ring is finite then we can have SageMath list all of its elements.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">R</span> <span class="o">=</span> <span class="n">Integers</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">R</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
 </pre></div>
 </div>
 <p id="index-6"><code class="docutils literal notranslate"><span class="pre">R</span></code> in this example is a field, since <img class="math" src="_images/math/b78136ee77bf2901f904a04926f5aee40a8f0a7f.png" alt="13"/> is a prime number.  If our ring is not a field then the <em>units</em>  in <img class="math" src="_images/math/64fcc87a202bcb33f99a404daabaa0a85757d581.png" alt="\mathbb{Z}_{n}"/>
-form a group under multiplication. SageMath can compute a list of generators of the <em>group of units</em> using it’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">unit_gens()</span></code> method.</p>
+form a group under multiplication. SageMath can compute a list of generators of the <em>group of units</em> using its <code class="xref py py-meth docutils literal notranslate"><span class="pre">unit_gens()</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">R</span> <span class="o">=</span> <span class="n">Integers</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">R</span><span class="o">.</span><span class="n">uni</span>
 <span class="n">R</span><span class="o">.</span><span class="n">unit_gens</span>            <span class="n">R</span><span class="o">.</span><span class="n">unit_group_order</span>
@@ -562,7 +562,7 @@ construct the list of all elements or order 2.</p>
 </pre></div>
 </div>
 <p id="index-22">Next we will construct  a permutation group  <img class="math" src="_images/math/48f75e0b463f2fdb7fca9566cffdc439cae6967f.png" alt="H"/> and list
-it’s members. This group <img class="math" src="_images/math/48f75e0b463f2fdb7fca9566cffdc439cae6967f.png" alt="H"/> has different elements from <code class="xref py py-class docutils literal notranslate"><span class="pre">DihedralGroup(5)</span></code>,
+its members. This group <img class="math" src="_images/math/48f75e0b463f2fdb7fca9566cffdc439cae6967f.png" alt="H"/> has different elements from <code class="xref py py-class docutils literal notranslate"><span class="pre">DihedralGroup(5)</span></code>,
 but  is isomorphic to it.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">H</span><span class="o">=</span> <span class="n">PermutationGroup</span><span class="p">([</span><span class="s1">&#39;(1,5),(3,4)&#39;</span><span class="p">,</span> <span class="s1">&#39;(1,2,5,4,3)&#39;</span><span class="p">]);</span> <span class="n">H</span>
 <span class="n">Subgroup</span> <span class="n">of</span> <span class="n">SymmetricGroup</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="n">generated</span> <span class="n">by</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)]</span>
@@ -1233,7 +1233,7 @@ using the <code class="xref py py-meth docutils literal notranslate"><span class
 <span class="n">sage</span><span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="n">vector</span><span class="p">(</span><span class="n">QQ</span><span class="p">,</span> <span class="p">[</span><span class="mi">56</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">101</span><span class="p">])</span>
 </pre></div>
 </div>
-<p id="index-51">Then we construct the augmented matrix <img class="math" src="_images/math/21d3f6dd38ac3ffa1aecf63d1716c2a60da2848a.png" alt="\left( M\ \vert b  \right)"/>, store it in the variable <cite>M_aug</cite> and compute it’s echelon form.</p>
+<p id="index-51">Then we construct the augmented matrix <img class="math" src="_images/math/21d3f6dd38ac3ffa1aecf63d1716c2a60da2848a.png" alt="\left( M\ \vert b  \right)"/>, store it in the variable <cite>M_aug</cite> and compute its echelon form.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">M_aug</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">augment</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="n">M_aug</span>
 <span class="p">[</span>  <span class="mi">2</span>   <span class="mi">4</span>   <span class="mi">6</span>   <span class="mi">2</span>   <span class="mi">4</span>  <span class="mi">56</span><span class="p">]</span>
 <span class="p">[</span>  <span class="mi">1</span>   <span class="mi">2</span>   <span class="mi">3</span>   <span class="mi">1</span>   <span class="mi">1</span>  <span class="mi">23</span><span class="p">]</span>
@@ -1638,7 +1638,7 @@ any letter for the indeterminate.</p>
 <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p id="index-79">To check whether a polynomial is irreducible, we use it’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_irreducible()</span></code> method.</p>
+<p id="index-79">To check whether a polynomial is irreducible, we use its <code class="xref py py-meth docutils literal notranslate"><span class="pre">is_irreducible()</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">R</span><span class="o">.&lt;</span><span class="n">x</span><span class="o">&gt;=</span><span class="n">PolynomialRing</span><span class="p">(</span><span class="n">Integers</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="n">sage</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">3</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">is_irreducible</span><span class="p">()</span>
 <span class="kc">True</span>
@@ -1674,7 +1674,7 @@ factored, hence is reducible.</p>
 <span class="p">[(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
 </pre></div>
 </div>
-<p>SageMath returns a list of pairs <img class="math" src="_images/math/2f2d1e4b35639adbdc7a1baba60a9f4fce83152b.png" alt="(r,m)"/> where <code class="docutils literal notranslate"><span class="pre">r</span></code> is the root and <code class="docutils literal notranslate"><span class="pre">m</span></code> is it’s multiplicity. Of course, a polynomial need not have any roots and in this case the <em>empty list</em> is returned.</p>
+<p>SageMath returns a list of pairs <img class="math" src="_images/math/2f2d1e4b35639adbdc7a1baba60a9f4fce83152b.png" alt="(r,m)"/> where <code class="docutils literal notranslate"><span class="pre">r</span></code> is the root and <code class="docutils literal notranslate"><span class="pre">m</span></code> is its multiplicity. Of course, a polynomial need not have any roots and in this case the <em>empty list</em> is returned.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">^</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">roots</span><span class="p">()</span>
 <span class="p">[]</span>
 </pre></div>
@@ -2486,7 +2486,7 @@ SageMath creates a sequence of 3 fields in the following example, starting at th
 <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can also compute the <em>dual code</em> and it’s generating and parity check matrices.</p>
+<p>You can also compute the <em>dual code</em> and its generating and parity check matrices.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">Cp</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">dual_code</span><span class="p">()</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">Cp</span><span class="o">.</span><span class="n">gen_mat</span><span class="p">()</span>
 <span class="p">[</span><span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
@@ -2622,7 +2622,7 @@ SageMath creates a sequence of 3 fields in the following example, starting at th
 <span class="n">Linear</span> <span class="n">code</span> <span class="n">of</span> <span class="n">length</span> <span class="mi">7</span><span class="p">,</span> <span class="n">dimension</span> <span class="mi">4</span> <span class="n">over</span> <span class="n">Finite</span> <span class="n">Field</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>Hamming codes always have a length, <img class="math" src="_images/math/9741fef99f2ece0b502709fe85e7fabed8da9cd6.png" alt="\vert \mathbb{F} \vert^r - 1"/> where <img class="math" src="_images/math/2ede365ad144ab396916ec60458da03860803078.png" alt="r"/> is the number of parity checks and <img class="math" src="_images/math/be3bcf8a19a928999cfb2020a2f51a96c93fbcb0.png" alt="\mathbb{F}"/> is the finite-field over which the code is defined. This is because the columns of it’s <em>parity check</em> matrix consists of all non-zero elements of <img class="math" src="_images/math/5e67ed605275e477daff9e490f97d182b0be5a4f.png" alt="\mathbb{F}^r"/>.</p>
+<p>Hamming codes always have a length, <img class="math" src="_images/math/9741fef99f2ece0b502709fe85e7fabed8da9cd6.png" alt="\vert \mathbb{F} \vert^r - 1"/> where <img class="math" src="_images/math/2ede365ad144ab396916ec60458da03860803078.png" alt="r"/> is the number of parity checks and <img class="math" src="_images/math/be3bcf8a19a928999cfb2020a2f51a96c93fbcb0.png" alt="\mathbb{F}"/> is the finite-field over which the code is defined. This is because the columns of its <em>parity check</em> matrix consists of all non-zero elements of <img class="math" src="_images/math/5e67ed605275e477daff9e490f97d182b0be5a4f.png" alt="\mathbb{F}^r"/>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">C</span><span class="o">.</span><span class="n">check_mat</span><span class="p">()</span>
 <span class="p">[</span><span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">]</span>
@@ -2649,7 +2649,7 @@ SageMath creates a sequence of 3 fields in the following example, starting at th
 <span class="n">Linear</span> <span class="n">code</span> <span class="n">of</span> <span class="n">length</span> <span class="mi">13</span><span class="p">,</span> <span class="n">dimension</span> <span class="mi">6</span> <span class="n">over</span> <span class="n">Finite</span> <span class="n">Field</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">3</span><span class="o">^</span><span class="mi">2</span>
 </pre></div>
 </div>
-<p>We can compute the code’s minimum distance using it’s <code class="xref py py-meth docutils literal notranslate"><span class="pre">minimum_distance()</span></code> method.</p>
+<p>We can compute the code’s minimum distance using its <code class="xref py py-meth docutils literal notranslate"><span class="pre">minimum_distance()</span></code> method.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">C</span><span class="o">.</span><span class="n">minimum_distance</span><span class="p">()</span>
 <span class="mi">6</span>
 </pre></div>
@@ -2672,7 +2672,7 @@ SageMath creates a sequence of 3 fields in the following example, starting at th
 <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">2</span> <span class="mi">1</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>We can also compute it’s <em>dual</em> code.</p>
+<p>We can also compute its <em>dual</em> code.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">Cp</span> <span class="o">=</span> <span class="n">C</span><span class="o">.</span><span class="n">dual_code</span><span class="p">();</span> <span class="n">Cp</span>
 <span class="n">Linear</span> <span class="n">code</span> <span class="n">of</span> <span class="n">length</span> <span class="mi">13</span><span class="p">,</span> <span class="n">dimension</span> <span class="mi">7</span> <span class="n">over</span> <span class="n">Finite</span> <span class="n">Field</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">3</span><span class="o">^</span><span class="mi">2</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">Cp</span><span class="o">.</span><span class="n">gen_mat</span><span class="p">()</span>
