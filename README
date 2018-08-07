@@ -23,7 +23,7 @@ in this source directory.
 --------------------------------------------------------------
 Building and Installation:
 
-In order to build the website from it's sphinx source you will need to
+In order to build the website from its sphinx source you will need to
 install the sphinx documentation system (http://sphinx.pocoo.org), we
 are using version 1.0.6, which relies on the python programming language
 (http://www.python.org).
@@ -35,6 +35,28 @@ run the command
 
 The output is in the _build/html directory.
 
+----------------------------------------------------------------
+Note for Windows users:
+
+Install GitBash and use it to commit changes to your Git repository.
+GitBash comes in handy to run Unix-style commands on a Windows machine,
+but it does not come fully equipped with Linux utilities.
+Thus, while the previous section explain all that is to be done in order to
+build the website from its sphinx source in Unix systems (OSX and Linux),
+Windows machines might give you some troubles. Thus, if you are making
+changes to the tutorial repository locally on your machine and then
+simply try to run
+		
+		>> make html
+		
+on GitBash, it will not work, as 'make' will not be recognized as a
+valid command. So, what you will need to do is to go to https://sourceforge.net/projects/ezwinports/?source=typ_redirect
+and donwload make-4.1-2-without-guile-w32-bin.zip
+Extract the zip file and copy its contents to your Git\mingw64 without
+overwriting existing files. Then you'll have a working 'make' commands in GitBash.
+If you can't locate your Git\mingw64, check in C:\Program Files\Git\
+Fore more information, check this excellent explanation https://gist.github.com/evanwill/0207876c3243bbb6863e65ec5dc3f058
+and look at forum posts, as well.
 
 Adding Content
 ------------------
