@@ -89,8 +89,8 @@ If the user is using the notebook (most likely) the interaction will look a litt
 
 .. image:: pics/SageMath_notebook.PNG
         :alt: Using SageMath at the command line.
-	:width: 800px
-	:height: 525px
+	:width: 750px
+	:height: 500px
 
 For Cocalc users, it will look like:
 
