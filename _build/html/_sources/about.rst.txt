@@ -82,8 +82,8 @@ From the command line the interaction would probably look a bit like this:
 
 .. image:: pics/cmd_example.png
         :alt: Using SageMath at the command line.
-	:width: 800px
-	:height: 525px
+	:width: 900px
+	:height: 350px
 
 If the user is using the notebook (most likely) the interaction will look a little like:
 
@@ -265,7 +265,7 @@ Contributing to the tutorial
 
 Additions to this tutorial are encouraged as are suggestions for additional topics for inclusion.
 
-When this website was first developed, all of its code was available for download from the original project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. However, given the increased and still growing popularity of GitHub over the past few years, we decided to transition the whole repository there. All of its contents can be accessed from `GitHub <https://github.com/mpolimeno/sdsu-sage-tutorial-git>_`. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_, which is written in the `Python Programming Language <http://www.python.org>`_.  We are excited to see any changes that you make so please let `us <mosullivan@mail.sdsu.edu>`_ know of any new material that you  add. We want this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
+When this website was first developed, all of its code was available for download from the original project's `bitbucket <https://bitbucket.org/ayeq123/sdsu-sage-tutorial/>`_. However, given the increased and still growing popularity of GitHub over the past few years, we decided to transition the whole repository there. All of its contents can be accessed from `GitHub <https://github.com/mpolimeno/sdsu-sage-tutorial-git>`_. There you will find a complete copy of the source code for generating this website. To build the site from its source, the reader will need to install the `Sphinx Documentation <http://sphinx.poco.org>`_, which is written in the `Python Programming Language <http://www.python.org>`_.  We are excited to see any changes that you make so please let `us <mosullivan@mail.sdsu.edu>`_ know of any new material that you  add. We want this tutorial to be as comprehensive as possible and any assistance toward this goal is welcomed.
 
 The content of this tutorial is written using `reStructured Text <http://sphinx.pocoo.org/rest.html>`_, which is processed by `Sphinx <http://sphinx.pocoo.org/>`_ to produce the HTML and PDF output. Sphinx and reStructured Text are used throughout the official SageMath and Python documentation, so it is useful for contributors to either of these projects.
 
