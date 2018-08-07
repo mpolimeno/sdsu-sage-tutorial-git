@@ -10,7 +10,7 @@ undergraduates to the SageMath computer algebra system
 
 	       *http://www.sagemath.org
 
-Authors: Michael O'Sullivan, Ryan Rosenblum, and David M. Monarres
+Authors: Michael O'Sullivan, Ryan Rosenblum, Matteo Polimeno and David M. Monarres
 
 The content of the tutorial is distributed under the Creative Commons Share-Alike with Attribution
 License version 3.0. For details see
@@ -62,9 +62,9 @@ Adding Content
 ------------------
 
 Contributions are encouraged. The current source code is always
-available for checkout (using mercurial) from our bitbucket:
+available for checkout from our GitHub:
 
-	  *http://bitbucket.org/ayeq123/sdsu-sage-tutorial
+	  *https://github.com/mpolimeno/sdsu-sage-tutorial-git
 
 The content is marked up using reStructured text. See the following
 for a good reference to this markup language:
