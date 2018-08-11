@@ -223,6 +223,14 @@ Docstring:
 </div>
 <div class="section" id="source-code">
 <span id="index-8"></span><h3>Source  Code, ??<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h3>
+<p>There are probably some readers of this tutorial who like programming and would like to take a look on how a command is built in SageMath. To do this, you simply need to type the command whose source code you are interested in, and then press the &lt;tab&gt; key. For instance, going back to our <code class="xref py py-func docutils literal notranslate"><span class="pre">factor()</span></code> command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sage: factor??
+Source Code (starting at line 2139):
+
+def factor(n, proof=None, int_=False, algorithm=&#39;pari&#39;, verbose=0, **kwds):
+</pre></div>
+</div>
+<p>The output of this command is very long and will not fit in a single page or snapshot (try it yourself). However, we rewrote the first line to show you how the syntax is Pythonic. Once you run the command, you will see a lot of comments in the code that will navigate you no how to read it and interpret the Python syntax, if you are not familiar with it.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference external" href="http://www.sagemath.org/help-video.html">SageMath Screencasts</a></p>

@@ -256,8 +256,22 @@ There are probably some readers of this tutorial who like programming and would 
 	Source Code (starting at line 2139):
 	
 	def factor(n, proof=None, int_=False, algorithm='pari', verbose=0, **kwds):
+	"""comments inserted here"""
+		try:
+			m = n.factor
+		except AttributeError:
+			"""Maybe n is not a Sage element, try to convert it
+			e = py_scalar_to_element(n)
+        if e is n:
+            # Either n was a Sage Element without a factor() method
+            # or we cannot it convert it to Sage
+            raise TypeError("unable to factor {!r}".format(n))
+        n = e
+        m = n.factor
+
+		"""code continues"""
 	
-The output of this command is very long and will not fit in a single page or snapshot (try it yourself). However, we rewrote the first line to show you how the syntax is Pythonic. Once you run the command, you will see a lot of comments in the code that will navigate you no how to read it and interpret the Python syntax, if you are not familiar with it.	
+The output of this command is very long and will not fit in a single page or snapshot (try it yourself). However, we reported some of the lines of the code to show you how the syntax is Pythonic. Once you run the command, you will see a lot of comments (marked by a triple quote """) in the code that will navigate you on how to read it, what it does and to interpret the Python syntax, if you are not familiar with it.	
 	
 .. seealso::
    `SageMath Screencasts  <http://www.sagemath.org/help-video.html>`_
