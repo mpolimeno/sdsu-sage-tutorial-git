@@ -250,7 +250,7 @@ Having a comprehensive help system built into SageMath is one of its best featur
 Source  Code, ??
 --------------------------
 
-There are probably some readers of this tutorial who like programming and would like to take a look on how a command is built in SageMath. To do this, you simply need to type the command whose source code you are interested in, and then press the <tab> key. For instance, going back to our :func:`.factor` command ::
+There are probably some readers of this tutorial who like programming and would like to take a look at how a command is built in SageMath. To do this, you simply need to type the command whose source code you are interested in, and then press the <tab> key. For instance, going back to our :func:`.factor` command ::
 
 	sage: factor??
 	Source Code (starting at line 2139):

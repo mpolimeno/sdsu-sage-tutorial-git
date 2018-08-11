@@ -228,9 +228,23 @@ Docstring:
 Source Code (starting at line 2139):
 
 def factor(n, proof=None, int_=False, algorithm=&#39;pari&#39;, verbose=0, **kwds):
+&quot;&quot;&quot;comments inserted here&quot;&quot;&quot;
+        try:
+                m = n.factor
+        except AttributeError:
+                &quot;&quot;&quot;Maybe n is not a Sage element, try to convert it
+                e = py_scalar_to_element(n)
+if e is n:
+    # Either n was a Sage Element without a factor() method
+    # or we cannot it convert it to Sage
+    raise TypeError(&quot;unable to factor {!r}&quot;.format(n))
+n = e
+m = n.factor
+
+        &quot;&quot;&quot;code continues&quot;&quot;&quot;
 </pre></div>
 </div>
-<p>The output of this command is very long and will not fit in a single page or snapshot (try it yourself). However, we rewrote the first line to show you how the syntax is Pythonic. Once you run the command, you will see a lot of comments in the code that will navigate you no how to read it and interpret the Python syntax, if you are not familiar with it.</p>
+<p>The output of this command is very long and will not fit in a single page or snapshot (try it yourself). However, we reported some of the lines of the code to show you how the syntax is Pythonic. Once you run the command, you will see a lot of comments (marked by a triple quote “”“) in the code that will navigate you on how to read it, what it does and to interpret the Python syntax, if you are not familiar with it.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
 <p class="last"><a class="reference external" href="http://www.sagemath.org/help-video.html">SageMath Screencasts</a></p>
