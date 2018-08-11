@@ -250,7 +250,15 @@ Having a comprehensive help system built into SageMath is one of its best featur
 Source  Code, ??
 --------------------------
 
+There are probably some readers of this tutorial who like programming and would like to take a look on how a command is built in SageMath. To do this, you simply need to type the command whose source code you are interested in, and then press the <tab> key. For instance, going back to our :func:`.factor` command ::
 
+	sage: factor??
+	Source Code (starting at line 2139):
+	
+	def factor(n, proof=None, int_=False, algorithm='pari', verbose=0, **kwds):
+	
+The output of this command is very long and will not fit in a single page or snapshot (try it yourself). However, we rewrote the first line to show you how the syntax is Pythonic. Once you run the command, you will see a lot of comments in the code that will navigate you no how to read it and interpret the Python syntax, if you are not familiar with it.	
+	
 .. seealso::
    `SageMath Screencasts  <http://www.sagemath.org/help-video.html>`_
 
