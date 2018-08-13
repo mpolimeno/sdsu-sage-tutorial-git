@@ -188,22 +188,22 @@ But RR and CC have finite precision, and these numbers satisfy  formulas that ma
 <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;bool&#39;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p id="index-11">There are several <em>logical</em> operations on Booleans (i.e. operation with <em>and</em>, <em>or</em> instead of the operations like <cite>+</cite>, <cite>*</cite> on numbers). We <em>negate</em> a Boolean by using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">not</span></code> operator.</p>
+<p id="index-11">There are several <em>logical</em> operations on Booleans (i.e. operations using <em>and</em>, <em>or</em> instead of the operations like <cite>+</cite>, <cite>*</cite> on numbers). We <em>negate</em> a Boolean by using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">not</span></code> operator.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="ow">not</span> <span class="kc">True</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="ow">not</span> <span class="kc">False</span>
 <span class="kc">True</span>
 </pre></div>
 </div>
-<p id="index-12">We combine two Booleans with  <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> and <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code>. Suppose X and Y are Booleans.</p>
+<p id="index-12">Suppose we want to combine two Booleans X and Y. To accomplish that, we will use <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code>/<code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code>.</p>
 <blockquote>
 <div><ul class="simple">
-<li>(X and Y) is True if both X and Y are True.
-If at least one of them is False, then it is False.</li>
-<li>(X or Y) is True if at least one of X or Y is True.</li>
+<li>(X <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> Y) is True if both X and Y are True.
+If either X or Y is False, then (X <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> Y) is False.</li>
+<li>(X <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> Y) is True if at least one between X or Y is True.</li>
 </ul>
 </div></blockquote>
-<p>As demonstrated by the following example</p>
+<p>The following example will show exactly that.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="kc">True</span> <span class="ow">and</span> <span class="kc">False</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="kc">True</span> <span class="ow">and</span> <span class="kc">True</span>
@@ -214,15 +214,15 @@ If at least one of them is False, then it is False.</li>
 <span class="kc">False</span>
 </pre></div>
 </div>
-<p>We may use parentheses to control the order of evaluation of these truth statements.</p>
+<p>Above we have a list of <em>truth statements</em>. To control their order of evaluation, we can use parentheses.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">(</span><span class="kc">True</span> <span class="ow">or</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="kc">False</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="kc">True</span> <span class="ow">or</span> <span class="p">(</span><span class="kc">False</span> <span class="ow">and</span> <span class="kc">False</span><span class="p">)</span>
 <span class="kc">True</span>
 </pre></div>
 </div>
-<p>In the first example (True or False) is evaluated to be True first, then True and False evaluates to be False. In the second example, (False and False) evaluates to be False, but True or False is True.</p>
-<p>Another important operator on Booleans is the exclusive or operator, represented by <code class="docutils literal notranslate"><span class="pre">^^</span></code> in SageMath. (<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">^^</span> <span class="pre">Y</span></code>) is <code class="docutils literal notranslate"><span class="pre">True</span></code> if exactly one of X or Y is <code class="docutils literal notranslate"><span class="pre">True</span></code>, and the other is <code class="docutils literal notranslate"><span class="pre">False</span></code>; otherwise it is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>In the first example (True <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> False) is evaluated to be True first, then True <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> False evaluates to be False. In the second example, (False <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> False) evaluates to be False, but True <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> False is True.</p>
+<p>Another important operator on Booleans is the <a class="reference external" href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or</a> operator, represented by <code class="docutils literal notranslate"><span class="pre">^^</span></code> in SageMath. (<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">^^</span> <span class="pre">Y</span></code>) is <code class="docutils literal notranslate"><span class="pre">True</span></code> if exactly one of X or Y is <code class="docutils literal notranslate"><span class="pre">True</span></code>, and the other is <code class="docutils literal notranslate"><span class="pre">False</span></code>; otherwise it is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="kc">True</span> <span class="o">^^</span> <span class="kc">True</span>         <span class="c1"># xor (exclusive or) operator</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="kc">True</span> <span class="o">^^</span> <span class="kc">False</span>
@@ -231,7 +231,7 @@ If at least one of them is False, then it is False.</li>
 <span class="kc">False</span>
 </pre></div>
 </div>
-<p id="index-13">We check whether two whether two objects are equal using the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator.
+<p id="index-13">To check if two objects are equal we use the <code class="docutils literal notranslate"><span class="pre">==</span></code> operator.
 The result is a Boolean:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
 <span class="kc">True</span>
@@ -241,7 +241,7 @@ The result is a Boolean:</p>
 <span class="kc">True</span>
 </pre></div>
 </div>
-<p id="index-14">Please take note that we use two equals signs, not one! To check if two things are not equal, we have two options: The <code class="docutils literal notranslate"><span class="pre">!=</span></code> operator and the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> operator.</p>
+<p id="index-14">Please take note that we use two equal signs, not one! To check if two things are not equal, we have two options: The <code class="docutils literal notranslate"><span class="pre">!=</span></code> operator and the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> operator.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">1</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">0</span>
@@ -250,7 +250,7 @@ The result is a Boolean:</p>
 <span class="kc">True</span>
 </pre></div>
 </div>
-<p id="index-15">If two objects belong to a universe that has an ordering, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> then we may ccomparing two elements of the universe  gives a Boolean output.
+<p id="index-15">If two objects belong to a universe that has an ordering, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> then we may compare two elements of the universe and get a Boolean output.
 Additionally we use <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> for greater-than-or-equal-to and similarly <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> for less-than-or-equal-to.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span>
 <span class="kc">False</span>

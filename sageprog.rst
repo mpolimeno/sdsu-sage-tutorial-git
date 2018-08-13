@@ -197,7 +197,7 @@ Suppose we want to combine two Booleans X and Y. To accomplish that, we will use
 
       * (X :obj:`and` Y) is True if both X and Y are True.
         If either X or Y is False, then (X :obj:`and` Y) is False.
-      * (X :obj:`or` Y) is True if at least one between X or Y is True.
+      * (X :obj:`or` Y) is True if either X or Y is True.
 
 The following example will show exactly that. ::
 
@@ -220,7 +220,7 @@ Above we have a list of *truth statements*. To control their order of evaluation
 
 In the first example (True :obj:`or` False) is evaluated to be True first, then True :obj:`and` False evaluates to be False. In the second example, (False :obj:`and` False) evaluates to be False, but True :obj:`or` False is True.
 
-Another important operator on Booleans is the `exclusive or <https://en.wikipedia.org/wiki/Exclusive_or>`_ operator, represented by ``^^`` in SageMath. (``X ^^ Y``) is ``True`` if exactly one of X or Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
+Another important operator on Booleans is the `exclusive or <https://en.wikipedia.org/wiki/Exclusive_or>`_ operator, represented by ``^^`` in SageMath. (``X ^^ Y``) is ``True`` if exactly one between X and Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
 
 	sage: True ^^ True         # xor (exclusive or) operator
 	False
