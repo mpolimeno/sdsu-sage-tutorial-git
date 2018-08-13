@@ -184,7 +184,7 @@ Another important universe is the `Booleans <https://en.wikipedia.org/wiki/Boole
 
 .. index:: not
 
-There are several *logical* operations on Booleans (i.e. operation with *and*, *or* instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
+There are several *logical* operations on Booleans (i.e. operations using *and*, *or* instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
 
 	sage: not True
 	False
@@ -193,13 +193,13 @@ There are several *logical* operations on Booleans (i.e. operation with *and*, *
 
 .. index:: and, or
 
-We combine two Booleans with  :obj:`and` and :obj:`or`. Suppose X and Y are Booleans.
+Suppose we want to combine two Booleans X and Y. To accomplish that, we will use :obj:`and`/:obj:`or`.
 
-      * (X and Y) is True if both X and Y are True.
-        If at least one of them is False, then it is False.
-      * (X or Y) is True if at least one of X or Y is True.
+      * (X :obj:`and` Y) is True if both X and Y are True.
+        If either X or Y is False, then (X :obj:`and` Y) is False.
+      * (X :obj:`or` Y) is True if at least one between X or Y is True.
 
-As demonstrated by the following example ::
+The following example will show exactly that. ::
 
 	sage: True and False
 	False
@@ -210,7 +210,7 @@ As demonstrated by the following example ::
 	sage: False or False
 	False
 
-We may use parentheses to control the order of evaluation of these truth statements. ::
+Above we have a list of *truth statements*. To control their order of evaluation, we can use parentheses. ::
 
 	sage: (True or False) and False
 	False
@@ -218,9 +218,9 @@ We may use parentheses to control the order of evaluation of these truth stateme
 	True
 
 
-In the first example (True or False) is evaluated to be True first, then True and False evaluates to be False. In the second example, (False and False) evaluates to be False, but True or False is True.
+In the first example (True :obj:`or` False) is evaluated to be True first, then True :obj:`and` False evaluates to be False. In the second example, (False :obj:`and` False) evaluates to be False, but True :obj:`or` False is True.
 
-Another important operator on Booleans is the exclusive or operator, represented by ``^^`` in SageMath. (``X ^^ Y``) is ``True`` if exactly one of X or Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
+Another important operator on Booleans is the `exclusive or <https://en.wikipedia.org/wiki/Exclusive_or>`_ operator, represented by ``^^`` in SageMath. (``X ^^ Y``) is ``True`` if exactly one of X or Y is ``True``, and the other is ``False``; otherwise it is ``False``. ::
 
 	sage: True ^^ True         # xor (exclusive or) operator
 	False
@@ -231,7 +231,7 @@ Another important operator on Booleans is the exclusive or operator, represented
 
 .. index:: ==
 
-We check whether two whether two objects are equal using the ``==`` operator.
+To check if two objects are equal we use the ``==`` operator.
 The result is a Boolean::
 
 	sage: 1 == 1
@@ -243,7 +243,7 @@ The result is a Boolean::
 
 .. index:: !=, <>
 
-Please take note that we use two equals signs, not one! To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
+Please take note that we use two equal signs, not one! To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
 
 	sage: 1 != 1
 	False
@@ -254,7 +254,7 @@ Please take note that we use two equals signs, not one! To check if two things a
 
 .. index:: <, <=, >=
 
-If two objects belong to a universe that has an ordering, ``<`` then we may ccomparing two elements of the universe  gives a Boolean output.
+If two objects belong to a universe that has an ordering, ``<`` then we may compare two elements of the universe and get a Boolean output.
 Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. ::
 
 	sage: 1 > 2
