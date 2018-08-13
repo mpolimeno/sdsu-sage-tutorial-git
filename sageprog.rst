@@ -243,7 +243,7 @@ The result is a Boolean::
 
 .. index:: !=, <>
 
-Please take note that we use two equal signs, not one! To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
+Please notice that we used two equal signs, not one! To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
 
 	sage: 1 != 1
 	False
@@ -254,8 +254,8 @@ Please take note that we use two equal signs, not one! To check if two things ar
 
 .. index:: <, <=, >=
 
-If two objects belong to a universe that has an ordering, ``<`` then we may compare two elements of the universe and get a Boolean output.
-Additionally we use ``>=`` for greater-than-or-equal-to and similarly ``<=`` for less-than-or-equal-to. ::
+If two objects belong to a universe that has an ordering, then we may compare two elements of the universe using ``<`` and ``>`` and get a Boolean output.
+Additionally, we use ``>=`` for greater-than-or-equal-to and ``<=`` for less-than-or-equal-to. ::
 
 	sage: 1 > 2
 	False
@@ -345,14 +345,14 @@ SageMath allows us to re-assign a different value to a variable. ::
 	sage: s
 	34
 
-The order of operations in SageMath allow for us to reference a variable while assigning it a new value. For example, we can *increment* the variable ``t`` by doing the following: ::
+The order of operations in SageMath allows us to reference a variable while assigning it a new value. For instance, we can *increment* the variable ``t`` by doing the following: ::
 
 	sage: t=7
 	sage: t=t+1
 	sage: t
 	8
 
-SageMath also offers us a convenient way to assign multiple variables at once. ::
+SageMath also offers us a convenient way to assign values to multiple variables at once. ::
 
 	sage: a,b=1,2
 	sage: a
@@ -388,7 +388,7 @@ There is also a quick way to initialize two variables with the same value. We do
 
 .. index:: restore, variables; restore
 
-When you define either a variable or a symbolic variable, it will stay in memory until you quit your session.  Sometimes we would like restore a variable back to its default value. We do this with the :func:`.restore` command. ::
+When you define either a variable or a symbolic variable, it will stay in memory until you quit your session.  Sometimes we would like to restore a variable back to its default value. We do this with the :func:`.restore` command. ::
 
   sage: x = 1
   sage: a = 2
@@ -443,7 +443,7 @@ And finally if you *really* want the variable obliterated, you can use the sledg
        sage: b = a
        sage: b = 2
 
-     What should we expect the value of ``a`` to be?
+     What do you expect the value of ``a`` to be?
 
   #. If you enter the following into SageMath:
 
@@ -513,7 +513,7 @@ To access a particular element within our list of lists we chain their indices. 
   4
 
 Where we read ``M[2][1]`` as "Access the element at index ``1`` within the list with index ``2``" in ``M``.
-Note that ``M[2,1]`` does not work.
+Note that ``M[2,1]`` does not work (check it yourself).
 
 
 .. index:: list; slice, slices
@@ -521,13 +521,13 @@ Note that ``M[2,1]`` does not work.
 Slicing and Indexing
 +++++++++++++++++++++++
 
-Probably the nicest feature of lists in python is the *slice* notation. Let's suppose you have the following list: ::
+Probably the nicest feature of lists in Python, and thus SageMath, is the *slice* notation. Let's suppose you have the following list: ::
 
  sage: M = [1, 2, 0, 3, 4, 0, 4, 5]
  sage: M
  [1, 2, 0, 3, 4, 0, 4, 5]
 
-and you would like to access the sub-list ``[0,3,4]``. Using the slice notation I can do that in the following way: ::
+and you would like to access the sub-list ``[0,3,4]``. Using the slice notation you can do that in the following way: ::
 
   sage: M[2:5]
   [0, 3, 4]
@@ -553,7 +553,7 @@ Slices also can use negative indices. When a negative number is used the positio
   sage: M[-2:]
   [4,5]
 
-The first *ends* the slice two elements before the end of the list while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list. ::
+The first *ends* the slice two elements before the end of the list, while the second *begins* the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list. ::
 
   sage: M[-4:-2]
   [4, 0]

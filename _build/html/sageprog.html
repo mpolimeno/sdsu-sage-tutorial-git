@@ -200,7 +200,7 @@ But RR and CC have finite precision, and these numbers satisfy  formulas that ma
 <div><ul class="simple">
 <li>(X <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> Y) is True if both X and Y are True.
 If either X or Y is False, then (X <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> Y) is False.</li>
-<li>(X <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> Y) is True if at least one between X or Y is True.</li>
+<li>(X <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> Y) is True if either X or Y is True.</li>
 </ul>
 </div></blockquote>
 <p>The following example will show exactly that.</p>
@@ -222,7 +222,7 @@ If either X or Y is False, then (X <code class="xref py py-obj docutils literal 
 </pre></div>
 </div>
 <p>In the first example (True <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> False) is evaluated to be True first, then True <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> False evaluates to be False. In the second example, (False <code class="xref py py-obj docutils literal notranslate"><span class="pre">and</span></code> False) evaluates to be False, but True <code class="xref py py-obj docutils literal notranslate"><span class="pre">or</span></code> False is True.</p>
-<p>Another important operator on Booleans is the <a class="reference external" href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or</a> operator, represented by <code class="docutils literal notranslate"><span class="pre">^^</span></code> in SageMath. (<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">^^</span> <span class="pre">Y</span></code>) is <code class="docutils literal notranslate"><span class="pre">True</span></code> if exactly one of X or Y is <code class="docutils literal notranslate"><span class="pre">True</span></code>, and the other is <code class="docutils literal notranslate"><span class="pre">False</span></code>; otherwise it is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Another important operator on Booleans is the <a class="reference external" href="https://en.wikipedia.org/wiki/Exclusive_or">exclusive or</a> operator, represented by <code class="docutils literal notranslate"><span class="pre">^^</span></code> in SageMath. (<code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">^^</span> <span class="pre">Y</span></code>) is <code class="docutils literal notranslate"><span class="pre">True</span></code> if exactly one between X and Y is <code class="docutils literal notranslate"><span class="pre">True</span></code>, and the other is <code class="docutils literal notranslate"><span class="pre">False</span></code>; otherwise it is <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="kc">True</span> <span class="o">^^</span> <span class="kc">True</span>         <span class="c1"># xor (exclusive or) operator</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="kc">True</span> <span class="o">^^</span> <span class="kc">False</span>
