@@ -184,7 +184,7 @@ Another important universe is the `Booleans <https://en.wikipedia.org/wiki/Boole
 
 .. index:: not
 
-There are several *logical* operations on Booleans (i.e. operattion with `and`, `or` instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
+There are several *logical* operations on Booleans (i.e. operation with *and*, *or* instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
 
 	sage: not True
 	False
