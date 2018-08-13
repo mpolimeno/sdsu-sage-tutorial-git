@@ -29,7 +29,7 @@ A key concept in SageMath is the *universe* of an object. The most effective way
 
 .. index:: ZZ, QQ, RR, CC
 
-In SageMath, ``ZZ`` indicates the universe where the Integers live, while``QQ``, ``RR`` and ``CC`` indicate the universes of the Rationals, Real and Complex numbers, respectively. ::
+In SageMath, ``ZZ`` indicates the universe where the Integers live, while ``QQ`` , ``RR`` and ``CC`` indicate the universes of the Rationals, Real and Complex numbers, respectively. ::
 
 	sage: ZZ
 	Integer Ring
@@ -177,14 +177,14 @@ Booleans
 
 .. index:: bool, True, False
 
-Another important universe is the Booleans. The Boolean universe is just known as `bool` in SageMath, and it contains just two elements  ``True`` and ``False``. ::
+Another important universe is the `Booleans <https://en.wikipedia.org/wiki/Boolean>`_. The Boolean universe is just known as `bool` in SageMath, and it contains just two elements  ``True`` and ``False``. ::
 
        sage: parent(True)
        <type 'bool'>
 
 .. index:: not
 
-There are several operations on Booleans (instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
+There are several *logical* operations on Booleans (instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
 
 	sage: not True
 	False

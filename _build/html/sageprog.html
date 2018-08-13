@@ -49,7 +49,7 @@
 <div class="section" id="universes-and-coercion">
 <span id="index-2"></span><span id="id3"></span><h3>Universes and Coercion<a class="headerlink" href="#universes-and-coercion" title="Permalink to this headline">¶</a></h3>
 <p id="index-3">A key concept in SageMath is the <em>universe</em> of an object. The most effective way to gain a familiarity with <em>universes</em> and the related concept, <em>coercion</em>, is to see a few examples. We begin with the most common universes: the integers,  and the rational, real and complex numbers.</p>
-<p id="index-4">In SageMath, <code class="docutils literal notranslate"><span class="pre">ZZ</span></code> indicates the universe where the Integers live, while``QQ``, <code class="docutils literal notranslate"><span class="pre">RR</span></code> and <code class="docutils literal notranslate"><span class="pre">CC</span></code> indicate the universes of the Rationals, Real and Complex numbers, respectively.</p>
+<p id="index-4">In SageMath, <code class="docutils literal notranslate"><span class="pre">ZZ</span></code> indicates the universe where the Integers live, while <code class="docutils literal notranslate"><span class="pre">QQ</span></code> , <code class="docutils literal notranslate"><span class="pre">RR</span></code> and <code class="docutils literal notranslate"><span class="pre">CC</span></code> indicate the universes of the Rationals, Real and Complex numbers, respectively.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">ZZ</span>
 <span class="n">Integer</span> <span class="n">Ring</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">QQ</span>
@@ -183,12 +183,12 @@ But RR and CC have finite precision, and these numbers satisfy  formulas that ma
 </div>
 <div class="section" id="booleans">
 <span id="index-9"></span><span id="id4"></span><h3>Booleans<a class="headerlink" href="#booleans" title="Permalink to this headline">¶</a></h3>
-<p id="index-10">Another important universe is the Booleans. The Boolean universe is just known as <cite>bool</cite> in SageMath, and it contains just two elements  <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<p>Another important universe is the <a class="reference external" href="https://en.wikipedia.org/wiki/Boolean">Booleans</a>. The Boolean universe is just known as <cite>bool</cite> in SageMath, and it contains just two elements  <code class="docutils literal notranslate"><span class="pre">True</span></code> and <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">parent</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;bool&#39;</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p id="index-11">There are several operations on Booleans (instead of the operations like <cite>+</cite>, <cite>*</cite> on numbers). We <em>negate</em> a Boolean by using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">not</span></code> operator.</p>
+<p id="index-11">There are several <em>logical</em> operations on Booleans (instead of the operations like <cite>+</cite>, <cite>*</cite> on numbers). We <em>negate</em> a Boolean by using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">not</span></code> operator.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="ow">not</span> <span class="kc">True</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="ow">not</span> <span class="kc">False</span>
@@ -284,7 +284,7 @@ Additionally we use <code class="docutils literal notranslate"><span class="pre"
 </div></blockquote>
 </div>
 <div class="section" id="variables">
-<span id="index-16"></span><span id="id5"></span><h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+<span id="index-16"></span><span id="id6"></span><h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
 <p>You should be familiar with “<a class="reference internal" href="sagecalc.html#declare-variables"><span class="std std-ref">Declaring Variables</span></a>”</p>
 <p>The term ‘variable’,  can hold different meanings. For instance, in computer programming, a ‘variable’ is a space in memory used to store and retrieve a certain piece of information. In mathematics, a variable such as <img class="math" src="_images/math/188c175aac0a8a9c22499336711b5d7256407254.png" alt="x"/> is a quantity with indeterminate value: a symbol that we can manipulate with the same rules of arithmetic that are applied to numbers.</p>
 <p>In SageMath, both usages are present.  We will use the term <em>variable</em> for the computer programming variable and <em>symbolic variable</em> for the mathematical variable.</p>
@@ -433,7 +433,7 @@ Additionally we use <code class="docutils literal notranslate"><span class="pre"
 </div></blockquote>
 </div>
 <div class="section" id="lists">
-<span id="id6"></span><h3>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3>Lists<a class="headerlink" href="#lists" title="Permalink to this headline">¶</a></h3>
 <p id="index-23">A <em>list</em> is an ordered collection of objects. The elements of a list are indexed by the integers, starting with <img class="math" src="_images/math/74c081db590f3d35421c1f6b9afd4cdda36ee210.png" alt="0"/>. Here is a quick example of how to construct a list and access its elements.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">28</span><span class="p">,</span><span class="mi">496</span><span class="p">,</span><span class="mi">8128</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">]</span>
@@ -719,7 +719,7 @@ this style of programming with python see the <a class="reference external" href
 </div></blockquote>
 </div>
 <div class="section" id="sets">
-<span id="id7"></span><h3>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3>Sets<a class="headerlink" href="#sets" title="Permalink to this headline">¶</a></h3>
 <p id="index-36">A <em>Set</em> in SageMath is a data type which behaves a lot like a mathematical set and it differs from a list in a few key ways:</p>
 <blockquote>
 <div><ul class="simple">
@@ -796,7 +796,7 @@ Notice that the <code class="xref py py-meth docutils literal notranslate"><span
 </div>
 </div>
 <div class="section" id="strings">
-<span id="id8"></span><h3>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h3>
+<span id="id9"></span><h3>Strings<a class="headerlink" href="#strings" title="Permalink to this headline">¶</a></h3>
 <p id="index-41">To construct a string in SageMath we may use single or double quotes.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">s</span><span class="o">=</span><span class="s1">&#39;I am a string&#39;</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">s</span>
@@ -873,12 +873,12 @@ Notice that the <code class="xref py py-meth docutils literal notranslate"><span
 </div>
 </div>
 <div class="section" id="programming-tools">
-<span id="id9"></span><h2>Programming Tools<a class="headerlink" href="#programming-tools" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2>Programming Tools<a class="headerlink" href="#programming-tools" title="Permalink to this headline">¶</a></h2>
 <p>SageMath syntax is based on the widely used language Python, and thereby  inherits Python’s  compact and very readable  style.   In this chapter we cover the syntax for the  essentials of programming.  For more complex issues we provide  links to other resources.</p>
 <div class="section" id="conditionals">
-<span id="id10"></span><h3>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>You should be familiar with <a class="reference internal" href="sagecalc.html#solving-equations-inequalities"><span class="std std-ref">Solving Equations and Inequalities</span></a>, <a class="reference internal" href="#booleans"><span class="std std-ref">Booleans</span></a>, and <a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a></div></blockquote>
+<div>You should be familiar with <a class="reference internal" href="sagecalc.html#solving-equations-inequalities"><span class="std std-ref">Solving Equations and Inequalities</span></a>, <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#booleans" title="(in Python v3.7)"><span>Boolean operations</span></a>, and <a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a></div></blockquote>
 <p id="index-47">A <em>conditional statement</em> is what we use when we want our code to make <em>decisions</em>. For example, suppose we wanted to divide a number by 2 only <em>if</em> it is even. We can do this in SageMath by using an <code class="xref py py-obj docutils literal notranslate"><span class="pre">if</span></code> statement.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">n</span><span class="o">=</span><span class="mi">44</span>
 <span class="n">sage</span><span class="p">:</span> <span class="k">if</span> <span class="n">n</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -934,9 +934,9 @@ are executed is important  to controlling the flow of your program.</p>
 <p>Since none of the conditions were met, our code <em>defaulted</em> to printing the number <img class="math" src="_images/math/e43d639e740f1e4b1275aaee0a93d3feeb392ae2.png" alt="31"/>.</p>
 </div>
 <div class="section" id="while-loops">
-<span id="id11"></span><h3>While loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h3>
+<span id="id12"></span><h3>While loops<a class="headerlink" href="#while-loops" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>You should be familiar with <a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a> and <a class="reference internal" href="#booleans"><span class="std std-ref">Booleans</span></a></div></blockquote>
+<div>You should be familiar with <a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a> and <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#booleans" title="(in Python v3.7)"><span>Boolean operations</span></a></div></blockquote>
 <p id="index-50">While loops are one of the most useful techniques in programming. Essentially, a while loop runs a block of code while a condition is still satisfied. Let’s see a simple example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span>
 <span class="n">sage</span><span class="p">:</span> <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
@@ -953,9 +953,9 @@ are executed is important  to controlling the flow of your program.</p>
 <p>Once the condition <code class="docutils literal notranslate"><span class="pre">i&lt;5</span></code> is False, SageMath exits the loop structure; the variable <code class="docutils literal notranslate"><span class="pre">i</span></code> still exists, though.</p>
 </div>
 <div class="section" id="for-loops">
-<span id="id12"></span><h3>For Loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
+<span id="id13"></span><h3>For Loops<a class="headerlink" href="#for-loops" title="Permalink to this headline">¶</a></h3>
 <blockquote>
-<div>You should be familiar with <a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a>, <a class="reference internal" href="#booleans"><span class="std std-ref">Booleans</span></a>, and <a class="reference internal" href="#lists"><span class="std std-ref">Lists</span></a></div></blockquote>
+<div>You should be familiar with <a class="reference internal" href="#variables"><span class="std std-ref">Variables</span></a>, <a class="reference external" href="https://docs.python.org/3/reference/expressions.html#booleans" title="(in Python v3.7)"><span>Boolean operations</span></a>, and <a class="reference internal" href="#lists"><span class="std std-ref">Lists</span></a></div></blockquote>
 <p id="index-51">A for loop repeatedly runs a block of code a fixed number of times. In
 SageMath, for loops iterate over a fixed list.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.</span><span class="o">.</span><span class="mi">4</span><span class="p">]:</span>
@@ -1144,7 +1144,7 @@ thought. For a more thorough introduction to functions (commands), the
 following  chapter on <a class="reference external" href="http://greenteapress.com/thinkpython/html/book004.html">Python functions</a> is a good place to start.</p>
 </div>
 <div class="section" id="external-files-and-sessions">
-<span id="id13"></span><h3>External Files and Sessions<a class="headerlink" href="#external-files-and-sessions" title="Permalink to this headline">¶</a></h3>
+<span id="id14"></span><h3>External Files and Sessions<a class="headerlink" href="#external-files-and-sessions" title="Permalink to this headline">¶</a></h3>
 <p id="index-55">In practice, especially when using sage for research and projects, it
 is convenient to load external files into SageMath.  One such instance is
 when we have a block of code which we wish to run for several
