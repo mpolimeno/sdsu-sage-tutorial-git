@@ -1290,7 +1290,7 @@ By separating the values with commas, your command can have multiple return valu
 Defining your own commands in SAGE is easy. However, elegantly
 encapsulating your code is an art which requires a lot of practice and
 thought. For a more thorough introduction to functions (commands), this
-`chapter`_ on ``Python functions``is a good place to start.
+`chapter`_ on ``Python functions`` is a good place to start.
 
 .. _chapter: http://greenteapress.com/thinkpython/html/book004.html
 
@@ -1335,7 +1335,7 @@ exist in our SageMath session. ::
 
 .. index:: save_session, load_session
 
-SageMath allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directly (typically sage_session.sobj). Following, we may exit SageMath, power off our computer, or what have you. At any later time, we may load the file by opening SageMath from the directory containing the save file and using the load_session function.
+SageMath allows us to save a session to pick up where we left off. That is, suppose we have done various calculations and have several variables stored. We may call the save_session function to store our session into a file in our working directory (typically sage_session.sobj). Following, we may exit SageMath, power off our computer, or what have you. At any later time, we may load the file by opening SageMath from the directory containing the save file and using the load_session function.
 
 Here is an example: ::
 
@@ -1376,7 +1376,7 @@ Packages within SageMath
 
 .. index:: external programs
 
-There are many open-source software packages available for doing specialized mathematics. One of the objectives of  SageMath developers is to create a single clean interface from which  these packages may all be accessed.  For many computations in  advanced mathematics SageMath uses the functionality in one of these packages.  A SageMath use user can also explicitly call a function from one of the packages.
+There are many open-source software packages available for doing specialized mathematics. One of the objectives of  SageMath developers is to create a single clean interface from which  these packages may all be accessed.  For many computations in  advanced mathematics SageMath uses the functionality in one of these packages.  A SageMath user can also explicitly call a function from one of the packages.
 This chapter briefly describes how to do so.
 
 
