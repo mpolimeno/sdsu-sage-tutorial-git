@@ -184,7 +184,7 @@ Another important universe is the `Booleans <https://en.wikipedia.org/wiki/Boole
 
 .. index:: not
 
-There are several *logical* operations on Booleans (i.e. operations using *and*, *or* instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
+There are several *logical* operations on Booleans (i.e. operations lke *and*, *or* on ``True`` and ``False``, instead of the operations like `+`, `*` on numbers). We *negate* a Boolean by using the :obj:`.not` operator. ::
 
 	sage: not True
 	False
@@ -243,7 +243,8 @@ The result is a Boolean::
 
 .. index:: !=, <>
 
-Please notice that we used two equal signs, not one! To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
+Please notice that we used two equal signs, not one! 
+To check if two things are not equal, we have two options: The ``!=`` operator and the ``<>`` operator. ::
 
 	sage: 1 != 1
 	False
@@ -478,7 +479,7 @@ A *list* is an ordered collection of objects. The elements of a list are indexed
 	 sage: L[6]
 	 17
 
-Take careful note of how we access the elements: Though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:`0`.
+Notice how we access the elements: though :math:`2` is the first element of the list ``L``, it is accessed by the index :math:`0`.
 
 .. index:: list; length, len
 
@@ -597,7 +598,7 @@ Since they are used rather frequently, SageMath offers a convenient way to creat
   sage: [2,4..10]
   [2, 4, 6, 8, 10]
 
-In the first two examples it is quite clear what is happening; In the last example above, however, it is a trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, perhap the the following examples will clear things up. ::
+In the first two examples it is quite clear what is happening. In the last example above, however, it is a bit trickier. If we input ``[a,b..c]`` for integers a,b and c with :math:`a < b \leq c`, we get back the list ``[a,a+d,…,a+k*d]`` where :math:`d=b-a` and :math:`k` is the largest integer such that :math:`a+kd \leq c`. If this is a bit overwhelming, hopefully the following examples will clear things up. ::
 
 	 sage: [1,4..13]
 	 [1, 4, 7, 10, 13]
@@ -626,7 +627,7 @@ Sorting the list ``M`` can be done using the :meth:`.sort` method. ::
 	 sage: M.index(2)
 	 1
 
-The :meth:`.sort` method alters the list *in place*, actually changing the ordering of the elements. If we would like to keep the list the same we should sort a *copy* of the list and not the list itself. ::
+The :meth:`.sort` method alters the list *in place*, actually changing the ordering of the elements. If we would like to keep the list the same, we should sort a *copy* of the list and not the list itself. ::
 
   sage:  M = [2,3,3,3,2,1,8,6,3]
   sage: M
@@ -645,7 +646,7 @@ We may alter the elements of a list as follows: ::
 	 sage: L
 	 [-1, 2, 3, 4]
 
-In programming speak, data-types that can be changed in place are
+In "programming vernacular", data-types that can be changed in place are
 called *mutable*.
 Lists are mutable, but some   data types in SageMath are not.
 
@@ -913,12 +914,12 @@ Just like with lists, we can *concatenate* strings just by adding them together.
 
 .. index:: strings; split, split
 
-and we can separate a list by using the :meth:`.split` method. ::
+and we can separate a list by using the :meth:`.split` method, ::
 
   sage: s.split()
   ['I', 'am', 'a', 'string']
 
-Which divided the string into a list of words. We can divide a list using different characters as *separators*. For example we can get a list from the following *comma separated values*. ::
+which divides the string into a list of words. We can divide a list using different characters as *separators*. For example we can get a list from the following *comma separated values*. ::
 
   sage: vals = "18,spam,eggs,28,70,287,cats"
   sage: vals.split(',')
@@ -972,7 +973,7 @@ Just like when I *split* a sting, I can join a list using a different separating
 Programming Tools
 =================
 
-SageMath syntax is based on the widely used language Python, and thereby  inherits Python's  compact and very readable  style.   In this chapter we cover the syntax for the  essentials of programming.  For more complex issues we provide  links to other resources.
+SageMath syntax is based on the widely-used language Python, and thereby  inherits Python's  compact and very readable  style.   In this chapter we cover the syntax for the  essentials of programming in Python.  For more complex issues we provide links to other resources.
 
 .. _conditionals:
 
@@ -983,7 +984,7 @@ Conditionals
 
 .. index:: conditionals, if statement
 
-A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we wanted to divide a number by 2 only *if* it is even. We can do this in SageMath by using an :obj:`.if` statement. ::
+A *conditional statement* is what we use when we want our code to make *decisions*. For example, suppose we want to divide a number by 2 only *if* it is even. We can do this in SageMath by using an :obj:`.if` statement. ::
 
 	sage: n=44
 	sage: if n%2 == 0:
@@ -996,9 +997,9 @@ A *conditional statement* is what we use when we want our code to make *decision
 	....:
 	sage:
 
-Since ``n=44`` is even, the *condition* is met and the :func:`.print` command is executed, but when ``n=37``, nothing will happen since the condition has not been met. Almost all programming is the skillful application of simple statements like this.
+For ``n=44``, the *condition* is met and the :func:`.print` command is executed. Conversely, for ``n=37``, nothing will happen since the condition has not been met. Most of what programming is is the skillful application of simple statements like this.
 
-Unlike some other languages, SageMath is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, SageMath uses *indentation*.  All of the code to be run supposing a condition is met must be at the same level of indentation. This takes some getting used to, but it produces neat, organized code that is often easier to read.
+Unlike some other languages, SageMath is picky about indentation, a practice it inherits from Python. Instead of using some kind of punctuation to denote the beginning and ending of a *block* of code, SageMath uses *indentation* (notice though that we do need a *colon* after the condition is written).  All of the code to be run under a certain condition must be at the same level of indentation. This might take some time to get used to, but it produces neat, organized code that is often easier to read.
 
 .. index:: elif, if-else statement
 
@@ -1096,7 +1097,7 @@ SageMath, for loops iterate over a fixed list. ::
 
 
 We may iterate over any list, it need not be consecutive
-integers. Here are a few more (especially silly) examples. ::
+integers. Here are a few more (really silly) examples. ::
 
 	sage: for str in ["apple","banana","coconut","dates"]:
 	....:     print str.capitalize()
@@ -1132,13 +1133,13 @@ List Comprehensions (Loops in Lists)
 
 .. index:: list; comprehensions
 
-A particularly useful technique in python (and SageMath by extension) is the
+A particularly useful technique in Python (and SageMath by extension) is the
 construction of lists using **list comprehensions**. This feature is very similar to the *set builder* notation we often use in mathematics. For example, the set of *even* integers can be written as:
 
 .. math::
    \left\{ 2\cdot k\ \vert\ k \in \mathbb{Z} \right\}
 
-Where we do not explicitly list the elements of the set but rather give a *rule* which can used to construct the set. We can do something very similar in python by placing a ``for`` inside of a list, like in the following example. Here is how we would construct the list of even integers from :math:`0` to :math:`20`. ::
+Where we do not explicitly list the elements of the set but rather give a *rule* which can be used to construct the set. We can do something very similar in python by placing a ``for`` inside of a list, like in the following example. Here is how we would construct the list of even integers from :math:`0` to :math:`20`. ::
 
 	sage: [ 2*k for k in [0..10] ]
 	[0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
@@ -1174,7 +1175,7 @@ We can do something similar by using multiple *for's* in the list comprehension.
   sage: [ (a,b) for a in U for b in U ]
   [(1, 1), (1, 3), (1, 7), (1, 9), (1, 11), (1, 13), (1, 17), (1, 19), (3, 1), (3, 3), (3, 7), (3, 9), (3, 11), (3, 13), (3, 17), (3, 19), (7, 1), (7, 3), (7, 7), (7, 9), (7, 11), (7, 13), (7, 17), (7, 19), (9, 1), (9, 3), (9, 7), (9, 9), (9, 11), (9, 13), (9, 17), (9, 19), (11, 1), (11, 3), (11, 7), (11, 9), (11, 11), (11, 13), (11, 17), (11, 19), (13, 1), (13, 3), (13, 7), (13, 9), (13, 11), (13, 13), (13, 17), (13, 19), (17, 1), (17, 3), (17, 7), (17, 9), (17, 11), (17, 13), (17, 17), (17, 19), (19, 1), (19, 3), (19, 7), (19, 9), (19, 11), (19, 13), (19, 17), (19, 19)]
 
-It should be noted that I didn't only have to form *tuples* of the pairs of elements. I can also find the product or the sum of them. Any valid expression involving ``a`` and ``b`` will be fine.  ::
+It should be noted that you don't have to form *tuples* of the pairs of elements. For instance, you can also find the their product or their sum. Any valid expression involving ``a`` and ``b`` will be fine.  ::
 
   sage: [ a*b for a in U for b in U ]
   [1, 3, 7, 9, 11, 13, 17, 19, 3, 9, 21, 27, 33, 39, 51, 57, 7, 21, 49, 63, 77, 91, 119, 133, 9, 27, 63, 81, 99, 117, 153, 171, 11, 33, 77, 99, 121, 143, 187, 209, 13, 39, 91, 117, 143, 169, 221, 247, 17, 51, 119, 153, 187, 221, 289, 323, 19, 57, 133, 171, 209, 247, 323, 361]
@@ -1185,7 +1186,7 @@ It should be noted that I didn't only have to form *tuples* of the pairs of elem
 
 Similar constructions work for more than 2 sets; just add more *for* statements.
 
-Since list comprehensions allow for us to put any valid expression, we can add another conditional which effects the output of our list. For example, let take the list of integers which were *relatively prime* to 20 and test if they are prime numbers or not. ::
+Since list comprehensions allow for us to put any valid expression, we can add another conditional which affects the output of our list. For example, let take the list of integers which were *relatively prime* to 20 and test if they are prime numbers or not. ::
 
   sage: U
   [1, 3, 7, 9, 11, 13, 17, 19]
@@ -1214,7 +1215,7 @@ Defining your own commands
 
 .. index:: functions, functions; definition, functions; arguments, functions; return values,  def, return
 
-Once your computations get complicated enough we may want to hide some of this complexity by creating your own command that can be easily re-used like SageMath's built-in commands. These user-defined commands are commonly called *functions*, though they differ from mathematical functions.
+Once your computations get complicated enough you may want to hide some of this complexity by creating your own command that can be easily re-used like SageMath's built-in commands. These user-defined commands are commonly called *functions*, though they differ from mathematical functions.
 
 For example, suppose that we wanted to compute the greatest common divisor of :math:`75` and :math:`21`. We can use the *euclidean algorithm* and SageMath to do this. Here is how that would look: ::
 
@@ -1227,9 +1228,9 @@ For example, suppose that we wanted to compute the greatest common divisor of :m
 
 ``a`` and ``b`` are called the *arguments* of the command and the expression following the :obj:`.return` keyword is called the *return value*. The arguments are in the input of the command whereas the return value is the output.
 
-For those of you who have programmed before, you may see that there are no end or block *delimiters*, such as **;**, or **end**. SageMath, like python, uses indentation to denote where a block of code begins and ends. This syntax rule forces the programmer to write more readable code, by visually separating blocks of code.
+Those of you who have previous programming experience may notice the absence of end or block *delimiters*, such as **;** or **end**. SageMath, like Python, uses indentation to denote where a block of code begins and ends. This syntax rule forces the programmer to write visually-separated blocks of code, thus making it more readable.
 
-Once the command ``euclid`` has been defined, the code can be easily re-used withe different arguments, just like a built-in command. ::
+Once the command ``euclid`` has been defined, the code can easily be re-used with different arguments, just like a built-in command. ::
 
   sage: euclid(75,21)
   3
@@ -1242,7 +1243,7 @@ Once the command ``euclid`` has been defined, the code can be easily re-used wit
 
 .. index:: functions; multiple arguments
 
-User defined commands may have any number of arguments, including none at all. ::
+User-defined commands may have any number of arguments, including none at all. ::
 
 	sage: def g(x,y):
 	....:     return x*y
@@ -1288,10 +1289,10 @@ By separating the values with commas, your command can have multiple return valu
 
 Defining your own commands in SAGE is easy. However, elegantly
 encapsulating your code is an art which requires a lot of practice and
-thought. For a more thorough introduction to functions (commands), the
-following  chapter on `Python functions`_ is a good place to start.
+thought. For a more thorough introduction to functions (commands), this
+`chapter`_ on ``Python functions``is a good place to start.
 
-.. _Python functions: http://greenteapress.com/thinkpython/html/book004.html
+.. _chapter: http://greenteapress.com/thinkpython/html/book004.html
 
 .. _external_files_and_sessions:
 
@@ -1300,8 +1301,8 @@ External Files and Sessions
 
 .. index:: external files, sessions
 
-In practice, especially when using sage for research and projects, it
-is convenient to load external files into SageMath.  One such instance is
+In practice, especially when using SageMath for research and projects, it
+is convenient to being able to load external files.  One such instance is
 when we have a block of code which we wish to run for several
 different cases. It would be quite tedious to retype all of the code;
 instead we read it from an external file.

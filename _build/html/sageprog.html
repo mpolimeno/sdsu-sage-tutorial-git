@@ -241,7 +241,7 @@ The result is a Boolean:</p>
 <span class="kc">True</span>
 </pre></div>
 </div>
-<p id="index-14">Please take note that we use two equal signs, not one! To check if two things are not equal, we have two options: The <code class="docutils literal notranslate"><span class="pre">!=</span></code> operator and the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> operator.</p>
+<p id="index-14">Please notice that we used two equal signs, not one! To check if two things are not equal, we have two options: The <code class="docutils literal notranslate"><span class="pre">!=</span></code> operator and the <code class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code> operator.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">1</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mi">1</span> <span class="o">!=</span> <span class="mi">0</span>
@@ -250,8 +250,8 @@ The result is a Boolean:</p>
 <span class="kc">True</span>
 </pre></div>
 </div>
-<p id="index-15">If two objects belong to a universe that has an ordering, <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> then we may compare two elements of the universe and get a Boolean output.
-Additionally we use <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> for greater-than-or-equal-to and similarly <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> for less-than-or-equal-to.</p>
+<p id="index-15">If two objects belong to a universe that has an ordering, then we may compare two elements of the universe using <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> and get a Boolean output.
+Additionally, we use <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> for greater-than-or-equal-to and <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> for less-than-or-equal-to.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="mi">2</span>
 <span class="kc">False</span>
 <span class="n">sage</span><span class="p">:</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">1</span>
@@ -328,14 +328,14 @@ Additionally we use <code class="docutils literal notranslate"><span class="pre"
 <span class="mi">34</span>
 </pre></div>
 </div>
-<p>The order of operations in SageMath allow for us to reference a variable while assigning it a new value. For example, we can <em>increment</em> the variable <code class="docutils literal notranslate"><span class="pre">t</span></code> by doing the following:</p>
+<p>The order of operations in SageMath allows us to reference a variable while assigning it a new value. For instance, we can <em>increment</em> the variable <code class="docutils literal notranslate"><span class="pre">t</span></code> by doing the following:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">t</span><span class="o">=</span><span class="mi">7</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="o">+</span><span class="mi">1</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">t</span>
 <span class="mi">8</span>
 </pre></div>
 </div>
-<p>SageMath also offers us a convenient way to assign multiple variables at once.</p>
+<p>SageMath also offers us a convenient way to assign values to multiple variables at once.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">a</span>
 <span class="mi">1</span>
@@ -368,7 +368,7 @@ Additionally we use <code class="docutils literal notranslate"><span class="pre"
 <span class="mi">1</span>
 </pre></div>
 </div>
-<p id="index-20">When you define either a variable or a symbolic variable, it will stay in memory until you quit your session.  Sometimes we would like restore a variable back to its default value. We do this with the <code class="xref py py-func docutils literal notranslate"><span class="pre">restore()</span></code> command.</p>
+<p id="index-20">When you define either a variable or a symbolic variable, it will stay in memory until you quit your session.  Sometimes we would like to restore a variable back to its default value. We do this with the <code class="xref py py-func docutils literal notranslate"><span class="pre">restore()</span></code> command.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">restore</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
@@ -418,7 +418,7 @@ Additionally we use <code class="docutils literal notranslate"><span class="pre"
 <span class="n">sage</span><span class="p">:</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>What should we expect the value of <code class="docutils literal notranslate"><span class="pre">a</span></code> to be?</p>
+<p>What do you expect the value of <code class="docutils literal notranslate"><span class="pre">a</span></code> to be?</p>
 </li>
 <li><p class="first">If you enter the following into SageMath:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
@@ -479,16 +479,16 @@ Additionally we use <code class="docutils literal notranslate"><span class="pre"
 </pre></div>
 </div>
 <p>Where we read <code class="docutils literal notranslate"><span class="pre">M[2][1]</span></code> as “Access the element at index <code class="docutils literal notranslate"><span class="pre">1</span></code> within the list with index <code class="docutils literal notranslate"><span class="pre">2</span></code>” in <code class="docutils literal notranslate"><span class="pre">M</span></code>.
-Note that <code class="docutils literal notranslate"><span class="pre">M[2,1]</span></code> does not work.</p>
+Note that <code class="docutils literal notranslate"><span class="pre">M[2,1]</span></code> does not work (check it yourself).</p>
 <div class="section" id="slicing-and-indexing">
 <span id="index-25"></span><h4>Slicing and Indexing<a class="headerlink" href="#slicing-and-indexing" title="Permalink to this headline">¶</a></h4>
-<p>Probably the nicest feature of lists in python is the <em>slice</em> notation. Let’s suppose you have the following list:</p>
+<p>Probably the nicest feature of lists in Python, and thus SageMath, is the <em>slice</em> notation. Let’s suppose you have the following list:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">M</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">M</span>
 <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>and you would like to access the sub-list <code class="docutils literal notranslate"><span class="pre">[0,3,4]</span></code>. Using the slice notation I can do that in the following way:</p>
+<p>and you would like to access the sub-list <code class="docutils literal notranslate"><span class="pre">[0,3,4]</span></code>. Using the slice notation you can do that in the following way:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">M</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
 </pre></div>
@@ -513,7 +513,7 @@ Note that <code class="docutils literal notranslate"><span class="pre">M[2,1]</s
 <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The first <em>ends</em> the slice two elements before the end of the list while the second <em>begins</em> the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list.</p>
+<p>The first <em>ends</em> the slice two elements before the end of the list, while the second <em>begins</em> the slice at this same position. And like expected, we can use two negative indices to take slices relative to the last element of a list.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sage</span><span class="p">:</span> <span class="n">M</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
 <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">sage</span><span class="p">:</span> <span class="n">M</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
