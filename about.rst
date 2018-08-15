@@ -54,10 +54,10 @@ About SageMath
 --------------
 
 `SageMath <https://en.wikipedia.org/wiki/SageMath>`_ (previously Sage or SAGE) is a free open-source mathematical software system based on the
-Python programming language. Originally created for research into
+`Python programming language <http://www.python.org>`_. Originally created for research into
 mathematics, it has been evolving into a powerful tool for math
 education. It combines numerous other mathematical software packages
-with a single interface, using the `Python <http://www.python.org>`_ programming language. By learning SageMath, you are also learning a lot about Python.
+with a single interface, using Python. By learning SageMath, you are also learning a lot about Python.
 
 As an open source project, SageMath invites contributions from all of its users. This tutorial is one of many sources of information for learning about how to use SageMath. For more information see the SageMath project's  `website <http://www.sagemath.org>`_.
 

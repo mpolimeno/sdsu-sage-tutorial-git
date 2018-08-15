@@ -53,7 +53,7 @@ Getting Started
 About SageMath
 --------------
 
-`SageMath <https://en.wikipedia.org/wiki/SageMath>`_ (previously Sage or SAGE) is a free open source mathematical software system based on the
+`SageMath <https://en.wikipedia.org/wiki/SageMath>`_ (previously Sage or SAGE) is a free open-source mathematical software system based on the
 Python programming language. Originally created for research into
 mathematics, it has been evolving into a powerful tool for math
 education. It combines numerous other mathematical software packages
