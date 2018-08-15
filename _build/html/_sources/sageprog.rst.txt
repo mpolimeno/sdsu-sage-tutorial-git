@@ -1472,7 +1472,7 @@ From which we can exit by typing ``quit;`` at the gap prompt. ::
   gap> quit;
   sage:
 
-If the reader is using the notebook then using GAP directly is even easier. It is done by just selecting GAP from a drop down menu (highligthed in yellow in the picture below).
+If the reader is using the notebook then using GAP directly is even easier. It is done by just selecting GAP from a drop down menu (highlighted in yellow in the picture below).
 
 .. image:: pics/gap_example.png
    :alt: Using GAP directly from the SageMath Notebook
