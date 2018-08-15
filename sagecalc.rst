@@ -484,8 +484,7 @@ In the previous section we only solved equations in one variable, and we always 
 
 Note:
 
-	Variable names cannot contain spaces, for example "square root"
-	is not a valid variable name, whereas "square_root" is.
+Variable names cannot contain spaces, for example "square root" is not a valid variable name, whereas "square_root" is.
 
 Attempting to use a symbolic variable before it has been declared will result in a :exc:`.NameError`. ::
 

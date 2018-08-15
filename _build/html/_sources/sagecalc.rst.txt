@@ -482,7 +482,8 @@ In the previous section we only solved equations in one variable, and we always 
 	sage: phi, theta, rho = var("phi theta rho")
 	sage: x1, x2 = var("x1 x2")
 
-.. index:: Note
+Note:
+
 	Variable names cannot contain spaces, for example "square root"
 	is not a valid variable name, whereas "square_root" is.
 
