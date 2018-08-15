@@ -35,8 +35,8 @@ Some sections may contain numbered citations such as "[1]_." The list of these c
 
 **References:**
 
-.. [1] William A. Stein et al. Sage Mathematics Software (Version 4.7.1),
-   The Sage Development Team, 2011, http://www.sagemath.org.
+.. [1] William A. Stein et al. Sage Mathematics Software (Version 8.2),
+   The Sage Development Team, 2018, http://www.sagemath.org.
 
 .. index:: Getting Started
 
