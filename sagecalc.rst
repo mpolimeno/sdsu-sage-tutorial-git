@@ -63,7 +63,7 @@ subtraction). ::
   sage: (-3)^2
   9
 
-When dividing two integers, there is a subtlety; whether SageMath will return a fraction or its decimal approximation. Unlike most graphing calculators, SageMath will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell SageMath that we *want* the decimal approximation is to include a decimal in the expression itself. ::
+When dividing two integers, there is a subtlety: SageMath will return a either a fraction or its decimal approximation. Unlike most graphing calculators, SageMath will attempt to be as *precise* as possible and will return the fraction unless told otherwise. One way to tell SageMath that we *want* the decimal approximation is to include a decimal in the expression itself. ::
 
 	sage: 11/4.0
 	2.75000000000000
@@ -92,7 +92,7 @@ Integer Division and Factoring
 
     You should be familiar with ":ref:`basic_arithmetic`"
 
-Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to not just know what the reduced fraction is, or even its decimal approximation, but rather the unique *quotient* and the *remainder* that are the consequence of the division.
+Sometimes when we divide, the division operator doesn't give us all of the information that we want. Often we would like to know not only what the reduced fraction is, or even its decimal approximation, but rather the unique *quotient* and the *remainder* of the division.
 
 .. index:: division, qutient, remainder, modulus
 
@@ -199,7 +199,7 @@ Standard Functions and Constants
     You should be familiar with ":ref:`basic_arithmetic`"
 
 SageMath includes nearly all of the standard functions that one encounters
-when studying mathematics. In this section, we shall cover some of the
+when studying Mathematics. In this section, we shall cover some of the
 most commonly used functions: the *maximum*, *minimum*, *floor*,
 *ceiling*, *trigonometric*, *exponential*, and *logarithm* functions.
 We will also see many of the standard mathematical constants; such as *Euler's constant* (:math:`e`), :math:`\pi`, and *the golden ratio* (:math:`\phi`).
@@ -304,7 +304,7 @@ When we type :obj:`.pi` in SageMath we are dealing exactly with :math:`\pi`, not
   sage: sin(pi.n())
   1.22464679914735e-16
 
-We see that when using the symbolic :obj:`.pi`, SageMath returns the exact result. However,  when we use the approximation we get an approximation back. ``e-15`` is a shorthand for :math:`10^{-15}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation: ::
+We see that when using the symbolic :obj:`.pi`, SageMath returns the exact result. However,  when we use the approximation we get an approximation back. ``e-16`` is a shorthand for :math:`10^{-16}` and the number ``1.22464679914735e-16`` should be zero, but there are errors introduced by the approximation. Here are a few examples of using the symbolic, precise :math:`\pi` vs the numerical approximation: ::
 
   sage: sin(pi/6)
   1/2
@@ -411,7 +411,7 @@ In SageMath, equations and inequalities are defined using the *operators* ``==``
 
 .. index:: solving equations, solve
 
-To solve an equation or an inequality we use using the, aptly named, :func:`.solve` command. For the moment, we will only solve for :math:`x`.  The section on variables below explains how to use other variables. ::
+To solve an equation or an inequality we use using the, aptly-named, :func:`.solve` command. For the moment, we will only solve for :math:`x`.  The section on variables below explains how to use other variables. ::
 
 	sage: solve(3*x - 2 == 5,x)
 	[x == (7/3)]
@@ -422,7 +422,7 @@ To solve an equation or an inequality we use using the, aptly named, :func:`.sol
 	sage: solve( 3*x -2 > 5, x)
 	[[x > (7/3)]]
 
-Equations can have multiple solutions, SageMath returns all solutions found as a list. ::
+Equations can have multiple solutions. SageMath returns all solutions found as a list. ::
 
 	sage: solve( x^2 + x  == 6, x)
 	[x == -3, x == 2]
@@ -482,7 +482,7 @@ In the previous section we only solved equations in one variable, and we always 
 	sage: phi, theta, rho = var("phi theta rho")
 	sage: x1, x2 = var("x1 x2")
 
-.. note::
+.. index:: Note
 	Variable names cannot contain spaces, for example "square root"
 	is not a valid variable name, whereas "square_root" is.
 

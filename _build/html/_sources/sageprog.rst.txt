@@ -1289,10 +1289,10 @@ By separating the values with commas, your command can have multiple return valu
 
 Defining your own commands in SAGE is easy. However, elegantly
 encapsulating your code is an art which requires a lot of practice and
-thought. For a more thorough introduction to functions (commands), this
-`chapter`_ on ``Python functions`` is a good place to start.
+thought. For a more thorough introduction to functions (commands),
+`this chapter`_ on ``Python functions`` is a good place to start.
 
-.. _chapter: http://greenteapress.com/thinkpython/html/book004.html
+.. _this chapter: http://greenteapress.com/thinkpython/html/book004.html
 
 .. _external_files_and_sessions:
 
